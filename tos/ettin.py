@@ -48,13 +48,15 @@ class EttinSceneSplitter:
 
 def legacy_result(tree: Any, edus: Sequence[str]) -> dict:
     """Convert binary parsing actions without changing labels or nuclearity."""
+    from isanlp.annotation_rst import DiscourseUnit
     if list(tree.edu_strings) != list(edus):
         raise ValueError("Dipo changed the supplied EDU text or order")
     actions = tree.parsing_actions()
     if len(actions) != len(edus) - 1:
         raise ValueError("Dipo returned an incomplete binary tree")
-    coverage = [(SimpleNamespace(text=text, left=None, right=None), i, i + 1)
+    coverage = [(DiscourseUnit(text=text, left=None, right=None, id=i + 1), i, i + 1)
                 for i, text in enumerate(edus)]
+    idx = len(edus)
     for split, nuclearity, relation in reversed(actions):
         if not 0 < split < len(edus) or nuclearity not in {"NS", "SN", "NN"}:
             raise ValueError("Dipo returned an invalid split or nuclearity")
@@ -64,7 +66,8 @@ def legacy_result(tree: Any, edus: Sequence[str]) -> dict:
             raise ValueError("Dipo returned overlapping or repeated splits")
         if not isinstance(relation, str) or not relation.strip():
             raise ValueError("Dipo returned an empty relation")
-        node = SimpleNamespace(left=left, right=right, nuclearity=nuclearity, relation=relation)
+        idx += 1
+        node = DiscourseUnit(left=left, right=right, nuclearity=nuclearity, relation=relation, id=idx)
         for i in range(begin, end):
             coverage[i] = (node, begin, end)
     root, begin, end = coverage[0]
