@@ -160,3 +160,20 @@
 - Scorer selection remains open. Logistic regression is a candidate
   review-level model using sentiment and RST features. This would parallel
   the classifier used in the HC3 experiment.
+
+## 2026-11-18 — Neutral-aware scorer shortlist
+
+- Compared the three-way CardiffNLP model and VADER 3.3.2 on 12 invented
+  clauses, with four factual statements, four instances of praise, and
+  four complaints. The neural probe used the quantized ONNX export at
+  revision `f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445` on CPU and summarized
+  polarity as `P(positive) - P(negative)`. [Pinned export](https://huggingface.co/Xenova/twitter-roberta-base-sentiment-latest/tree/f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445)
+- All four factual statements had neutral as their most likely class
+  with CardiffNLP. VADER assigned them zero compound polarity. For
+  `I would never buy it again.`, CardiffNLP gave −0.870 and VADER gave
+  0.000. Scores on these examples support trying CardiffNLP first. The
+  model was trained for tweets and still needs an EDU sanity check on
+  review text. SFU review outcomes played no part in this probe.
+- An EDU scorer can supply positive, neutral, and negative scores to a
+  binary review classifier. The review targets remain positive and
+  negative. The scorer and input features are still proposals.
