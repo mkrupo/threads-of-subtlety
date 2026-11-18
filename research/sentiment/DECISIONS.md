@@ -136,3 +136,18 @@
   12 converter control trees, all 60 pilot trees, and complete four-inventory
   coverage. Every observed relation maps under the original research maps.
   [Full parser audit](results/sfu-full-parser-audit.json).
+
+## 2026-11-18 — Preliminary EDU scorer check
+
+- Tested the binary SST-2 DistilBERT checkpoint at revision
+  `714eb0fa89d2f80546fda750413ed43d93601a13` with its released ONNX model
+  and tokenizer on six invented strings using ONNX Runtime 1.22.1 on CPU.
+  The obvious praise and complaint got the expected signs.
+- Factual clauses received large scores in either direction. For example,
+  `The box measures 20 centimeters.` scored −0.954 and
+  `The package arrived on Tuesday.` scored +0.966 on
+  `P(positive) - P(negative)`. Score magnitude alone is a poor proxy for
+  neutrality on these examples. The probe motivates checking a candidate
+  with an explicit neutral class on representative review EDUs before
+  freezing the scorer. Scorer selection and SFU sentiment fitting remain
+  pending. [Pinned checkpoint](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english/tree/714eb0fa89d2f80546fda750413ed43d93601a13)
