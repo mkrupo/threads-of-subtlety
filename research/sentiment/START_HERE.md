@@ -52,5 +52,5 @@ context length a separate consideration for whole-review classification.
 
 **What we can say now** is that the parser setup reproduces the colleague’s
 features on the HC3 sample and gives us all four trees for every SFU scene.
-The sentiment comparison still needs a choice of local scorer, a rule for
-combining scenes, and the held-out experiment.
+We agreed to freeze one shared EDU scorer. Its checkpoint and the way
+we turn EDU scores and trees into a review prediction remain open.

@@ -151,3 +151,12 @@
   with an explicit neutral class on representative review EDUs before
   freezing the scorer. Scorer selection and SFU sentiment fitting remain
   pending. [Pinned checkpoint](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english/tree/714eb0fa89d2f80546fda750413ed43d93601a13)
+
+## 2026-11-18 — Shared scorer agreed
+
+- Use one frozen EDU sentiment scorer across all inventories, maps, and
+  folds for the first experiment. Fit the review-level model within the
+  frozen SFU folds.
+- Scorer selection remains open. Logistic regression is a candidate
+  review-level model using sentiment and RST features. This would parallel
+  the classifier used in the HC3 experiment.
