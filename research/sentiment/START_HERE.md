@@ -1,8 +1,9 @@
 # RST and sentiment in one page
 
-**Our question:** Does the choice of discourse standard, or the detail of
-its relation labels, change how well we can predict a review’s sentiment?
-This extends the paper’s HC3 authorship experiment to a second kind of target.
+**Our question** is whether the choice of discourse standard, or the detail
+of its relation labels, changes how well we can predict a review’s
+sentiment. This adds an English sentiment task alongside the paper’s
+authorship and argumentation work.
 
 ## How the sentiment model would work
 
@@ -37,11 +38,13 @@ on held-out reviews. [R2N2 method](https://aclanthology.org/D15-1263/)
 - **Prepared the sentiment dataset.** SFU has 400 English reviews, balanced
   by positive and negative recommendation across eight domains. We froze
   the review splits and ran text-only controls. [SFU controls](RUNNING.md)
-- **Checked all four parsers on SFU.** The six-review pilot produced 60
-  verified trees. The full parse-only pass caches the shared EDUs and
-  checks how many observed labels the coarse maps cover. [Pilot results](results/unirst-parser-pilot.json)
+- **Parsed all 400 SFU reviews under all four inventories.** We verified
+  4,048 trees across 1,012 scenes and 36,850 shared EDUs. The research
+  maps cover every relation observed. A review can have multiple scene
+  trees, so the sentiment model will need to combine their scores.
+  [Full parse audit](results/sfu-full-parser-audit.json)
 
-**What we can say now:** The parser setup reproduces the colleague’s
-features on the HC3 sample and runs on SFU. The sentiment comparison
-still needs a choice of local scorer, a rule for combining scenes of long
-reviews, and the held-out experiment.
+**What we can say now** is that the parser setup reproduces the colleague’s
+features on the HC3 sample and gives us all four trees for every SFU scene.
+The sentiment comparison still needs a choice of local scorer, a rule for
+combining scenes, and the held-out experiment.

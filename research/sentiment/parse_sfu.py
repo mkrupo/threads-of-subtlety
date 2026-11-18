@@ -6,6 +6,7 @@ from hashlib import sha256
 import json
 from pathlib import Path
 from time import perf_counter
+from unittest.mock import patch
 
 from .parser_pilot import (
     INVENTORIES, RESEARCH_REVISION, canonical_maps, digest, tree_data, write_json,
@@ -92,6 +93,48 @@ def segment(sample, parser, output):
     return scenes
 
 
+def parse_with_supplied_edu_text(parser, edus):
+    """Convert the decoded spans using the boundaries supplied to UniRST."""
+    from isanlp.annotation_rst import DiscourseUnit
+    from isanlp_rst.universal_parser import predictor
+    from isanlp_rst.utils.du_converter import DUConverter
+    from razdel import tokenize
+
+    # The standard converter approximates word lengths from rendered
+    # subwords. Use the original token strings and the supplied EDU breaks
+    # instead. Offsets remain in UniRST's space-joined word coordinates.
+    words_by_edu = [[token.text for token in tokenize(edu)] for edu in edus]
+    original_words = [word for words in words_by_edu for word in words]
+
+    class SuppliedEDUConverter(DUConverter):
+        def _lists_to_isanlp_format(self, tokens, edu_breaks, gold_tokens=None):
+            if gold_tokens != original_words or len(edu_breaks) != len(edus):
+                raise ValueError("The decoded EDU boundaries do not match the supplied EDUs")
+            cursor = 0
+            leaves = []
+            for index, words in enumerate(words_by_edu):
+                if not words:
+                    raise ValueError("The supplied EDU has no original word tokens")
+                text = " ".join(words)
+                end = cursor + len(text)
+                leaves.append(DiscourseUnit(id=index, text=text, start=cursor,
+                                            end=end, relation="elementary"))
+                cursor = end + 1
+            return leaves
+
+    # The inherited converter still builds the tree from the model's
+    # decoded spans. UniRST then remaps the offsets back into the input.
+    with patch.object(predictor, "_du_converter", return_value=SuppliedEDUConverter):
+        return parser.from_edus(edus)
+
+
+def is_alignment_failure(row):
+    return row["status"] == "parse_error" and row["error"].startswith((
+        "Cannot align segment ",
+        "The produced segmentation does not match the provided EDUs.",
+    ))
+
+
 def parse_inventory(args):
     import torch
     from isanlp_rst.parser import Parser
@@ -126,16 +169,57 @@ def parse_inventory(args):
     else:
         scenes = read_jsonl(output / "scenes.jsonl")
 
+    previous = [None] * len(scenes)
+    retry = None
+    if args.retry_from:
+        old_path = args.retry_from / tree_path.name
+        old = json.loads((args.retry_from / report_path.name).read_text())
+        if (old["sample_sha256"], old["scenes_sha256"], old["trees_sha256"]) != (
+            digest(args.sample), digest(output / "scenes.jsonl"), digest(old_path)
+        ):
+            raise ValueError(f"Retry inputs differ from the recorded run for {inventory}")
+        previous = read_jsonl(old_path)
+        if [row["key"] for row in previous] != [row["key"] for row in scenes]:
+            raise ValueError(f"Retry scene identities differ for {inventory}")
+        controls = sorted(
+            ((scene, row) for scene, row in zip(scenes, previous, strict=True)
+             if row["status"] == "ok" and len(scene["edus"]) > 1),
+            key=lambda pair: (pair[0]["tokens"], pair[0]["key"]),
+        )
+        if len(controls) < 3:
+            raise ValueError("Expected at least three successful multispan controls")
+        for index in (0, len(controls) // 2, len(controls) - 1):
+            scene, expected = controls[index]
+            root, = parse_with_supplied_edu_text(parser, scene["edus"])["rst"]
+            nodes, _ = tree_data(root, scene["edus"], allowed)
+            if (root.id, nodes) != (expected["root"], {int(k): v for k, v in expected["nodes"].items()}):
+                raise ValueError(f"Supplied-EDU converter changed existing tree {scene['key']}")
+        retry = {
+            "original_trees_sha256": old["trees_sha256"],
+            "original_source_sha256": old["source_sha256"],
+            "original_status": dict(Counter(row["status"] for row in previous)),
+            "converter_control_trees_matched": 3,
+            "alignment_failures_retried": sum(is_alignment_failure(row) for row in previous),
+        }
+        print(f"Matched 3 controls for {inventory}, retrying {retry['alignment_failures_retried']} scenes", flush=True)
+
     start = perf_counter()
     counts = Counter()
+
     def parsed_rows():
-        for index, scene in enumerate(scenes, start=1):
+        for index, (scene, prior) in enumerate(zip(scenes, previous, strict=True), start=1):
             row = {"key": scene["key"], "document_id": scene["document_id"]}
-            if scene["status"] != "ok":
+            if prior is not None and not is_alignment_failure(prior):
+                row = prior
+                if prior["status"] == "ok":
+                    counts.update(node["relation"].lower() for node in prior["nodes"].values() if "relation" in node)
+            elif scene["status"] != "ok":
                 row["status"] = scene["status"]
             else:
                 try:
-                    root, = parser.from_edus(scene["edus"])["rst"]
+                    prediction = (parse_with_supplied_edu_text(parser, scene["edus"])
+                                  if prior is not None else parser.from_edus(scene["edus"]))
+                    root, = prediction["rst"]
                     nodes, relations = tree_data(root, scene["edus"], allowed)
                     counts.update(relations)
                     row.update(status="ok", root=root.id, nodes=nodes)
@@ -160,6 +244,7 @@ def parse_inventory(args):
         "device": torch.cuda.get_device_name(args.cuda_device) if args.cuda_device >= 0 else "cpu",
         "observed_relations": dict(counts),
         "unmapped_observed": {label: counts[label] for label in sorted(counts.keys() - sample["maps"][inventory].keys())},
+        "retry": retry,
     })
 
 
@@ -266,6 +351,7 @@ def main():
     run.add_argument("--inventory", choices=INVENTORIES, required=True)
     run.add_argument("--checkpoints", type=Path, required=True)
     run.add_argument("--stock-snapshot", type=Path, required=True)
+    run.add_argument("--retry-from", type=Path)
     run.add_argument("--cuda-device", type=int, default=-1)
     report.add_argument("--report", type=Path, required=True)
     args = cli.parse_args()

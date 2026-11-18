@@ -125,3 +125,14 @@
 - Checked ArgMicrotexts gold counts against the public annotations.
   Replaying the draft's prediction comparison requires the colleague's
   evaluation protocol or outputs. [Detailed reproduction record](HC3_REPRODUCTION.md).
+
+## 2026-11-18 — Full SFU parser audit
+
+- Parsed all 400 frozen reviews on 1,012 scenes with shared PCC segmentation.
+  The first pass hit converter alignment errors on the same 31 scenes
+  across all four inventories. The targeted retry supplied the original
+  EDU text to the converter and retained the decoder's native tree spans.
+- Recovered all 124 affected parses. Verified the retained original trees,
+  12 converter control trees, all 60 pilot trees, and complete four-inventory
+  coverage. Every observed relation maps under the original research maps.
+  [Full parser audit](results/sfu-full-parser-audit.json).

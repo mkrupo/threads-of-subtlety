@@ -1,6 +1,6 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
-Status: **SFU corpus preparation, CPU text controls, and the four-parser pilot completed on 2026-11-18. The sentiment comparison is pending.** See [RUNNING.md](RUNNING.md) for the pilot and [DECISIONS.md](DECISIONS.md) for the procedure log.
+Status: **SFU corpus preparation, CPU text controls, and four-inventory parsing of all 400 reviews completed on 2026-11-18. The sentiment comparison is pending.** See [START_HERE.md](START_HERE.md) for the outline and [RUNNING.md](RUNNING.md) for verification.
 
 ## 1. Goal and immediate scope
 
@@ -141,11 +141,12 @@ The colleague supplied the fine checkpoints, recommended stock UniRST for
 PCC/NLDT, used PCC segmentation, and identified the research branch as the
 source of the coarse projections. All four parsers passed the fixtures and
 produced valid binary trees and RS3 on all 15 scenes of the six-review SFU
-pilot using identical PCC EDUs. The research-branch maps cover every
-predicted label in the pilot. Before a full fixed-tree sentiment comparison,
-agree how to handle the one possible NLDT and nine possible RST-DT labels
-absent from those maps. [Model provenance](MODEL_PROVENANCE.md),
-[pilot results](results/unirst-parser-pilot.json).
+pilot using identical PCC EDUs. The full audit now confirms complete
+four-inventory coverage for all 400 reviews and complete research-map
+coverage of observed labels. The checkpoint alphabet still includes one
+possible NLDT and nine possible RST-DT labels absent from the maps. Those
+labels may matter on another corpus. [Model provenance](MODEL_PROVENANCE.md),
+[full parse results](results/sfu-full-parser-audit.json).
 
 ## 8. Sequence toward the next meeting
 

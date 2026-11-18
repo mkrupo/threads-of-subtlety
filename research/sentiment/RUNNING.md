@@ -227,6 +227,29 @@ verifier compares scene identities and ordered EDU leaves, recounts each
 inventory's relations, and reports complete review coverage across all
 four inventories. The pilot's RS3 files remain available for inspection.
 
+If the released converter fails to align rendered subword text back to
+the supplied EDUs, copy `scenes.jsonl` and `segmentation.json` into a
+fresh output directory. Run the same command for each inventory with
+`--retry-from` pointing to the completed first-pass directory. This
+checks three previously successful trees, copies the successful records
+unchanged, and retries only known text-alignment errors. On retry the
+decoder receives the same inputs, and the converter reads leaf text
+directly from the original EDUs.
+
+The completed SFU run produced 1,012 scenes and 36,850 EDUs, with 271
+reviews split across multiple scenes. The first pass hit text-conversion
+errors on the same 31 scenes in each inventory. The targeted converter
+retry recovered all 124 parses. All 3,924 first-pass successful trees
+remained exactly equal, and all 60 trees from the original six-review
+pilot matched the full run. Across the 4,048 verified trees, the original
+research maps cover all observed labels in each inventory.
+
+The raw run directories are `artifacts/sentiment/sfu-full-v1-first-pass/`
+and `artifacts/sentiment/sfu-full-v1/` locally, and `sfu-full-v1/` and
+`sfu-full-v1-verified/` under the personal GPU-host pilot workspace. The
+[portable summary](results/sfu-full-parser-audit.json) records both passes,
+the ordered label tables, and the checksums.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and
