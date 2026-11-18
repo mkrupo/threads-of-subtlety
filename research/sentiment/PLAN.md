@@ -1,6 +1,6 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
-**SFU preparation, text controls, four-inventory parsing, and shared EDU scoring are complete.** The sentiment comparison is pending. See [START_HERE.md](START_HERE.md) for the outline and [RUNNING.md](RUNNING.md) for verification.
+**SFU preparation, text controls, four-inventory parsing, shared EDU scoring, and the equal-weight EDU baseline are complete.** The comparison of RST conditions is pending. See [START_HERE.md](START_HERE.md) for the outline and [RUNNING.md](RUNNING.md) for verification.
 
 ## 1. Goal and immediate scope
 

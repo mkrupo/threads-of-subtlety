@@ -193,3 +193,4 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/sfu-token-lengths.json
 !/research/sentiment/results/sfu-edu-scorer-check.json
 !/research/sentiment/results/sfu-edu-scores-v1.json
+!/research/sentiment/results/sfu-edu-mean-v1.json

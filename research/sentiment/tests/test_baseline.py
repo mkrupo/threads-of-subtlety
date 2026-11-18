@@ -12,6 +12,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 from research.sentiment import baseline
 from research.sentiment.corpus import build_splits, make_folds
+from research.sentiment.edu_baseline import mean_edu_scores
 from research.sentiment.prepare_corpus import prepare_corpus
 
 
@@ -78,6 +79,21 @@ class BaselineTests(unittest.TestCase):
                          baseline.feature_input("tfidf_lr", [altered]))
         np.testing.assert_array_equal(baseline.feature_input("length_only", [original]),
                                       baseline.feature_input("length_only", [altered]))
+
+    def test_edu_mean_gives_equal_weight_to_edus_across_unequal_scenes(self):
+        rows = [
+            {"document_id": "a", "probabilities": [[0, 0, 1], [0, 1, 0]]},
+            {"document_id": "b", "probabilities": [[0, 1, 0]]},
+            {"document_id": "a", "probabilities": [[1, 0, 0], [1, 0, 0]]},
+            {"document_id": "a", "probabilities": [[1, 0, 0]]},
+        ]
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "scores.jsonl"
+            path.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+            means = mean_edu_scores(path)
+        self.assertEqual(set(means), {"a", "b"})
+        np.testing.assert_allclose(means["a"], [0.6, 0.2, 0.2])
+        np.testing.assert_allclose(means["b"], [0, 1, 0])
 
     def test_jsonl_handles_unicode_separators_inside_review_text(self):
         with TemporaryDirectory() as directory:

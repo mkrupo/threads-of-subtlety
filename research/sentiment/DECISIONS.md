@@ -200,3 +200,11 @@
 - Verified 36,850 scores on 1,012 scenes from 400 reviews. Keep the
   three probabilities through the scoring stage. The review-level
   prediction will still use the two SFU labels. [Score manifest](results/sfu-edu-scores-v1.json)
+
+## Equal-weight EDU baseline
+
+- Use each review's mean negative, neutral, and positive EDU scores as
+  the three classifier inputs. Give each EDU equal weight across scenes.
+- Use the text controls' frozen outer and inner folds, logistic
+  regression settings, C grid, and 0.5 threshold. Standardize the three
+  features within each fitting partition, as for the length-only control.

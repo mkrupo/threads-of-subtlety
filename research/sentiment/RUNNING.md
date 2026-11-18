@@ -296,6 +296,32 @@ different batches, one top label changed. Use this cache throughout the
 comparison to hold the scores fixed. The cache is local and its checksum
 and model provenance are in the [portable manifest](results/sfu-edu-scores-v1.json).
 
+## Equal-weight EDU baseline
+
+Use the locked sentiment environment and the frozen score cache. The
+script checks the scores, prepared corpus, splits and LR config against
+the recorded runs. Pass a fresh output directory.
+
+```bash
+uv run --project research/sentiment --locked --no-sync --cache-dir /tmp/tos-uv-cache \
+  python -B -m research.sentiment.edu_baseline \
+  --prepared-dir artifacts/sentiment/sfu-v1/prepared \
+  --scores artifacts/sentiment/sfu-edu-scores-v1/scores.jsonl \
+  --output-dir artifacts/sentiment/sfu-v1/edu-mean-v1
+```
+
+Each review supplies three means, one per scorer class. Every EDU has
+equal weight, including across scenes of unequal length. Logistic
+regression uses the same C grid and frozen folds as the text controls.
+Scaling and C selection use only training data for each outer test fold.
+
+The baseline scored 0.8174 pooled macro-F1 and 81.75% accuracy over 400
+held-out reviews. An independent check rebuilt the review means, refit
+all inner and outer models, and verified the saved probabilities and
+metrics. A repeat on the same host produced identical predictions and
+report. The [portable result](results/sfu-edu-mean-v1.json) records fold
+metrics, C values, software versions, and hashes.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and

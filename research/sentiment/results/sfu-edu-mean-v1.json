@@ -1,0 +1,346 @@
+{
+  "features": {
+    "columns": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "pooling": "arithmetic mean across all EDUs in the review",
+    "scaling": "standard scaler fitted within each fitting partition"
+  },
+  "input_hashes": {
+    "baseline_config.json": "558363bab07109c3eb5fc279a87b4aa696e865d429b907dd297caa5db5137d49",
+    "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+    "provenance.json": "2797da6231501e49b4bc5028960014fd78d8e69a2f1ff7e5e55a5f957176454b",
+    "reviews.jsonl": "44aae1ced747d88b1bf9cf0d79223201bac2d054adda05208ce627dfbaa7e29b",
+    "scores.jsonl": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+    "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b"
+  },
+  "predictions_sha256": "4a80ac7beabaac9afab01dbc58f1c5a99f919d4e604443d628f46171e5dc10eb",
+  "primary_metric": "pooled_out_of_fold_macro_f1",
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "selection": [
+    {
+      "mean_inner_macro_f1_by_C": {
+        "0.1": 0.824462366835351,
+        "1.0": 0.8277189202423832,
+        "10.0": 0.8245983154603861
+      },
+      "outer_fold": 0,
+      "selected_C": 1.0
+    },
+    {
+      "mean_inner_macro_f1_by_C": {
+        "0.1": 0.8308622527505283,
+        "1.0": 0.8371102974878186,
+        "10.0": 0.8339906694209331
+      },
+      "outer_fold": 1,
+      "selected_C": 1.0
+    },
+    {
+      "mean_inner_macro_f1_by_C": {
+        "0.1": 0.8027339670982242,
+        "1.0": 0.8059688298679707,
+        "10.0": 0.8059688298679707
+      },
+      "outer_fold": 2,
+      "selected_C": 1.0
+    },
+    {
+      "mean_inner_macro_f1_by_C": {
+        "0.1": 0.8030169849649063,
+        "1.0": 0.8030169849649063,
+        "10.0": 0.8030169849649063
+      },
+      "outer_fold": 3,
+      "selected_C": 0.1
+    },
+    {
+      "mean_inner_macro_f1_by_C": {
+        "0.1": 0.8278531895927435,
+        "1.0": 0.8278531895927435,
+        "10.0": 0.824694432393434
+      },
+      "outer_fold": 4,
+      "selected_C": 0.1
+    }
+  ],
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  },
+  "summary": {
+    "controls": {
+      "edu_mean_lr": {
+        "per_domain": {
+          "books": {
+            "accuracy": 0.62,
+            "confusion_matrix_labels_0_1": [
+              [
+                21,
+                4
+              ],
+              [
+                15,
+                10
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.6006725514922235,
+            "negative_f1": 0.6885245901639344,
+            "positive_f1": 0.5128205128205128
+          },
+          "cars": {
+            "accuracy": 0.9,
+            "confusion_matrix_labels_0_1": [
+              [
+                22,
+                3
+              ],
+              [
+                2,
+                23
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.8999599839935974,
+            "negative_f1": 0.8979591836734694,
+            "positive_f1": 0.9019607843137255
+          },
+          "computers": {
+            "accuracy": 0.86,
+            "confusion_matrix_labels_0_1": [
+              [
+                20,
+                5
+              ],
+              [
+                2,
+                23
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.8594941790445605,
+            "negative_f1": 0.851063829787234,
+            "positive_f1": 0.8679245283018868
+          },
+          "cookware": {
+            "accuracy": 0.78,
+            "confusion_matrix_labels_0_1": [
+              [
+                15,
+                10
+              ],
+              [
+                1,
+                24
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.7726333195535345,
+            "negative_f1": 0.7317073170731707,
+            "positive_f1": 0.8135593220338984
+          },
+          "hotels": {
+            "accuracy": 0.8,
+            "confusion_matrix_labels_0_1": [
+              [
+                16,
+                9
+              ],
+              [
+                1,
+                24
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.7947454844006567,
+            "negative_f1": 0.7619047619047619,
+            "positive_f1": 0.8275862068965517
+          },
+          "movies": {
+            "accuracy": 0.82,
+            "confusion_matrix_labels_0_1": [
+              [
+                25,
+                0
+              ],
+              [
+                9,
+                16
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.8139727159983464,
+            "negative_f1": 0.847457627118644,
+            "positive_f1": 0.7804878048780488
+          },
+          "music": {
+            "accuracy": 0.88,
+            "confusion_matrix_labels_0_1": [
+              [
+                20,
+                5
+              ],
+              [
+                1,
+                24
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.8792270531400965,
+            "negative_f1": 0.8695652173913043,
+            "positive_f1": 0.8888888888888888
+          },
+          "phones": {
+            "accuracy": 0.88,
+            "confusion_matrix_labels_0_1": [
+              [
+                21,
+                4
+              ],
+              [
+                2,
+                23
+              ]
+            ],
+            "documents": 50,
+            "macro_f1": 0.8798076923076923,
+            "negative_f1": 0.875,
+            "positive_f1": 0.8846153846153846
+          }
+        },
+        "per_fold": {
+          "0": {
+            "accuracy": 0.7625,
+            "confusion_matrix_labels_0_1": [
+              [
+                28,
+                12
+              ],
+              [
+                7,
+                33
+              ]
+            ],
+            "documents": 80,
+            "macro_f1": 0.7615686274509804,
+            "negative_f1": 0.7466666666666667,
+            "positive_f1": 0.7764705882352941
+          },
+          "1": {
+            "accuracy": 0.8125,
+            "confusion_matrix_labels_0_1": [
+              [
+                36,
+                4
+              ],
+              [
+                11,
+                29
+              ]
+            ],
+            "documents": 80,
+            "macro_f1": 0.8110533774208786,
+            "negative_f1": 0.8275862068965517,
+            "positive_f1": 0.7945205479452054
+          },
+          "2": {
+            "accuracy": 0.9125,
+            "confusion_matrix_labels_0_1": [
+              [
+                37,
+                3
+              ],
+              [
+                4,
+                36
+              ]
+            ],
+            "documents": 80,
+            "macro_f1": 0.9124863259884357,
+            "negative_f1": 0.9135802469135802,
+            "positive_f1": 0.9113924050632911
+          },
+          "3": {
+            "accuracy": 0.8625,
+            "confusion_matrix_labels_0_1": [
+              [
+                32,
+                8
+              ],
+              [
+                3,
+                37
+              ]
+            ],
+            "documents": 80,
+            "macro_f1": 0.8619607843137256,
+            "negative_f1": 0.8533333333333334,
+            "positive_f1": 0.8705882352941177
+          },
+          "4": {
+            "accuracy": 0.7375,
+            "confusion_matrix_labels_0_1": [
+              [
+                27,
+                13
+              ],
+              [
+                8,
+                32
+              ]
+            ],
+            "documents": 80,
+            "macro_f1": 0.7364705882352941,
+            "negative_f1": 0.72,
+            "positive_f1": 0.7529411764705882
+          }
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.8175,
+          "confusion_matrix_labels_0_1": [
+            [
+              160,
+              40
+            ],
+            [
+              33,
+              167
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8174440922532525,
+          "negative_f1": 0.8142493638676844,
+          "positive_f1": 0.8206388206388207
+        }
+      }
+    },
+    "interpretation": "Equal-weight EDU sentiment baseline without RST features.",
+    "label_names": {
+      "0": "negative",
+      "1": "positive"
+    },
+    "protocol": "sfu-edu-mean-v1"
+  },
+  "verification": {
+    "held_out_reviews": 400,
+    "held_out_reviews_per_fold": [
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    "identical_repeat_on_same_host": true,
+    "independent_feature_aggregation_and_nested_refit": true,
+    "independent_macro_f1_and_accuracy": true
+  }
+}

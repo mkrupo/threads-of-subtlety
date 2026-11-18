@@ -53,7 +53,10 @@ context length a separate consideration for whole-review classification.
 - **Scored every EDU once for reuse.** We froze the CardiffNLP model and
   cached all three scores for each of the 36,850 EDUs. Every comparison
   will use these exact inputs. [Score manifest](results/sfu-edu-scores-v1.json)
+- **Ran the no-RST baseline.** We averaged the three EDU scores across
+  each review and trained logistic regression on those averages. It
+  scored **0.817 macro-F1** over 400 held-out predictions, one per review.
+  [Baseline results](results/sfu-edu-mean-v1.json)
 
-**Next** is the no-RST comparison. Average the EDU scores within each
-review and fit logistic regression on the frozen folds. That gives us
-a reference for testing what the trees add.
+**Next** is to decide how the trees should change the inputs to logistic
+regression. The equal-weight baseline is our reference for that comparison.
