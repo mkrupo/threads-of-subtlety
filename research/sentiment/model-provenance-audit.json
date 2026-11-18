@@ -1,0 +1,63 @@
+{
+  "kind": "static_source_audit_not_model_validation",
+  "research_commit": "f06309b62cbc53dce0c98668cac225666dfb64d7",
+  "upstream_commit": "c51480a10a6636ae621fcc4676b12c0099f7a0f9",
+  "sources": [
+    {
+      "path": "docs/eng.rst.rstdt.new_to_coarse.json",
+      "sha256": "e21cea8fa7c6dd77bf3edbf8d6d2f5b82fdc09f107f7da9876cc676e174b9498"
+    },
+    {
+      "path": "isanlp_rst/universal_parser/relation_finetuning.py",
+      "sha256": "f8ab5eeca454a1faa012e0c04720a596b010f5137ff104901b9cdaa9abff8bd8"
+    },
+    {
+      "path": "isanlp_rst/universal_parser/src/parser/data.py",
+      "sha256": "8fd6f08f4125f97c4a0a683499e8008c2f27985c78b9247f15a5e96a25112c39"
+    }
+  ],
+  "gum_fine": {
+    "relation_nuclearity_rows": 50,
+    "native_relation_names": 32
+  },
+  "rstdt_fine": {
+    "relation_nuclearity_rows": 110,
+    "native_relation_names": 69,
+    "canonical_projection_native_names": 60,
+    "native_names_missing_from_canonical_projection": [
+      "analogy-mn",
+      "comment-topic-mn",
+      "conclusion",
+      "elaboration-process-step",
+      "interpretation-mn",
+      "otherwise",
+      "proportion-mn",
+      "reason-mn",
+      "topic-comment-mn"
+    ],
+    "canonical_names_missing_from_native_table": [],
+    "canonical_names_without_initialization_parent": [],
+    "comparison_name_aliases": {
+      "cause": "causal",
+      "contrast": "adversative"
+    },
+    "different_group_assignments": [
+      {
+        "relation": "preference",
+        "canonical_projection": "adversative",
+        "upstream_initialization_parent": "comparison"
+      },
+      {
+        "relation": "reason",
+        "canonical_projection": "causal",
+        "upstream_initialization_parent": "explanation"
+      },
+      {
+        "relation": "restatement",
+        "canonical_projection": "elaboration",
+        "upstream_initialization_parent": "summary"
+      }
+    ]
+  },
+  "interpretation": "Initialization and downstream coarsening serve different purposes. Differences need explanation or a declared sensitivity, not automatic correction. Training code does not identify the checkpoint used for historical .new inputs."
+}

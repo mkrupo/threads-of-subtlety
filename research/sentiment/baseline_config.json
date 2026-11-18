@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "protocol": "sfu-text-controls-v1",
+  "seed": 42,
+  "outer_folds": 5,
+  "inner_folds": 4,
+  "expected_corpus": {
+    "archive_sha256": "3c53884a218c6c218b128440a004de8168d549ebd911277a47c8e7fac28c03ac",
+    "documents": 400,
+    "domains": 8,
+    "per_domain_label": 25
+  },
+  "primary_metric": "pooled_out_of_fold_macro_f1",
+  "selection_metric": "mean_inner_macro_f1",
+  "label_names": {"0": "negative", "1": "positive"},
+  "decision_threshold": 0.5,
+  "regularization_C": [0.1, 1.0, 10.0],
+  "tie_break": "first best candidate, with C ordered from smaller to larger",
+  "tfidf": {
+    "lowercase": true,
+    "ngram_range": [1, 2],
+    "min_df": 2,
+    "max_df": 1.0,
+    "max_features": 20000,
+    "sublinear_tf": true,
+    "norm": "l2"
+  },
+  "logistic_regression": {
+    "solver": "liblinear",
+    "max_iter": 2000,
+    "tol": 0.0001,
+    "class_weight": null
+  },
+  "controls": ["class_prior", "length_only", "tfidf_lr"],
+  "cleaning": "versioned corpus normalization only; retain review content and ratings",
+  "interpretation": "Text controls only: no RST model or framework comparison yet."
+}

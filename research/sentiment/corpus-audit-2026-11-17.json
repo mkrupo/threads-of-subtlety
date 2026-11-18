@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-11-17",
+  "method": {
+    "text": "Archive members read in memory; no extraction or review text in report.",
+    "length": "Whitespace tokens, not parser subword tokens or runtime estimates.",
+    "identity": "SHA-256 after whitespace normalization only; not a near-duplicate audit.",
+    "rating_cue": "Heuristic occurrence only; not proof of label leakage or removal guidance.",
+    "labels": "Supplied polarity inferred from corpus filenames; not human reannotation."
+  },
+  "sfu": {
+    "archive_sha256": "3c53884a218c6c218b128440a004de8168d549ebd911277a47c8e7fac28c03ac",
+    "archive_bytes": 895423,
+    "documents": 400,
+    "labels": {
+      "negative": 200,
+      "positive": 200
+    },
+    "domains": {
+      "books": 50,
+      "cars": 50,
+      "computers": 50,
+      "cookware": 50,
+      "hotels": 50,
+      "movies": 50,
+      "music": 50,
+      "phones": 50
+    },
+    "domain_labels": {
+      "books": {
+        "negative": 25,
+        "positive": 25
+      },
+      "cars": {
+        "negative": 25,
+        "positive": 25
+      },
+      "computers": {
+        "negative": 25,
+        "positive": 25
+      },
+      "cookware": {
+        "negative": 25,
+        "positive": 25
+      },
+      "hotels": {
+        "negative": 25,
+        "positive": 25
+      },
+      "movies": {
+        "negative": 25,
+        "positive": 25
+      },
+      "music": {
+        "negative": 25,
+        "positive": 25
+      },
+      "phones": {
+        "negative": 25,
+        "positive": 25
+      }
+    },
+    "decode_encodings": {
+      "utf-8-sig": 316,
+      "cp1252": 84
+    },
+    "characters": {
+      "min": 178,
+      "median": 3146.5,
+      "p95_nearest_rank": 10663,
+      "max": 33593,
+      "sum": 1556460
+    },
+    "whitespace_tokens": {
+      "min": 35,
+      "median": 572.5,
+      "p95_nearest_rank": 1908,
+      "max": 6149,
+      "sum": 281070
+    },
+    "nonempty_lines": {
+      "min": 1,
+      "median": 9.0,
+      "p95_nearest_rank": 41,
+      "max": 148,
+      "sum": 5571
+    },
+    "empty_documents": 0,
+    "exact_duplicate_groups_after_whitespace_normalization": 0,
+    "duplicate_groups_crossing_labels": 0,
+    "rating_cue_documents_heuristic": 20,
+    "ignored_nonreview_members": [
+      "MOVIES/movies.zip",
+      "README.txt"
+    ]
+  },
+  "cornell": {
+    "archive_sha256": "fc0dccc2671af5db3c5d8f81f77a1ebfec953ecdd422334062df61ede36b2179",
+    "archive_bytes": 3127238,
+    "documents": 2000,
+    "labels": {
+      "negative": 1000,
+      "positive": 1000
+    },
+    "domains": {
+      "movies": 2000
+    },
+    "domain_labels": {
+      "movies": {
+        "negative": 1000,
+        "positive": 1000
+      }
+    },
+    "decode_encodings": {
+      "utf-8-sig": 2000
+    },
+    "characters": {
+      "min": 89,
+      "median": 3591.0,
+      "p95_nearest_rank": 7169,
+      "max": 14896,
+      "sum": 7717381
+    },
+    "whitespace_tokens": {
+      "min": 17,
+      "median": 696.5,
+      "p95_nearest_rank": 1355,
+      "max": 2678,
+      "sum": 1492681
+    },
+    "nonempty_lines": {
+      "min": 1,
+      "median": 30.0,
+      "p95_nearest_rank": 58,
+      "max": 112,
+      "sum": 64720
+    },
+    "empty_documents": 0,
+    "exact_duplicate_groups_after_whitespace_normalization": 0,
+    "duplicate_groups_crossing_labels": 0,
+    "rating_cue_documents_heuristic": 82,
+    "ignored_nonreview_members": [
+      "poldata.README.2.0"
+    ],
+    "original_fold_labels": {
+      "0": {
+        "negative": 100,
+        "positive": 100
+      },
+      "1": {
+        "negative": 100,
+        "positive": 100
+      },
+      "2": {
+        "negative": 100,
+        "positive": 100
+      },
+      "3": {
+        "negative": 100,
+        "positive": 100
+      },
+      "4": {
+        "negative": 100,
+        "positive": 100
+      },
+      "5": {
+        "negative": 100,
+        "positive": 100
+      },
+      "6": {
+        "negative": 100,
+        "positive": 100
+      },
+      "7": {
+        "negative": 100,
+        "positive": 100
+      },
+      "8": {
+        "negative": 100,
+        "positive": 100
+      },
+      "9": {
+        "negative": 100,
+        "positive": 100
+      }
+    }
+  }
+}

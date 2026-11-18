@@ -171,3 +171,17 @@ longformer_dataset*.pkl
 results/
 test_*.py
 threads-of-subtlety.code-workspace
+
+# Local sentiment corpora and generated per-document/model artifacts.
+/data/sentiment/
+/artifacts/sentiment/
+!/research/sentiment/tests/test_*.py
+
+# Locally supplied paper, planning notes, and email excerpts.
+/RST_relation_granularity/
+
+# Portable aggregate results; generated per-document artifacts stay excluded.
+!/research/sentiment/results/
+/research/sentiment/results/*
+!/research/sentiment/results/sfu-text-controls-v1.json
+!/research/sentiment/results/sfu-text-controls-v1-independent-verification.json

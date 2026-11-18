@@ -1,0 +1,13 @@
+[project]
+name = "tos-sentiment"
+version = "0.1.0"
+description = "Reproducible sentiment testbed for RST representation comparisons"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "numpy>=1.26,<3",
+  "scipy>=1.11,<2",
+  "scikit-learn>=1.5,<2",
+]
+
+[tool.uv]
+package = false
