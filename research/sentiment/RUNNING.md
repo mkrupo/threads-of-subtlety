@@ -261,6 +261,41 @@ disabled. Review lengths come from the `text` field of the prepared
 verified `scenes.jsonl`. The 95th percentile uses linear interpolation
 between adjacent sorted counts.
 
+## Frozen SFU EDU scores
+
+The scorer uses the quantized CardiffNLP ONNX export from the EDU check.
+Run it from the repository root with the verified shared scene cache.
+The script checks the three model files and scene file against their
+recorded checksums before inference.
+
+```bash
+uv venv --python 3.12 /tmp/tos-sfu-scorer
+uv pip install --python /tmp/tos-sfu-scorer/bin/python \
+  numpy==2.2.6 onnxruntime==1.22.1 tokenizers==0.21.4
+mkdir -p /tmp/tos-cardiff-sfu
+scorer_url='https://huggingface.co/Xenova/twitter-roberta-base-sentiment-latest/resolve/f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445'
+curl -L --fail "$scorer_url/onnx/model_quantized.onnx" -o /tmp/tos-cardiff-sfu/model.onnx
+curl -L --fail "$scorer_url/tokenizer.json" -o /tmp/tos-cardiff-sfu/tokenizer.json
+curl -L --fail "$scorer_url/config.json" -o /tmp/tos-cardiff-sfu/config.json
+/tmp/tos-sfu-scorer/bin/python -B -m research.sentiment.score_sfu \
+  --scenes artifacts/sentiment/sfu-full-v1/scenes.jsonl \
+  --model-dir /tmp/tos-cardiff-sfu --output artifacts/sentiment/sfu-edu-scores-v1
+/tmp/tos-sfu-scorer/bin/python -B -m research.sentiment.score_sfu \
+  --scenes artifacts/sentiment/sfu-full-v1/scenes.jsonl \
+  --output artifacts/sentiment/sfu-edu-scores-v1 --verify
+```
+
+`scores.jsonl` stores the review ID, scene key, and ordered rows of
+`[negative, neutral, positive]` probabilities in the original EDU order.
+All 36,850 vectors are finite and sum to one within `1e-6`. Inference
+groups similar token lengths into batches of 64 and restores the original
+order when saving. The full CPU inference pass took 81 seconds. A second
+run on the same host with a fresh `--output` produced a byte-identical
+`scores.jsonl`. Compared with the exploratory 32-EDU run, which used
+different batches, one top label changed. Use this cache throughout the
+comparison to hold the scores fixed. The cache is local and its checksum
+and model provenance are in the [portable manifest](results/sfu-edu-scores-v1.json).
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and

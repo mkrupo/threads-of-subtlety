@@ -191,3 +191,12 @@
 - Recommend freezing the tested CardiffNLP export and keeping all three
   scores for each EDU. This recommendation precedes the final scorer
   decision and any review-level fitting.
+
+## 2026-11-18 — CardiffNLP scores frozen
+
+- Max approved the tested three-class CardiffNLP scorer. Use its pinned
+  ONNX export and shared PCC EDUs to generate one cache of negative,
+  neutral, and positive probabilities for all conditions and folds.
+- Verified 36,850 scores on 1,012 scenes from 400 reviews. Keep the
+  three probabilities through the scoring stage. The review-level
+  prediction will still use the two SFU labels. [Score manifest](results/sfu-edu-scores-v1.json)

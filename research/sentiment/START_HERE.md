@@ -10,10 +10,10 @@ authorship and argumentation work.
 A regular sentiment classifier can read a review and return a positive or
 negative score. SFU supplies those two review labels. In our proposed setup,
 a shared sentiment scorer reads each
-elementary discourse unit (EDU), usually a clause or short span. It can be a
-neural model or a simpler scorer. RST provides a tree that tells us how to
-combine those local scores. The model learns against the review’s overall
-sentiment.
+elementary discourse unit (EDU), usually a clause or short span, and gives
+it three scores for negative, neutral, and positive sentiment. RST provides
+a tree that tells us how to combine those local scores. The model learns
+against the review’s overall sentiment.
 
 Take “The screen looks great, but the battery dies by noon.” Suppose the
 two EDU scores are +0.8 and −0.6. Their average is +0.1. If a tree marks
@@ -50,7 +50,10 @@ context length a separate consideration for whole-review classification.
   trees, so the sentiment model will need to combine their scores.
   [Full parse audit](results/sfu-full-parser-audit.json)
 
-**What we can say now** is that the parser setup reproduces the colleague’s
-features on the HC3 sample and gives us all four trees for every SFU scene.
-We agreed to freeze one shared EDU scorer. Its checkpoint and the way
-we turn EDU scores and trees into a review prediction remain open.
+- **Scored every EDU once for reuse.** We froze the CardiffNLP model and
+  cached all three scores for each of the 36,850 EDUs. Every comparison
+  will use these exact inputs. [Score manifest](results/sfu-edu-scores-v1.json)
+
+**Next** is the no-RST comparison. Average the EDU scores within each
+review and fit logistic regression on the frozen folds. That gives us
+a reference for testing what the trees add.

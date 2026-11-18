@@ -1,0 +1,48 @@
+{
+  "documents": 400,
+  "edus": 36850,
+  "labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "model": {
+    "id": "Xenova/twitter-roberta-base-sentiment-latest",
+    "revision": "f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445",
+    "sha256": {
+      "config.json": "cdf2b36e0066bd9996e3b9fb3f7c095dc656a0e62c6e3a7327d4ff5541e55b51",
+      "model.onnx": "046f7e4cc46b399558fa9b2de966f6b0d42c69e4b01f582bfb4099b01a0bb5d7",
+      "tokenizer.json": "1e6506713f00e34406a757acb80f9f3233c1c3950857d32bbc41bcd419d5d8b6"
+    }
+  },
+  "runtime": {
+    "batch_size": 64,
+    "intra_op_threads": 4,
+    "packages": {
+      "numpy": "2.2.6",
+      "onnxruntime": "1.22.1",
+      "tokenizers": "0.21.4"
+    },
+    "provider": "CPUExecutionProvider"
+  },
+  "scenes": 1012,
+  "scenes_sha256": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+  "scores_sha256": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+  "seconds": 80.7286166039994,
+  "source_sha256": "2843e0e0ef6e5e5efb14d2eb3092399d6742799b5cf200d14512d907e46e0e70",
+  "top_labels": {
+    "negative": 6059,
+    "neutral": 24806,
+    "positive": 5985
+  },
+  "verification": {
+    "exploratory_probe_comparison": {
+      "examples": 32,
+      "max_absolute_probability_difference": 0.123299241065979,
+      "mean_absolute_probability_difference": 0.023055808663533146,
+      "top_label_changes": 1
+    },
+    "identical_repeat_on_same_host": true,
+    "independent_scene_and_edu_check": true
+  }
+}

@@ -1,6 +1,6 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
-Status: **SFU corpus preparation, CPU text controls, and four-inventory parsing of all 400 reviews completed on 2026-11-18. The sentiment comparison is pending.** See [START_HERE.md](START_HERE.md) for the outline and [RUNNING.md](RUNNING.md) for verification.
+**SFU preparation, text controls, four-inventory parsing, and shared EDU scoring are complete.** The sentiment comparison is pending. See [START_HERE.md](START_HERE.md) for the outline and [RUNNING.md](RUNNING.md) for verification.
 
 ## 1. Goal and immediate scope
 
@@ -83,7 +83,7 @@ This is a proposal, not a finalized experiment.
 4. **Primary relation-aware model:** an R2N2-style small aggregator or another explicitly relation-conditioned pooling model, trained against document sentiment. Run it with native fine labels and fixed-tree coarse labels.
 5. **Optional bridge to HC3:** text plus relation/M3 features, to see whether the colleague's representation transfers even without compositional modeling.
 
-An EDU scorer's weights, calibration, and input text must be shared across inventory conditions with shared EDUs. If it is fitted on this corpus, all fitting belongs inside the training fold; stacked training predictions need cross-fitting where required. Exact scorer choice is still open. No extra sentiment checkpoint has been selected or downloaded.
+The first comparison uses the frozen CardiffNLP scorer. All inventories and folds share the same cached negative, neutral, and positive scores for every EDU. Review-level models may learn from the review labels in each training fold. [Scorer manifest](results/sfu-edu-scores-v1.json)
 
 **Depth alone cannot test relation-label granularity on a fixed tree.** If coarsening only labels changes a genuinely label-independent depth baseline, investigate the implementation. A relation-aware branch is required for the actual fine/coarse question.
 
