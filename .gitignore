@@ -191,3 +191,4 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/hc3-reproduction.json
 !/research/sentiment/results/sfu-full-parser-audit.json
 !/research/sentiment/results/sfu-token-lengths.json
+!/research/sentiment/results/sfu-edu-scorer-check.json

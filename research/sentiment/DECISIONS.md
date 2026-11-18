@@ -177,3 +177,17 @@
 - An EDU scorer can supply positive, neutral, and negative scores to a
   binary review classifier. The review targets remain positive and
   negative. The scorer and input features are still proposals.
+
+## 2026-11-18 — Scorer check on real SFU EDUs
+
+- Sampled 32 cached EDUs from distinct reviews, one per domain and length
+  band. The assistant judged each isolated span before running either
+  scorer. Overall review labels and downstream results played no part.
+- Seven fragments were unclear out of context. On the remaining 25,
+  CardiffNLP matched 23 judgments and VADER matched 15. CardiffNLP matched
+  10/11 factual, 10/10 positive, and 3/4 negative judgments. Its two
+  disagreements still illustrate the limits of scoring isolated spans.
+  These are one reviewer's sanity-check judgments. [Audit](results/sfu-edu-scorer-check.json)
+- Recommend freezing the tested CardiffNLP export and keeping all three
+  scores for each EDU. This recommendation precedes the final scorer
+  decision and any review-level fitting.

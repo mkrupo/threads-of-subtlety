@@ -1,0 +1,437 @@
+{
+  "agreement": {
+    "cardiff_label": 23,
+    "vader_label": 15
+  },
+  "clear_count": 25,
+  "config_sha256": "cdf2b36e0066bd9996e3b9fb3f7c095dc656a0e62c6e3a7327d4ff5541e55b51",
+  "examples": [
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.10903823375701904,
+        "neutral": 0.8131645321846008,
+        "positive": 0.07779715210199356
+      },
+      "domain": "books",
+      "id": "d124-s01:38",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.04396604374051094,
+        "neutral": 0.8395513296127319,
+        "positive": 0.11648259311914444
+      },
+      "domain": "books",
+      "id": "d084-s03:4",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.0016556710470467806,
+        "neutral": 0.0476117804646492,
+        "positive": 0.9507325291633606
+      },
+      "domain": "books",
+      "id": "d045-s00:11",
+      "judgment": "positive",
+      "vader_compound": 0.6808,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.22219040989875793,
+        "neutral": 0.6464270353317261,
+        "positive": 0.131382554769516
+      },
+      "domain": "books",
+      "id": "d398-s00:23",
+      "judgment": "unclear",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.30761611461639404,
+        "neutral": 0.47659990191459656,
+        "positive": 0.2157839983701706
+      },
+      "domain": "cars",
+      "id": "d288-s01:40",
+      "judgment": "unclear",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.020233752205967903,
+        "neutral": 0.9405432939529419,
+        "positive": 0.03922288864850998
+      },
+      "domain": "cars",
+      "id": "d331-s02:49",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.011582563631236553,
+        "neutral": 0.19792678952217102,
+        "positive": 0.7904906868934631
+      },
+      "domain": "cars",
+      "id": "d275-s00:46",
+      "judgment": "positive",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.013350884430110455,
+        "neutral": 0.8815350532531738,
+        "positive": 0.10511410981416702
+      },
+      "domain": "cars",
+      "id": "d257-s00:5",
+      "judgment": "neutral",
+      "vader_compound": 0.3612,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.08493846654891968,
+        "neutral": 0.8216741681098938,
+        "positive": 0.09338740259408951
+      },
+      "domain": "computers",
+      "id": "d315-s00:6",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.04825912415981293,
+        "neutral": 0.7790540456771851,
+        "positive": 0.1726868450641632
+      },
+      "domain": "computers",
+      "id": "d292-s02:20",
+      "judgment": "neutral",
+      "vader_compound": -0.1027,
+      "vader_label": "negative"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.008254007436335087,
+        "neutral": 0.47829002141952515,
+        "positive": 0.5134559273719788
+      },
+      "domain": "computers",
+      "id": "d321-s00:26",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.3900444209575653,
+        "neutral": 0.5792336463928223,
+        "positive": 0.03072184883058071
+      },
+      "domain": "computers",
+      "id": "d005-s01:11",
+      "judgment": "negative",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.007799713406711817,
+        "neutral": 0.1282835304737091,
+        "positive": 0.8639166951179504
+      },
+      "domain": "cookware",
+      "id": "d183-s01:34",
+      "judgment": "positive",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.040376145392656326,
+        "neutral": 0.2875686287879944,
+        "positive": 0.6720552444458008
+      },
+      "domain": "cookware",
+      "id": "d348-s00:32",
+      "judgment": "positive",
+      "vader_compound": 0.4404,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.009598853066563606,
+        "neutral": 0.28816553950309753,
+        "positive": 0.7022356390953064
+      },
+      "domain": "cookware",
+      "id": "d068-s00:12",
+      "judgment": "unclear",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.009896984323859215,
+        "neutral": 0.2622421383857727,
+        "positive": 0.7278608679771423
+      },
+      "domain": "cookware",
+      "id": "d341-s04:39",
+      "judgment": "positive",
+      "vader_compound": 0.7879,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.09742198139429092,
+        "neutral": 0.8242648839950562,
+        "positive": 0.07831314951181412
+      },
+      "domain": "hotels",
+      "id": "d393-s01:22",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.0026787188835442066,
+        "neutral": 0.07077910751104355,
+        "positive": 0.9265421628952026
+      },
+      "domain": "hotels",
+      "id": "d200-s02:27",
+      "judgment": "unclear",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "negative",
+      "cardiff_probabilities": {
+        "negative": 0.6306247115135193,
+        "neutral": 0.3444848656654358,
+        "positive": 0.024890469387173653
+      },
+      "domain": "hotels",
+      "id": "d082-s01:32",
+      "judgment": "negative",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.0033986729104071856,
+        "neutral": 0.03300558403134346,
+        "positive": 0.9635957479476929
+      },
+      "domain": "hotels",
+      "id": "d352-s02:31",
+      "judgment": "positive",
+      "vader_compound": 0.7783,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.04645553603768349,
+        "neutral": 0.8624657988548279,
+        "positive": 0.09107862412929535
+      },
+      "domain": "movies",
+      "id": "d064-s00:29",
+      "judgment": "neutral",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.01949760504066944,
+        "neutral": 0.9030345678329468,
+        "positive": 0.07746779918670654
+      },
+      "domain": "movies",
+      "id": "d186-s03:19",
+      "judgment": "neutral",
+      "vader_compound": 0.2732,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.20589794218540192,
+        "neutral": 0.7198948860168457,
+        "positive": 0.07420720160007477
+      },
+      "domain": "movies",
+      "id": "d314-s01:37",
+      "judgment": "unclear",
+      "vader_compound": -0.355,
+      "vader_label": "negative"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.006392358802258968,
+        "neutral": 0.036530714482069016,
+        "positive": 0.957076907157898
+      },
+      "domain": "movies",
+      "id": "d011-s02:0",
+      "judgment": "positive",
+      "vader_compound": 0.2732,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.11876554787158966,
+        "neutral": 0.8003575801849365,
+        "positive": 0.08087685704231262
+      },
+      "domain": "music",
+      "id": "d033-s00:51",
+      "judgment": "neutral",
+      "vader_compound": 0.4939,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "neutral",
+      "cardiff_probabilities": {
+        "negative": 0.029215877875685692,
+        "neutral": 0.6585314273834229,
+        "positive": 0.3122527301311493
+      },
+      "domain": "music",
+      "id": "d233-s00:50",
+      "judgment": "unclear",
+      "vader_compound": 0.3612,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.016957314684987068,
+        "neutral": 0.16401709616184235,
+        "positive": 0.8190256357192993
+      },
+      "domain": "music",
+      "id": "d271-s00:1",
+      "judgment": "positive",
+      "vader_compound": 0.4019,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.0034976431634277105,
+        "neutral": 0.06078529730439186,
+        "positive": 0.9357170462608337
+      },
+      "domain": "music",
+      "id": "d079-s01:6",
+      "judgment": "positive",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "negative",
+      "cardiff_probabilities": {
+        "negative": 0.632911741733551,
+        "neutral": 0.3185923993587494,
+        "positive": 0.0484958179295063
+      },
+      "domain": "phones",
+      "id": "d111-s01:27",
+      "judgment": "unclear",
+      "vader_compound": -0.3182,
+      "vader_label": "negative"
+    },
+    {
+      "cardiff_label": "positive",
+      "cardiff_probabilities": {
+        "negative": 0.006461124401539564,
+        "neutral": 0.024062296375632286,
+        "positive": 0.9694765210151672
+      },
+      "domain": "phones",
+      "id": "d077-s00:21",
+      "judgment": "positive",
+      "vader_compound": 0.765,
+      "vader_label": "positive"
+    },
+    {
+      "cardiff_label": "negative",
+      "cardiff_probabilities": {
+        "negative": 0.6455237865447998,
+        "neutral": 0.3257647752761841,
+        "positive": 0.02871147356927395
+      },
+      "domain": "phones",
+      "id": "d048-s00:49",
+      "judgment": "negative",
+      "vader_compound": 0.0,
+      "vader_label": "neutral"
+    },
+    {
+      "cardiff_label": "negative",
+      "cardiff_probabilities": {
+        "negative": 0.5121131539344788,
+        "neutral": 0.44369712471961975,
+        "positive": 0.044189684092998505
+      },
+      "domain": "phones",
+      "id": "d344-s00:16",
+      "judgment": "negative",
+      "vader_compound": -0.34,
+      "vader_label": "negative"
+    }
+  ],
+  "judgments_sha256": "47f0cbef4c7d71978ce19ec2a309dc70eea8adb906ef89fe17a16b11b1f1f61d",
+  "model": "Xenova/twitter-roberta-base-sentiment-latest",
+  "model_sha256": "046f7e4cc46b399558fa9b2de966f6b0d42c69e4b01f582bfb4099b01a0bb5d7",
+  "revision": "f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445",
+  "runtime": "ONNX Runtime 1.22.1 on CPU",
+  "sample_sha256": "89b4c21a2938189689f5087bdc4244f40154f2c89af0331c2aab56c5b9bbdde3",
+  "scope": "Exploratory standalone EDU check. One reviewer, assistant judgments before inference; no gold EDU sentiment labels.",
+  "selection": "By domain, take one EDU per whitespace-token band [4–7, 8–11, 12–17, 18–35], ordered by SHA-256 of sfu-edu-scorer-check-v1: plus scene key and zero-based EDU index, with distinct source reviews and EDU strings.",
+  "source_scenes_sha256": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+  "tokenizer_sha256": "1e6506713f00e34406a757acb80f9f3233c1c3950857d32bbc41bcd419d5d8b6",
+  "vader_version": "3.3.2"
+}
