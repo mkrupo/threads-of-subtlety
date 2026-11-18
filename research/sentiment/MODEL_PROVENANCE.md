@@ -2,6 +2,32 @@
 
 This audit supplements [PLAN.md](PLAN.md). Goal: reuse the colleagues' representation conditions reproducibly, with sentiment as a testbed. Novel sentiment methods and state-of-the-art scores are not requirements.
 
+## Update — supplied checkpoints, 2026-11-18
+
+The colleague supplied two artifact directories, now at `HC3_project/erst/`
+and `HC3_project/rstdt/`. Each contains `config.json`, the ordered relation
+table, and `best_weights.pt`. Both configs declare full-model fine-tuning
+(`fine_tune_scope=all`), a tree + relation + segmentation training objective,
+seed 44, selection by `gs_val_f1_rel`, and base UniRST revision
+`9407970f1d9d2435b5f875a0cd14293a16646304`. The eRST artifact identifies GUM
+11.1.0. The RST-DT artifact identifies `data/rstdt_rs3_merged`.
+
+The colleague directed us to `ruthenian8/isanlp_rst` branch `dev`, resolved
+for this pilot to `cb73639acef90163833c4b5043669dc1e7cf0316`, and to the
+stock UniRST PCC and NLDT routes. Stock `unirst` resolved to
+`b99b1c0f39435971b9daaa450e8476ef7b1a554a`. Hub file listings show identical
+Git object IDs for the model config and all relation tables, and identical
+LFS SHA-256 for the weights, at the stock and saved fine-base revisions.
+The Hub listings differ in the README. See [the stock snapshot](https://huggingface.co/tchewik/isanlp_rst_v3/tree/b99b1c0f39435971b9daaa450e8476ef7b1a554a)
+and [the fine-base snapshot](https://huggingface.co/tchewik/isanlp_rst_v3/tree/9407970f1d9d2435b5f875a0cd14293a16646304).
+
+`HC3_project/artifacts/shared_segmentation_provenance.json` records the
+historical boundary check over 49,360 recoverable HC3 scenes with zero
+mismatches and 669 jointly unavailable scenes. The delivered analysis
+artifacts contain feature matrices and saved predictions. Matching the
+original parses tree for tree would require the historical scene/EDU inputs
+and reference parses. The remaining sections describe the earlier audit.
+
 ## Immediate answer
 
 We can begin corpus preparation, controls, and local sentiment modeling independently. We can also implement and test parser adapters with small fixtures. For a four-standard run matching the colleague's full-inventory conditions, obtain the actual fine-tuned artifacts and their run metadata. A code recipe or output directory called `.new` does not identify a trained model.

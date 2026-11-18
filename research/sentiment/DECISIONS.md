@@ -86,7 +86,42 @@
   predictions and the virtual environment remain ignored.
 - Fixed the inherited broad `results/` rule with an explicit allowance for
   the two portable aggregate/verification JSON files.
-- No fork, remote change or push was performed. Fork creation and its URL
-  are still needed before publishing the sentiment branch to Max's GitHub.
-- Max has received the colleague's model reply; its contents remain to be
-  incorporated after the repository setup.
+- Max's fork is now configured as `origin` and `feature/sentiment` tracks its
+  pushed branch. The colleague's repository is `upstream`.
+
+## 2026-11-18 — Parser validation protocol
+
+- Use the supplied full eRST and RST-DT artifacts through the colleague's
+  pinned `dev` loader and the stock PCC and NLDT routes. Load each parser
+  separately in FP32 on one personal GTX 1080 Ti. Match the checkpoint,
+  config and ordered label table hashes after transfer.
+- Keep the branch's scene splitter and PCC offset-based segmentation for
+  this pilot. Reuse the cached EDUs for all four parsers. The original HC3
+  scene inputs and trees would be needed to check historical tree equality.
+- Require valid binary trees and faithful RS3 exports on two fixtures
+  before running the six SFU reviews chosen by predeclared length quantiles.
+  Reuse the pinned research-branch coarse maps exactly. Report unmapped
+  relations and withhold coarse counts when any observed label is unmapped.
+- Keep the supplied checkpoints, local reviews and per-scene trees out of
+  Git. Preserve hashes, ordered alphabets and aggregate results.
+- Recomputed the eight saved HC3 LR MF+WAD fine/coarse test F1 values
+  using the validation-selected thresholds. All matched the supplied
+  metrics and the corresponding 1,932 feature-matrix test identities.
+- All eight fixture parses and 60 SFU scene parses passed. The pilot
+  observed 553 relation instances per inventory, all covered by the maps.
+  Keep the map gaps visible for the full corpus and confirm their handling
+  before fitting the fine/coarse sentiment comparison. The pilot used the
+  existing SentSplit scene policy and did not establish historical HC3
+  parse identity or evaluate parser accuracy against gold trees.
+
+## 2026-11-18 — HC3 reference replay
+
+- Checked parser inference on six original HC3 test texts matched by
+  canonical identity, separately from the SFU parser smoke test. All 24
+  document–inventory feature comparisons matched.
+- Refit the paper's LR and RF MF+WAD comparisons from the supplied
+  matrices. RF reproduced the F1 table exactly. The LR refit preserved
+  the four fine/coarse findings with changes under .001 F1.
+- Checked ArgMicrotexts gold counts against the public annotations.
+  Replaying the draft's prediction comparison requires the colleague's
+  evaluation protocol or outputs. [Detailed reproduction record](HC3_REPRODUCTION.md).

@@ -12,8 +12,9 @@ The repository state described below is a dated snapshot. Preserve its distincti
 
 - Sentiment work is now on the dedicated local `feature/sentiment` branch, based on `dev` at `e658d857b1b3a803f91873c3a18258850a9c4e65`. Its initial local commit records the implementation, tests, locked environment, handover, protocol, and selected aggregate results. Use `git log feature/sentiment` to identify the commit; the earlier run manifests correctly retain their pre-commit source hashes.
 - `RST_relation_granularity/` remains on disk as ignored local reference material, including the supplied email excerpts. Raw corpora, the virtual environment, fitted models, and per-document predictions also remain local and ignored. The two portable aggregate/verification JSON files are explicitly included despite the inherited broad `results/` ignore rule.
-- No GitHub fork, remote change, or push has been made. The existing `origin` still points to the colleague's repository; do not push the sentiment branch there by default. The next repository step is to create Max's fork and configure its URL as `origin`, retaining the colleague as `upstream`.
-- Max has received a colleague reply about the models. Its contents have not yet been supplied or incorporated; interpreting that reply is the next research step after repository setup.
+- Max's configured fork `mkrupo/threads-of-subtlety` is `origin`, the colleague's repository is `upstream`, and `feature/sentiment` tracks the pushed branch on Max's fork.
+- The colleague supplied the fine-model checkpoints and recommended stock UniRST for PCC/NLDT, shared PCC EDUs, and the canonical research-branch maps. The downloaded checkpoints and canonical analysis artifacts are in the local `HC3_project/` directory.
+- The four-model pilot passed both fixtures and 15 scenes from six SFU reviews. All 60 SFU trees and RS3 files were verified against 568 shared PCC EDUs. All eight HC3 LR MF+WAD test F1 scores were independently recalculated from the saved predictions. The canonical maps cover every pilot prediction, with gaps for one possible NLDT label and nine possible RST-DT labels. See [reproduction and outcomes](research/sentiment/RUNNING.md) and the [pilot report](research/sentiment/results/unirst-parser-pilot.json).
 
 ## Completed preparation — 2026-11-18
 

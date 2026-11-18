@@ -1,10 +1,7 @@
 # Parallel development workflow — updated 2026-11-18
 
-Use a personal fork of `ruthenian8/threads-of-subtlety`, with a dedicated
-`feature/sentiment` branch. Keep the colleague's repository as `upstream` and
-the personal fork as `origin`. The local `feature/sentiment` branch and initial
-sentiment commit have been prepared. Creating the fork and changing remotes
-remain pending; nothing has been pushed.
+The `feature/sentiment` branch tracks `origin/feature/sentiment` on Max's
+configured fork. Keep the colleague's repository as `upstream`.
 
 ## Why this fits the work
 
@@ -40,19 +37,12 @@ if the sentiment code later becomes independent.
 - Tag or otherwise identify the source commit used for reported runs, and
   keep dataset/model/split/environment hashes alongside the results.
 
-## Target remote layout
+## Current remote layout
 
 ```text
-origin    -> Max's personal fork
+origin    -> git@github.com:mkrupo/threads-of-subtlety.git
 upstream  -> git@github.com:ruthenian8/threads-of-subtlety.git
 ```
-
-Once a fork exists, the current local `origin` can be renamed to `upstream`,
-and a new `origin` can be added for the fork. Push `feature/sentiment` to the
-personal fork and set that as its tracking branch. Avoid pushing to the current
-`origin`, which still belongs to the colleague. The exact fork URL depends on
-Max's selected account/repository. Include all branches when creating the fork
-so the colleague's research/feature branches remain available on the new host.
 
 The local sentiment commit includes the source, tests, lockfile, protocol,
 handover and selected results. Raw review text and full generated artifacts

@@ -1,6 +1,6 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
-Status: **SFU corpus preparation and CPU text controls completed on 2026-11-18. No RST experiment has been run.** Current decisions are recorded at the top of [agent.md](../../agent.md); its older sections retain the repository history. See [RUNNING.md](RUNNING.md) for commands/results and [DECISIONS.md](DECISIONS.md) for the procedure log.
+Status: **SFU corpus preparation, CPU text controls, and the four-parser pilot completed on 2026-11-18. The sentiment comparison is pending.** See [RUNNING.md](RUNNING.md) for the pilot and [DECISIONS.md](DECISIONS.md) for the procedure log.
 
 ## 1. Goal and immediate scope
 
@@ -49,7 +49,7 @@ The first complete study should favor one coherent parser regime across all four
 | Condition | Located implementation | Limitation |
 |---|---|---|
 | Stock UniRST | `tos/unirst.py`; defaults `tchewik/isanlp_rst_v3`, version `unirst`, four inventory keys. | Older GUM/RST-DT inventories are coarse. Defaults do not recreate full `.new` conditions. |
-| Full eRST/RST-DT UniRST | Canonical analysis expects `.new` inputs; fine-tuning scripts and native tables were subsequently recovered in the pinned upstream dependency. | Actual trained artifacts/configs producing historical parses are still unidentified; top-level adapter does not expose the recovered fine-artifact loader. |
+| Full eRST/RST-DT UniRST | The colleague supplied both full fine-tuned checkpoints in `HC3_project/`. Use the fork's `Parser(relation_head_dir=...)` and `from_edus`. | Historical scene inputs and reference parses are not in the delivered artifacts. |
 | Ettin GUM | Feature branch `62b6fbc`; `larc-iu/dmrst-ettin-400m-gum-12.1.0`, revision `e33906a27f89b2703df8ab19e471aa82141d62cb`. | GUM-based segmentation; native labels; separate parser training. |
 | Ettin RST-DT | Same branch; `larc-iu/dmrst-ettin-400m-rstdt-coarse`, revision `26594833545ef713d14e2ea6e9a7670c881c143a`. | Coarse RST-DT checkpoint, not a matched fine RST-DT condition. |
 | Ettin PCC/NLDT | No such adapters/checkpoints configured here. | Do not invent them or count the two-model integration as four standards. |
@@ -135,17 +135,21 @@ Use fixed outer five-fold cross-validation stratified by domain × sentiment, gi
 
 Primary metric: macro-F1 over the actual sentiment classes; secondary accuracy and class-wise F1. The inherited HC3 human-class F1 is not the new primary measure. Pair comparisons on the same reviews, report failures and retained cohorts, and distinguish fixed-tree fine/coarse inference from overall parser/inventory differences. If repeating folds/seeds, do not count repeated predictions for the same document as independent observations.
 
-## 7. Request for the colleague — drafted, not sent
+## 7. Validation before sentiment modeling
 
-> For the sentiment track to match your experiments, could you share (1) the actual parsing commands and checkpoint IDs/revisions for each standard under UniRST and any separate models, including the full GUM/RST-DT checkpoints; (2) the shared EDU segmentation and document/scene-splitting policy used for each reported comparison; and (3) the final fine-to-coarse mappings plus the location of the current ArgMicrotexts code/configuration? Which conditions are completed runs and which are still planned?
-
-Max does not currently have these details. This request is about the unavailable parsing/provenance details, not a claim that the existing canonical LR/RF/XGB setup is unknowable.
-
-**Refinement after the dependency audit:** [MODEL_PROVENANCE.md](MODEL_PROVENANCE.md) gives a narrower request and the exact expected artifact bundle. Fine-tuning scripts, native label alphabets, and a pinned base model have now been located in the dependency; identifying the actual chosen weights/configs is the remaining issue. Confirm whether the committed downstream maps intentionally differ from the initialization maps and how to handle native labels absent from those maps. ArgMicrotexts code is useful context but is not a prerequisite for the sentiment baseline.
+The colleague supplied the fine checkpoints, recommended stock UniRST for
+PCC/NLDT, used PCC segmentation, and identified the research branch as the
+source of the coarse projections. All four parsers passed the fixtures and
+produced valid binary trees and RS3 on all 15 scenes of the six-review SFU
+pilot using identical PCC EDUs. The research-branch maps cover every
+predicted label in the pilot. Before a full fixed-tree sentiment comparison,
+agree how to handle the one possible NLDT and nine possible RST-DT labels
+absent from those maps. [Model provenance](MODEL_PROVENANCE.md),
+[pilot results](results/unirst-parser-pilot.json).
 
 ## 8. Sequence toward the next meeting
 
-Completed November 18: deterministic corpus/folds/provenance, locked CPU environment, 14 passing validation tests, and three nested-CV text controls. An independent audit agrees with saved predictions/metrics. No RST effect has been measured. The remaining sequence below is a plan, not a completed schedule.
+Completed November 18: deterministic corpus/folds/provenance, locked CPU environment, 14 passing validation tests, three nested-CV text controls, and the small verified parser pilot. An independent audit agrees with the saved control predictions and metrics. Sentiment effects are still unmeasured. The sequence below records the original schedule.
 
 | Window | Concrete deliverable | Dependency |
 |---|---|---|

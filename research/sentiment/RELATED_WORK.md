@@ -41,6 +41,17 @@ The older DASA metric tables distinguish a macro score over positive and negativ
 
 [_Better Document-level Sentiment Analysis from RST Discourse Parsing_](https://aclanthology.org/D15-1263/) uses automatic RST parses to aggregate local sentiment through depth weighting and a recursive model. Its relation-aware experiment reduces relations to contrastive/non-contrastive groups rather than testing all native inventories. This supports a small compositional baseline; it does not establish universal gains from fine labels. DASA implements related methods, so the Potsdam implementation can be the practical bridge.
 
+The cleanest corpus match to the 2015 experiment is Pang and Lee's English
+movie-review polarity v2.0 (2,000 reviews, ten-fold cross-validation). The
+2015 paper attributes its second dataset to Socher et al. (2013), but its
+50,000 full reviews, 25,000/25,000 split, and rating cutoffs all match
+Maas et al.'s IMDb release. The authors' public code references the
+`aclImdb` directory. This points to IMDb, while the paper leaves the
+exact input manifest uncertain. [2015 paper, §2.3](https://aclanthology.org/D15-1263.pdf#page=3),
+[Cornell polarity v2.0](https://www.cs.cornell.edu/people/pabo/movie-review-data/),
+[IMDb release](https://nlp.stanford.edu/~amaas/data/sentiment/),
+[original preprocessing code](https://github.com/parry2403/R2N2/blob/c01253cf9bde553ed54ceca08be1dfe6db3a9578/RSTParser/adds.py).
+
 ### Taboada, Brooke, Tofiloski, Voll, and Stede (2011)
 
 [_Lexicon-Based Methods for Sentiment Analysis_](https://aclanthology.org/J11-2001.pdf) presents SO-CAL, using lexical semantic orientation with modifiers such as negation and intensification. It is a direct Stede coauthored sentiment reference and a possible transparent local-scoring background, **not itself our four-standard comparison**. Choosing its exact dictionaries or software still requires checking availability and data provenance.
