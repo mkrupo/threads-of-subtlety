@@ -15,6 +15,7 @@ from research.sentiment.corpus import build_splits, make_folds
 from research.sentiment.edu_baseline import mean_edu_scores
 from research.sentiment.nuclearity import pool_nuclearity
 from research.sentiment.prepare_corpus import prepare_corpus
+from research.sentiment.relation_pooling import coarsen, feature_rows, pool_relations
 
 
 class RecordingVectorizer(TfidfVectorizer):
@@ -118,6 +119,26 @@ class BaselineTests(unittest.TestCase):
         np.testing.assert_allclose(features["a"], [0, 1 / 3, 2 / 3, 1, 0, 0])
         np.testing.assert_allclose(features["b"], [0, 1, 0, 0, 1, 0])
         self.assertEqual(coverage["reviews_without_supporting_edus"], 1)
+
+    def test_relation_projection_weights_occurrences_before_averaging(self):
+        nodes = {
+            "6": {"left": 4, "right": 5, "relation": "Concession"},
+            "4": {"left": 0, "right": 1, "relation": "Concession"},
+            "5": {"left": 2, "right": 3, "relation": "Contrast"},
+            **{str(index): {"text": "EDU"} for index in range(4)},
+        }
+        tree = {"key": "scene", "document_id": "a", "status": "ok", "root": 6, "nodes": nodes}
+        scores = {"key": "scene", "document_id": "a",
+                  "probabilities": [[1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, 1]]}
+        fine = pool_relations([scores], [tree])
+        self.assertEqual(fine["a"]["concession"][0], 2)
+        coarse = coarsen(fine, {"concession": "adversative", "contrast": "adversative"})
+        self.assertEqual(coarse["a"]["adversative"][0], 3)
+        features = feature_rows(coarse, {"a": np.ones(6)}, ["adversative", "elaboration"])
+        np.testing.assert_allclose(features["a"][6:12], [0.5, 1 / 6, 1 / 3, 0, 1 / 3, 2 / 3])
+        np.testing.assert_array_equal(features["a"][12:], np.zeros(6))
+        with self.assertRaisesRegex(ValueError, "No canonical coarse label"):
+            coarsen(fine, {"concession": "adversative"})
 
     def test_jsonl_handles_unicode_separators_inside_review_text(self):
         with TemporaryDirectory() as directory:

@@ -195,3 +195,4 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/sfu-edu-scores-v1.json
 !/research/sentiment/results/sfu-edu-mean-v1.json
 !/research/sentiment/results/sfu-nuclearity-v1.json
+!/research/sentiment/results/sfu-relation-pooling-v1.json

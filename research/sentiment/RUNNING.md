@@ -361,6 +361,47 @@ tree left all six inputs identical for every review and inventory. A
 repeat produced byte-identical outputs. The [portable report](results/sfu-nuclearity-v1.json)
 records coverage, metrics, and checksums.
 
+## Fine/coarse relation pooling
+
+Reuse the verified trees, scorer cache, frozen folds, and previous
+predictions. The command reads the research maps from the pinned Git
+revision in the parser audit and requires a fresh output directory.
+
+```bash
+uv run --project research/sentiment --locked --no-sync --cache-dir /tmp/tos-uv-cache \
+  python -B -m research.sentiment.relation_pooling \
+  --prepared-dir artifacts/sentiment/sfu-v1/prepared \
+  --scores artifacts/sentiment/sfu-edu-scores-v1/scores.jsonl \
+  --trees-dir artifacts/sentiment/sfu-full-v1 \
+  --uniform-predictions artifacts/sentiment/sfu-v1/edu-mean-v1/predictions.jsonl \
+  --nuclearity-predictions artifacts/sentiment/sfu-v1/nuclearity-v1/predictions.jsonl \
+  --output-dir artifacts/sentiment/sfu-v1/relation-pooling-v1
+```
+
+Take the three EDU sentiment means in each child span of each binary
+node. For each review and relation name, average those left and right
+vectors over all occurrences, across scenes. Append them to the six
+nuclearity inputs. Columns come from the declared parser alphabets.
+An absent relation contributes zeros, so the encoding also carries
+relation-presence information. For coarse labels, merge the sums and
+counts before averaging so each original node retains equal weight.
+All 35,838 nodes per inventory contribute to both conditions.
+
+| Inventory | Nuclearity macro-F1 | Fine | Coarse | Fine minus coarse | Fine / coarse input columns |
+|---|---:|---:|---:|---:|---:|
+| PCC | 0.8225 | 0.7900 | 0.7875 | +0.0025 | 156 / 90 |
+| NLDT | 0.8324 | 0.7975 | 0.8000 | −0.0025 | 168 / 90 |
+| GUM/eRST | 0.8250 | 0.7675 | 0.7800 | −0.0125 | 198 / 96 |
+| RST-DT | 0.8224 | 0.7700 | 0.8000 | −0.0300 | 420 / 114 |
+
+An independent check rebuilt features directly from child spans, applied
+the coarse mapping occurrence by occurrence, and refit all models. All
+3,200 held-out predictions matched. A repeat produced byte-identical
+outputs. The [aggregate report](results/sfu-relation-pooling-v1.json)
+includes per-fold results, paired errors, label counts, and checksums.
+Interpret these first differences together with the change in input
+dimensions and relation sparsity.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and

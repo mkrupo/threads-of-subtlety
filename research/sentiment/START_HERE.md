@@ -61,6 +61,11 @@ context length a separate consideration for whole-review classification.
   EDUs separately. Across the four parsers this scored **0.822–0.832**
   macro-F1 on the same reviews. Replacing the relation names with their
   coarse labels left those averages identical. [Nuclearity results](results/sfu-nuclearity-v1.json)
+- **Compared fine and coarse relation labels.** For every relation, we
+  averaged sentiment on its left and right sides. We gave the classifier
+  those averages grouped by label, alongside the nuclearity inputs.
+  Coarse labels scored higher in three inventories. All eight runs scored
+  below their respective nuclearity controls. [Fine/coarse results](results/sfu-relation-pooling-v1.json)
 
-**Next** is to decide how the classifier should use relation names so we
-can compare fine and coarse labels on the same trees.
+**Next** is to check how stable the fine/coarse differences are across
+held-out reviews and folds.

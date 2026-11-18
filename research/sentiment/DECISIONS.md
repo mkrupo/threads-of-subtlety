@@ -222,3 +222,19 @@
   Compare held-out predictions against the equal-weight baseline for the
   same reviews. This step measures the chosen nuclearity grouping and
   uses no relation names.
+
+## Fine/coarse relation comparison
+
+- Keep the six nuclearity features. At each internal node, average EDU
+  scores separately in its left and right spans. Pool the resulting six
+  numbers by relation label over all nodes and scenes in a review. Each
+  occurrence contributes equally to its label's mean.
+- Use the parser's declared alphabet for feature columns, in sorted order.
+  Use all zeros when a label is absent from a review. This encoding can
+  carry relation-presence information as well as sentiment.
+- Use the audit's pinned research maps to merge fine sums and occurrence
+  counts before computing coarse means. Keep the source trees and EDU
+  scores fixed. Require a map entry for every observed relation.
+- Use the same logistic regression settings and inner and outer folds as
+  the nuclearity control. Report the paired fine-minus-coarse difference
+  in macro-F1, prediction changes, and label coverage for each inventory.
