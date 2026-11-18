@@ -13,6 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from research.sentiment import baseline
 from research.sentiment.corpus import build_splits, make_folds
 from research.sentiment.edu_baseline import mean_edu_scores
+from research.sentiment.nuclearity import pool_nuclearity
 from research.sentiment.prepare_corpus import prepare_corpus
 
 
@@ -94,6 +95,29 @@ class BaselineTests(unittest.TestCase):
         self.assertEqual(set(means), {"a", "b"})
         np.testing.assert_allclose(means["a"], [0.6, 0.2, 0.2])
         np.testing.assert_allclose(means["b"], [0, 1, 0])
+
+    def test_nuclearity_pooling_respects_ancestors_across_scenes(self):
+        nodes = {
+            "6": {"left": 4, "right": 5, "nuclearity": "NS"},
+            "4": {"left": 0, "right": 1, "nuclearity": "NN"},
+            "5": {"left": 2, "right": 3, "nuclearity": "SN"},
+            **{str(index): {"text": "EDU"} for index in range(4)},
+        }
+        trees = [
+            {"key": "a0", "document_id": "a", "status": "ok", "root": 6, "nodes": nodes},
+            {"key": "a1", "document_id": "a", "status": "ok", "root": 0, "nodes": {"0": nodes["0"]}},
+            {"key": "b0", "document_id": "b", "status": "ok", "root": 0, "nodes": {"0": nodes["0"]}},
+        ]
+        scores = [
+            {"key": tree["key"], "document_id": tree["document_id"], "probabilities": probabilities}
+            for tree, probabilities in zip(trees, [
+                [[0, 0, 1], [0, 1, 0], [1, 0, 0], [1, 0, 0]], [[0, 0, 1]], [[0, 1, 0]],
+            ], strict=True)
+        ]
+        features, coverage = pool_nuclearity(scores, trees)
+        np.testing.assert_allclose(features["a"], [0, 1 / 3, 2 / 3, 1, 0, 0])
+        np.testing.assert_allclose(features["b"], [0, 1, 0, 0, 1, 0])
+        self.assertEqual(coverage["reviews_without_supporting_edus"], 1)
 
     def test_jsonl_handles_unicode_separators_inside_review_text(self):
         with TemporaryDirectory() as directory:

@@ -57,6 +57,10 @@ context length a separate consideration for whole-review classification.
   each review and trained logistic regression on those averages. It
   scored **0.817 macro-F1** over 400 held-out predictions, one per review.
   [Baseline results](results/sfu-edu-mean-v1.json)
+- **Ran the nuclearity control.** We averaged central and supporting
+  EDUs separately. Across the four parsers this scored **0.822–0.832**
+  macro-F1 on the same reviews. Replacing the relation names with their
+  coarse labels left those averages identical. [Nuclearity results](results/sfu-nuclearity-v1.json)
 
-**Next** is to decide how the trees should change the inputs to logistic
-regression. The equal-weight baseline is our reference for that comparison.
+**Next** is to decide how the classifier should use relation names so we
+can compare fine and coarse labels on the same trees.

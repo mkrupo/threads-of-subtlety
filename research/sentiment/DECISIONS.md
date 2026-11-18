@@ -208,3 +208,17 @@
 - Use the text controls' frozen outer and inner folds, logistic
   regression settings, C grid, and 0.5 threshold. Standardize the three
   features within each fitting partition, as for the length-only control.
+
+## Nuclearity-only comparison
+
+- Classify an EDU as central when its path from its scene root follows
+  only nucleus branches. An EDU below any satellite branch is supporting.
+  A one-EDU scene is central, and either branch of an NN split can stay central.
+- Across all scenes in a review, average the three frozen scores separately
+  for central and supporting EDUs, giving every EDU equal weight within its
+  group. If there are no supporting EDUs, use the review mean for that group.
+- Fit logistic regression on those six inputs for each inventory using
+  the equal-weight baseline's scaling, training folds, C grid, and threshold.
+  Compare held-out predictions against the equal-weight baseline for the
+  same reviews. This step measures the chosen nuclearity grouping and
+  uses no relation names.

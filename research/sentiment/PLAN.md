@@ -1,6 +1,6 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
-**SFU preparation, text controls, four-inventory parsing, shared EDU scoring, and the equal-weight EDU baseline are complete.** The comparison of RST conditions is pending. See [START_HERE.md](START_HERE.md) for the outline and [RUNNING.md](RUNNING.md) for verification.
+**SFU preparation, parsing, shared EDU scoring, and the controls through nuclearity are complete.** The fine/coarse sentiment comparison is pending. See [START_HERE.md](START_HERE.md) and [RUNNING.md](RUNNING.md).
 
 ## 1. Goal and immediate scope
 
@@ -79,7 +79,7 @@ This is a proposal, not a finalized experiment.
 
 1. **Text control:** simple TF-IDF + LR as an interpretable baseline. A stronger BERT-like text model is optional after the mechanism works.
 2. **Local-score controls:** same EDU scorer with uniform aggregation and simple positional controls. Add length/EDU/scene counts where relevant.
-3. **Structure control:** nuclearity/depth aggregation with relation labels ignored.
+3. **Structure control:** separate sentiment averages for central and supporting EDUs, grouped by their paths from the scene root. [Nuclearity results](results/sfu-nuclearity-v1.json)
 4. **Primary relation-aware model:** an R2N2-style small aggregator or another explicitly relation-conditioned pooling model, trained against document sentiment. Run it with native fine labels and fixed-tree coarse labels.
 5. **Optional bridge to HC3:** text plus relation/M3 features, to see whether the colleague's representation transfers even without compositional modeling.
 

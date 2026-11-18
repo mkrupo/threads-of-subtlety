@@ -322,6 +322,45 @@ metrics. A repeat on the same host produced identical predictions and
 report. The [portable result](results/sfu-edu-mean-v1.json) records fold
 metrics, C values, software versions, and hashes.
 
+## Nuclearity control
+
+Use the locked sentiment environment with the same prepared data, score
+cache, and baseline predictions as above, plus the four verified tree
+files. Pass a fresh output directory.
+
+```bash
+uv run --project research/sentiment --locked --no-sync --cache-dir /tmp/tos-uv-cache \
+  python -B -m research.sentiment.nuclearity \
+  --prepared-dir artifacts/sentiment/sfu-v1/prepared \
+  --scores artifacts/sentiment/sfu-edu-scores-v1/scores.jsonl \
+  --trees-dir artifacts/sentiment/sfu-full-v1 \
+  --uniform-predictions artifacts/sentiment/sfu-v1/edu-mean-v1/predictions.jsonl \
+  --output-dir artifacts/sentiment/sfu-v1/nuclearity-v1
+```
+
+An EDU is central if every branch from its scene root to the EDU is a
+nucleus branch. An EDU below any satellite branch is supporting. A scene
+with one EDU contributes that EDU to the central group. Pool each group
+across a review's scenes and give logistic regression six inputs, the
+three sentiment averages for each group. Use the review mean if the
+supporting group is empty. Every SFU review had both groups in all four
+inventories. Training and model selection reuse the baseline protocol.
+
+| Grouping | Held-out macro-F1 | Reviews corrected | New errors |
+|---|---:|---:|---:|
+| Equal-weight baseline | 0.8174 | | |
+| PCC | 0.8225 | 12 | 10 |
+| NLDT | 0.8324 | 13 | 7 |
+| GUM/eRST | 0.8250 | 12 | 9 |
+| RST-DT | 0.8224 | 11 | 9 |
+
+An independent check walked from each EDU to its scene root, rebuilt the
+features, and refit all inner and outer models. All 1,600 held-out
+predictions matched. Applying the research-branch coarse maps to every
+tree left all six inputs identical for every review and inventory. A
+repeat produced byte-identical outputs. The [portable report](results/sfu-nuclearity-v1.json)
+records coverage, metrics, and checksums.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and
