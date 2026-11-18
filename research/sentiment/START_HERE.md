@@ -8,7 +8,8 @@ authorship and argumentation work.
 ## How the sentiment model would work
 
 A regular sentiment classifier can read a review and return a positive or
-negative score. In our proposed setup, a shared sentiment scorer reads each
+negative score. SFU supplies those two review labels. In our proposed setup,
+a shared sentiment scorer reads each
 elementary discourse unit (EDU), usually a clause or short span. It can be a
 neural model or a simpler scorer. RST provides a tree that tells us how to
 combine those local scores. The model learns against the review’s overall
@@ -21,6 +22,11 @@ the weight of the praise, the combined score becomes −0.25. These numbers
 illustrate the idea. In the experiment, the scorer gives the same two
 inputs to every condition. We measure whether the way we combine them helps
 on held-out reviews. [R2N2 method](https://aclanthology.org/D15-1263/)
+
+A typical EDU is 11 BERT tokens. A typical whole review is 727 tokens, and
+256 of 400 reviews exceed the 512-token input limit. This makes the scorer's
+context length a separate consideration for whole-review classification.
+[Length audit](results/sfu-token-lengths.json)
 
 ## What changes in each comparison
 

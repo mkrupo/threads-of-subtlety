@@ -250,6 +250,17 @@ and `artifacts/sentiment/sfu-full-v1/` locally, and `sfu-full-v1/` and
 [portable summary](results/sfu-full-parser-audit.json) records both passes,
 the ordered label tables, and the checksums.
 
+### Token length audit
+
+The [length audit](results/sfu-token-lengths.json) records counts for the
+400 canonical review texts and 36,850 cached EDUs. It uses Tokenizers
+0.21.4, the pinned `tokenizer.json` files listed by model revision and
+SHA-256 in the report, special tokens enabled, and padding and truncation
+disabled. Review lengths come from the `text` field of the prepared
+`reviews.jsonl`. EDU lengths come from each element of `edus` in the
+verified `scenes.jsonl`. The 95th percentile uses linear interpolation
+between adjacent sorted counts.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and

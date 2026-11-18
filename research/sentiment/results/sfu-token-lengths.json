@@ -1,0 +1,81 @@
+{
+  "add_special_tokens": true,
+  "inputs_sha256": {
+    "reviews.jsonl": "44aae1ced747d88b1bf9cf0d79223201bac2d054adda05208ce627dfbaa7e29b",
+    "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e"
+  },
+  "models": {
+    "bert": {
+      "edus": {
+        "count": 36850,
+        "gt512": 0,
+        "gt8192": 0,
+        "max": 97,
+        "median": 11.0,
+        "min": 3,
+        "p95": 22.0
+      },
+      "id": "google-bert/bert-base-uncased",
+      "reviews": {
+        "count": 400,
+        "gt512": 256,
+        "gt8192": 0,
+        "max": 7711,
+        "median": 727.0,
+        "min": 49,
+        "p95": 2523.3
+      },
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "tokenizer_sha256": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98"
+    },
+    "modernbert": {
+      "edus": {
+        "count": 36850,
+        "gt512": 0,
+        "gt8192": 0,
+        "max": 102,
+        "median": 11.0,
+        "min": 3,
+        "p95": 22.0
+      },
+      "id": "answerdotai/ModernBERT-base",
+      "reviews": {
+        "count": 400,
+        "gt512": 260,
+        "gt8192": 0,
+        "max": 7813,
+        "median": 751.5,
+        "min": 53,
+        "p95": 2606.2
+      },
+      "revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+      "tokenizer_sha256": "9fd55248d51d33976b324fc11592e28071da7d41e0e9401dfb7082e30574b7b1"
+    },
+    "roberta": {
+      "edus": {
+        "count": 36850,
+        "gt512": 0,
+        "gt8192": 0,
+        "max": 98,
+        "median": 11.0,
+        "min": 3,
+        "p95": 22.0
+      },
+      "id": "FacebookAI/roberta-base",
+      "reviews": {
+        "count": 400,
+        "gt512": 261,
+        "gt8192": 0,
+        "max": 7915,
+        "median": 752.0,
+        "min": 52,
+        "p95": 2695.05
+      },
+      "revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+      "tokenizer_sha256": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e"
+    }
+  },
+  "padding": false,
+  "tokenizers_version": "0.21.4",
+  "truncation": false
+}
