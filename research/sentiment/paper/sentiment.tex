@@ -1,0 +1,137 @@
+% Insert after the HC3 section and before the general discussion.
+% Add sentiment.bib to the manuscript bibliography alongside custom.bib.
+\section{Granularity in review sentiment}
+\label{sec:review-sentiment}
+
+We use review sentiment as an additional test of whether the inventory and
+granularity of predicted RST relations matter for a downstream task. We
+compare a representation that organizes local sentiment scores using
+discourse trees with the motif representation used for HC3.
+
+\subsection{Related work}
+
+\citet{taboada_analyzing_2004} introduced the English SFU review
+collection in a polarity classification study. On the same reviews,
+\citet{voll_adjective_2007} tested adjective scoring in automatically
+identified nuclei, and \citet{balage_discourse_2012} learned
+relation-dependent weights using sentence-level RST annotations.
+\citet{brooke_crosslingual_2009} reported 76.50\% accuracy for a unigram
+SVM under ten-fold cross-validation. \citet{taboada_lexicon_2011}
+reported 80.25\% accuracy for SO-CAL on these reviews, which also informed
+its lexicon and system development. These scores provide historical
+context under different evaluation protocols.
+
+More broadly, \citet{bhatia_document_sentiment_2015} use discourse depth
+and recursive composition to combine local sentiment in English reviews.
+\citet[\S6.4.2]{sidarenka_german_twitter_2019} evaluates several relation
+schemes for German Twitter sentiment by retraining a parser on the
+Potsdam Commentary Corpus. Our experiment applies the HC3 label
+projection to fixed predicted trees and uses simple pooling over each
+tree's local sentiment scores.
+
+\subsection{Experimental setup}
+
+We use the 400 English Epinions reviews in the SFU Review Corpus
+\citep{taboada_sfu_2008}, with 25 positive and 25 negative reviews in each
+of eight product categories. The target is the reviewer's recommendation.
+We use the HC3 scene-splitting approach, packing contiguous text into
+chunks with a 492-token XLM-R budget and using SentSplit to find sentence
+boundaries in overlong paragraphs. This yields 1,012 scenes, and 271 reviews
+have multiple scenes. As in HC3, we segment scenes into
+elementary discourse units (EDUs) once with PCC and give all four parsers
+the same 36,850 EDUs. We use released UniRST weights for PCC and NLDT and
+the fine-tuned GUM/eRST and RST-DT checkpoints described above
+\citep{chistova_bridging_2025}. Each inventory supplies one tree per scene.
+Fine uses its native predicted labels. Coarse maps those labels after
+parsing using the HC3 mappings. EDU boundaries, attachments, and
+nuclearity are identical within each fine/coarse pair.
+
+We score each EDU independently with frozen CardiffNLP Twitter RoBERTa
+\citep{loureiro_timelms_2022}.\footnote{We use
+\href{https://huggingface.co/Xenova/twitter-roberta-base-sentiment-latest/tree/f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445}{the pinned quantized ONNX export}.}
+The \emph{equal-weight} control averages the negative, neutral, and
+positive probabilities across all EDUs in the review. The
+\emph{nuclearity} control takes separate averages for central and
+supporting EDUs. An EDU is central when its path from its scene root
+contains only nucleus branches. \emph{Relation pooling} adds six features
+per relation label to the nuclearity features. At each node we average
+the EDU scores in the left and right child spans separately. We then
+average these span vectors over all occurrences of the label across
+the review's scenes. Absent labels contribute zeros. For coarse labels
+we pool the same occurrences under their mapped names.
+
+In a second comparison we use only three-node motif frequency and
+weighted average depth (MF+WAD), following the HC3 feature construction
+\citep{kim_threads_2024}. Each training partition supplies a fine motif
+catalog. The coarse model uses its projection under the corresponding
+relation map. Relative frequencies and occurrence-weighted depths use
+the same retained matches in both versions. As additional controls, we
+fit logistic regression to word unigram and bigram TF--IDF features and
+to log review length alone.
+
+All classifiers use L2-regularized logistic regression and the same five
+outer folds stratified by category and recommendation, with 320 training
+reviews and 80 test reviews per fold. Four inner folds select
+$C \in \{0.1,1,10\}$ by mean macro-F1. Vocabulary, motif catalogs, and
+numeric feature scaling are fitted within the applicable training
+partition. We use a fixed 0.5 decision threshold and compute macro-F1
+over the 400 pooled held-out predictions. Paired, pointwise 95\% percentile
+intervals use 20,000 review resamples stratified by outer fold, product
+category, and gold label. Each comparison uses the same sampled reviews
+for both conditions.
+
+\subsection{Results and interpretation}
+
+\begin{table}[t]
+  \centering
+  \small
+  \setlength{\tabcolsep}{3.5pt}
+  \begin{tabular}{@{}lrrrrr@{}}
+    \hline
+    & & \multicolumn{2}{c}{Relation pooling} & \multicolumn{2}{c}{MF+WAD} \\
+    Inventory & Nuc. & Fine & Coarse & Fine & Coarse \\
+    \hline
+    PCC      & .8225 & .7900 & .7875 & .5822 & .5996 \\
+    NLDT     & .8324 & .7975 & .8000 & .6025 & .5574 \\
+    GUM/eRST & .8250 & .7675 & .7800 & .6074 & .5997 \\
+    RST-DT   & .8224 & .7700 & .8000 & .6000 & .5822 \\
+    \hline
+  \end{tabular}
+  \caption{Pooled held-out macro-F1 on SFU. Nuc. uses nuclearity alone to
+    group EDU sentiment. Equal-weight EDU pooling, TF--IDF, and length
+    score .817, .827, and .617, respectively.}
+  \label{tab:sfu-granularity}
+\end{table}
+
+Separating central from supporting EDUs yields an observed gain of
+0.50--1.50 macro-F1 points over equal-weight pooling across the four
+inventories (Table~\ref{tab:sfu-granularity}). All relation-pooling runs
+score below their nuclearity controls. With relation pooling, coarse is
+numerically ahead in three inventories, with the largest gap for RST-DT
+(fine minus coarse $-3.00$ points, paired interval $[-6.24,0.25]$). With
+motif features, fine is ahead in three inventories, with the largest gap
+for NLDT ($+4.51$ points, $[-0.23,9.27]$). Every within-inventory
+fine/coarse interval and every between-inventory interval for MF+WAD
+includes zero. Used on their own, motifs score below the length control.
+
+Fine motif features yielded higher human-class F1 in every HC3 authorship
+comparison (Table~\ref{tab:granularity}). On SFU, the direction of the
+score difference varies with the inventory and feature construction.
+The small observed nuclearity gains suggest a role for separating central
+from supporting sentiment, while the fine/coarse results leave the
+advantage of either granularity uncertain for these reviews.
+
+\subsection{Limitations}
+
+The sample covers 400 English product and service reviews, and the folds
+test held-out reviews from the same eight domains. We retain the review
+text as released, including any explicit ratings. The frozen scorer was
+trained for Twitter and reads EDUs in isolation. Scene boundaries also
+prevent discourse attachments across cuts. Between-inventory comparisons
+reflect the available parser checkpoints and their training data as well
+as their annotation schemes. Within-inventory coarsening holds the parses
+fixed and changes feature dimensionality and sparsity alongside label
+detail. Zero-filled relation columns can also carry relation-presence
+information. The resampling intervals quantify variation over the saved
+held-out predictions with the fitted models and split assignments held
+fixed.

@@ -55,5 +55,5 @@ SFU gives us a bounded comparison of the four inventories and both
 granularities. Separating main points and supporting material gave a
 small observed gain. The fine/coarse pattern varied with the features,
 and the SFU intervals leave the direction uncertain. The two feature
-comparisons, controls, and limitations are ready to write up.
-[Where each method comes from](RELATED_WORK.md#attribution-for-the-completed-sfu-experiments)
+comparisons, controls, and limitations are in the manuscript section.
+[LaTeX section](paper/sentiment.tex) · [BibTeX](paper/sentiment.bib) · [Method sources](RELATED_WORK.md#attribution-for-the-completed-sfu-experiments)

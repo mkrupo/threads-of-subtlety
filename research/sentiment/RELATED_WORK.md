@@ -2,6 +2,31 @@
 
 Purpose: identify a feasible method and the actual research gap. This is a targeted search, not an exhaustive literature review or a novelty certification. The implementation plan is in [PLAN.md](PLAN.md).
 
+## Prior classification on the English SFU reviews
+
+- **Corpus and early classification.** Taboada and Grieve (2004) used the
+  original collection of 400 English Epinions reviews. The corpus page
+  confirms that the binary labels come from the reviewers' recommendations.
+  [Early study](https://www.sfu.ca/~mtaboada/docs/publications/TaboadaGrieveAppraisal.pdf) · [Corpus](https://www.sfu.ca/~mtaboada/SFU_Review_Corpus.html)
+- **Discourse on the same corpus.** Voll and Taboada (2007, Table 3)
+  compared scoring adjectives in automatically identified nuclei with
+  scoring all adjectives. Balage Filho (2012, Chapter 4) used the corpus's
+  sentence-level RST annotations to learn relation weights and reported
+  results under four-fold cross-validation. [Voll and Taboada](https://www.sfu.ca/~mtaboada/docs/publications/Voll_Taboada_AusAI.pdf) · [Balage Filho](https://www.pedrobalage.com/assets/pdf/BalageFilho2012UseDiscourseKnowledgeMasterThesis.pdf)
+- **Historical lexical results.** Brooke et al. (2009, Table 2) report
+  76.50% accuracy for a unigram SVM with ten-fold cross-validation on the
+  original Epinions collection. Taboada et al. (2011, §2.8 and Table 4)
+  report 80.25% accuracy for full SO-CAL on that collection, called
+  Epinions 1. Those texts also informed SO-CAL's dictionary and system
+  development. Treat the scores as historical context for the matched
+  SFU controls reported here. [Brooke et al.](https://aclanthology.org/R09-1010/) · [Taboada et al.](https://aclanthology.org/J11-2001/)
+
+For the granularity question, the equal-weight EDU baseline holds the
+local scorer and its inputs fixed. Nuclearity controls for tree prominence,
+whole-review TF-IDF supplies a lexical reference, and log length checks
+whether motif-only performance exceeds a basic document statistic.
+[Paper section](paper/sentiment.tex) · [BibTeX](paper/sentiment.bib)
+
 ## Attribution for the completed SFU experiments
 
 | Piece of the experiment | Source and what we use |
