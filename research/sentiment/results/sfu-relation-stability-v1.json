@@ -1,0 +1,154 @@
+{
+  "comparison": "fine minus coarse macro-F1 on fixed held-out predictions",
+  "input_hashes": {
+    "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+    "predictions.jsonl": "cc6d996162c512c2c9001e4deea9e5365993f7aa2ab5ae55227f0eca3c6450fc"
+  },
+  "inventories": {
+    "deu.rst.pcc": {
+      "bootstrap_95_percentile_interval": [
+        -0.025045031188975594,
+        0.030079287648748572
+      ],
+      "differences_by_domain": {
+        "books": 0.04597701149425293,
+        "cars": -0.020474348680892263,
+        "computers": 0.0,
+        "cookware": 0.01889303067393655,
+        "hotels": 0.02110389610389607,
+        "movies": 0.019300144300144262,
+        "music": -0.06078242381106613,
+        "phones": -0.0009677319459928668
+      },
+      "differences_by_fold": {
+        "0": 0.04879623300675939,
+        "1": 0.03850874122658943,
+        "2": -0.012090704962124055,
+        "3": -0.05156834541449051,
+        "4": -0.012243094043981828
+      },
+      "differences_omitting_each_fold": {
+        "0": -0.009460674826528459,
+        "1": -0.006168715907775457,
+        "2": 0.0062673967130496555,
+        "3": 0.015536300236084433,
+        "4": 0.006250549364690161
+      },
+      "fine_minus_coarse": 0.0025013281333008397
+    },
+    "eng.erst.gum": {
+      "bootstrap_95_percentile_interval": [
+        -0.04251707167903842,
+        0.017490488259156493
+      ],
+      "differences_by_domain": {
+        "books": -0.06813545491636075,
+        "cars": 0.001803542673107894,
+        "computers": -0.04103059581320456,
+        "cookware": 0.0009677319459928668,
+        "hotels": 0.019323546710327655,
+        "movies": 0.006079814265014805,
+        "music": -0.06285615227807106,
+        "phones": 0.041831401124857504
+      },
+      "differences_by_fold": {
+        "0": -0.062470698546647885,
+        "1": 0.05313014123677284,
+        "2": -0.03747069854664786,
+        "3": -0.010823959117102877,
+        "4": -0.001414204902576932
+      },
+      "differences_omitting_each_fold": {
+        "0": 1.7824006235178658e-05,
+        "1": -0.028174209695903007,
+        "2": -0.006196580660003281,
+        "3": -0.01224713511731057,
+        "4": -0.015647499866909054
+      },
+      "fine_minus_coarse": -0.012479450933862157
+    },
+    "eng.rst.rstdt": {
+      "bootstrap_95_percentile_interval": [
+        -0.062423627411326725,
+        0.002501685983490833
+      ],
+      "differences_by_domain": {
+        "books": -0.045058170245196205,
+        "cars": -0.02020038784744671,
+        "computers": -0.08038461538461539,
+        "cookware": -0.08312943095551795,
+        "hotels": -0.02147612689228362,
+        "movies": 0.057521655211373646,
+        "music": -0.05965113700788205,
+        "phones": -0.002601565101565173
+      },
+      "differences_by_fold": {
+        "0": -0.07517198248905577,
+        "1": -0.10409367046117168,
+        "2": 0.0,
+        "3": 0.010597787394582392,
+        "4": 0.011561670289605197
+      },
+      "differences_omitting_each_fold": {
+        "0": -0.018688208027742292,
+        "1": -0.012267439548479198,
+        "2": -0.03750952185632239,
+        "3": -0.04101496893420653,
+        "4": -0.04083429520783666
+      },
+      "fine_minus_coarse": -0.029977992172951495
+    },
+    "nld.rst.nldt": {
+      "bootstrap_95_percentile_interval": [
+        -0.032408182843219384,
+        0.027488914091453154
+      ],
+      "differences_by_domain": {
+        "books": 0.08536721898790856,
+        "cars": -0.04072283268988042,
+        "computers": 0.0,
+        "cookware": -0.04122538089929395,
+        "hotels": 0.04218438979760886,
+        "movies": 0.03897667968322316,
+        "music": -0.08298406340022013,
+        "phones": -0.020393930972012142
+      },
+      "differences_by_fold": {
+        "0": -0.0008001250195343035,
+        "1": -0.022629742575549394,
+        "2": -0.02506265664160401,
+        "3": 0.02506265664160401,
+        "4": 0.01279211171411554
+      },
+      "differences_omitting_each_fold": {
+        "0": -0.0033031984335667453,
+        "1": 0.0032949674778242066,
+        "2": 0.003131256407809757,
+        "3": -0.009369231892514485,
+        "4": -0.006250244150162065
+      },
+      "fine_minus_coarse": -0.002526645444617115
+    }
+  },
+  "numpy_version": "2.4.6",
+  "protocol": "sfu-relation-stability-v1",
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "gold_label"
+    ],
+    "unit": "review"
+  },
+  "reviews": 400,
+  "source_sha256": "924fa292df35e13704ad19486f92c5cc4fa0d1346f0fc2bb54d7b940f39fea17",
+  "verification": {
+    "each_draw_preserves_all_80_stratum_sizes": true,
+    "identical_repeat_on_same_host": true,
+    "independent_confusion_matrix_intervals": true,
+    "independent_sklearn_fold_domain_and_sampled_bootstrap_scores": true
+  }
+}

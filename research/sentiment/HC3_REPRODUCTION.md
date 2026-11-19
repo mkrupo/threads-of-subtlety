@@ -101,6 +101,34 @@ personal GPU host. The local selection and comparison scripts are in
 [portable results](results/hc3-reproduction.json) contain the selected IDs,
 scores and feature comparisons.
 
+### HC3 answer length and scene cuts
+
+The canonical loader splits answers into roughly 492 XLM-R tokens per
+scene. It packs paragraphs and uses sentence boundaries inside long
+paragraphs. The checked-in command defaults to Punkt and also accepts
+SentSplit. The supplied feature matrices establish the scene counts,
+while the exact historical sentence-splitter flag is unavailable.
+[Canonical loader](https://github.com/ruthenian8/threads-of-subtlety/blob/f06309b62cbc53dce0c98668cac225666dfb64d7/scripts/prepare/prepare_and_parse_datasets_unirst.py)
+
+Count `scene_count > 1` in `X_structural` using `structural_names` in
+the supplied feature matrices. The counts match row for row across all
+four inventories.
+
+| HC3 split | Answer rows | Answer rows with multiple scenes | Total scenes |
+|---|---:|---:|---:|
+| Training | 43,322 | 1,632 | 45,417 |
+| Validation | 968 | 36 | 1,011 |
+| Test | 1,932 | 53 | 1,993 |
+
+For a length comparison with SFU, join the canonical test matrix's
+`identity_hash` to the released answer texts using the identity key
+above. Tokenize each of the 1,932 rows with the BERT tokenizer pinned
+in the [SFU length audit](results/sfu-token-lengths.json), including
+special tokens and disabling padding and truncation. HC3 test answers
+have a median of 186 BERT tokens, a maximum of 1,871, and 29 rows over
+512 tokens. BERT token counts provide a common yardstick. The actual
+scene cuts use XLM-R tokens.
+
 ## ArgMicrotexts
 
 I counted satellite relations by attachment and multinuclear relations

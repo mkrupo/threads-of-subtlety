@@ -5,67 +5,57 @@ of its relation labels, changes how well we can predict a review’s
 sentiment. This adds an English sentiment task alongside the paper’s
 authorship and argumentation work.
 
-## How the sentiment model would work
+## From review to scenes and EDUs
 
-A regular sentiment classifier can read a review and return a positive or
-negative score. SFU supplies those two review labels. In our proposed setup,
-a shared sentiment scorer reads each
-elementary discourse unit (EDU), usually a clause or short span, and gives
-it three scores for negative, neutral, and positive sentiment. RST provides
-a tree that tells us how to combine those local scores. The model learns
-against the review’s overall sentiment.
+SFU supplies 400 English reviews labeled positive or negative. The median
+review is 727 BERT tokens. To parse them, we pack paragraphs into chunks of
+about 492 XLM-R tokens, using sentence boundaries inside long paragraphs.
+We call each chunk a **scene**. There are 1,012 scenes, and 271 reviews have
+more than one. Each parser builds a tree per scene, so links across cuts are
+missing. [Length audit](results/sfu-token-lengths.json) · [Parse audit](results/sfu-full-parser-audit.json)
+
+The PCC segmenter splits each scene into **EDUs**, usually clauses. All
+four parsers receive those same EDUs. CardiffNLP gives each EDU scores for
+negative, neutral, and positive sentiment. We pool those fixed scores
+across scenes before logistic regression predicts one positive or
+negative label per review. [Score manifest](results/sfu-edu-scores-v1.json)
+
+## What the classifier sees
 
 Take “The screen looks great, but the battery dies by noon.” Suppose the
-two EDU scores are +0.8 and −0.6. Their average is +0.1. If a tree marks
-the battery complaint as central and a learned rule gives it three times
-the weight of the praise, the combined score becomes −0.25. These numbers
-illustrate the idea. In the experiment, the scorer gives the same two
-inputs to every condition. We measure whether the way we combine them helps
-on held-out reviews. [R2N2 method](https://aclanthology.org/D15-1263/)
+tree treats the battery complaint as central and links the two clauses
+with a concession. A side of a relation can also be a whole span of clauses.
 
-A typical EDU is 11 BERT tokens. A typical whole review is 727 tokens, and
-256 of 400 reviews exceed the 512-token input limit. This makes the scorer's
-context length a separate consideration for whole-review classification.
-[Length audit](results/sfu-token-lengths.json)
+- **Equal weight.** Average all EDU scores across the review's scenes.
+  The classifier gets one set of three averages.
+- **Nuclearity.** Average central and supporting EDU scores separately.
+  An EDU is central if its path to the scene root follows only nucleus
+  branches. The classifier learns how to use the six averages. This is
+  the structural control because it uses the tree's prominence information
+  and omits relation names.
+- **Relations.** Keep the six nuclearity inputs and add sentiment by
+  relation name. For the concession, the left side is the screen praise
+  and the right side is the battery complaint. We average the EDUs on each
+  side, then average those pairs over all occurrences of the label across
+  the review's scenes.
 
-## What changes in each comparison
+## Which parsers and labels we compare
 
-| Comparison | What changes |
-|---|---|
-| Uniform versus tree aggregation | We compare averaging the EDU scores with using the tree. A tree model that ignores relation names gives us a structural control. |
-| PCC, NLDT, GUM/eRST, RST-DT | Each parser builds its own tree on the same English EDUs. Their attachments, nuclearity, and relations can differ. |
-| Fine versus coarse within one inventory | We take its existing tree and merge relation labels using the research-branch map. For example, eRST concession and contrast both map to `adversative`. The cuts, attachments, and nuclearity stay fixed. |
+PCC and NLDT use released UniRST weights. GUM/eRST and RST-DT use the
+colleague's fine-tuned checkpoints. We parse each scene once per inventory.
+The fine run uses the emitted names. The coarse run uses the research
+map when grouping the same relations. For example, eRST concession and
+contrast both become `adversative`. The EDU cuts, attachments, and
+nuclearity stay fixed within each fine/coarse pair. [Model provenance](MODEL_PROVENANCE.md)
 
-## What we have done
+## What we found
 
-- **Checked the colleague’s setup on his data.** We regenerated the saved
-  discourse features for six HC3 documents across all four inventories.
-  Fresh classifier fits recovered the HC3 fine/coarse findings. [HC3 check](HC3_REPRODUCTION.md)
-- **Prepared the sentiment dataset.** SFU has 400 English reviews, balanced
-  by positive and negative recommendation across eight domains. We froze
-  the review splits and ran text-only controls. [SFU controls](RUNNING.md)
-- **Parsed all 400 SFU reviews under all four inventories.** We verified
-  4,048 trees across 1,012 scenes and 36,850 shared EDUs. The research
-  maps cover every relation observed. A review can have multiple scene
-  trees, so the sentiment model will need to combine their scores.
-  [Full parse audit](results/sfu-full-parser-audit.json)
+On the same 400 held-out reviews, equal weight scored **0.817 macro-F1**
+and nuclearity scored **0.822–0.832**. All eight fine/coarse runs scored
+below their nuclearity controls. Coarse was ahead in three inventories,
+with the largest gap in RST-DT. The paired review-resampling intervals
+include a tie in all four inventories. [Results and reproduction](RUNNING.md) · [Stability check](results/sfu-relation-stability-v1.json)
 
-- **Scored every EDU once for reuse.** We froze the CardiffNLP model and
-  cached all three scores for each of the 36,850 EDUs. Every comparison
-  will use these exact inputs. [Score manifest](results/sfu-edu-scores-v1.json)
-- **Ran the no-RST baseline.** We averaged the three EDU scores across
-  each review and trained logistic regression on those averages. It
-  scored **0.817 macro-F1** over 400 held-out predictions, one per review.
-  [Baseline results](results/sfu-edu-mean-v1.json)
-- **Ran the nuclearity control.** We averaged central and supporting
-  EDUs separately. Across the four parsers this scored **0.822–0.832**
-  macro-F1 on the same reviews. Replacing the relation names with their
-  coarse labels left those averages identical. [Nuclearity results](results/sfu-nuclearity-v1.json)
-- **Compared fine and coarse relation labels.** For every relation, we
-  averaged sentiment on its left and right sides. We gave the classifier
-  those averages grouped by label, alongside the nuclearity inputs.
-  Coarse labels scored higher in three inventories. All eight runs scored
-  below their respective nuclearity controls. [Fine/coarse results](results/sfu-relation-pooling-v1.json)
-
-**Next** is to check how stable the fine/coarse differences are across
-held-out reviews and folds.
+We also replayed the colleague's HC3 features for six answers and refit
+his downstream classifiers from the saved features. HC3 used scene cuts
+too, with far fewer answers split than in SFU. [HC3 check](HC3_REPRODUCTION.md)

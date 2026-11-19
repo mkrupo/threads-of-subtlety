@@ -1,6 +1,6 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
-**The first SFU fine/coarse sentiment comparison is complete for all four inventories.** See [START_HERE.md](START_HERE.md) for the method and [RUNNING.md](RUNNING.md) for results and reproduction.
+**The first SFU fine/coarse comparison and paired stability check are complete for all four inventories.** See [START_HERE.md](START_HERE.md) for the method and [RUNNING.md](RUNNING.md) for results and reproduction.
 
 ## 1. Goal and immediate scope
 

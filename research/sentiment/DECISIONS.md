@@ -238,3 +238,15 @@
 - Use the same logistic regression settings and inner and outer folds as
   the nuclearity control. Report the paired fine-minus-coarse difference
   in macro-F1, prediction changes, and label coverage for each inventory.
+
+## Fine/coarse stability check
+
+- Use the saved held-out predictions. Draw 20,000 paired bootstrap
+  samples of reviews with seed 42, keeping the number of reviews in each
+  fold, domain, and gold-label group fixed. Each draw uses the same reviews
+  across all inventories and both granularities.
+- Report the 2.5th and 97.5th percentiles of the fine-minus-coarse
+  macro-F1 difference. Also report each fold's and domain's difference,
+  and recalculate the overall gap with each fold omitted in turn.
+  These intervals describe resampling the saved predictions and hold
+  the original fits and splits fixed.

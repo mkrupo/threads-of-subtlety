@@ -402,6 +402,40 @@ includes per-fold results, paired errors, label counts, and checksums.
 Interpret these first differences together with the change in input
 dimensions and relation sparsity.
 
+## Fine/coarse stability
+
+```bash
+uv run --project research/sentiment --locked --no-sync --cache-dir /tmp/tos-uv-cache \
+  python -B -m research.sentiment.relation_stability \
+  --predictions artifacts/sentiment/sfu-v1/relation-pooling-v1/predictions.jsonl \
+  --manifest artifacts/sentiment/sfu-v1/prepared/manifest.jsonl \
+  --output artifacts/sentiment/sfu-v1/relation-pooling-v1/stability.json
+```
+
+Each of 20,000 bootstrap draws resamples reviews within their original
+fold, domain, and gold-label group (seed 42). Both conditions and all four
+inventories use the same sampled reviews. Report the central 95% of
+fine-minus-coarse differences, in macro-F1 points on a 0–100 scale.
+
+| Inventory | Fine minus coarse | Paired resampling interval | Folds favoring fine / coarse / tied |
+|---|---:|---:|---:|
+| PCC | +0.25 | [−2.50, +3.01] | 2 / 3 / 0 |
+| NLDT | −0.25 | [−3.24, +2.75] | 2 / 3 / 0 |
+| GUM/eRST | −1.25 | [−4.25, +1.75] | 1 / 4 / 0 |
+| RST-DT | −3.00 | [−6.24, +0.25] | 2 / 2 / 1 |
+
+All intervals include zero. RST-DT favors coarse when any one fold is
+omitted from the pooled predictions, with gaps of 1.23–4.10 points.
+The intervals describe the sensitivity to which reviews are scored, with
+the fitted models and split assignments held fixed. Training and split
+variation fall outside this check. [Cross-validation variance](https://www.jmlr.org/papers/v5/grandvalet04a.html)
+
+An independent confusion-count calculation reproduced the intervals,
+and scikit-learn confirmed the fold results, domain results, and a sample
+of bootstrap scores. A repeat produced a byte-identical report. The
+[portable result](results/sfu-relation-stability-v1.json) includes all
+fold, leave-one-fold-out, and domain gaps.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and
