@@ -8,9 +8,11 @@
 
 ## What the classifier sees
 
-- Frozen CardiffNLP scores each EDU for negative, neutral, and positive sentiment. Every comparison based on EDU sentiment uses these same scores.
+- Frozen CardiffNLP gives each EDU three probabilities in order `[negative, neutral, positive]`. Together they sum to one. Every comparison based on EDU sentiment uses these same scores.
 - **Equal weight — 3 numbers per review.** Average each sentiment probability across all EDUs in the review. This gives us a baseline without tree features.
-- **Nuclearity — 6 numbers per review.** Average the three probabilities for all central EDUs and separately for all supporting EDUs, pooling across chunks. A central EDU is reached from its chunk’s tree root through nucleus branches only. Several EDUs in one tree can qualify.
+- **Nuclearity — 6 numbers per review.** The central average comes first, then the supporting average. Both use the order `[negative, neutral, positive]`.
+  - Follow the path from the scene’s tree root to each EDU. A path through nucleus branches only is central. Any satellite branch makes the EDU supporting, even if it is a nucleus farther down the tree. A central path can branch into two nuclei, making several EDUs central.
+  - Collect the individual EDUs from every scene into the same two review-wide groups, then average each group. Fine and coarse give identical nuclearity inputs within each standard because they share the same branches.
 - Logistic regression learns from these numbers and the training reviews’ recommendation labels. In five-fold cross-validation, each review is held out once. Equal weight scored **0.817 macro-F1** and nuclearity scored **0.822–0.832**, depending on the parser.
 
 ## Names to remember
