@@ -36,7 +36,7 @@
 
 ## Results
 
-| Standard | Nuclearity | Fine relations | Coarse relations |
+| Standard | Nuclearity alone | Nuclearity + fine relations | Nuclearity + coarse relations |
 |---|---:|---:|---:|
 | PCC | 0.8225 | 0.7900 | 0.7875 |
 | NLDT | 0.8324 | 0.7975 | 0.8000 |
@@ -44,11 +44,13 @@
 | RST-DT | 0.8224 | 0.7700 | 0.8000 |
 
 - Held-out macro-F1 for the shared controls was **0.817** for equal-weight EDU pooling, **0.827** for word-based TF–IDF, and **0.617** for review length.
-- Nuclearity scored slightly higher than equal weight for all four parsers. Adding relation features lowered the scores relative to nuclearity. Coarse scored higher in three of four standards and every fine-minus-coarse interval included zero. The direction of the granularity effect remains uncertain on these reviews.
+- Separating central and supporting EDUs raised the observed macro-F1 by **0.50–1.50 points** over equal weighting, depending on the parser.
+- Adding fine or coarse relation blocks to the nuclearity features lowered macro-F1 in all eight runs.
+- Coarse scored higher in three of four standards. The largest gap was for **RST-DT**, where fine minus coarse was **−3.00 points** (paired 95% interval **−6.24 to +0.25**). Every fine-minus-coarse interval included zero.
 
 ## Names to remember
 
 - **Data.** [SFU Review Corpus](https://www.sfu.ca/~mtaboada/SFU_Review_Corpus.html)
-- **Idea.** Use discourse structure to combine local sentiment. [Bhatia, Ji, and Eisenstein (2015)](https://aclanthology.org/D15-1263/)
+- **Idea.** Bhatia et al. combine local sentiment up the tree. Our experiment uses simpler averages by relation and side to test fine versus coarse labels. [Bhatia, Ji, and Eisenstein (2015)](https://aclanthology.org/D15-1263/)
 - **EDU scorer.** [CardiffNLP Twitter RoBERTa](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest)
 - **Parser family.** [UniRST](https://arxiv.org/abs/2510.06427)
