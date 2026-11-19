@@ -1,7 +1,7 @@
 # threads-of-subtlety
 Code repository for the paper: "Threads of Subtlety: Detecting Machine-Generated Texts Through Discourse Motifs" (ACL 2024)
 
-For the sentiment extension, see [RST and sentiment in one page](research/sentiment/START_HERE.md).
+For the follow-up study, see [RST granularity in one page](research/sentiment/START_HERE.md).
 
 - Code: this repo.
 - Models: [zaemyung/ToS-Longformer-Plain](https://huggingface.co/zaemyung/ToS-Longformer-Plain/tree/main), [zaemyung/ToS-Longformer-Motif](https://huggingface.co/zaemyung/ToS-Longformer-Motif/tree/main)

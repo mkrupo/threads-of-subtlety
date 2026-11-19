@@ -81,7 +81,7 @@ This is a proposal, not a finalized experiment.
 2. **Local-score controls:** same EDU scorer with uniform aggregation and simple positional controls. Add length/EDU/scene counts where relevant.
 3. **Structure control:** separate sentiment averages for central and supporting EDUs, grouped by their paths from the scene root. [Nuclearity results](results/sfu-nuclearity-v1.json)
 4. **Relation-aware pooling:** add left- and right-span sentiment means grouped by relation name to the six nuclearity inputs. Fit logistic regression with native fine names and mapped coarse names on each inventory's fixed trees. [Fine/coarse results](results/sfu-relation-pooling-v1.json)
-5. **Optional bridge to HC3:** text plus relation/M3 features, to see whether the colleague's representation transfers even without compositional modeling.
+5. **Proposed bridge to HC3:** use motif frequency and depth on the existing SFU trees, with the same logistic regression and frozen splits. Select the motif catalog on training reviews in each fitting partition and project it through the same maps. This puts the feature recipe in common across the two tasks.
 
 The first comparison uses the frozen CardiffNLP scorer. All inventories and folds share the same cached negative, neutral, and positive scores for every EDU. Review-level models may learn from the review labels in each training fold. [Scorer manifest](results/sfu-edu-scores-v1.json)
 

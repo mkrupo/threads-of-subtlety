@@ -1,61 +1,58 @@
-# RST and sentiment in one page
+# RST granularity in one page
 
-**Our question** is whether the choice of discourse standard, or the detail
-of its relation labels, changes how well we can predict a review’s
-sentiment. This adds an English sentiment task alongside the paper’s
-authorship and argumentation work.
+**Project question.** When do different discourse standards and finer
+relation labels help a prediction task? We use authorship detection,
+argumentation, and sentiment to study that question.
 
-## From review to scenes and EDUs
+## What fine versus coarse means
 
-SFU supplies 400 English reviews labeled positive or negative. The median
-review is 727 BERT tokens. To parse them, we pack paragraphs into chunks of
-about 492 XLM-R tokens, using sentence boundaries inside long paragraphs.
-We call each chunk a **scene**. There are 1,012 scenes, and 271 reviews have
-more than one. Each parser builds a tree per scene, so links across cuts are
-missing. [Length audit](results/sfu-token-lengths.json) · [Parse audit](results/sfu-full-parser-audit.json)
+For HC3 and SFU, PCC and NLDT use stock UniRST. GUM/eRST and RST-DT use
+the colleague’s fine-tuned checkpoints. Each inventory predicts its own
+trees from the same text chunks and PCC clause boundaries. Within an
+inventory, **both runs use the same trees**. Fine keeps the predicted
+relation names. Coarse merges some names after parsing, such as eRST
+concession and contrast into `adversative`. The draft also reports a
+separate check against human annotations, where the separately trained
+coarse GUM/eRST and RST-DT parsers scored higher. [Model provenance](MODEL_PROVENANCE.md)
 
-The PCC segmenter splits each scene into **EDUs**, usually clauses. All
-four parsers receive those same EDUs. CardiffNLP gives each EDU scores for
-negative, neutral, and positive sentiment. We pool those fixed scores
-across scenes before logistic regression predicts one positive or
-negative label per review. [Score manifest](results/sfu-edu-scores-v1.json)
+## What we know so far
 
-## What the classifier sees
+- **HC3 authorship.** The classifier uses how often small discourse
+  patterns occur and how deep they are in the trees. Fine scores higher
+  than coarse for all four inventories with both classifiers. The saved
+  paired analysis supports all four logistic regression gains and the
+  PCC random forest gain after correction. We reproduced the downstream
+  results from the saved features and checked fresh parsing on six
+  answers. [HC3 checks](HC3_REPRODUCTION.md#hc3-classifiers)
+- **ArgMicrotexts.** The draft reports better argument predictions with
+  human-annotated RST than with predicted RST. We checked the public gold
+  relation counts. Verifying the performance comparison requires the
+  evaluation setup or saved predictions. [Argumentation check](HC3_REPRODUCTION.md#argmicrotexts)
+- **SFU sentiment.** On 400 English reviews, equal-weight sentiment
+  averages scored **0.817 macro-F1**. Averaging central and supporting
+  material separately scored **0.822–0.832**. Adding sentiment by relation
+  label scored lower in every run. Coarse led fine in three inventories,
+  and all four paired resampling intervals include a tie. [SFU results](RUNNING.md#finecoarse-relation-pooling) · [Stability check](RUNNING.md#finecoarse-stability)
 
-Take “The screen looks great, but the battery dies by noon.” Suppose the
-tree treats the battery complaint as central and links the two clauses
-with a concession. A side of a relation can also be a whole span of clauses.
+## How SFU gets one prediction per review
 
-- **Equal weight.** Average all EDU scores across the review's scenes.
-  The classifier gets one set of three averages.
-- **Nuclearity.** Average central and supporting EDU scores separately.
-  An EDU is central if its path to the scene root follows only nucleus
-  branches. The classifier learns how to use the six averages. This is
-  the structural control because it uses the tree's prominence information
-  and omits relation names.
-- **Relations.** Keep the six nuclearity inputs and add sentiment by
-  relation name. For the concession, the left side is the screen praise
-  and the right side is the battery complaint. We average the EDUs on each
-  side, then average those pairs over all occurrences of the label across
-  the review's scenes.
+Long reviews are split into scenes of up to about 492 XLM-R tokens. Each
+scene gets its own trees, which can only link material inside that scene.
+We score each clause-sized unit (EDU) once for negative, neutral, and
+positive sentiment. Logistic regression gets the pooled scores across
+all scenes. In “The screen looks great, but the
+battery dies by noon,” the nuclearity model can learn to treat the main
+point and supporting material differently. The relation model also sees
+the sentiment on each side of the concession, pooled by relation name.
+[Parse audit](results/sfu-full-parser-audit.json) · [How the features work](RUNNING.md#nuclearity-control)
 
-## Which parsers and labels we compare
+## What SFU means and what to try next
 
-PCC and NLDT use released UniRST weights. GUM/eRST and RST-DT use the
-colleague's fine-tuned checkpoints. We parse each scene once per inventory.
-The fine run uses the emitted names. The coarse run uses the research
-map when grouping the same relations. For example, eRST concession and
-contrast both become `adversative`. The EDU cuts, attachments, and
-nuclearity stay fixed within each fine/coarse pair. [Model provenance](MODEL_PROVENANCE.md)
-
-## What we found
-
-On the same 400 held-out reviews, equal weight scored **0.817 macro-F1**
-and nuclearity scored **0.822–0.832**. All eight fine/coarse runs scored
-below their nuclearity controls. Coarse was ahead in three inventories,
-with the largest gap in RST-DT. The paired review-resampling intervals
-include a tie in all four inventories. [Results and reproduction](RUNNING.md) · [Stability check](results/sfu-relation-stability-v1.json)
-
-We also replayed the colleague's HC3 features for six answers and refit
-his downstream classifiers from the saved features. HC3 used scene cuts
-too, with far fewer answers split than in SFU. [HC3 check](HC3_REPRODUCTION.md)
+The clearest SFU result so far is the small gain from separating main
+points and supporting material. The value of fine labels remains uncertain
+for this sentiment pooling method. HC3 uses a different feature recipe
+as well as a different task. The proposed next experiment applies HC3-style
+motif frequency and depth to the existing SFU trees, with the same logistic
+regression and frozen splits. We would select motifs inside each training
+fold. This checks whether the same feature recipe shows a fine/coarse
+benefit on SFU. [Experiment plan](PLAN.md)
