@@ -33,6 +33,9 @@ coarse GUM/eRST and RST-DT parsers scored higher. [Model provenance](MODEL_PROVE
   material separately scored **0.822–0.832**. Adding sentiment by relation
   label scored lower in every run. Coarse led fine in three inventories,
   and all four paired resampling intervals include a tie. [SFU results](RUNNING.md#finecoarse-relation-pooling) · [Stability check](RUNNING.md#finecoarse-stability)
+- **HC3-style motifs on SFU.** With motif frequency and depth as the
+  review's only inputs, fine led in three inventories. Every fine/coarse
+  and between-inventory interval includes a tie. [Motif results](RUNNING.md#hc3-style-motifs-on-sfu)
 
 ## How SFU gets one prediction per review
 
@@ -46,13 +49,11 @@ point and supporting material differently. The relation model also sees
 the sentiment on each side of the concession, pooled by relation name.
 [Parse audit](results/sfu-full-parser-audit.json) · [How the features work](RUNNING.md#nuclearity-control)
 
-## What SFU means and what to try next
+## What goes into the paper
 
-The clearest SFU result so far is the small gain from separating main
-points and supporting material. The value of fine labels remains uncertain
-for this sentiment pooling method. HC3 uses a different feature recipe
-as well as a different task. The proposed next experiment applies HC3-style
-motif frequency and depth to the existing SFU trees, with the same logistic
-regression and frozen splits. We would select motifs inside each training
-fold. This checks whether the same feature recipe shows a fine/coarse
-benefit on SFU. [Experiment plan](PLAN.md)
+SFU gives us a bounded comparison of the four inventories and both
+granularities. Separating main points and supporting material gave a
+small observed gain. The fine/coarse pattern varied with the features,
+and the SFU intervals leave the direction uncertain. The two feature
+comparisons, controls, and limitations are ready to write up.
+[Where each method comes from](RELATED_WORK.md#attribution-for-the-completed-sfu-experiments)

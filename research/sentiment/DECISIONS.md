@@ -250,3 +250,18 @@
   and recalculate the overall gap with each fold omitted in turn.
   These intervals describe resampling the saved predictions and hold
   the original fits and splits fixed.
+
+## HC3-style motifs on SFU
+
+- Count connected three-node motifs using the directed, relation-labeled
+  graphs from the HC3 experiment. Preserve its counting of symmetric
+  matches and its scene-normalized, occurrence-weighted depth.
+- Learn the catalog of all observed fine motifs from each fitting
+  partition, including during inner validation. Apply the HC3 relation
+  maps to that catalog for the coarse features. Keep the same occurrences
+  in both conditions, and ignore fine motifs absent from the catalog in
+  both. The features are motif frequency and depth per review.
+- Reuse the SFU nested folds, logistic regression, training-only scaling,
+  C grid, and primary macro-F1. Use the same paired bootstrap draws for
+  fine/coarse and between-inventory comparisons. These are pointwise
+  intervals conditional on the held-out predictions.

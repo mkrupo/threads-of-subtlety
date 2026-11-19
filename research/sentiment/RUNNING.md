@@ -436,6 +436,48 @@ of bootstrap scores. A repeat produced a byte-identical report. The
 [portable result](results/sfu-relation-stability-v1.json) includes all
 fold, leave-one-fold-out, and domain gaps.
 
+## HC3-style motifs on SFU
+
+```bash
+uv run --project research/sentiment --locked --no-sync --with networkx==3.1 \
+  --cache-dir /tmp/tos-uv-cache python -B -m research.sentiment.motif_sfu \
+  --prepared-dir artifacts/sentiment/sfu-v1/prepared \
+  --trees-dir artifacts/sentiment/sfu-full-v1 \
+  --output-dir artifacts/sentiment/sfu-v1/motif-v1
+```
+
+We convert the same scene trees into the directed, labeled HC3 graphs
+and count connected three-node motifs (M3). As in the HC3 code, motif
+frequency is relative to retained occurrences, and depth is the mean
+root distance normalized by the scene graph diameter and weighted by
+occurrences across a review. Symmetric matches count with their original
+multiplicity. In each inner or outer fitting partition, the catalog
+contains all fine motifs seen in its training reviews. The coarse version
+merges this same catalog with the research maps, preserving retained
+occurrence counts. This transfers the feature construction to SFU with
+its own training catalogs, LR setup, and macro-F1 evaluation.
+
+| Inventory | Fine macro-F1 | Coarse macro-F1 | Fine minus coarse (points) | Paired 95% interval (points) |
+|---|---:|---:|---:|---:|
+| PCC | .582 | .600 | −1.75 | [−6.22, +2.67] |
+| NLDT | .602 | .557 | +4.51 | [−0.23, +9.27] |
+| GUM/eRST | .607 | .600 | +0.77 | [−3.73, +5.19] |
+| RST-DT | .600 | .582 | +1.78 | [−2.64, +6.25] |
+
+All four fine/coarse and all twelve between-inventory intervals include
+zero. Fine is numerically ahead in three inventories with motifs and in
+one with sentiment pooling. Motif-only scores fall below the SFU
+length-only control (.617). These are paired, pointwise intervals from the
+same review draws as the sentiment-pooling stability check. They hold
+the trained classifiers and splits fixed. [Aggregate results](results/sfu-motif-v1.json)
+
+We checked the extractor against the saved HC3 motif features for six
+answers under all four inventories. Frequencies and depths matched within
+`1e-7`. An independent reconstruction of the SFU feature groups and
+nested fits reproduced all 3,200 class decisions and all paired intervals.
+The largest probability difference was .000271. The complete rerun
+produced byte-identical predictions and reports.
+
 ## Recheck the saved HC3 granularity scores
 
 The later [HC3 reproduction checks](HC3_REPRODUCTION.md) also refit LR and
