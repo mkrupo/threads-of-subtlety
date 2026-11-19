@@ -15,9 +15,10 @@ from .baseline import HERE, INPUT_FILES, digest, metrics, read_jsonl, validate_p
 from .edu_baseline import RESULTS
 from .nuclearity import evaluate, pool_nuclearity
 from .parser_pilot import RESEARCH_REVISION, canonical_maps
+from .relation_stability import ITERATIONS, SEED, bootstrap_weights, macro_f1, pair_predictions
 
 
-def scene_relation_scores(tree, probabilities):
+def scene_relation_scores(tree, probabilities, *, nucleus_first=False):
     """Take the EDU mean on each side of every internal node."""
     nodes = tree["nodes"]
     leaves = iter(np.asarray(probabilities, dtype=np.float64))
@@ -29,8 +30,10 @@ def scene_relation_scores(tree, probabilities):
             return next(leaves), 1
         left, left_size = visit(node["left"])
         right, right_size = visit(node["right"])
-        sides = np.concatenate((left / left_size, right / right_size))
-        occurrences.append((node["relation"].lower(), sides))
+        spans = (left / left_size, right / right_size)
+        if nucleus_first and node["nuclearity"] == "SN":
+            spans = spans[::-1]
+        occurrences.append((node["relation"].lower(), np.concatenate(spans)))
         return left + right, left_size + right_size
 
     _, count = visit(tree["root"])
@@ -46,13 +49,13 @@ def accumulate(groups, label, count, total):
     groups[label] = count, total
 
 
-def pool_relations(scores, trees):
+def pool_relations(scores, trees, *, nucleus_first=False):
     pooled = {}
     for score, tree in zip(scores, trees, strict=True):
         if (tree["key"], tree["document_id"], tree["status"]) != (score["key"], score["document_id"], "ok"):
             raise ValueError(f"Tree and scores disagree for scene {score['key']}")
         groups = pooled.setdefault(score["document_id"], {})
-        for label, sides in scene_relation_scores(tree, score["probabilities"]):
+        for label, sides in scene_relation_scores(tree, score["probabilities"], nucleus_first=nucleus_first):
             accumulate(groups, label, 1, sides)
     return pooled
 
@@ -105,7 +108,26 @@ def paired_change(current, reference):
     }
 
 
-def run(prepared, scores, trees, uniform_path, nuclearity_path, output):
+def compare_pooling_orders(inventories, predictions, text_order, reference, metadata):
+    truth = np.array([row["label"] for row in metadata], dtype=np.int16)
+    weights = bootstrap_weights(metadata)
+    for inventory, conditions in inventories.items():
+        current = pair_predictions(predictions, metadata, inventory)
+        previous = pair_predictions(text_order, metadata, inventory)
+        current_draws = [macro_f1(weights, truth, row) for row in current]
+        conditions["paired_fine_vs_coarse"]["bootstrap_95_percentile_interval"] = np.quantile(
+            current_draws[0] - current_draws[1], [0.025, 0.975],
+        ).tolist()
+        for index, name in enumerate(("fine", "coarse")):
+            original_score = reference["inventories"][inventory][name]["pooled_out_of_fold"]["macro_f1"]
+            differences = current_draws[index] - macro_f1(weights, truth, previous[index])
+            conditions[name]["paired_vs_text_order"] = {
+                "macro_f1_delta": conditions[name]["pooled_out_of_fold"]["macro_f1"] - original_score,
+                "bootstrap_95_percentile_interval": np.quantile(differences, [0.025, 0.975]).tolist(),
+            }
+
+
+def run(prepared, scores, trees, uniform_path, nuclearity_path, output, *, nucleus_first_against=None):
     audit = json.loads((RESULTS / "sfu-full-parser-audit.json").read_text())
     reference = json.loads((RESULTS / "sfu-nuclearity-v1.json").read_text())
     config_path = HERE / "baseline_config.json"
@@ -123,6 +145,15 @@ def run(prepared, scores, trees, uniform_path, nuclearity_path, output):
     if RESEARCH_REVISION != audit["research_revision"]:
         raise ValueError("Relation maps differ from the parser audit")
 
+    nucleus_first = nucleus_first_against is not None
+    if nucleus_first:
+        text_order_reference = json.loads((RESULTS / "sfu-relation-pooling-v1.json").read_text())
+        inputs["text_order_predictions.jsonl"] = digest(nucleus_first_against)
+        if (inputs["text_order_predictions.jsonl"] != text_order_reference["predictions_sha256"]
+                or any(inputs[name] != checksum for name, checksum in text_order_reference["input_hashes"].items())):
+            raise ValueError("Use the verified text-order predictions and their original inputs")
+        text_order_predictions = read_jsonl(nucleus_first_against)
+
     config = json.loads(config_path.read_text())
     records, splits = validate_prepared(prepared, config)
     by_id = {row["document_id"]: row for row in records}
@@ -137,7 +168,7 @@ def run(prepared, scores, trees, uniform_path, nuclearity_path, output):
         nuclearity, coverage = pool_nuclearity(score_rows, tree_rows)
         if coverage != reference["inventories"][inventory]["coverage"]:
             raise ValueError(f"Nuclearity coverage differs from the control for {inventory}")
-        fine = pool_relations(score_rows, tree_rows)
+        fine = pool_relations(score_rows, tree_rows, nucleus_first=nucleus_first)
         if fine.keys() != by_id.keys() or label_counts(fine) != parser["observed_relations"]:
             raise ValueError(f"Relation or review coverage differs from the audit for {inventory}")
         coarse = coarsen(fine, mapping)
@@ -171,6 +202,14 @@ def run(prepared, scores, trees, uniform_path, nuclearity_path, output):
             "unmapped_declared_labels": sorted(set(alphabet) - mapping.keys()),
             "map_sha256": hashlib.sha256(json.dumps(mapping, sort_keys=True).encode()).hexdigest(),
         }
+        if nucleus_first:
+            inventories[inventory]["reordered_nodes"] = sum(
+                node["nuclearity"] == "SN" for tree in tree_rows for node in tree["nodes"].values() if "left" in node
+            )
+
+    if nucleus_first:
+        metadata = sorted(read_jsonl(prepared / "manifest.jsonl"), key=lambda row: row["document_id"])
+        compare_pooling_orders(inventories, predictions, text_order_predictions, text_order_reference, metadata)
 
     output.mkdir(parents=True)
     path = output / "predictions.jsonl"
@@ -198,6 +237,14 @@ def run(prepared, scores, trees, uniform_path, nuclearity_path, output):
         "predictions_sha256": digest(path),
         "inventories": inventories,
     }
+    if nucleus_first:
+        report["protocol"] = "sfu-relation-nucleus-first-v1"
+        report["features"]["side_order"] = ["nucleus for NS/SN, left for NN", "satellite for NS/SN, right for NN"]
+        report["source_hashes"]["relation_stability.py"] = digest(HERE / "relation_stability.py")
+        report["resampling"] = {
+            "seed": SEED, "draws": ITERATIONS, "unit": "review", "paired": True,
+            "strata": ["outer_fold", "domain", "gold_label"],
+        }
     write_json(output / "report.json", report)
     return report
 
@@ -209,10 +256,12 @@ def main():
     cli.add_argument("--trees-dir", type=Path, required=True)
     cli.add_argument("--uniform-predictions", type=Path, required=True)
     cli.add_argument("--nuclearity-predictions", type=Path, required=True)
+    cli.add_argument("--nucleus-first", type=Path, metavar="TEXT_ORDER_PREDICTIONS",
+                     help="Order mononuclear relations by role and compare against verified text-order predictions")
     cli.add_argument("--output-dir", type=Path, required=True)
     args = cli.parse_args()
     report = run(args.prepared_dir, args.scores, args.trees_dir, args.uniform_predictions,
-                 args.nuclearity_predictions, args.output_dir)
+                 args.nuclearity_predictions, args.output_dir, nucleus_first_against=args.nucleus_first)
     for inventory, result in report["inventories"].items():
         fine = result["fine"]["pooled_out_of_fold"]["macro_f1"]
         coarse = result["coarse"]["pooled_out_of_fold"]["macro_f1"]

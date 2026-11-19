@@ -436,6 +436,50 @@ of bootstrap scores. A repeat produced a byte-identical report. The
 [portable result](results/sfu-relation-stability-v1.json) includes all
 fold, leave-one-fold-out, and domain gaps.
 
+## Relation pooling with nucleus first
+
+```bash
+uv run --project research/sentiment --locked --no-sync --cache-dir /tmp/tos-uv-cache \
+  python -B -m research.sentiment.relation_pooling \
+  --prepared-dir artifacts/sentiment/sfu-v1/prepared \
+  --scores artifacts/sentiment/sfu-edu-scores-v1/scores.jsonl \
+  --trees-dir artifacts/sentiment/sfu-full-v1 \
+  --uniform-predictions artifacts/sentiment/sfu-v1/edu-mean-v1/predictions.jsonl \
+  --nuclearity-predictions artifacts/sentiment/sfu-v1/nuclearity-v1/predictions.jsonl \
+  --nucleus-first artifacts/sentiment/sfu-v1/relation-pooling-v1/predictions.jsonl \
+  --output-dir artifacts/sentiment/sfu-v1/relation-nucleus-first-v1
+```
+
+For nodes with a nucleus and a satellite, put the nucleus span mean
+first and the satellite span mean second. This swaps the two triples at
+each `SN` node before pooling by label. `NS` and two-nucleus (`NN`)
+nodes keep their text order. A label shared by mononuclear and
+multinuclear nodes can therefore still mix roles in its pooled slots.
+The tree, labels, dimensions, six review-level nuclearity features,
+EDU scores, folds, and model selection protocol are shared with the
+text-order run.
+
+| Inventory | Fine macro-F1 | Change vs. text order (points) | Coarse macro-F1 | Change vs. text order (points) |
+|---|---:|---:|---:|---:|
+| PCC | 0.7850 | −0.50 | 0.7850 | −0.25 |
+| NLDT | 0.7850 | −1.25 | 0.7974 | −0.26 |
+| GUM/eRST | 0.7875 | +2.00 | 0.7900 | +1.00 |
+| RST-DT | 0.7650 | −0.50 | 0.7999 | −0.01 |
+
+GUM/eRST gained with both label sets. Every nucleus-first run scored
+below its nuclearity-only control. All eight paired 95% intervals for
+the difference from text order and all four within-run fine/coarse
+intervals include zero. The intervals use the same 20,000 stratified
+resamples of fixed, held-out review predictions as above. The
+[portable report](results/sfu-relation-nucleus-first-v1.json) records
+the intervals, per-fold results, and input hashes.
+
+An independent extraction using direct child-span slices and
+occurrence-level coarsening reproduced every feature row and all 3,200
+held-out decisions. A repeat produced byte-identical predictions and
+report. The original text-order command still reproduces its saved
+predictions byte for byte.
+
 ## HC3-style motifs on SFU
 
 ```bash

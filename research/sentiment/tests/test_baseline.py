@@ -140,6 +140,23 @@ class BaselineTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "No canonical coarse label"):
             coarsen(fine, {"concession": "adversative"})
 
+    def test_nucleus_first_reverses_only_satellite_nucleus_nodes(self):
+        nodes = {
+            "6": {"left": 4, "right": 5, "relation": "Elaboration", "nuclearity": "NS"},
+            "4": {"left": 0, "right": 1, "relation": "Concession", "nuclearity": "SN"},
+            "5": {"left": 2, "right": 3, "relation": "Joint", "nuclearity": "NN"},
+            **{str(index): {"text": "EDU"} for index in range(4)},
+        }
+        tree = {"key": "scene", "document_id": "a", "status": "ok", "root": 6, "nodes": nodes}
+        scores = {"key": "scene", "document_id": "a",
+                  "probabilities": [[1, 0, 0], [0, 1, 0], [0, 0, 1], [0.2, 0.3, 0.5]]}
+        text_order = pool_relations([scores], [tree])["a"]
+        nucleus_first = pool_relations([scores], [tree], nucleus_first=True)["a"]
+        np.testing.assert_array_equal(text_order["concession"][1], [1, 0, 0, 0, 1, 0])
+        np.testing.assert_array_equal(nucleus_first["concession"][1], [0, 1, 0, 1, 0, 0])
+        for unchanged in ("elaboration", "joint"):
+            np.testing.assert_array_equal(nucleus_first[unchanged][1], text_order[unchanged][1])
+
     def test_jsonl_handles_unicode_separators_inside_review_text(self):
         with TemporaryDirectory() as directory:
             path = Path(directory) / "records.jsonl"

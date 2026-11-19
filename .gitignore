@@ -197,4 +197,5 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/sfu-nuclearity-v1.json
 !/research/sentiment/results/sfu-relation-pooling-v1.json
 !/research/sentiment/results/sfu-relation-stability-v1.json
+!/research/sentiment/results/sfu-relation-nucleus-first-v1.json
 !/research/sentiment/results/sfu-motif-v1.json

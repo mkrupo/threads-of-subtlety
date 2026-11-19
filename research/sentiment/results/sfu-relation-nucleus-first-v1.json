@@ -1,0 +1,1936 @@
+{
+  "features": {
+    "base": {
+      "aggregation": "mean over EDUs in each group across all scenes of the review",
+      "central_rule": "only nucleus branches from the scene root to the EDU",
+      "group_order": [
+        "central",
+        "supporting"
+      ],
+      "missing_supporting_group": "use the review mean",
+      "scores_per_group": [
+        "negative",
+        "neutral",
+        "positive"
+      ]
+    },
+    "missing_label": "six zeros",
+    "per_label": "mean across occurrences within a review, after mapping relation names",
+    "per_node": "arithmetic mean across the EDUs in each child span",
+    "score_order_per_side": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "side_order": [
+      "nucleus for NS/SN, left for NN",
+      "satellite for NS/SN, right for NN"
+    ]
+  },
+  "input_hashes": {
+    "baseline_config.json": "558363bab07109c3eb5fc279a87b4aa696e865d429b907dd297caa5db5137d49",
+    "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+    "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+    "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+    "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+    "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+    "nuclearity_predictions.jsonl": "b50ff92973c3bfb0c3ef879339d0871502ca4086f961fa3a1a951e901dd04ee7",
+    "provenance.json": "2797da6231501e49b4bc5028960014fd78d8e69a2f1ff7e5e55a5f957176454b",
+    "reviews.jsonl": "44aae1ced747d88b1bf9cf0d79223201bac2d054adda05208ce627dfbaa7e29b",
+    "scores.jsonl": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+    "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b",
+    "text_order_predictions.jsonl": "cc6d996162c512c2c9001e4deea9e5365993f7aa2ab5ae55227f0eca3c6450fc",
+    "uniform_predictions.jsonl": "4a80ac7beabaac9afab01dbc58f1c5a99f919d4e604443d628f46171e5dc10eb"
+  },
+  "inventories": {
+    "deu.rst.pcc": {
+      "coarse": {
+        "corrected_reviews": 26,
+        "feature_columns": 90,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.75,
+              "confusion_matrix_labels_0_1": [
+                [
+                  31,
+                  9
+                ],
+                [
+                  11,
+                  29
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7498436522826767,
+              "negative_f1": 0.7560975609756098,
+              "positive_f1": 0.7435897435897436
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7933572053079028,
+              "1.0": 0.7459874232470949,
+              "10.0": 0.7248846210763501
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.85,
+              "confusion_matrix_labels_0_1": [
+                [
+                  37,
+                  3
+                ],
+                [
+                  9,
+                  31
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8491514770584538,
+              "negative_f1": 0.8604651162790697,
+              "positive_f1": 0.8378378378378378
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.783941913330826,
+              "1.0": 0.7529336740146064,
+              "10.0": 0.7311874700755012
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.7625,
+              "confusion_matrix_labels_0_1": [
+                [
+                  31,
+                  9
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.762462884825754,
+              "negative_f1": 0.7654320987654321,
+              "positive_f1": 0.759493670886076
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7744887251149164,
+              "1.0": 0.7650545857668165,
+              "10.0": 0.7559828483363228
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.8,
+              "confusion_matrix_labels_0_1": [
+                [
+                  29,
+                  11
+                ],
+                [
+                  5,
+                  35
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7988686360779385,
+              "negative_f1": 0.7837837837837838,
+              "positive_f1": 0.813953488372093
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7810749699316625,
+              "1.0": 0.7498797540189721,
+              "10.0": 0.7404563662804406
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.7625,
+              "confusion_matrix_labels_0_1": [
+                [
+                  29,
+                  11
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7621655452980755,
+              "negative_f1": 0.7532467532467533,
+              "positive_f1": 0.7710843373493976
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7966523843181708,
+              "1.0": 0.7435190730040234,
+              "10.0": 0.7154181826764563
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "Background": 2762,
+          "Cause": 1785,
+          "Condition": 976,
+          "Contrast": 3104,
+          "Elaboration": 10620,
+          "Enablement": 931,
+          "Evaluation": 2880,
+          "Explanation": 724,
+          "Joint": 9095,
+          "Manner-Means": 104,
+          "Summary": 175,
+          "Temporal": 850,
+          "TextualOrganization": 1724,
+          "Topic-Comment": 108
+        },
+        "macro_f1_delta_vs_uniform": -0.03244409225325251,
+        "mean_distinct_labels_per_review": 9.91,
+        "new_errors": 39,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 22,
+          "macro_f1_delta": -0.0374722612908267,
+          "new_errors": 37
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.027508023286687226,
+            0.022506602067268067
+          ],
+          "macro_f1_delta": -0.0024986718666991647
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.785,
+          "confusion_matrix_labels_0_1": [
+            [
+              157,
+              43
+            ],
+            [
+              43,
+              157
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.785,
+          "negative_f1": 0.785,
+          "positive_f1": 0.785
+        },
+        "relation_columns_in_order": [
+          "Background",
+          "Cause",
+          "Condition",
+          "Contrast",
+          "Elaboration",
+          "Enablement",
+          "Evaluation",
+          "Explanation",
+          "Joint",
+          "Manner-Means",
+          "Summary",
+          "Temporal",
+          "TextualOrganization",
+          "Topic-Comment"
+        ]
+      },
+      "fine": {
+        "corrected_reviews": 27,
+        "feature_columns": 156,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.8,
+              "confusion_matrix_labels_0_1": [
+                [
+                  36,
+                  4
+                ],
+                [
+                  12,
+                  28
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.797979797979798,
+              "negative_f1": 0.8181818181818182,
+              "positive_f1": 0.7777777777777778
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7807985985504444,
+              "1.0": 0.7522908735487226,
+              "10.0": 0.7432142926361252
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.775,
+              "confusion_matrix_labels_0_1": [
+                [
+                  35,
+                  5
+                ],
+                [
+                  13,
+                  27
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7727272727272727,
+              "negative_f1": 0.7954545454545454,
+              "positive_f1": 0.75
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7933703371243004,
+              "1.0": 0.7711713954671389,
+              "10.0": 0.7489634303871399
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.8,
+              "confusion_matrix_labels_0_1": [
+                [
+                  32,
+                  8
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8,
+              "negative_f1": 0.8,
+              "positive_f1": 0.8
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.777545345937537,
+              "1.0": 0.7492686631869714,
+              "10.0": 0.7428667611723082
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.7875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  29,
+                  11
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7866666666666666,
+              "negative_f1": 0.7733333333333333,
+              "positive_f1": 0.8
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8061023509653473,
+              "1.0": 0.7996815843938188,
+              "10.0": 0.7841877591688816
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.7625,
+              "confusion_matrix_labels_0_1": [
+                [
+                  28,
+                  12
+                ],
+                [
+                  7,
+                  33
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7615686274509804,
+              "negative_f1": 0.7466666666666667,
+              "positive_f1": 0.7764705882352941
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8029426500829867,
+              "1.0": 0.7807161359059137,
+              "10.0": 0.7618846628254026
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "antithesis": 604,
+          "background": 760,
+          "cause": 1524,
+          "circumstance": 2002,
+          "concession": 1594,
+          "condition": 976,
+          "conjunction": 2605,
+          "contrast": 906,
+          "disjunction": 37,
+          "e-elaboration": 4760,
+          "elaboration": 5860,
+          "evaluation": 2524,
+          "evidence": 560,
+          "interpretation": 356,
+          "joint": 2156,
+          "list": 4297,
+          "means": 104,
+          "preparation": 1724,
+          "purpose": 931,
+          "reason": 164,
+          "restatement": 123,
+          "result": 261,
+          "sequence": 850,
+          "solutionhood": 108,
+          "summary": 52
+        },
+        "macro_f1_delta_vs_uniform": -0.03249247814007705,
+        "mean_distinct_labels_per_review": 15.71,
+        "new_errors": 40,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 27,
+          "macro_f1_delta": -0.037520647177651245,
+          "new_errors": 42
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.02736393487182519,
+            0.01730966361556561
+          ],
+          "macro_f1_delta": -0.005048385886824547
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.785,
+          "confusion_matrix_labels_0_1": [
+            [
+              160,
+              40
+            ],
+            [
+              46,
+              154
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.7849516141131755,
+          "negative_f1": 0.7881773399014779,
+          "positive_f1": 0.7817258883248731
+        },
+        "relation_columns_in_order": [
+          "antithesis",
+          "background",
+          "cause",
+          "circumstance",
+          "concession",
+          "condition",
+          "conjunction",
+          "contrast",
+          "disjunction",
+          "e-elaboration",
+          "elaboration",
+          "evaluation",
+          "evidence",
+          "interpretation",
+          "joint",
+          "list",
+          "means",
+          "preparation",
+          "purpose",
+          "reason",
+          "restatement",
+          "result",
+          "sequence",
+          "solutionhood",
+          "summary"
+        ]
+      },
+      "map_sha256": "9e436faedbd61dd384ae87d96cd267191aef84fbc38e5f01a0c06bd6efbdab0c",
+      "paired_fine_vs_coarse": {
+        "bootstrap_95_percentile_interval": [
+          -0.03251168445531792,
+          0.032497056153903664
+        ],
+        "corrected_reviews": 27,
+        "macro_f1_delta": -4.838588682454237e-05,
+        "new_errors": 27
+      },
+      "reordered_nodes": 7416,
+      "unmapped_declared_labels": []
+    },
+    "eng.erst.gum": {
+      "coarse": {
+        "corrected_reviews": 28,
+        "feature_columns": 96,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.825,
+              "confusion_matrix_labels_0_1": [
+                [
+                  33,
+                  7
+                ],
+                [
+                  7,
+                  33
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.825,
+              "negative_f1": 0.825,
+              "positive_f1": 0.825
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.768371840968663,
+              "1.0": 0.7468422800437569,
+              "10.0": 0.7343442334739804
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.7875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  36,
+                  4
+                ],
+                [
+                  13,
+                  27
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.784776072163317,
+              "negative_f1": 0.8089887640449438,
+              "positive_f1": 0.7605633802816901
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8271747676191548,
+              "1.0": 0.7733615473121127,
+              "10.0": 0.7550365234089325
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.7875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  31,
+                  9
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7874667916862009,
+              "negative_f1": 0.7848101265822784,
+              "positive_f1": 0.7901234567901234
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.831162989837267,
+              "1.0": 0.8030355370373671,
+              "10.0": 0.7842404079232306
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.75,
+              "confusion_matrix_labels_0_1": [
+                [
+                  27,
+                  13
+                ],
+                [
+                  7,
+                  33
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7485857950974231,
+              "negative_f1": 0.7297297297297297,
+              "positive_f1": 0.7674418604651163
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8185718963872283,
+              "1.0": 0.799836613221186,
+              "10.0": 0.7873768073554561
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.8,
+              "confusion_matrix_labels_0_1": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7994987468671679,
+              "negative_f1": 0.7894736842105263,
+              "positive_f1": 0.8095238095238095
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7995042846582541,
+              "1.0": 0.761779120689176,
+              "10.0": 0.7460879085100212
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "adversative": 3930,
+          "attribution": 882,
+          "causal": 1765,
+          "condition": 1004,
+          "context": 2792,
+          "elaboration": 7894,
+          "evaluation": 2854,
+          "explanation": 2171,
+          "joint": 7882,
+          "mode": 473,
+          "organization": 1483,
+          "purpose": 1043,
+          "restatement": 306,
+          "same-unit": 1117,
+          "topic": 242
+        },
+        "macro_f1_delta_vs_uniform": -0.027449342384505804,
+        "mean_distinct_labels_per_review": 11.5875,
+        "new_errors": 39,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 24,
+          "macro_f1_delta": -0.034965866269884405,
+          "new_errors": 38
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.017488608734241295,
+            0.03742997526336569
+          ],
+          "macro_f1_delta": 0.010016752068966683
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.79,
+          "confusion_matrix_labels_0_1": [
+            [
+              157,
+              43
+            ],
+            [
+              41,
+              159
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.7899947498687467,
+          "negative_f1": 0.7889447236180904,
+          "positive_f1": 0.7910447761194029
+        },
+        "relation_columns_in_order": [
+          "adversative",
+          "attribution",
+          "causal",
+          "condition",
+          "context",
+          "elaboration",
+          "evaluation",
+          "explanation",
+          "joint",
+          "mode",
+          "organization",
+          "purpose",
+          "restatement",
+          "same-unit",
+          "topic"
+        ]
+      },
+      "fine": {
+        "corrected_reviews": 30,
+        "feature_columns": 198,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.8125,
+              "confusion_matrix_labels_0_1": [
+                [
+                  35,
+                  5
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8117647058823529,
+              "negative_f1": 0.8235294117647058,
+              "positive_f1": 0.8
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7905551355497327,
+              "1.0": 0.7592112388438786,
+              "10.0": 0.7498552976159605
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.7875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  35,
+                  5
+                ],
+                [
+                  12,
+                  28
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7858604944103291,
+              "negative_f1": 0.8045977011494253,
+              "positive_f1": 0.7671232876712328
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7894038662990703,
+              "1.0": 0.7646712760987432,
+              "10.0": 0.7616124921502925
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.7625,
+              "confusion_matrix_labels_0_1": [
+                [
+                  29,
+                  11
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7621655452980755,
+              "negative_f1": 0.7532467532467533,
+              "positive_f1": 0.7710843373493976
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.786774456452868,
+              "1.0": 0.7738522299602769,
+              "10.0": 0.7583556081009369
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.7875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  7,
+                  33
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7872007510561727,
+              "negative_f1": 0.7792207792207793,
+              "positive_f1": 0.7951807228915663
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8153466290304116,
+              "1.0": 0.7994943477247376,
+              "10.0": 0.7904181936885768
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.7875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  7,
+                  33
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7872007510561727,
+              "negative_f1": 0.7792207792207793,
+              "positive_f1": 0.7951807228915663
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8155531399164158,
+              "1.0": 0.799780878086398,
+              "10.0": 0.7842484053707459
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "adversative-antithesis": 487,
+          "adversative-concession": 2727,
+          "adversative-contrast": 716,
+          "attribution-negative": 29,
+          "attribution-positive": 853,
+          "causal-cause": 1138,
+          "causal-result": 627,
+          "context-background": 1183,
+          "context-circumstance": 1609,
+          "contingency-condition": 1004,
+          "elaboration-additional": 5192,
+          "elaboration-attribute": 2702,
+          "evaluation-comment": 2854,
+          "explanation-evidence": 604,
+          "explanation-justify": 1143,
+          "explanation-motivation": 424,
+          "joint-disjunction": 213,
+          "joint-list": 4700,
+          "joint-other": 1747,
+          "joint-sequence": 1222,
+          "mode-manner": 347,
+          "mode-means": 126,
+          "organization-heading": 298,
+          "organization-phatic": 172,
+          "organization-preparation": 1013,
+          "purpose-attribute": 286,
+          "purpose-goal": 757,
+          "restatement-partial": 228,
+          "restatement-repetition": 78,
+          "same-unit": 1117,
+          "topic-question": 204,
+          "topic-solutionhood": 38
+        },
+        "macro_f1_delta_vs_uniform": -0.029956046050653717,
+        "mean_distinct_labels_per_review": 18.91,
+        "new_errors": 42,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 27,
+          "macro_f1_delta": -0.03747256993603232,
+          "new_errors": 42
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.007580837433610499,
+            0.047525701776255556
+          ],
+          "macro_f1_delta": 0.019989499336680927
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.7875,
+          "confusion_matrix_labels_0_1": [
+            [
+              159,
+              41
+            ],
+            [
+              44,
+              156
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.7874880462025988,
+          "negative_f1": 0.7890818858560794,
+          "positive_f1": 0.7858942065491183
+        },
+        "relation_columns_in_order": [
+          "adversative-antithesis",
+          "adversative-concession",
+          "adversative-contrast",
+          "attribution-negative",
+          "attribution-positive",
+          "causal-cause",
+          "causal-result",
+          "context-background",
+          "context-circumstance",
+          "contingency-condition",
+          "elaboration-additional",
+          "elaboration-attribute",
+          "evaluation-comment",
+          "explanation-evidence",
+          "explanation-justify",
+          "explanation-motivation",
+          "joint-disjunction",
+          "joint-list",
+          "joint-other",
+          "joint-sequence",
+          "mode-manner",
+          "mode-means",
+          "organization-heading",
+          "organization-phatic",
+          "organization-preparation",
+          "purpose-attribute",
+          "purpose-goal",
+          "restatement-partial",
+          "restatement-repetition",
+          "same-unit",
+          "topic-question",
+          "topic-solutionhood"
+        ]
+      },
+      "map_sha256": "2f62cc15b081d2a3acd0fb56771babb4e45ee6e8a239683ba030e95b144a3f8d",
+      "paired_fine_vs_coarse": {
+        "bootstrap_95_percentile_interval": [
+          -0.032497149125520056,
+          0.027482826283115713
+        ],
+        "corrected_reviews": 22,
+        "macro_f1_delta": -0.0025067036661479136,
+        "new_errors": 23
+      },
+      "reordered_nodes": 7882,
+      "unmapped_declared_labels": []
+    },
+    "eng.rst.rstdt": {
+      "coarse": {
+        "corrected_reviews": 29,
+        "feature_columns": 114,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.8125,
+              "confusion_matrix_labels_0_1": [
+                [
+                  33,
+                  7
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8124706985466479,
+              "negative_f1": 0.8148148148148148,
+              "positive_f1": 0.810126582278481
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7965338970372261,
+              "1.0": 0.7621375493330602,
+              "10.0": 0.737065927587508
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.825,
+              "confusion_matrix_labels_0_1": [
+                [
+                  35,
+                  5
+                ],
+                [
+                  9,
+                  31
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8245614035087719,
+              "negative_f1": 0.8333333333333334,
+              "positive_f1": 0.8157894736842105
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.790274216799866,
+              "1.0": 0.7306818020881952,
+              "10.0": 0.7119699812382738
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.825,
+              "confusion_matrix_labels_0_1": [
+                [
+                  31,
+                  9
+                ],
+                [
+                  5,
+                  35
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8245614035087719,
+              "negative_f1": 0.8157894736842105,
+              "positive_f1": 0.8333333333333334
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7714065655554099,
+              "1.0": 0.7310084799616096,
+              "10.0": 0.711889370194607
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.7625,
+              "confusion_matrix_labels_0_1": [
+                [
+                  28,
+                  12
+                ],
+                [
+                  7,
+                  33
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7615686274509804,
+              "negative_f1": 0.7466666666666667,
+              "positive_f1": 0.7764705882352941
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7935162035762615,
+              "1.0": 0.7683180354289512,
+              "10.0": 0.7560004659269475
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.775,
+              "confusion_matrix_labels_0_1": [
+                [
+                  28,
+                  12
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7737272155876807,
+              "negative_f1": 0.7567567567567568,
+              "positive_f1": 0.7906976744186046
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7840847430343323,
+              "1.0": 0.7683526404740375,
+              "10.0": 0.7521772793082809
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "adversative": 3303,
+          "attribution": 944,
+          "background": 2258,
+          "causal": 1688,
+          "comparison": 422,
+          "condition": 1022,
+          "elaboration": 10298,
+          "enablement": 744,
+          "evaluation": 3362,
+          "explanation": 1835,
+          "joint": 6545,
+          "manner-means": 338,
+          "same-unit": 1070,
+          "summary": 19,
+          "temporal": 1043,
+          "textual-organization": 583,
+          "topic-change": 102,
+          "topic-comment": 262
+        },
+        "macro_f1_delta_vs_uniform": -0.017569170427111147,
+        "mean_distinct_labels_per_review": 12.1225,
+        "new_errors": 36,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 26,
+          "macro_f1_delta": -0.02257070214620005,
+          "new_errors": 35
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.02494540238674082,
+            0.024923253852652177
+          ],
+          "macro_f1_delta": -8.006804658000632e-05
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.8,
+          "confusion_matrix_labels_0_1": [
+            [
+              155,
+              45
+            ],
+            [
+              35,
+              165
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.7998749218261414,
+          "negative_f1": 0.7948717948717948,
+          "positive_f1": 0.8048780487804879
+        },
+        "relation_columns_in_order": [
+          "adversative",
+          "attribution",
+          "background",
+          "causal",
+          "comparison",
+          "condition",
+          "elaboration",
+          "enablement",
+          "evaluation",
+          "explanation",
+          "joint",
+          "manner-means",
+          "same-unit",
+          "summary",
+          "temporal",
+          "textual-organization",
+          "topic-change",
+          "topic-comment"
+        ]
+      },
+      "fine": {
+        "corrected_reviews": 24,
+        "feature_columns": 420,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.7375,
+              "confusion_matrix_labels_0_1": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  11,
+                  29
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7374589779653071,
+              "negative_f1": 0.7407407407407407,
+              "positive_f1": 0.7341772151898734
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7716612078164191,
+              "1.0": 0.7435329436945659,
+              "10.0": 0.7435603595841956
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.6875,
+              "confusion_matrix_labels_0_1": [
+                [
+                  32,
+                  8
+                ],
+                [
+                  17,
+                  23
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.6834942237695838,
+              "negative_f1": 0.7191011235955056,
+              "positive_f1": 0.647887323943662
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7835410390179758,
+              "1.0": 0.7587626904935227,
+              "10.0": 0.7462447292546805
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.85,
+              "confusion_matrix_labels_0_1": [
+                [
+                  34,
+                  6
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.85,
+              "negative_f1": 0.85,
+              "positive_f1": 0.85
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7589434245828022,
+              "1.0": 0.7464351074942348,
+              "10.0": 0.7431649580223025
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.8125,
+              "confusion_matrix_labels_0_1": [
+                [
+                  31,
+                  9
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8122359568142701,
+              "negative_f1": 0.8051948051948052,
+              "positive_f1": 0.8192771084337349
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.745609214349402,
+              "1.0": 0.7392333386124954,
+              "10.0": 0.7198228800906312
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.7375,
+              "confusion_matrix_labels_0_1": [
+                [
+                  27,
+                  13
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7364705882352941,
+              "negative_f1": 0.72,
+              "positive_f1": 0.7529411764705882
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7685887118269318,
+              "1.0": 0.7495138027081437,
+              "10.0": 0.7430140388914219
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "analogy": 5,
+          "antithesis": 1644,
+          "attribution": 944,
+          "background": 234,
+          "cause": 5,
+          "cause-result-mn": 20,
+          "circumstance": 2024,
+          "comment": 2405,
+          "comparison": 282,
+          "comparison-mn": 135,
+          "concession": 614,
+          "condition": 904,
+          "consequence": 942,
+          "consequence-mn": 2,
+          "contingency": 84,
+          "contrast-mn": 1031,
+          "definition": 65,
+          "disjunction-mn": 31,
+          "elaboration-additional": 6606,
+          "elaboration-general-specific": 372,
+          "elaboration-object-attribute": 2558,
+          "elaboration-set-member": 238,
+          "enablement": 2,
+          "evaluation": 724,
+          "evaluation-mn": 96,
+          "evidence": 193,
+          "example": 301,
+          "explanation-argumentative": 1642,
+          "hypothetical": 7,
+          "interpretation": 137,
+          "list-mn": 6514,
+          "manner": 180,
+          "means": 158,
+          "otherwise-mn": 27,
+          "preference": 14,
+          "problem-solution": 1,
+          "problem-solution-mn": 45,
+          "purpose": 742,
+          "question-answer": 25,
+          "question-answer-mn": 126,
+          "reason": 505,
+          "restatement": 158,
+          "result": 214,
+          "rhetorical-question": 59,
+          "same-unit-mn": 1070,
+          "sequence-mn": 733,
+          "statement-response": 2,
+          "statement-response-mn": 4,
+          "summary": 19,
+          "temporal-after": 106,
+          "temporal-before": 70,
+          "temporal-same-time": 68,
+          "temporal-same-time-mn": 66,
+          "textual-organization-mn": 583,
+          "topic-drift-mn": 70,
+          "topic-shift": 1,
+          "topic-shift-mn": 31
+        },
+        "macro_f1_delta_vs_uniform": -0.05244996740013119,
+        "mean_distinct_labels_per_review": 19.7925,
+        "new_errors": 45,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 23,
+          "macro_f1_delta": -0.057451499119220095,
+          "new_errors": 46
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.02990605763849142,
+            0.019774610550684413
+          ],
+          "macro_f1_delta": -0.004982872846648556
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.765,
+          "confusion_matrix_labels_0_1": [
+            [
+              154,
+              46
+            ],
+            [
+              48,
+              152
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.7649941248531213,
+          "negative_f1": 0.7661691542288557,
+          "positive_f1": 0.7638190954773869
+        },
+        "relation_columns_in_order": [
+          "analogy",
+          "analogy-mn",
+          "antithesis",
+          "attribution",
+          "background",
+          "cause",
+          "cause-result-mn",
+          "circumstance",
+          "comment",
+          "comment-topic-mn",
+          "comparison",
+          "comparison-mn",
+          "concession",
+          "conclusion",
+          "condition",
+          "consequence",
+          "consequence-mn",
+          "contingency",
+          "contrast-mn",
+          "definition",
+          "disjunction-mn",
+          "elaboration-additional",
+          "elaboration-general-specific",
+          "elaboration-object-attribute",
+          "elaboration-part-whole",
+          "elaboration-process-step",
+          "elaboration-set-member",
+          "enablement",
+          "evaluation",
+          "evaluation-mn",
+          "evidence",
+          "example",
+          "explanation-argumentative",
+          "hypothetical",
+          "interpretation",
+          "interpretation-mn",
+          "inverted-sequence-mn",
+          "list-mn",
+          "manner",
+          "means",
+          "otherwise",
+          "otherwise-mn",
+          "preference",
+          "problem-solution",
+          "problem-solution-mn",
+          "proportion-mn",
+          "purpose",
+          "question-answer",
+          "question-answer-mn",
+          "reason",
+          "reason-mn",
+          "restatement",
+          "result",
+          "rhetorical-question",
+          "same-unit-mn",
+          "sequence-mn",
+          "statement-response",
+          "statement-response-mn",
+          "summary",
+          "temporal-after",
+          "temporal-before",
+          "temporal-same-time",
+          "temporal-same-time-mn",
+          "textual-organization-mn",
+          "topic-comment-mn",
+          "topic-drift",
+          "topic-drift-mn",
+          "topic-shift",
+          "topic-shift-mn"
+        ]
+      },
+      "map_sha256": "83fb2eecbb0e1dc59cfd0292c5c2a0529bffc2404329a058276dbbf0329d93aa",
+      "paired_fine_vs_coarse": {
+        "bootstrap_95_percentile_interval": [
+          -0.06994997218809518,
+          0.00014450525052840492
+        ],
+        "corrected_reviews": 25,
+        "macro_f1_delta": -0.034880796973020045,
+        "new_errors": 39
+      },
+      "reordered_nodes": 5731,
+      "unmapped_declared_labels": [
+        "analogy-mn",
+        "comment-topic-mn",
+        "conclusion",
+        "elaboration-process-step",
+        "interpretation-mn",
+        "otherwise",
+        "proportion-mn",
+        "reason-mn",
+        "topic-comment-mn"
+      ]
+    },
+    "nld.rst.nldt": {
+      "coarse": {
+        "corrected_reviews": 26,
+        "feature_columns": 90,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.75,
+              "confusion_matrix_labels_0_1": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  10,
+                  30
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.75,
+              "negative_f1": 0.75,
+              "positive_f1": 0.75
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8151973684210526,
+              "1.0": 0.7587503036452925,
+              "10.0": 0.7340490931487458
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.8375,
+              "confusion_matrix_labels_0_1": [
+                [
+                  36,
+                  4
+                ],
+                [
+                  9,
+                  31
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8368627450980393,
+              "negative_f1": 0.8470588235294118,
+              "positive_f1": 0.8266666666666667
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7711943425981966,
+              "1.0": 0.7463284589503875,
+              "10.0": 0.7268098580300384
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.825,
+              "confusion_matrix_labels_0_1": [
+                [
+                  32,
+                  8
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8248905565978737,
+              "negative_f1": 0.8205128205128205,
+              "positive_f1": 0.8292682926829268
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7648981922988722,
+              "1.0": 0.7244543598254547,
+              "10.0": 0.7179297709011521
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.8,
+              "confusion_matrix_labels_0_1": [
+                [
+                  30,
+                  10
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7994987468671679,
+              "negative_f1": 0.7894736842105263,
+              "positive_f1": 0.8095238095238095
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7841504492084321,
+              "1.0": 0.734074118654412,
+              "10.0": 0.7280218520222841
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.775,
+              "confusion_matrix_labels_0_1": [
+                [
+                  28,
+                  12
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7737272155876807,
+              "negative_f1": 0.7567567567567568,
+              "positive_f1": 0.7906976744186046
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7650593595787283,
+              "1.0": 0.7366470470780557,
+              "10.0": 0.696601720219501
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "Background": 3202,
+          "Cause": 1077,
+          "Condition": 994,
+          "Contrast": 3029,
+          "Elaboration": 10223,
+          "Enablement": 1021,
+          "Evaluation": 2938,
+          "Explanation": 1159,
+          "Joint": 9076,
+          "Manner-Means": 94,
+          "Summary": 281,
+          "Temporal": 889,
+          "TextualOrganization": 1735,
+          "Topic-Comment": 120
+        },
+        "macro_f1_delta_vs_uniform": -0.020006126876355945,
+        "mean_distinct_labels_per_review": 10.1125,
+        "new_errors": 34,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 17,
+          "macro_f1_delta": -0.035010722033622876,
+          "new_errors": 31
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.027504543895414454,
+            0.02239396792003231
+          ],
+          "macro_f1_delta": -0.002557034498100297
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.7975,
+          "confusion_matrix_labels_0_1": [
+            [
+              156,
+              44
+            ],
+            [
+              37,
+              163
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.7974379653768966,
+          "negative_f1": 0.7938931297709924,
+          "positive_f1": 0.800982800982801
+        },
+        "relation_columns_in_order": [
+          "Background",
+          "Cause",
+          "Condition",
+          "Contrast",
+          "Elaboration",
+          "Enablement",
+          "Evaluation",
+          "Explanation",
+          "Joint",
+          "Manner-Means",
+          "Summary",
+          "Temporal",
+          "TextualOrganization",
+          "Topic-Comment"
+        ]
+      },
+      "fine": {
+        "corrected_reviews": 27,
+        "feature_columns": 168,
+        "folds": [
+          {
+            "fold": 0,
+            "held_out": {
+              "accuracy": 0.8,
+              "confusion_matrix_labels_0_1": [
+                [
+                  35,
+                  5
+                ],
+                [
+                  11,
+                  29
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7988686360779385,
+              "negative_f1": 0.813953488372093,
+              "positive_f1": 0.7837837837837838
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7935504215510634,
+              "1.0": 0.7745878183803594,
+              "10.0": 0.7495850319983823
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 1,
+            "held_out": {
+              "accuracy": 0.8125,
+              "confusion_matrix_labels_0_1": [
+                [
+                  34,
+                  6
+                ],
+                [
+                  9,
+                  31
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8122359568142701,
+              "negative_f1": 0.8192771084337349,
+              "positive_f1": 0.8051948051948052
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7715317607965321,
+              "1.0": 0.7528168340506934,
+              "10.0": 0.7403338748020105
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 2,
+            "held_out": {
+              "accuracy": 0.825,
+              "confusion_matrix_labels_0_1": [
+                [
+                  32,
+                  8
+                ],
+                [
+                  6,
+                  34
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.8248905565978737,
+              "negative_f1": 0.8205128205128205,
+              "positive_f1": 0.8292682926829268
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7585476402807587,
+              "1.0": 0.7277791806226469,
+              "10.0": 0.7057622337221026
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 3,
+            "held_out": {
+              "accuracy": 0.725,
+              "confusion_matrix_labels_0_1": [
+                [
+                  27,
+                  13
+                ],
+                [
+                  9,
+                  31
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7243107769423559,
+              "negative_f1": 0.7105263157894737,
+              "positive_f1": 0.7380952380952381
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.8091834860825977,
+              "1.0": 0.7937343725582121,
+              "10.0": 0.7812353492733239
+            },
+            "selected_C": 0.1
+          },
+          {
+            "fold": 4,
+            "held_out": {
+              "accuracy": 0.7625,
+              "confusion_matrix_labels_0_1": [
+                [
+                  29,
+                  11
+                ],
+                [
+                  8,
+                  32
+                ]
+              ],
+              "documents": 80,
+              "macro_f1": 0.7621655452980755,
+              "negative_f1": 0.7532467532467533,
+              "positive_f1": 0.7710843373493976
+            },
+            "mean_inner_macro_f1_by_C": {
+              "0.1": 0.7841143035012221,
+              "1.0": 0.7583602639616505,
+              "10.0": 0.7429305498087448
+            },
+            "selected_C": 0.1
+          }
+        ],
+        "label_occurrences": {
+          "adversative": 703,
+          "background": 1223,
+          "circumstance": 1979,
+          "concession": 1643,
+          "condition": 994,
+          "conjunction": 2607,
+          "contrast": 683,
+          "disjunction": 38,
+          "elaboration": 10223,
+          "enablement": 31,
+          "evaluation": 2564,
+          "evidence": 525,
+          "interpretation": 374,
+          "joint": 2160,
+          "justify": 551,
+          "list": 4271,
+          "means": 94,
+          "motivation": 83,
+          "non-volitional-causal": 192,
+          "preparation": 1735,
+          "purpose": 990,
+          "restatement": 232,
+          "sequence": 889,
+          "solutionhood": 120,
+          "summary": 49,
+          "volitional-causal": 885
+        },
+        "macro_f1_delta_vs_uniform": -0.03244409225325251,
+        "mean_distinct_labels_per_review": 15.37,
+        "new_errors": 40,
+        "paired_vs_nuclearity": {
+          "corrected_reviews": 22,
+          "macro_f1_delta": -0.04744868741051944,
+          "new_errors": 41
+        },
+        "paired_vs_text_order": {
+          "bootstrap_95_percentile_interval": [
+            -0.03525492877949305,
+            0.010156500713315914
+          ],
+          "macro_f1_delta": -0.012468354430379747
+        },
+        "pooled_out_of_fold": {
+          "accuracy": 0.785,
+          "confusion_matrix_labels_0_1": [
+            [
+              157,
+              43
+            ],
+            [
+              43,
+              157
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.785,
+          "negative_f1": 0.785,
+          "positive_f1": 0.785
+        },
+        "relation_columns_in_order": [
+          "adversative",
+          "background",
+          "circumstance",
+          "concession",
+          "condition",
+          "conjunction",
+          "contrast",
+          "disjunction",
+          "elaboration",
+          "enablement",
+          "evaluation",
+          "evidence",
+          "interpretation",
+          "joint",
+          "justify",
+          "list",
+          "means",
+          "motivation",
+          "non-volitional-causal",
+          "preparation",
+          "purpose",
+          "restatement",
+          "sequence",
+          "solutionhood",
+          "summary",
+          "volitional-causal",
+          "volitional-cause"
+        ]
+      },
+      "map_sha256": "9e436faedbd61dd384ae87d96cd267191aef84fbc38e5f01a0c06bd6efbdab0c",
+      "paired_fine_vs_coarse": {
+        "bootstrap_95_percentile_interval": [
+          -0.04243183978415287,
+          0.017537645784934625
+        ],
+        "corrected_reviews": 20,
+        "macro_f1_delta": -0.012437965376896565,
+        "new_errors": 25
+      },
+      "reordered_nodes": 6954,
+      "unmapped_declared_labels": [
+        "volitional-cause"
+      ]
+    }
+  },
+  "predictions_sha256": "49b1ed72282eca911af9b6efa6126a5eade5ae443665fefa73f264b4064b46a0",
+  "primary_metric": "pooled_out_of_fold_macro_f1",
+  "protocol": "sfu-relation-nucleus-first-v1",
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "gold_label"
+    ],
+    "unit": "review"
+  },
+  "research_revision": "f06309b62cbc53dce0c98668cac225666dfb64d7",
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+    "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+    "parser_pilot.py": "0248f805e18039f103213f0d7db0b3e9f8197edb4c4202fabd0f1eac3ead0a41",
+    "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+    "relation_stability.py": "924fa292df35e13704ad19486f92c5cc4fa0d1346f0fc2bb54d7b940f39fea17",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  }
+}
