@@ -665,3 +665,29 @@ the shared PCC segmentation has been written. Set CUDA_DEVICE=-1 with
 the CPU Torch environment for sequential CPU inference. Set
 UNIRST_CHECKPOINTS when the two fine checkpoints live outside
 HC3_project in the run's checkout.
+
+### Read and verify the comparisons
+
+The [three-corpus report](replication/results/uci/comparison.json) contains
+all 32 macro-F1 and accuracy comparisons, parser coverage, and paired
+intervals. The [Amazon report](replication/results/amazon/comparison.json)
+also records its temporal and TweetEval checks.
+
+UCI has 3,000 labelled sentences, with 500 per polarity in each of its
+three domains. The complete release produced 5,208 EDUs and 12,000
+verified trees. Each sentence occupied one scene, and 1,544 sentences
+contained one EDU. The verifier independently checked all 3,000 raw
+labels and texts and recomputed the metrics for 96,000 held-out
+predictions. Full fine and coarse results are in the report.
+
+To recompute the three-corpus report, use a verified SFU reproduction
+directory containing parser-audit.json, parser-verified, prepared,
+edu-scores, text-controls-exact, edu-mean-strict, nuclearity,
+relation-text-order, relation-nucleus-first, and motifs. Use the staged
+UCI source so the comparison uses the grouped bootstrap.
+
+```bash
+PYTHONPATH="$run/source" "$assets/classifier-exact-venv/bin/python" -B \
+  "$scripts/compare-to-sfu.py" --sfu-run "$sfu_run" --uci-run "$run" \
+  --uci-archive "$uci_zip" > "$run/comparison.json"
+```

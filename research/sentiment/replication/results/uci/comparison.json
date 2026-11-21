@@ -1,0 +1,1588 @@
+{
+  "bootstrap": {
+    "UCI": {
+      "strata": [
+        "outer_fold",
+        "group_domain_signature",
+        "gold_label"
+      ],
+      "unit": "duplicate group"
+    },
+    "draws": 20000,
+    "interpretation": "Pointwise paired intervals on fixed held-out decisions, within each corpus.",
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "gold_label"
+    ]
+  },
+  "cohorts": {
+    "Amazon": {
+      "alignment_retries": {
+        "deu.rst.pcc": 45,
+        "eng.erst.gum": 45,
+        "eng.rst.rstdt": 45,
+        "nld.rst.nldt": 45
+      },
+      "complete_reviews": 2000,
+      "edus": 16739,
+      "max_scene_xlm_r_tokens": 160,
+      "median_edus_per_review": 8.0,
+      "median_words_per_review": 48.0,
+      "multi_scene_reviews": 0,
+      "one_edu_reviews": 1,
+      "reviews": 2000,
+      "scenes": 2000,
+      "trees": {
+        "deu.rst.pcc": 2000,
+        "eng.erst.gum": 2000,
+        "eng.rst.rstdt": 2000,
+        "nld.rst.nldt": 2000
+      }
+    },
+    "SFU": {
+      "alignment_retries": {
+        "deu.rst.pcc": 31,
+        "eng.erst.gum": 31,
+        "eng.rst.rstdt": 31,
+        "nld.rst.nldt": 31
+      },
+      "complete_reviews": 400,
+      "edus": 36850,
+      "max_scene_xlm_r_tokens": 492,
+      "median_edus_per_review": 73.0,
+      "median_words_per_review": 572.5,
+      "multi_scene_reviews": 271,
+      "one_edu_reviews": 0,
+      "reviews": 400,
+      "scenes": 1012,
+      "trees": {
+        "deu.rst.pcc": 1012,
+        "eng.erst.gum": 1012,
+        "eng.rst.rstdt": 1012,
+        "nld.rst.nldt": 1012
+      }
+    },
+    "UCI": {
+      "alignment_retries": {
+        "deu.rst.pcc": 0,
+        "eng.erst.gum": 0,
+        "eng.rst.rstdt": 0,
+        "nld.rst.nldt": 0
+      },
+      "complete_reviews": 3000,
+      "edus": 5208,
+      "max_scene_xlm_r_tokens": 124,
+      "median_edus_per_review": 1.0,
+      "median_words_per_review": 10.0,
+      "multi_scene_reviews": 0,
+      "one_edu_reviews": 1544,
+      "reviews": 3000,
+      "scenes": 3000,
+      "trees": {
+        "deu.rst.pcc": 3000,
+        "eng.erst.gum": 3000,
+        "eng.rst.rstdt": 3000,
+        "nld.rst.nldt": 3000
+      }
+    }
+  },
+  "independently_verified_predictions": {
+    "Amazon": 64000,
+    "SFU": 12800,
+    "UCI": 96000
+  },
+  "macro_f1_and_accuracy": {
+    "class_prior": {
+      "Amazon": {
+        "accuracy": 0.5,
+        "macro_f1": 0.3333333333333333
+      },
+      "SFU": {
+        "accuracy": 0.5,
+        "macro_f1": 0.3333333333333333
+      },
+      "UCI": {
+        "accuracy": 0.5,
+        "macro_f1": 0.3333333333333333
+      },
+      "uci_minus_sfu_macro_f1": 0.0
+    },
+    "deu.rst.pcc/motifs/coarse": {
+      "Amazon": {
+        "accuracy": 0.6245,
+        "macro_f1": 0.6241729364979873
+      },
+      "SFU": {
+        "accuracy": 0.6,
+        "macro_f1": 0.5996396757081373
+      },
+      "UCI": {
+        "accuracy": 0.5296666666666666,
+        "macro_f1": 0.5250743999618533
+      },
+      "uci_minus_sfu_macro_f1": -0.07456527574628391
+    },
+    "deu.rst.pcc/motifs/fine": {
+      "Amazon": {
+        "accuracy": 0.622,
+        "macro_f1": 0.6215879092331549
+      },
+      "SFU": {
+        "accuracy": 0.5825,
+        "macro_f1": 0.5821840266701693
+      },
+      "UCI": {
+        "accuracy": 0.5226666666666666,
+        "macro_f1": 0.5190542295463705
+      },
+      "uci_minus_sfu_macro_f1": -0.06312979712379885
+    },
+    "deu.rst.pcc/nuclearity": {
+      "Amazon": {
+        "accuracy": 0.8655,
+        "macro_f1": 0.8654539516149402
+      },
+      "SFU": {
+        "accuracy": 0.8225,
+        "macro_f1": 0.8224722612908267
+      },
+      "UCI": {
+        "accuracy": 0.9386666666666666,
+        "macro_f1": 0.9386620595058028
+      },
+      "uci_minus_sfu_macro_f1": 0.1161897982149761
+    },
+    "deu.rst.pcc/relation-nucleus-first/coarse": {
+      "Amazon": {
+        "accuracy": 0.8755,
+        "macro_f1": 0.8754660956445393
+      },
+      "SFU": {
+        "accuracy": 0.785,
+        "macro_f1": 0.785
+      },
+      "UCI": {
+        "accuracy": 0.938,
+        "macro_f1": 0.9379960317460317
+      },
+      "uci_minus_sfu_macro_f1": 0.1529960317460317
+    },
+    "deu.rst.pcc/relation-nucleus-first/fine": {
+      "Amazon": {
+        "accuracy": 0.8725,
+        "macro_f1": 0.8724907874593939
+      },
+      "SFU": {
+        "accuracy": 0.785,
+        "macro_f1": 0.7849516141131755
+      },
+      "UCI": {
+        "accuracy": 0.935,
+        "macro_f1": 0.9349947345735005
+      },
+      "uci_minus_sfu_macro_f1": 0.15004312046032497
+    },
+    "deu.rst.pcc/relation-text-order/coarse": {
+      "Amazon": {
+        "accuracy": 0.8795,
+        "macro_f1": 0.8794780348718554
+      },
+      "SFU": {
+        "accuracy": 0.7875,
+        "macro_f1": 0.7874986718666992
+      },
+      "UCI": {
+        "accuracy": 0.9376666666666666,
+        "macro_f1": 0.9376608414186259
+      },
+      "uci_minus_sfu_macro_f1": 0.15016216955192674
+    },
+    "deu.rst.pcc/relation-text-order/fine": {
+      "Amazon": {
+        "accuracy": 0.8745,
+        "macro_f1": 0.8744861620993715
+      },
+      "SFU": {
+        "accuracy": 0.79,
+        "macro_f1": 0.79
+      },
+      "UCI": {
+        "accuracy": 0.9323333333333333,
+        "macro_f1": 0.9323278518893363
+      },
+      "uci_minus_sfu_macro_f1": 0.14232785188933628
+    },
+    "edu_mean": {
+      "Amazon": {
+        "accuracy": 0.863,
+        "macro_f1": 0.8629395563443478
+      },
+      "SFU": {
+        "accuracy": 0.8175,
+        "macro_f1": 0.8174440922532525
+      },
+      "UCI": {
+        "accuracy": 0.9356666666666666,
+        "macro_f1": 0.9356646007855141
+      },
+      "uci_minus_sfu_macro_f1": 0.11822050853226151
+    },
+    "eng.erst.gum/motifs/coarse": {
+      "Amazon": {
+        "accuracy": 0.623,
+        "macro_f1": 0.6227642276422765
+      },
+      "SFU": {
+        "accuracy": 0.6,
+        "macro_f1": 0.5997498436522827
+      },
+      "UCI": {
+        "accuracy": 0.524,
+        "macro_f1": 0.5217887511854817
+      },
+      "uci_minus_sfu_macro_f1": -0.07796109246680094
+    },
+    "eng.erst.gum/motifs/fine": {
+      "Amazon": {
+        "accuracy": 0.6505,
+        "macro_f1": 0.650152864179482
+      },
+      "SFU": {
+        "accuracy": 0.6075,
+        "macro_f1": 0.607438662290983
+      },
+      "UCI": {
+        "accuracy": 0.527,
+        "macro_f1": 0.5236656063181835
+      },
+      "uci_minus_sfu_macro_f1": -0.08377305597279949
+    },
+    "eng.erst.gum/nuclearity": {
+      "Amazon": {
+        "accuracy": 0.869,
+        "macro_f1": 0.8689811332831927
+      },
+      "SFU": {
+        "accuracy": 0.825,
+        "macro_f1": 0.8249606161386311
+      },
+      "UCI": {
+        "accuracy": 0.938,
+        "macro_f1": 0.9379972443219698
+      },
+      "uci_minus_sfu_macro_f1": 0.1130366281833387
+    },
+    "eng.erst.gum/relation-nucleus-first/coarse": {
+      "Amazon": {
+        "accuracy": 0.88,
+        "macro_f1": 0.8799797165721006
+      },
+      "SFU": {
+        "accuracy": 0.79,
+        "macro_f1": 0.7899947498687467
+      },
+      "UCI": {
+        "accuracy": 0.9366666666666666,
+        "macro_f1": 0.9366656533171197
+      },
+      "uci_minus_sfu_macro_f1": 0.14667090344837297
+    },
+    "eng.erst.gum/relation-nucleus-first/fine": {
+      "Amazon": {
+        "accuracy": 0.874,
+        "macro_f1": 0.8739677357403495
+      },
+      "SFU": {
+        "accuracy": 0.7875,
+        "macro_f1": 0.7874880462025988
+      },
+      "UCI": {
+        "accuracy": 0.9383333333333334,
+        "macro_f1": 0.938331791628124
+      },
+      "uci_minus_sfu_macro_f1": 0.15084374542552514
+    },
+    "eng.erst.gum/relation-text-order/coarse": {
+      "Amazon": {
+        "accuracy": 0.8775,
+        "macro_f1": 0.8774911487354962
+      },
+      "SFU": {
+        "accuracy": 0.78,
+        "macro_f1": 0.77997799779978
+      },
+      "UCI": {
+        "accuracy": 0.9356666666666666,
+        "macro_f1": 0.935662198763803
+      },
+      "uci_minus_sfu_macro_f1": 0.1556842009640229
+    },
+    "eng.erst.gum/relation-text-order/fine": {
+      "Amazon": {
+        "accuracy": 0.8705,
+        "macro_f1": 0.8704797624628848
+      },
+      "SFU": {
+        "accuracy": 0.7675,
+        "macro_f1": 0.7674985468659179
+      },
+      "UCI": {
+        "accuracy": 0.9346666666666666,
+        "macro_f1": 0.9346637628339037
+      },
+      "uci_minus_sfu_macro_f1": 0.16716521596798584
+    },
+    "eng.rst.rstdt/motifs/coarse": {
+      "Amazon": {
+        "accuracy": 0.623,
+        "macro_f1": 0.6226603943549194
+      },
+      "SFU": {
+        "accuracy": 0.5825,
+        "macro_f1": 0.5821840266701693
+      },
+      "UCI": {
+        "accuracy": 0.532,
+        "macro_f1": 0.5279464234880948
+      },
+      "uci_minus_sfu_macro_f1": -0.05423760318207449
+    },
+    "eng.rst.rstdt/motifs/fine": {
+      "Amazon": {
+        "accuracy": 0.6345,
+        "macro_f1": 0.634330969490647
+      },
+      "SFU": {
+        "accuracy": 0.6,
+        "macro_f1": 0.5999899997499938
+      },
+      "UCI": {
+        "accuracy": 0.529,
+        "macro_f1": 0.5270425341505081
+      },
+      "uci_minus_sfu_macro_f1": -0.07294746559948573
+    },
+    "eng.rst.rstdt/nuclearity": {
+      "Amazon": {
+        "accuracy": 0.867,
+        "macro_f1": 0.8669700682653596
+      },
+      "SFU": {
+        "accuracy": 0.8225,
+        "macro_f1": 0.8224456239723414
+      },
+      "UCI": {
+        "accuracy": 0.935,
+        "macro_f1": 0.9349973926731949
+      },
+      "uci_minus_sfu_macro_f1": 0.11255176870085348
+    },
+    "eng.rst.rstdt/relation-nucleus-first/coarse": {
+      "Amazon": {
+        "accuracy": 0.8715,
+        "macro_f1": 0.8714907152041735
+      },
+      "SFU": {
+        "accuracy": 0.8,
+        "macro_f1": 0.7998749218261414
+      },
+      "UCI": {
+        "accuracy": 0.9376666666666666,
+        "macro_f1": 0.9376646650097986
+      },
+      "uci_minus_sfu_macro_f1": 0.13778974318365722
+    },
+    "eng.rst.rstdt/relation-nucleus-first/fine": {
+      "Amazon": {
+        "accuracy": 0.8745,
+        "macro_f1": 0.874473608076098
+      },
+      "SFU": {
+        "accuracy": 0.765,
+        "macro_f1": 0.7649941248531213
+      },
+      "UCI": {
+        "accuracy": 0.9333333333333333,
+        "macro_f1": 0.9333309332469302
+      },
+      "uci_minus_sfu_macro_f1": 0.16833680839380882
+    },
+    "eng.rst.rstdt/relation-text-order/coarse": {
+      "Amazon": {
+        "accuracy": 0.878,
+        "macro_f1": 0.8779940217070636
+      },
+      "SFU": {
+        "accuracy": 0.8,
+        "macro_f1": 0.7999549898727214
+      },
+      "UCI": {
+        "accuracy": 0.9373333333333334,
+        "macro_f1": 0.9373270660399373
+      },
+      "uci_minus_sfu_macro_f1": 0.13737207616721592
+    },
+    "eng.rst.rstdt/relation-text-order/fine": {
+      "Amazon": {
+        "accuracy": 0.8755,
+        "macro_f1": 0.8754738183703124
+      },
+      "SFU": {
+        "accuracy": 0.77,
+        "macro_f1": 0.7699769976997699
+      },
+      "UCI": {
+        "accuracy": 0.9323333333333333,
+        "macro_f1": 0.932328633932912
+      },
+      "uci_minus_sfu_macro_f1": 0.16235163623314208
+    },
+    "length_only": {
+      "Amazon": {
+        "accuracy": 0.502,
+        "macro_f1": 0.5013173033883387
+      },
+      "SFU": {
+        "accuracy": 0.6175,
+        "macro_f1": 0.6166350327927386
+      },
+      "UCI": {
+        "accuracy": 0.512,
+        "macro_f1": 0.5111916195628414
+      },
+      "uci_minus_sfu_macro_f1": -0.10544341322989714
+    },
+    "nld.rst.nldt/motifs/coarse": {
+      "Amazon": {
+        "accuracy": 0.641,
+        "macro_f1": 0.640534132235377
+      },
+      "SFU": {
+        "accuracy": 0.5575,
+        "macro_f1": 0.5573644428606261
+      },
+      "UCI": {
+        "accuracy": 0.5226666666666666,
+        "macro_f1": 0.5193822316416543
+      },
+      "uci_minus_sfu_macro_f1": -0.03798221121897183
+    },
+    "nld.rst.nldt/motifs/fine": {
+      "Amazon": {
+        "accuracy": 0.644,
+        "macro_f1": 0.6434005563351994
+      },
+      "SFU": {
+        "accuracy": 0.6025,
+        "macro_f1": 0.6024975156094725
+      },
+      "UCI": {
+        "accuracy": 0.5203333333333333,
+        "macro_f1": 0.5162686462637439
+      },
+      "uci_minus_sfu_macro_f1": -0.0862288693457286
+    },
+    "nld.rst.nldt/nuclearity": {
+      "Amazon": {
+        "accuracy": 0.864,
+        "macro_f1": 0.8639651750848217
+      },
+      "SFU": {
+        "accuracy": 0.8325,
+        "macro_f1": 0.8324486874105195
+      },
+      "UCI": {
+        "accuracy": 0.9393333333333334,
+        "macro_f1": 0.9393294504181601
+      },
+      "uci_minus_sfu_macro_f1": 0.1068807630076406
+    },
+    "nld.rst.nldt/relation-nucleus-first/coarse": {
+      "Amazon": {
+        "accuracy": 0.8815,
+        "macro_f1": 0.8814814814814815
+      },
+      "SFU": {
+        "accuracy": 0.7975,
+        "macro_f1": 0.7974379653768966
+      },
+      "UCI": {
+        "accuracy": 0.9373333333333334,
+        "macro_f1": 0.9373293224099675
+      },
+      "uci_minus_sfu_macro_f1": 0.13989135703307087
+    },
+    "nld.rst.nldt/relation-nucleus-first/fine": {
+      "Amazon": {
+        "accuracy": 0.871,
+        "macro_f1": 0.8709781953150082
+      },
+      "SFU": {
+        "accuracy": 0.785,
+        "macro_f1": 0.785
+      },
+      "UCI": {
+        "accuracy": 0.936,
+        "macro_f1": 0.9359951925277943
+      },
+      "uci_minus_sfu_macro_f1": 0.15099519252779425
+    },
+    "nld.rst.nldt/relation-text-order/coarse": {
+      "Amazon": {
+        "accuracy": 0.884,
+        "macro_f1": 0.8839624038188373
+      },
+      "SFU": {
+        "accuracy": 0.8,
+        "macro_f1": 0.7999949998749969
+      },
+      "UCI": {
+        "accuracy": 0.9366666666666666,
+        "macro_f1": 0.9366619092722964
+      },
+      "uci_minus_sfu_macro_f1": 0.13666690939729953
+    },
+    "nld.rst.nldt/relation-text-order/fine": {
+      "Amazon": {
+        "accuracy": 0.871,
+        "macro_f1": 0.8709709684679052
+      },
+      "SFU": {
+        "accuracy": 0.7975,
+        "macro_f1": 0.7974683544303798
+      },
+      "UCI": {
+        "accuracy": 0.9326666666666666,
+        "macro_f1": 0.9326616088052836
+      },
+      "uci_minus_sfu_macro_f1": 0.13519325437490382
+    },
+    "tfidf_lr": {
+      "Amazon": {
+        "accuracy": 0.833,
+        "macro_f1": 0.8329958248956224
+      },
+      "SFU": {
+        "accuracy": 0.8275,
+        "macro_f1": 0.8274126276427441
+      },
+      "UCI": {
+        "accuracy": 0.8296666666666667,
+        "macro_f1": 0.8296528685490192
+      },
+      "uci_minus_sfu_macro_f1": 0.0022402409062750595
+    }
+  },
+  "paired_macro_f1_gaps": {
+    "Amazon": {
+      "deu.rst.pcc": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": -0.00401193922731613,
+          "interval_95": [
+            -0.012002666706855755,
+            0.003513474980888343
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": -0.001995374639977565,
+          "interval_95": [
+            -0.009492466897441099,
+            0.005499592002915501
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": -0.0025850272648324513,
+          "interval_95": [
+            -0.018951541402304282,
+            0.014030848477049523
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.0025143952705923844,
+          "interval_95": [
+            -0.007974896173258047,
+            0.012625412623505456
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": 0.010012144029599046,
+          "interval_95": [
+            -0.001957574248692717,
+            0.021992842856245563
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.0029753081851453533,
+          "interval_95": [
+            -0.011991338888722503,
+            0.006027280293665554
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": 0.007036835844453693,
+          "interval_95": [
+            -0.005459087457970963,
+            0.01951028649328655
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": 0.014024083256915176,
+          "interval_95": [
+            0.0025547339254244936,
+            0.025529857595467227
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.0049918727724839185,
+          "interval_95": [
+            -0.014491225567151359,
+            0.004022910967352205
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": 0.009032210484431258,
+          "interval_95": [
+            -0.003467984504846844,
+            0.02151706717217693
+          ]
+        }
+      },
+      "eng.erst.gum": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": 0.0024885678366044495,
+          "interval_95": [
+            -0.006509875191761194,
+            0.011490135484706204
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 0.00348797327746464,
+          "interval_95": [
+            -0.005523378632029124,
+            0.012492620279508437
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.02738863653720558,
+          "interval_95": [
+            0.007992262345112782,
+            0.046834801943339596
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.006041576938844884,
+          "interval_95": [
+            -0.004483849170451646,
+            0.016580859652838318
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": 0.010998583288907904,
+          "interval_95": [
+            -0.0010104531666569965,
+            0.02347123418942282
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.00601198083175114,
+          "interval_95": [
+            -0.016515370567895395,
+            0.004493409809782167
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": 0.0049866024571567635,
+          "interval_95": [
+            -0.00802675270517884,
+            0.01800135439152794
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": 0.008510015452303454,
+          "interval_95": [
+            -0.0030078105576978207,
+            0.02050652469864358
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.007011386272611331,
+          "interval_95": [
+            -0.017529509999510424,
+            0.0035007284569843616
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": 0.0014986291796921236,
+          "interval_95": [
+            -0.011560167091950008,
+            0.014993596543789423
+          ]
+        }
+      },
+      "eng.rst.rstdt": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": -0.006503306502890105,
+          "interval_95": [
+            -0.016006339491397285,
+            0.003000804971058321
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": -0.0010002102942143765,
+          "interval_95": [
+            -0.009498056341102762,
+            0.0074786825012980035
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.011670575135727668,
+          "interval_95": [
+            -0.006407662346518969,
+            0.029963214835378997
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.004030511921011781,
+          "interval_95": [
+            -0.0064848998302860315,
+            0.014571712809857498
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": 0.0045206469388139325,
+          "interval_95": [
+            -0.007962803231143248,
+            0.01699941399120279
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": 0.0029828928719244363,
+          "interval_95": [
+            -0.0075209627309617165,
+            0.013501553199821936
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": 0.007503539810738369,
+          "interval_95": [
+            -0.006017075733188821,
+            0.021011078727110673
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": 0.011023953441704037,
+          "interval_95": [
+            -0.0014602131160265208,
+            0.023533472944377132
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.002520203336751292,
+          "interval_95": [
+            -0.013506896243640465,
+            0.008482413070200428
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": 0.008503750104952745,
+          "interval_95": [
+            -0.004965805207701041,
+            0.021993816055973413
+          ]
+        }
+      },
+      "nld.rst.nldt": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": -0.002480922337355751,
+          "interval_95": [
+            -0.010497806420872122,
+            0.005553299904137701
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 7.226847102970169e-06,
+          "interval_95": [
+            -0.007991201869803944,
+            0.008005962254669293
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.0028664240998224066,
+          "interval_95": [
+            -0.012621801907383148,
+            0.017871748757522503
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.0010256187404739103,
+          "interval_95": [
+            -0.009015550939873293,
+            0.01103283279103619
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": 0.017516306396659798,
+          "interval_95": [
+            0.005997785585549781,
+            0.02949933343730992
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.010503286166473336,
+          "interval_95": [
+            -0.019504468548642052,
+            -0.0015103070414240502
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": 0.007013020230186462,
+          "interval_95": [
+            -0.004929311455862154,
+            0.019001259800533958
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": 0.01999722873401555,
+          "interval_95": [
+            0.008513037007523972,
+            0.03152835699881361
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.012991435350932057,
+          "interval_95": [
+            -0.022010738251955164,
+            -0.00400121877166276
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": 0.007005793383083492,
+          "interval_95": [
+            -0.004991197272627962,
+            0.019047529552457254
+          ]
+        }
+      }
+    },
+    "SFU": {
+      "deu.rst.pcc": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": -0.0024986718666991647,
+          "interval_95": [
+            -0.027508023286687226,
+            0.022506602067268067
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": -0.005048385886824547,
+          "interval_95": [
+            -0.02736393487182519,
+            0.01730966361556561
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": -0.017455649037967924,
+          "interval_95": [
+            -0.06218119834803443,
+            0.0267248523881055
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.005028169037574193,
+          "interval_95": [
+            -0.015052544525539693,
+            0.025140972368718654
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.0374722612908267,
+          "interval_95": [
+            -0.07243079649586937,
+            -0.004885878845706108
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -4.838588682454237e-05,
+          "interval_95": [
+            -0.03251168445531792,
+            0.032497056153903664
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.037520647177651245,
+          "interval_95": [
+            -0.07438376512327607,
+            -0.002426962888279409
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.03497358942412754,
+          "interval_95": [
+            -0.06739518716126768,
+            -0.004914671861724247
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": 0.0025013281333008397,
+          "interval_95": [
+            -0.025045031188975594,
+            0.030079287648748572
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.0324722612908267,
+          "interval_95": [
+            -0.06752033611568067,
+            0.002511411639454479
+          ]
+        }
+      },
+      "eng.erst.gum": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": 0.010016752068966683,
+          "interval_95": [
+            -0.017488608734241295,
+            0.03742997526336569
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 0.019989499336680927,
+          "interval_95": [
+            -0.007580837433610499,
+            0.047525701776255556
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.007688818638700301,
+          "interval_95": [
+            -0.03734281024469778,
+            0.05189685033928762
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.007516523885378601,
+          "interval_95": [
+            -0.01252025886784379,
+            0.027556179598189845
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.034965866269884405,
+          "interval_95": [
+            -0.06989728194690904,
+            -0.00021918239263745201
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.0025067036661479136,
+          "interval_95": [
+            -0.032497149125520056,
+            0.027482826283115713
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.03747256993603232,
+          "interval_95": [
+            -0.07252865062548157,
+            -0.002488188401294731
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.04498261833885109,
+          "interval_95": [
+            -0.07794926210198654,
+            -0.012322862420258592
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.012479450933862157,
+          "interval_95": [
+            -0.04251707167903842,
+            0.017490488259156493
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.057462069272713245,
+          "interval_95": [
+            -0.09482460955601857,
+            -0.022301702971183238
+          ]
+        }
+      },
+      "eng.rst.rstdt": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": -8.006804658000632e-05,
+          "interval_95": [
+            -0.02494540238674082,
+            0.024923253852652177
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": -0.004982872846648556,
+          "interval_95": [
+            -0.02990605763849142,
+            0.019774610550684413
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.017805973079824455,
+          "interval_95": [
+            -0.026385929407046527,
+            0.06248397043240439
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.005001531719088903,
+          "interval_95": [
+            -0.0149912431974295,
+            0.024970228601520653
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.02257070214620005,
+          "interval_95": [
+            -0.057532537445666845,
+            0.012369585268730368
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.034880796973020045,
+          "interval_95": [
+            -0.06994997218809518,
+            0.00014450525052840492
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.057451499119220095,
+          "interval_95": [
+            -0.09271862219174797,
+            -0.022335042549150964
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.022490634099620044,
+          "interval_95": [
+            -0.05750074207114904,
+            0.012509908484473097
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.029977992172951495,
+          "interval_95": [
+            -0.062423627411326725,
+            0.002501685983490833
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.05246862627257154,
+          "interval_95": [
+            -0.08753405430217444,
+            -0.01740500980398736
+          ]
+        }
+      },
+      "nld.rst.nldt": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": -0.002557034498100297,
+          "interval_95": [
+            -0.027504543895414454,
+            0.02239396792003231
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": -0.012468354430379747,
+          "interval_95": [
+            -0.03525492877949305,
+            0.010156500713315914
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.04513307274884637,
+          "interval_95": [
+            -0.0022697296213137984,
+            0.09269847738876334
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.015004595157266931,
+          "interval_95": [
+            -0.005030411409196972,
+            0.03502172719889392
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.035010722033622876,
+          "interval_95": [
+            -0.06514509030776934,
+            -0.005000031250195322
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.012437965376896565,
+          "interval_95": [
+            -0.04243183978415287,
+            0.017537645784934625
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.04744868741051944,
+          "interval_95": [
+            -0.08252941988691086,
+            -0.012488182498393518
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.03245368753552258,
+          "interval_95": [
+            -0.06251148219162657,
+            -0.002481258553358068
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.002526645444617115,
+          "interval_95": [
+            -0.032408182843219384,
+            0.027488914091453154
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.034980332980139694,
+          "interval_95": [
+            -0.06997176754829583,
+            -0.0003020661534975191
+          ]
+        }
+      }
+    },
+    "UCI": {
+      "deu.rst.pcc": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": 0.0003351903274058099,
+          "interval_95": [
+            -0.0026662560376245702,
+            0.0033362162393001547
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 0.0026668826841641513,
+          "interval_95": [
+            -4.895292467399499e-06,
+            0.005666025617404158
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": -0.006020170415482862,
+          "interval_95": [
+            -0.013180495771942418,
+            0.0010165468039204648
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.0029974587202887815,
+          "interval_95": [
+            -0.0016674137979770104,
+            0.007665764762092489
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.0006660277597710929,
+          "interval_95": [
+            -0.005668122358177036,
+            0.00433542940288166
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.003001297172531281,
+          "interval_95": [
+            -0.007000514592020346,
+            0.0006694041558907542
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.0036673249323023738,
+          "interval_95": [
+            -0.009338228679834432,
+            0.002000755161522966
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.0010012180871769027,
+          "interval_95": [
+            -0.006000024062705864,
+            0.003998636464153535
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.005332989529289622,
+          "interval_95": [
+            -0.009663744663767574,
+            -0.001329402535688387
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.006334207616466525,
+          "interval_95": [
+            -0.012008488266057226,
+            -0.0006659412705580016
+          ]
+        }
+      },
+      "eng.erst.gum": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": 0.0010034545533167405,
+          "interval_95": [
+            -0.0016660715386973696,
+            0.003685033982536653
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 0.003668028794220235,
+          "interval_95": [
+            0.0003327015549190682,
+            0.007333878431850646
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": 0.001876855132701749,
+          "interval_95": [
+            -0.007429766548784122,
+            0.011377143476692601
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.002332643536455792,
+          "interval_95": [
+            -0.002001498091551132,
+            0.00667177642472491
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.0013315910048501411,
+          "interval_95": [
+            -0.006332834340024818,
+            0.0036681446392202053
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": 0.0016661383110042616,
+          "interval_95": [
+            -0.0029998622215149347,
+            0.0063297494003793885
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": 0.00033454730615412043,
+          "interval_95": [
+            -0.005342208254601832,
+            0.0060033733385595894
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.0023350455581668816,
+          "interval_95": [
+            -0.0076685827522834345,
+            0.002999904782230328
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.000998435929899233,
+          "interval_95": [
+            -0.005332646894016019,
+            0.0033342238704332033
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.0033334814880661146,
+          "interval_95": [
+            -0.009333027423106552,
+            0.0023382814067766013
+          ]
+        }
+      },
+      "eng.rst.rstdt": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": 0.0003375989698612969,
+          "interval_95": [
+            -0.0029981709690746735,
+            0.003674439480216898
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 0.0010022993140181846,
+          "interval_95": [
+            -0.001997583462119473,
+            0.0036799237152433033
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": -0.0009038893375867829,
+          "interval_95": [
+            -0.009686239665625618,
+            0.007739097023668627
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": -0.0006672081123191287,
+          "interval_95": [
+            -0.005002715511607666,
+            0.0036705382298252483
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": 0.0026672723366036877,
+          "interval_95": [
+            -0.002339629656248379,
+            0.007996753861647143
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.004333731762868442,
+          "interval_95": [
+            -0.009005711068778208,
+            0.00033399951420177423
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.0016664594262647547,
+          "interval_95": [
+            -0.008333101025339634,
+            0.00499791377333713
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": 0.002329673366742391,
+          "interval_95": [
+            -0.0030083084950940863,
+            0.00766776120165803
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.00499843210702533,
+          "interval_95": [
+            -0.009333541668857595,
+            -0.000665386689635078
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.0026687587402829394,
+          "interval_95": [
+            -0.00933367030476206,
+            0.0036734309743171423
+          ]
+        }
+      },
+      "nld.rst.nldt": {
+        "coarse_nucleus_first_minus_text_order": {
+          "difference": 0.0006674131376710468,
+          "interval_95": [
+            -0.0023335794995572256,
+            0.00366749192661609
+          ]
+        },
+        "fine_nucleus_first_minus_text_order": {
+          "difference": 0.0033335837225106912,
+          "interval_95": [
+            -5.840647841176549e-07,
+            0.0066682725174607525
+          ]
+        },
+        "motifs_fine_minus_coarse": {
+          "difference": -0.0031135853779103995,
+          "interval_95": [
+            -0.011029341833497575,
+            0.004866374110484282
+          ]
+        },
+        "nuclearity_minus_mean": {
+          "difference": 0.0036648496326460167,
+          "interval_95": [
+            -0.0010009687030866827,
+            0.008332345613641098
+          ]
+        },
+        "relation-nucleus-first_coarse_minus_nuclearity": {
+          "difference": -0.002000128008192603,
+          "interval_95": [
+            -0.006999540312417052,
+            0.0029969178353748847
+          ]
+        },
+        "relation-nucleus-first_fine_minus_coarse": {
+          "difference": -0.001334129882173185,
+          "interval_95": [
+            -0.004670192441720622,
+            0.0020004629493788314
+          ]
+        },
+        "relation-nucleus-first_fine_minus_nuclearity": {
+          "difference": -0.0033342578903657882,
+          "interval_95": [
+            -0.008673864596873923,
+            0.0020014307089710024
+          ]
+        },
+        "relation-text-order_coarse_minus_nuclearity": {
+          "difference": -0.00266754114586365,
+          "interval_95": [
+            -0.007670398883556371,
+            0.0023367538651603735
+          ]
+        },
+        "relation-text-order_fine_minus_coarse": {
+          "difference": -0.0040003004670128295,
+          "interval_95": [
+            -0.00733345659309004,
+            -0.0009983633963214391
+          ]
+        },
+        "relation-text-order_fine_minus_nuclearity": {
+          "difference": -0.0066678416128764795,
+          "interval_95": [
+            -0.01200314428982982,
+            -0.0016632296062460753
+          ]
+        }
+      }
+    }
+  },
+  "shared_protocol_verified": {
+    "same_edu_scorer_model_and_runtime": true,
+    "same_fold_counts_and_classifier_settings": true,
+    "same_parser_weights_configs_and_relation_tables": true
+  },
+  "uci_coarse_map_additions": {
+    "deu.rst.pcc": {},
+    "eng.erst.gum": {},
+    "eng.rst.rstdt": {
+      "analogy-mn": {
+        "parent": "comparison",
+        "predicted_nodes": 0
+      },
+      "comment-topic-mn": {
+        "parent": "topic-comment",
+        "predicted_nodes": 0
+      },
+      "conclusion": {
+        "parent": "evaluation",
+        "predicted_nodes": 0
+      },
+      "elaboration-process-step": {
+        "parent": "elaboration",
+        "predicted_nodes": 0
+      },
+      "interpretation-mn": {
+        "parent": "evaluation",
+        "predicted_nodes": 0
+      },
+      "otherwise": {
+        "parent": "condition",
+        "predicted_nodes": 0
+      },
+      "proportion-mn": {
+        "parent": "comparison",
+        "predicted_nodes": 0
+      },
+      "reason-mn": {
+        "parent": "causal",
+        "predicted_nodes": 0
+      },
+      "topic-comment-mn": {
+        "parent": "topic-comment",
+        "predicted_nodes": 0
+      }
+    },
+    "nld.rst.nldt": {
+      "volitional-cause": {
+        "parent": "Cause",
+        "predicted_nodes": 0
+      }
+    }
+  },
+  "uci_provenance": {
+    "archive_sha256": "afc26626d710899948693e1a61405dce197f57ffa719fa1130d346b4cc095343",
+    "corpus": "UCI Sentiment Labelled Sentences (Kotzias et al., 2015)",
+    "distinct_groups": 2972,
+    "document_count": 3000,
+    "document_id": "SHA-256 of whitespace-normalized body plus original domain and file line",
+    "duplicate_text_groups": 21,
+    "group_identity": "SHA-256 of HTML-unescaped, NFKC, casefolded alphanumeric word sequence",
+    "labels": {
+      "negative": 0,
+      "positive": 1
+    },
+    "outputs_sha256": {
+      "manifest.jsonl": "562c487baf06eb34aff628444f30001db3349ba7533e80f7cc667e269c234c3f",
+      "reviews.jsonl": "25e441572dcd1b2123581baa0b6468880a58e5310efc56e7caca9710d4ecdfe4",
+      "splits.json": "3afbe8de8937b01d40a82bbd9738c8a124d7f5c5bd412be368bdb7a397d7ba54"
+    },
+    "sources_sha256": {
+      "prepare_uci.py": "b1ff76a345c195d14d10f1997e9e37ddb89c7ac5783b60329ae1884aa77263a9"
+    },
+    "split_policy": {
+      "algorithm": "StratifiedGroupKFold (shuffle=True)",
+      "groups": "duplicate_group",
+      "inner_folds": 4,
+      "inner_seed": "seed + zero-based outer fold + 1",
+      "outer_folds": 5,
+      "outer_test_counts": [
+        {
+          "amazon_cells/0": 100,
+          "amazon_cells/1": 100,
+          "imdb/0": 100,
+          "imdb/1": 100,
+          "yelp/0": 100,
+          "yelp/1": 100
+        },
+        {
+          "amazon_cells/0": 100,
+          "amazon_cells/1": 100,
+          "imdb/0": 100,
+          "imdb/1": 100,
+          "yelp/0": 100,
+          "yelp/1": 100
+        },
+        {
+          "amazon_cells/0": 100,
+          "amazon_cells/1": 100,
+          "imdb/0": 100,
+          "imdb/1": 100,
+          "yelp/0": 100,
+          "yelp/1": 100
+        },
+        {
+          "amazon_cells/0": 100,
+          "amazon_cells/1": 100,
+          "imdb/0": 100,
+          "imdb/1": 100,
+          "yelp/0": 100,
+          "yelp/1": 100
+        },
+        {
+          "amazon_cells/0": 100,
+          "amazon_cells/1": 100,
+          "imdb/0": 100,
+          "imdb/1": 100,
+          "yelp/0": 100,
+          "yelp/1": 100
+        }
+      ],
+      "seed": 42,
+      "strata": [
+        "domain",
+        "label"
+      ]
+    },
+    "tweeteval_audit": {
+      "normalized_full_text_matches": 0,
+      "sha256": "368f01052ea6fd8ffc408a2a2e6ac9669e31542581a0396ef16591ea26eb98a6",
+      "training_rows": 45615
+    }
+  },
+  "uci_raw_verification": {
+    "archive_sha256": "afc26626d710899948693e1a61405dce197f57ffa719fa1130d346b4cc095343",
+    "duplicate_text_groups": 21,
+    "raw_rows_verified": 3000
+  }
+}

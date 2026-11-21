@@ -1,11 +1,13 @@
-"""Verify held-out results and compare the Amazon and SFU replications."""
+"""Verify held-out results and compare the sentiment corpora."""
 
 import argparse
 from collections import Counter, defaultdict
+from hashlib import sha256
 import json
 from math import isclose
 from pathlib import Path
 from statistics import median
+from zipfile import ZipFile
 
 import numpy as np
 
@@ -127,10 +129,16 @@ def cohort(root):
     }
 
 
-def added_maps():
-    original = canonical_maps()
-    local = load(RUN / "sample.json")["maps"]
-    audit = load(RUN / "parser-audit.json")["inventory_reports"]
+def added_maps(run, reference_additions=None):
+    local = load(run / "sample.json")["maps"]
+    audit = load(run / "parser-audit.json")["inventory_reports"]
+    if reference_additions is None:
+        original = canonical_maps()
+    else:
+        original = {
+            inventory: {label: parent for label, parent in mapping.items() if label not in reference_additions[inventory]}
+            for inventory, mapping in canonical_maps().items()
+        }
     outputs = {}
     for inventory, mapping in local.items():
         if any(mapping.get(label) != parent for label, parent in original[inventory].items()):
@@ -142,12 +150,12 @@ def added_maps():
     return outputs
 
 
-def verify_converter_retry():
+def verify_converter_retry(run):
     counts = {}
     for inventory in INVENTORIES:
         path = f"{inventory}.jsonl"
-        before = read_jsonl(RUN / "parser-initial-retry" / path)
-        after = read_jsonl(RUN / "parser-verified" / path)
+        before = read_jsonl(run / "parser-initial-retry" / path)
+        after = read_jsonl(run / "parser-verified" / path)
         matched = recovered = 0
         for old, new in zip(before, after, strict=True):
             if (new["key"], new["document_id"], new["status"]) != (old["key"], old["document_id"], "ok"):
@@ -162,52 +170,113 @@ def verify_converter_retry():
     return counts
 
 
-cli = argparse.ArgumentParser(description=__doc__)
-cli.add_argument("--sfu-run", required=True, type=Path)
-cli.add_argument("--amazon-run", required=True, type=Path)
-args = cli.parse_args()
-RUN = args.amazon_run
-scorer_sfu = load(args.sfu_run / "edu-scores/manifest.json")
-scorer_amazon = load(RUN / "edu-scores/manifest.json")
-parser_sfu = load(args.sfu_run / "parser-audit.json")["inventory_reports"]
-parser_amazon = load(RUN / "parser-audit.json")["inventory_reports"]
-training_sfu = load(args.sfu_run / "text-controls-exact/protocol.json")
-training_amazon = load(RUN / "text-controls/protocol.json")
-if scorer_sfu["model"] != scorer_amazon["model"] or scorer_sfu["runtime"] != scorer_amazon["runtime"]:
-    raise ValueError("Frozen EDU scorer inputs or runtime differ")
-for inventory in INVENTORIES:
-    for key in ("weights_sha256", "config_sha256", "table_sha256", "ordered_relation_table"):
-        if parser_sfu[inventory][key] != parser_amazon[inventory][key]:
-            raise ValueError(f"Parser input {key} differs for {inventory}")
-for key, value in training_sfu.items():
-    if key not in ("protocol", "expected_corpus") and training_amazon[key] != value:
-        raise ValueError(f"Training protocol value differs for {key}")
-sfu, sfu_draws, sfu_count = analyze_fit(args.sfu_run, True)
-amazon, amazon_draws, amazon_count = analyze_fit(RUN, False)
-if sfu.keys() != amazon.keys() or len(sfu) != 32:
-    raise ValueError("The corpora must have the same 32 fitted conditions")
-report = {
-    "cohorts": {"SFU": cohort(args.sfu_run), "Amazon": cohort(RUN)},
-    "amazon_provenance": load(RUN / "prepared/provenance.json")["selection"],
-    "amazon_raw_verification": load(RUN / "cohort-verification.json"),
-    "independently_verified_predictions": {"SFU": sfu_count, "Amazon": amazon_count},
-    "shared_protocol_verified": {
-        "same_parser_weights_configs_and_relation_tables": True,
-        "same_edu_scorer_model_and_runtime": True,
-        "same_fold_and_classifier_settings": True,
-    },
-    "bootstrap": {
-        "draws": ITERATIONS, "seed": SEED, "strata": ["outer_fold", "domain", "gold_label"],
-        "interpretation": "Pointwise paired intervals on fixed held-out decisions, within each corpus.",
-    },
-    "macro_f1_and_accuracy": {
-        name: {"SFU": sfu[name], "Amazon": amazon[name],
-               "amazon_minus_sfu_macro_f1": amazon[name]["macro_f1"] - sfu[name]["macro_f1"]}
-        for name in amazon
-    },
-    "paired_macro_f1_gaps": {"SFU": contrasts(sfu, sfu_draws), "Amazon": contrasts(amazon, amazon_draws)},
-    "amazon_coarse_map_additions": added_maps(),
-}
-if (RUN / "parser-initial-retry").exists():
-    report["amazon_converter_retry_verification"] = verify_converter_retry()
-print(json.dumps(report, indent=2, sort_keys=True))
+def verify_uci_archive(run, archive):
+    recorded = load(run / "prepared/provenance.json")
+    checksum = sha256(archive.read_bytes()).hexdigest()
+    if checksum != recorded["archive_sha256"]:
+        raise ValueError("The UCI source archive differs from preparation")
+    expected = {}
+    with ZipFile(archive) as source:
+        for domain in ("amazon_cells", "imdb", "yelp"):
+            member = f"sentiment labelled sentences/{domain}_labelled.txt"
+            for index, line in enumerate(source.read(member).decode("utf-8-sig").split("\n"), 1):
+                if line.strip():
+                    text, label = line.rstrip("\r").rsplit("\t", 1)
+                    expected[f"{member}:{index}"] = (text, int(label), domain)
+    rows = read_jsonl(run / "prepared/reviews.jsonl")
+    actual = {row["source_member"]: (row["text"], row["label"], row["domain"]) for row in rows}
+    if len(actual) != len(rows) or expected != actual:
+        raise ValueError("UCI texts or original labels differ from the complete release")
+    return {"raw_rows_verified": len(rows), "archive_sha256": checksum,
+            "duplicate_text_groups": recorded["duplicate_text_groups"]}
+
+
+def verify_uci_intervals(run, gaps):
+    stability = load(run / "relation-text-order/stability.json")
+    if stability["resampling"]["unit"] != "duplicate group":
+        raise ValueError("Expected duplicate-group resampling for UCI")
+    for inventory, conditions in stability["inventories"].items():
+        computed = gaps[inventory]["relation-text-order_fine_minus_coarse"]
+        if not np.allclose(conditions["bootstrap_95_percentile_interval"],
+                           computed["interval_95"], atol=1e-14, rtol=0):
+            raise ValueError(f"Recomputed grouped interval differs for {inventory}")
+
+
+def main():
+    cli = argparse.ArgumentParser(description=__doc__)
+    cli.add_argument("--sfu-run", required=True, type=Path)
+    datasets = cli.add_mutually_exclusive_group(required=True)
+    datasets.add_argument("--amazon-run", type=Path)
+    datasets.add_argument("--uci-run", type=Path)
+    cli.add_argument("--uci-archive", type=Path)
+    args = cli.parse_args()
+    if args.uci_run and not args.uci_archive:
+        cli.error("--uci-archive is required with --uci-run")
+    run = args.amazon_run or args.uci_run
+    name = "UCI" if args.uci_run else "Amazon"
+    scorer_sfu = load(args.sfu_run / "edu-scores/manifest.json")
+    scorer_new = load(run / "edu-scores/manifest.json")
+    parser_sfu = load(args.sfu_run / "parser-audit.json")["inventory_reports"]
+    parser_new = load(run / "parser-audit.json")["inventory_reports"]
+    training_sfu = load(args.sfu_run / "text-controls-exact/protocol.json")
+    training_new = load(run / "text-controls/protocol.json")
+    if scorer_sfu["model"] != scorer_new["model"] or scorer_sfu["runtime"] != scorer_new["runtime"]:
+        raise ValueError("Frozen EDU scorer inputs or runtime differ")
+    for inventory in INVENTORIES:
+        for key in ("weights_sha256", "config_sha256", "table_sha256", "ordered_relation_table"):
+            if parser_sfu[inventory][key] != parser_new[inventory][key]:
+                raise ValueError(f"Parser input {key} differs for {inventory}")
+    for key, value in training_sfu.items():
+        if key not in ("protocol", "expected_corpus") and training_new[key] != value:
+            raise ValueError(f"Training protocol value differs for {key}")
+    sfu, sfu_draws, sfu_count = analyze_fit(args.sfu_run, True)
+    new, new_draws, new_count = analyze_fit(run, False)
+    if sfu.keys() != new.keys() or len(sfu) != 32:
+        raise ValueError("The corpora must have the same 32 fitted conditions")
+    report = {
+        "cohorts": {"SFU": cohort(args.sfu_run), name: cohort(run)},
+        "independently_verified_predictions": {"SFU": sfu_count, name: new_count},
+        "shared_protocol_verified": {
+            "same_parser_weights_configs_and_relation_tables": True,
+            "same_edu_scorer_model_and_runtime": True,
+            "same_fold_and_classifier_settings": True,
+        },
+        "bootstrap": {
+            "draws": ITERATIONS, "seed": SEED, "strata": ["outer_fold", "domain", "gold_label"],
+            "interpretation": "Pointwise paired intervals on fixed held-out decisions, within each corpus.",
+        },
+        "macro_f1_and_accuracy": {
+            key: {"SFU": sfu[key], name: new[key],
+                  f"{name.lower()}_minus_sfu_macro_f1": new[key]["macro_f1"] - sfu[key]["macro_f1"]}
+            for key in new
+        },
+        "paired_macro_f1_gaps": {"SFU": contrasts(sfu, sfu_draws), name: contrasts(new, new_draws)},
+    }
+    if args.uci_run:
+        amazon = load(Path(__file__).with_name("results") / "amazon/comparison.json")
+        verify_uci_intervals(run, report["paired_macro_f1_gaps"]["UCI"])
+        report["uci_provenance"] = load(run / "prepared/provenance.json")
+        report["uci_raw_verification"] = verify_uci_archive(run, args.uci_archive)
+        report["uci_coarse_map_additions"] = added_maps(run, amazon["amazon_coarse_map_additions"])
+        report["shared_protocol_verified"]["same_fold_counts_and_classifier_settings"] = (
+            report["shared_protocol_verified"].pop("same_fold_and_classifier_settings")
+        )
+        report["bootstrap"]["UCI"] = {
+            "unit": "duplicate group", "strata": ["outer_fold", "group_domain_signature", "gold_label"],
+        }
+        report["cohorts"]["Amazon"] = amazon["cohorts"]["Amazon"]
+        report["independently_verified_predictions"]["Amazon"] = amazon["independently_verified_predictions"]["Amazon"]
+        report["paired_macro_f1_gaps"]["Amazon"] = amazon["paired_macro_f1_gaps"]["Amazon"]
+        for key, condition in report["macro_f1_and_accuracy"].items():
+            condition["Amazon"] = amazon["macro_f1_and_accuracy"][key]["Amazon"]
+    else:
+        report["amazon_provenance"] = load(run / "prepared/provenance.json")["selection"]
+        report["amazon_raw_verification"] = load(run / "cohort-verification.json")
+        report["amazon_coarse_map_additions"] = added_maps(run)
+        if (run / "parser-initial-retry").exists():
+            report["amazon_converter_retry_verification"] = verify_converter_retry(run)
+    print(json.dumps(report, indent=2, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()
