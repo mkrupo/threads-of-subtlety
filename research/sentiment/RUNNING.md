@@ -563,3 +563,105 @@ for standard in sorted((root / "granularity/lr_mf_wad/predictions").iterdir()):
     print(standard.name, len(ids), scores, scores["fine"] - scores["coarse"])
 PY
 ```
+
+
+## Amazon Reviews '23 and UCI Sentiment Labelled Sentences
+
+The aggregate reports and source manifests are under
+[replication/results](replication/results). Amazon uses 2,000 reviews from
+four categories, written from January 2022 through August 2023. The
+preparation code fixes the length filter, cohort quotas, and star-to-polarity
+mapping. UCI uses every released sentence and the authors' binary labels.
+Its folds keep identical normalized texts together across categories and
+both levels of cross-validation. Paired UCI intervals resample those
+duplicate groups together.
+
+Both runs use the published SFU scorer, parser checkpoints, and training
+settings. The staging script starts from commit
+25499ace90e23203da204abb92c32fb0ab8de41b. It gives the external cohorts their
+own preparation checks, provenance, and outputs. The converter uses the
+parser's joined-EDU tokenization for alignment retries. The original SFU
+scripts and checksum references are preserved.
+
+### Runtime and raw inputs
+
+Use the parser and scorer environments and pinned model files from the
+earlier sections. Place or link them in an assets directory with the layout
+below. Use the locked sentiment project for the classifier environment
+and install NetworkX 3.1 in it for motifs. Run from the repository root
+with the canonical relation-map revision available to Git.
+
+```text
+assets/
+  parser-venv/
+  scorer-venv/
+  classifier-exact-venv/
+  hf/hub/
+  stock/
+  cardiff/
+```
+
+Create a fresh run directory beneath this checkout, such as
+artifacts/sentiment/amazon23-short-v1 or artifacts/sentiment/uci-sls-v1.
+Keep the released raw files and full per-review outputs in that ignored
+directory.
+
+For Amazon, download the four raw category archives, lid.176.ftz, and
+the TweetEval sentiment training file. Save the TweetEval Git revision
+in tweeteval-revision.txt. Use the named files and revision in the
+[Amazon cohort manifest](replication/results/amazon/cohort.json) and an
+isolated Python 3.10 preparation environment with fasttext-wheel 0.9.2,
+NumPy 1.26.4, and Tokenizers 0.20.3.
+[Amazon source archives](https://amazon-reviews-2023.github.io/) ·
+[FastText language identification](https://fasttext.cc/docs/en/language-identification.html) ·
+[TweetEval training file](https://github.com/cardiffnlp/tweeteval/tree/main/datasets/sentiment)
+
+For UCI, use the official raw archive and the same TweetEval training
+file. UCI uses the locked classifier environment for preparation.
+[UCI Sentiment Labelled Sentences](https://archive.ics.uci.edu/dataset/331/sentiment%2Blabelled%2Bsentences)
+
+### Prepare and run
+
+Set run and assets to absolute paths, with scripts pointing to the
+replication directory in this checkout. Use the preparation command for
+the chosen corpus.
+
+```bash
+scripts="$PWD/research/sentiment/replication"
+bash "$scripts/stage.sh" "$run" amazon
+(
+  cd "$run/source"
+  "$prep_python" -B -m research.sentiment.prepare_amazon \
+    --run-dir "$run" \
+    --tokenizer "$assets/hf/hub/models--xlm-roberta-base/snapshots/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089/tokenizer.json"
+)
+```
+
+```bash
+bash "$scripts/stage.sh" "$run" uci
+(
+  cd "$run/source"
+  "$assets/classifier-exact-venv/bin/python" -B -m research.sentiment.prepare_uci \
+    --run-dir "$run" --archive "$uci_zip" --tweeteval-train "$tweeteval_train"
+)
+```
+
+Then fit the text controls, parse all four inventories, and run the
+remaining classifier and uncertainty comparisons.
+
+```bash
+(
+  cd "$run/source"
+  cp "$run/baseline_config.json" research/sentiment/baseline_config.json
+  "$assets/classifier-exact-venv/bin/python" -B -m research.sentiment.baseline \
+    --prepared-dir "$run/prepared" --output-dir "$run/text-controls"
+)
+bash "$scripts/run-parser.sh" "$run" "$assets"
+bash "$scripts/run-classifiers.sh" "$run" "$assets"
+```
+
+The parser runner defaults to GPU 0 with two concurrent processes once
+the shared PCC segmentation has been written. Set CUDA_DEVICE=-1 with
+the CPU Torch environment for sequential CPU inference. Set
+UNIRST_CHECKPOINTS when the two fine checkpoints live outside
+HC3_project in the run's checkout.

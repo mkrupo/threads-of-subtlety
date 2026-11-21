@@ -1,0 +1,135 @@
+--- a/research/sentiment/baseline.py
++++ b/research/sentiment/baseline.py
+@@ -149,7 +149,7 @@
+         normalized = " ".join(row["text"].split())
+         text_hash = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+         if (row["text_normalized"] != normalized or row["text_sha256"] != text_hash
+-                or row["document_id"] != f"sfu-{text_hash}"
++                or row["document_id"] != f"{config.get('document_id_prefix', 'sfu')}-{text_hash}"
+                 or row["whitespace_tokens"] != len(normalized.split())):
+             raise ValueError("Review text, normalization, hash, length or ID disagree")
+     expected_manifest = []
+--- a/research/sentiment/parse_sfu.py
++++ b/research/sentiment/parse_sfu.py
+@@ -103,8 +103,17 @@
+     # The standard converter approximates word lengths from rendered
+     # subwords. Use the original token strings and the supplied EDU breaks
+     # instead. Offsets remain in UniRST's space-joined word coordinates.
+-    words_by_edu = [[token.text for token in tokenize(edu)] for edu in edus]
+-    original_words = [word for words in words_by_edu for word in words]
++    # Match the predictor's tokenization of the joined EDUs. Razdel can
++    # tokenize trailing punctuation differently when it sees the next EDU.
++    joined, spans = parser.predictor._compute_edu_char_spans(edus)
++    tokens = list(tokenize(joined))
++    original_words = [token.text for token in tokens]
++    offsets = [(token.start, token.stop) for token in tokens]
++    stops = parser.predictor._char_spans_to_token_breaks(offsets, spans)
++    words_by_edu = [
++        original_words[start:stop + 1]
++        for start, stop in zip([0] + [stop + 1 for stop in stops[:-1]], stops, strict=True)
++    ]
+ 
+     class SuppliedEDUConverter(DUConverter):
+         def _lists_to_isanlp_format(self, tokens, edu_breaks, gold_tokens=None):
+--- a/research/sentiment/parser_pilot.py
++++ b/research/sentiment/parser_pilot.py
+@@ -57,14 +57,33 @@
+         raise ValueError(f"Missing {variable} in {path}")
+ 
+     pcc_nldt = mapping("scripts/canonical/ablate_m3_granularity.py", "RELATION_MAP")
+-    return {
++    maps = {
+         "deu.rst.pcc": pcc_nldt,
+-        "nld.rst.nldt": pcc_nldt,
++        "nld.rst.nldt": {**pcc_nldt, "volitional-cause": "Cause"},
+         "eng.erst.gum": mapping(
+             "scripts/canonical/ablate_full_inventory_granularity.py", "FINE_TO_PARENT"
+         ),
+         "eng.rst.rstdt": json.loads(source("docs/eng.rst.rstdt.new_to_coarse.json")),
+     }
++    # Extend the historical map to the full checkpoint alphabet for the new corpus.
++    # Prefer the canonical parent of a matching base label, then the released
++    # fine-tuning parent where no matching canonical label exists.
++    rstdt = maps["eng.rst.rstdt"]
++    extras = {
++        "analogy-mn": rstdt["analogy"],
++        "comment-topic-mn": "topic-comment",
++        "conclusion": "evaluation",
++        "elaboration-process-step": "elaboration",
++        "interpretation-mn": rstdt["interpretation"],
++        "otherwise": rstdt["otherwise-mn"],
++        "proportion-mn": "comparison",
++        "reason-mn": rstdt["reason"],
++        "topic-comment-mn": "topic-comment",
++    }
++    if extras.keys() & rstdt.keys() or set(extras.values()) - set(rstdt.values()):
++        raise ValueError("Unexpected change to the canonical RST-DT map")
++    rstdt.update(extras)
++    return maps
+ 
+ 
+ def prepare(path, prepared):
+--- a/research/sentiment/edu_baseline.py
++++ b/research/sentiment/edu_baseline.py
+@@ -22,7 +22,7 @@
+ )
+ 
+ 
+-PROTOCOL = "sfu-edu-mean-v1"
++PROTOCOL = "amazon23-short-edu-mean-v1"
+ CONTROL = "edu_mean_lr"
+ RESULTS = HERE / "results"
+ 
+--- a/research/sentiment/nuclearity.py
++++ b/research/sentiment/nuclearity.py
+@@ -144,7 +144,7 @@
+         for row in predictions:
+             stream.write(json.dumps(row, sort_keys=True, allow_nan=False) + "\n")
+     report = {
+-        "protocol": "sfu-nuclearity-v1",
++        "protocol": "amazon23-short-nuclearity-v1",
+         "primary_metric": baseline["primary_metric"],
+         "features": {
+             "group_order": ["central", "supporting"],
+--- a/research/sentiment/relation_pooling.py
++++ b/research/sentiment/relation_pooling.py
+@@ -217,7 +217,7 @@
+         for row in predictions:
+             stream.write(json.dumps(row, sort_keys=True, allow_nan=False) + "\n")
+     report = {
+-        "protocol": "sfu-relation-pooling-v1",
++        "protocol": "amazon23-short-relation-pooling-v1",
+         "primary_metric": reference["primary_metric"],
+         "research_revision": RESEARCH_REVISION,
+         "features": {
+@@ -238,7 +238,7 @@
+         "inventories": inventories,
+     }
+     if nucleus_first:
+-        report["protocol"] = "sfu-relation-nucleus-first-v1"
++        report["protocol"] = "amazon23-short-relation-nucleus-first-v1"
+         report["features"]["side_order"] = ["nucleus for NS/SN, left for NN", "satellite for NS/SN, right for NN"]
+         report["source_hashes"]["relation_stability.py"] = digest(HERE / "relation_stability.py")
+         report["resampling"] = {
+--- a/research/sentiment/relation_stability.py
++++ b/research/sentiment/relation_stability.py
+@@ -97,7 +97,7 @@
+             "differences_omitting_each_fold": masked_gaps(matrix, truth, folds, omit=True),
+         }
+     return {
+-        "protocol": "sfu-relation-stability-v1",
++        "protocol": "amazon23-short-relation-stability-v1",
+         "comparison": "fine minus coarse macro-F1 on fixed held-out predictions",
+         "resampling": {"seed": SEED, "draws": ITERATIONS, "unit": "review", "paired": True,
+                        "strata": ["outer_fold", "domain", "gold_label"]},
+--- a/research/sentiment/motif_sfu.py
++++ b/research/sentiment/motif_sfu.py
+@@ -228,7 +228,7 @@
+         for row in predictions:
+             stream.write(json.dumps(row, sort_keys=True, allow_nan=False) + "\n")
+     report = {
+-        "protocol": "sfu-motif-v1", "research_revision": RESEARCH_REVISION,
++        "protocol": "amazon23-short-motif-v1", "research_revision": RESEARCH_REVISION,
+         "features": "M3 frequency and weighted average depth from the training-partition fine catalog and its coarse projection",
+         "primary_metric": config["primary_metric"], "inputs_sha256": inputs,
+         "predictions_sha256": digest(path), "reviews": len(by_id),
