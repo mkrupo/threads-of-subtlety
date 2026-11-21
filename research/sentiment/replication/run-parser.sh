@@ -6,6 +6,11 @@ assets="$(cd "$2" && pwd)"
 repo="$(git -C "$run" rev-parse --show-toplevel)"
 checkpoints="${UNIRST_CHECKPOINTS:-$repo/HC3_project}"
 device="${CUDA_DEVICE:-0}"
+jobs="${UNIRST_JOBS:-1}"
+case "$jobs" in
+  1|2) ;;
+  *) echo "Set UNIRST_JOBS to 1 or 2" >&2; exit 2 ;;
+esac
 cd "$run/source"
 parser="$assets/parser-venv/bin/python"
 export HF_HOME="$assets/hf" HF_HUB_CACHE="$assets/hf/hub"
@@ -23,7 +28,7 @@ parse() {
     --inventory "$inventory" --cuda-device "$device" "$@"
 }
 
-if [[ "${3:-}" != --retry-existing && "$device" == -1 ]]; then
+if [[ "${3:-}" != --retry-existing && ( "$device" == -1 || "$jobs" == 1 ) ]]; then
   for inventory in deu.rst.pcc nld.rst.nldt eng.erst.gum eng.rst.rstdt; do
     parse "$inventory" "$first"
   done
