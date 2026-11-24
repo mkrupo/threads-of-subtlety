@@ -1,0 +1,1938 @@
+{
+  "encoder_hardware": {
+    "cards": 2,
+    "cards_per_corpus": 1,
+    "device": "NVIDIA GeForce GTX 1080 Ti",
+    "launcher_elapsed_seconds": 104,
+    "observed_used_mib_during_encoding": [
+      1516,
+      1550
+    ],
+    "visible_memory_mib_per_card": 11172
+  },
+  "encoder_source_sha256": "064d0f2aa5572675a3a76be8021103bd7803ec78bc4586f10fcd3196be7589e6",
+  "protocol": "dependency-sentiment-v1",
+  "runs": [
+    {
+      "arm": "cardiff",
+      "corpus": "amazon",
+      "edus": 16739,
+      "input_hashes": {
+        "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+        "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+        "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+        "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+        "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+        "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+        "scores.jsonl": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+        "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e"
+      },
+      "outer_folds": 5,
+      "paired": {
+        "deu.rst.pcc": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.013524556498259122,
+            "interval_95": [
+              0.005501103447694486,
+              0.02155640920824228
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.005000551310782031,
+            "interval_95": [
+              -0.0005011933523624168,
+              0.010510020383463827
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.018525107809041153,
+            "interval_95": [
+              0.010040578466994807,
+              0.027028216474546816
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.005508756607736087,
+            "interval_95": [
+              -0.0029860900125842057,
+              0.014008092012420639
+            ]
+          }
+        },
+        "eng.erst.gum": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.009521465291607134,
+            "interval_95": [
+              0.002005807555362368,
+              0.017499043147168464
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.0035010017207814936,
+            "interval_95": [
+              -0.0014842788830280505,
+              0.008498173696959049
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.013022467012388628,
+            "interval_95": [
+              0.005010377357419974,
+              0.02106857144861516
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.006492487532620439,
+            "interval_95": [
+              -0.002501911239366561,
+              0.015499787888274996
+            ]
+          }
+        },
+        "eng.rst.rstdt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.0015377153672230248,
+            "interval_95": [
+              -0.006964219768853941,
+              0.010040551983527157
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.00048763411248142763,
+            "interval_95": [
+              -0.0069784064960952685,
+              0.005999780474447832
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.0010500812547415972,
+            "interval_95": [
+              -0.00797755246333344,
+              0.010080179738411707
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.007965832010096152,
+            "interval_95": [
+              -0.0014976846320051834,
+              0.01744493871106526
+            ]
+          }
+        },
+        "nld.rst.nldt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.015519820249148997,
+            "interval_95": [
+              0.007039321986358984,
+              0.02401867331547546
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.00798877485018834,
+            "interval_95": [
+              0.002497319405386661,
+              0.013956055142966665
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.023508595099337337,
+            "interval_95": [
+              0.014996129179193792,
+              0.0324948072974169
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.004988791281186344,
+            "interval_95": [
+              -0.00305688834931947,
+              0.013012198909331635
+            ]
+          }
+        }
+      },
+      "pca_components": null,
+      "predictions_sha256": "58f63541b48c74fc3faa80d33ab4b03f4605d8ac292c9c6e33c6bf8f17305e48",
+      "protocol": "dependency-sentiment-v1",
+      "regularization_c": 1.0,
+      "representation": {
+        "documents": 2000,
+        "edus": 16739,
+        "labels": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "model": {
+          "id": "Xenova/twitter-roberta-base-sentiment-latest",
+          "revision": "f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445",
+          "sha256": {
+            "config.json": "cdf2b36e0066bd9996e3b9fb3f7c095dc656a0e62c6e3a7327d4ff5541e55b51",
+            "model.onnx": "046f7e4cc46b399558fa9b2de966f6b0d42c69e4b01f582bfb4099b01a0bb5d7",
+            "tokenizer.json": "1e6506713f00e34406a757acb80f9f3233c1c3950857d32bbc41bcd419d5d8b6"
+          }
+        },
+        "runtime": {
+          "batch_size": 64,
+          "intra_op_threads": 4,
+          "packages": {
+            "numpy": "2.2.6",
+            "onnxruntime": "1.22.1",
+            "tokenizers": "0.21.4"
+          },
+          "provider": "CPUExecutionProvider"
+        },
+        "scenes": 2000,
+        "scenes_sha256": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+        "scores_sha256": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+        "seconds": 23.358061532000193,
+        "source_sha256": "2843e0e0ef6e5e5efb14d2eb3092399d6742799b5cf200d14512d907e46e0e70",
+        "top_labels": {
+          "negative": 3810,
+          "neutral": 9241,
+          "positive": 3688
+        }
+      },
+      "resampling": {
+        "draws": 20000,
+        "paired": true,
+        "seed": 42,
+        "unit": "review"
+      },
+      "results": {
+        "deu.rst.pcc/coarse": {
+          "accuracy": 0.8845,
+          "confusion_matrix_labels_0_1": [
+            [
+              895,
+              105
+            ],
+            [
+              126,
+              874
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8844872647209354,
+          "negative_f1": 0.8857001484413657,
+          "positive_f1": 0.8832743810005053
+        },
+        "deu.rst.pcc/fine": {
+          "accuracy": 0.8895,
+          "confusion_matrix_labels_0_1": [
+            [
+              900,
+              100
+            ],
+            [
+              121,
+              879
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8894878160317174,
+          "negative_f1": 0.8906481939633845,
+          "positive_f1": 0.8883274381000505
+        },
+        "deu.rst.pcc/nuclearity": {
+          "accuracy": 0.8655,
+          "confusion_matrix_labels_0_1": [
+            [
+              884,
+              116
+            ],
+            [
+              153,
+              847
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8654539516149402,
+          "negative_f1": 0.8679430535100638,
+          "positive_f1": 0.8629648497198166
+        },
+        "deu.rst.pcc/unlabeled": {
+          "accuracy": 0.871,
+          "confusion_matrix_labels_0_1": [
+            [
+              888,
+              112
+            ],
+            [
+              146,
+              854
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8709627082226763,
+          "negative_f1": 0.8731563421828908,
+          "positive_f1": 0.8687690742624619
+        },
+        "edu_mean": {
+          "accuracy": 0.863,
+          "confusion_matrix_labels_0_1": [
+            [
+              884,
+              116
+            ],
+            [
+              158,
+              842
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8629395563443478,
+          "negative_f1": 0.8658178256611165,
+          "positive_f1": 0.8600612870275791
+        },
+        "eng.erst.gum/coarse": {
+          "accuracy": 0.8855,
+          "confusion_matrix_labels_0_1": [
+            [
+              893,
+              107
+            ],
+            [
+              122,
+              878
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8854935590126944,
+          "negative_f1": 0.8863523573200992,
+          "positive_f1": 0.8846347607052897
+        },
+        "eng.erst.gum/fine": {
+          "accuracy": 0.889,
+          "confusion_matrix_labels_0_1": [
+            [
+              896,
+              104
+            ],
+            [
+              118,
+              882
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8889945607334759,
+          "negative_f1": 0.8897715988083416,
+          "positive_f1": 0.8882175226586103
+        },
+        "eng.erst.gum/nuclearity": {
+          "accuracy": 0.8695,
+          "confusion_matrix_labels_0_1": [
+            [
+              882,
+              118
+            ],
+            [
+              143,
+              857
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8694796061884669,
+          "negative_f1": 0.8711111111111111,
+          "positive_f1": 0.8678481012658228
+        },
+        "eng.erst.gum/unlabeled": {
+          "accuracy": 0.876,
+          "confusion_matrix_labels_0_1": [
+            [
+              891,
+              109
+            ],
+            [
+              139,
+              861
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8759720937210873,
+          "negative_f1": 0.8778325123152709,
+          "positive_f1": 0.8741116751269036
+        },
+        "eng.rst.rstdt/coarse": {
+          "accuracy": 0.8775,
+          "confusion_matrix_labels_0_1": [
+            [
+              891,
+              109
+            ],
+            [
+              136,
+              864
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8774776703054131,
+          "negative_f1": 0.8791317217562901,
+          "positive_f1": 0.8758236188545362
+        },
+        "eng.rst.rstdt/fine": {
+          "accuracy": 0.877,
+          "confusion_matrix_labels_0_1": [
+            [
+              886,
+              114
+            ],
+            [
+              132,
+              868
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8769900361929317,
+          "negative_f1": 0.8780971258671952,
+          "positive_f1": 0.875882946518668
+        },
+        "eng.rst.rstdt/nuclearity": {
+          "accuracy": 0.868,
+          "confusion_matrix_labels_0_1": [
+            [
+              882,
+              118
+            ],
+            [
+              146,
+              854
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.867974122928094,
+          "negative_f1": 0.8698224852071006,
+          "positive_f1": 0.8661257606490872
+        },
+        "eng.rst.rstdt/unlabeled": {
+          "accuracy": 0.876,
+          "confusion_matrix_labels_0_1": [
+            [
+              898,
+              102
+            ],
+            [
+              146,
+              854
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8759399549381901,
+          "negative_f1": 0.8786692759295499,
+          "positive_f1": 0.8732106339468303
+        },
+        "nld.rst.nldt/coarse": {
+          "accuracy": 0.8845,
+          "confusion_matrix_labels_0_1": [
+            [
+              897,
+              103
+            ],
+            [
+              128,
+              872
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8844819503047351,
+          "negative_f1": 0.8859259259259259,
+          "positive_f1": 0.8830379746835443
+        },
+        "nld.rst.nldt/fine": {
+          "accuracy": 0.8925,
+          "confusion_matrix_labels_0_1": [
+            [
+              909,
+              91
+            ],
+            [
+              124,
+              876
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8924707251549234,
+          "negative_f1": 0.8942449581898672,
+          "positive_f1": 0.8906964921199797
+        },
+        "nld.rst.nldt/nuclearity": {
+          "accuracy": 0.864,
+          "confusion_matrix_labels_0_1": [
+            [
+              878,
+              122
+            ],
+            [
+              150,
+              850
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8639733387743997,
+          "negative_f1": 0.8658777120315582,
+          "positive_f1": 0.8620689655172413
+        },
+        "nld.rst.nldt/unlabeled": {
+          "accuracy": 0.869,
+          "confusion_matrix_labels_0_1": [
+            [
+              886,
+              114
+            ],
+            [
+              148,
+              852
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.8689621300555861,
+          "negative_f1": 0.8711897738446411,
+          "positive_f1": 0.866734486266531
+        }
+      },
+      "reviews": 2000,
+      "runtime": {
+        "numpy": "2.4.6",
+        "scikit_learn": "1.9.1",
+        "scipy": "1.17.1"
+      },
+      "source_hashes": {
+        "dependency_sentiment.py": "4b1e2d9983095171916629bcd82ff8a4c1ae7b516c85afb259c6a7f53d211c0c",
+        "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+      }
+    },
+    {
+      "arm": "mdeberta",
+      "corpus": "amazon",
+      "edus": 16739,
+      "input_hashes": {
+        "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+        "embeddings.npy": "8aa3323aae7ef5c0ee74e63f1cd414c1c923d75bb7f0c3e9dd2db546d27f80d6",
+        "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+        "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+        "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+        "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+        "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+        "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e"
+      },
+      "outer_folds": 5,
+      "paired": {
+        "deu.rst.pcc": {
+          "coarse_minus_unlabeled": {
+            "difference": -0.0010133485337955328,
+            "interval_95": [
+              -0.017104958174506378,
+              0.015344214430082553
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.006000216007776338,
+            "interval_95": [
+              -0.006512753761155551,
+              0.018541245866662177
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.004986867473980805,
+            "interval_95": [
+              -0.011521569002748602,
+              0.02146793191561473
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.014500760629623355,
+            "interval_95": [
+              -0.03498430214030976,
+              0.005936678061200076
+            ]
+          }
+        },
+        "eng.erst.gum": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.0010050223127757718,
+            "interval_95": [
+              -0.013990899764349793,
+              0.015944340339388387
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.00745048837148965,
+            "interval_95": [
+              -0.006695223490563423,
+              0.021488586185049202
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.008455510684265422,
+            "interval_95": [
+              -0.0065644785609355,
+              0.02345343799009951
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.019993071698138465,
+            "interval_95": [
+              -0.04050498263623417,
+              0.00016561189925174674
+            ]
+          }
+        },
+        "eng.rst.rstdt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.008084959882750598,
+            "interval_95": [
+              -0.006977069510782569,
+              0.02354752266418772
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.004996737142717644,
+            "interval_95": [
+              -0.007496800175655838,
+              0.0175063752026225
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.013081697025468242,
+            "interval_95": [
+              -0.002787241469177798,
+              0.029454328825118652
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.01605287958571111,
+            "interval_95": [
+              -0.03600369565713288,
+              0.004380417681697701
+            ]
+          }
+        },
+        "nld.rst.nldt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.0035175503435792566,
+            "interval_95": [
+              -0.011502150171945743,
+              0.018844520389414948
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.0040205512830416845,
+            "interval_95": [
+              -0.01708065941730642,
+              0.008921915544791848
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": -0.000503000939462428,
+            "interval_95": [
+              -0.015710659173708865,
+              0.014916285220763733
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.015515258300257906,
+            "interval_95": [
+              -0.035996290554905976,
+              0.005213097574868503
+            ]
+          }
+        }
+      },
+      "pca_components": 8,
+      "predictions_sha256": "16e0f4551e92951b47df1d1549b64ee12d9fe0327945bfef6ff34082405d5abd",
+      "protocol": "dependency-sentiment-v1",
+      "regularization_c": 1.0,
+      "representation": {
+        "embeddings_sha256": "8aa3323aae7ef5c0ee74e63f1cd414c1c923d75bb7f0c3e9dd2db546d27f80d6",
+        "max_tokens": 55,
+        "model": "microsoft/mdeberta-v3-base",
+        "pooling": "CLS",
+        "revision": "a0484667b22365f84929a935b5e50a51f71f159d",
+        "runtime": {
+          "batch_size": 64,
+          "device": "cuda:0",
+          "torch": "2.2.2+cu118",
+          "transformers": "4.46.3"
+        },
+        "scene_order": "rows from scenes.jsonl, then EDUs in scene order",
+        "scenes_sha256": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+        "shape": [
+          16739,
+          768
+        ]
+      },
+      "resampling": {
+        "draws": 20000,
+        "paired": true,
+        "seed": 42,
+        "unit": "review"
+      },
+      "results": {
+        "deu.rst.pcc/coarse": {
+          "accuracy": 0.583,
+          "confusion_matrix_labels_0_1": [
+            [
+              577,
+              423
+            ],
+            [
+              411,
+              589
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5829849874595485,
+          "negative_f1": 0.5804828973843058,
+          "positive_f1": 0.5854870775347912
+        },
+        "deu.rst.pcc/fine": {
+          "accuracy": 0.589,
+          "confusion_matrix_labels_0_1": [
+            [
+              583,
+              417
+            ],
+            [
+              405,
+              595
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5889852034673249,
+          "negative_f1": 0.5865191146881288,
+          "positive_f1": 0.5914512922465208
+        },
+        "deu.rst.pcc/nuclearity": {
+          "accuracy": 0.5985,
+          "confusion_matrix_labels_0_1": [
+            [
+              600,
+              400
+            ],
+            [
+              403,
+              597
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5984990966229674,
+          "negative_f1": 0.5991013479780329,
+          "positive_f1": 0.5978968452679019
+        },
+        "deu.rst.pcc/unlabeled": {
+          "accuracy": 0.584,
+          "confusion_matrix_labels_0_1": [
+            [
+              586,
+              414
+            ],
+            [
+              418,
+              582
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.583998335993344,
+          "negative_f1": 0.5848303393213573,
+          "positive_f1": 0.5831663326653307
+        },
+        "edu_mean": {
+          "accuracy": 0.6095,
+          "confusion_matrix_labels_0_1": [
+            [
+              603,
+              397
+            ],
+            [
+              384,
+              616
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.6094835006779036,
+          "negative_f1": 0.60694514343231,
+          "positive_f1": 0.6120218579234973
+        },
+        "eng.erst.gum/coarse": {
+          "accuracy": 0.5825,
+          "confusion_matrix_labels_0_1": [
+            [
+              583,
+              417
+            ],
+            [
+              418,
+              582
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5824998956249738,
+          "negative_f1": 0.5827086456771614,
+          "positive_f1": 0.5822911455727864
+        },
+        "eng.erst.gum/fine": {
+          "accuracy": 0.59,
+          "confusion_matrix_labels_0_1": [
+            [
+              601,
+              399
+            ],
+            [
+              421,
+              579
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5899503839964635,
+          "negative_f1": 0.5944609297725024,
+          "positive_f1": 0.5854398382204247
+        },
+        "eng.erst.gum/nuclearity": {
+          "accuracy": 0.6015,
+          "confusion_matrix_labels_0_1": [
+            [
+              596,
+              404
+            ],
+            [
+              393,
+              607
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.6014879450103365,
+          "negative_f1": 0.5992961287078934,
+          "positive_f1": 0.6036797613127797
+        },
+        "eng.erst.gum/unlabeled": {
+          "accuracy": 0.5815,
+          "confusion_matrix_labels_0_1": [
+            [
+              578,
+              422
+            ],
+            [
+              415,
+              585
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5814948733121981,
+          "negative_f1": 0.5800301053687907,
+          "positive_f1": 0.5829596412556054
+        },
+        "eng.rst.rstdt/coarse": {
+          "accuracy": 0.5795,
+          "confusion_matrix_labels_0_1": [
+            [
+              576,
+              424
+            ],
+            [
+              417,
+              583
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.579494848811898,
+          "negative_f1": 0.5780230807827396,
+          "positive_f1": 0.5809666168410563
+        },
+        "eng.rst.rstdt/fine": {
+          "accuracy": 0.5845,
+          "confusion_matrix_labels_0_1": [
+            [
+              580,
+              420
+            ],
+            [
+              411,
+              589
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5844915859546156,
+          "negative_f1": 0.5826217980914113,
+          "positive_f1": 0.5863613738178198
+        },
+        "eng.rst.rstdt/nuclearity": {
+          "accuracy": 0.5875,
+          "confusion_matrix_labels_0_1": [
+            [
+              597,
+              403
+            ],
+            [
+              422,
+              578
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5874627685148585,
+          "negative_f1": 0.5913818722139673,
+          "positive_f1": 0.5835436648157496
+        },
+        "eng.rst.rstdt/unlabeled": {
+          "accuracy": 0.5715,
+          "confusion_matrix_labels_0_1": [
+            [
+              557,
+              443
+            ],
+            [
+              414,
+              586
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5714098889291473,
+          "negative_f1": 0.56519533231862,
+          "positive_f1": 0.5776244455396747
+        },
+        "nld.rst.nldt/coarse": {
+          "accuracy": 0.5935,
+          "confusion_matrix_labels_0_1": [
+            [
+              591,
+              409
+            ],
+            [
+              404,
+              596
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.593497459359121,
+          "negative_f1": 0.5924812030075188,
+          "positive_f1": 0.5945137157107232
+        },
+        "nld.rst.nldt/fine": {
+          "accuracy": 0.5895,
+          "confusion_matrix_labels_0_1": [
+            [
+              597,
+              403
+            ],
+            [
+              418,
+              582
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5894769080760793,
+          "negative_f1": 0.5925558312655087,
+          "positive_f1": 0.5863979848866498
+        },
+        "nld.rst.nldt/nuclearity": {
+          "accuracy": 0.6055,
+          "confusion_matrix_labels_0_1": [
+            [
+              602,
+              398
+            ],
+            [
+              391,
+              609
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.6054951673157997,
+          "negative_f1": 0.604114400401405,
+          "positive_f1": 0.6068759342301944
+        },
+        "nld.rst.nldt/unlabeled": {
+          "accuracy": 0.59,
+          "confusion_matrix_labels_0_1": [
+            [
+              583,
+              417
+            ],
+            [
+              403,
+              597
+            ]
+          ],
+          "documents": 2000,
+          "macro_f1": 0.5899799090155418,
+          "negative_f1": 0.5871097683786506,
+          "positive_f1": 0.5928500496524329
+        }
+      },
+      "reviews": 2000,
+      "runtime": {
+        "numpy": "2.4.6",
+        "scikit_learn": "1.9.1",
+        "scipy": "1.17.1"
+      },
+      "source_hashes": {
+        "dependency_sentiment.py": "4b1e2d9983095171916629bcd82ff8a4c1ae7b516c85afb259c6a7f53d211c0c",
+        "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+      }
+    },
+    {
+      "arm": "cardiff",
+      "corpus": "sfu",
+      "edus": 36850,
+      "input_hashes": {
+        "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+        "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+        "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+        "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+        "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+        "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+        "scores.jsonl": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+        "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b"
+      },
+      "outer_folds": 5,
+      "paired": {
+        "deu.rst.pcc": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.01742219281943569,
+            "interval_95": [
+              -0.00506822558379357,
+              0.03994661059091944
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.0024822447539801784,
+            "interval_95": [
+              -0.01741057024641625,
+              0.020162184650091258
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.019904437573415867,
+            "interval_95": [
+              -0.0026884693364777057,
+              0.042495677134520814
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.004965116251133939,
+            "interval_95": [
+              -0.02000802188474544,
+              0.010046204075916054
+            ]
+          }
+        },
+        "eng.erst.gum": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.015034383511309368,
+            "interval_95": [
+              -0.007494952704367508,
+              0.037613133448242145
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.012497171784665584,
+            "interval_95": [
+              -0.02499625303132584,
+              -0.002479376317958602
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.0025372117266437844,
+            "interval_95": [
+              -0.02005603634568779,
+              0.027443104161207807
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.0050011252531820816,
+            "interval_95": [
+              -0.01753633520926943,
+              0.027513602274432794
+            ]
+          }
+        },
+        "eng.rst.rstdt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.014966366507441098,
+            "interval_95": [
+              -0.00994998169696116,
+              0.03993684941702231
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": 0.00497223219762255,
+            "interval_95": [
+              -0.01249392474378026,
+              0.022479947875222707
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.019938598705063648,
+            "interval_95": [
+              -0.0025988585314501546,
+              0.042495827246273196
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.009965241254259016,
+            "interval_95": [
+              -0.03261856231064343,
+              0.014943328817438989
+            ]
+          }
+        },
+        "nld.rst.nldt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.01747482082219043,
+            "interval_95": [
+              -0.005123805747291774,
+              0.04008172359439683
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.010068306644792413,
+            "interval_95": [
+              -0.030009569337533397,
+              0.009884901900082097
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.007406514177398016,
+            "interval_95": [
+              -0.017366571133551934,
+              0.03223556736405813
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.0024714450626446283,
+            "interval_95": [
+              -0.02006537145419931,
+              0.015145416841600765
+            ]
+          }
+        }
+      },
+      "pca_components": null,
+      "predictions_sha256": "11f86517aa7df2c93bded1b42c03a914610e8d9a66d4314406f620153bdd47fe",
+      "protocol": "dependency-sentiment-v1",
+      "regularization_c": 1.0,
+      "representation": {
+        "documents": 400,
+        "edus": 36850,
+        "labels": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "model": {
+          "id": "Xenova/twitter-roberta-base-sentiment-latest",
+          "revision": "f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445",
+          "sha256": {
+            "config.json": "cdf2b36e0066bd9996e3b9fb3f7c095dc656a0e62c6e3a7327d4ff5541e55b51",
+            "model.onnx": "046f7e4cc46b399558fa9b2de966f6b0d42c69e4b01f582bfb4099b01a0bb5d7",
+            "tokenizer.json": "1e6506713f00e34406a757acb80f9f3233c1c3950857d32bbc41bcd419d5d8b6"
+          }
+        },
+        "runtime": {
+          "batch_size": 64,
+          "intra_op_threads": 4,
+          "packages": {
+            "numpy": "2.2.6",
+            "onnxruntime": "1.22.1",
+            "tokenizers": "0.21.4"
+          },
+          "provider": "CPUExecutionProvider"
+        },
+        "scenes": 1012,
+        "scenes_sha256": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+        "scores_sha256": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+        "seconds": 80.7286166039994,
+        "source_sha256": "2843e0e0ef6e5e5efb14d2eb3092399d6742799b5cf200d14512d907e46e0e70",
+        "top_labels": {
+          "negative": 6059,
+          "neutral": 24806,
+          "positive": 5985
+        },
+        "verification": {
+          "exploratory_probe_comparison": {
+            "examples": 32,
+            "max_absolute_probability_difference": 0.123299241065979,
+            "mean_absolute_probability_difference": 0.023055808663533146,
+            "top_label_changes": 1
+          },
+          "identical_repeat_on_same_host": true,
+          "independent_scene_and_edu_check": true
+        }
+      },
+      "resampling": {
+        "draws": 20000,
+        "paired": true,
+        "seed": 42,
+        "unit": "review"
+      },
+      "results": {
+        "deu.rst.pcc/coarse": {
+          "accuracy": 0.8375,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              28,
+              172
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8374176927069329,
+          "negative_f1": 0.8337595907928389,
+          "positive_f1": 0.8410757946210269
+        },
+        "deu.rst.pcc/fine": {
+          "accuracy": 0.84,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              27,
+              173
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8398999374609131,
+          "negative_f1": 0.8358974358974359,
+          "positive_f1": 0.8439024390243902
+        },
+        "deu.rst.pcc/nuclearity": {
+          "accuracy": 0.825,
+          "confusion_matrix_labels_0_1": [
+            [
+              162,
+              38
+            ],
+            [
+              32,
+              168
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8249606161386311,
+          "negative_f1": 0.8223350253807107,
+          "positive_f1": 0.8275862068965517
+        },
+        "deu.rst.pcc/unlabeled": {
+          "accuracy": 0.82,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              35,
+              165
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8199954998874972,
+          "negative_f1": 0.8190954773869347,
+          "positive_f1": 0.8208955223880597
+        },
+        "edu_mean": {
+          "accuracy": 0.82,
+          "confusion_matrix_labels_0_1": [
+            [
+              161,
+              39
+            ],
+            [
+              33,
+              167
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8199594908854493,
+          "negative_f1": 0.817258883248731,
+          "positive_f1": 0.8226600985221675
+        },
+        "eng.erst.gum/coarse": {
+          "accuracy": 0.845,
+          "confusion_matrix_labels_0_1": [
+            [
+              168,
+              32
+            ],
+            [
+              30,
+              170
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8449961249031226,
+          "negative_f1": 0.8442211055276382,
+          "positive_f1": 0.845771144278607
+        },
+        "eng.erst.gum/fine": {
+          "accuracy": 0.8325,
+          "confusion_matrix_labels_0_1": [
+            [
+              166,
+              34
+            ],
+            [
+              33,
+              167
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.832498953118457,
+          "negative_f1": 0.8320802005012531,
+          "positive_f1": 0.8329177057356608
+        },
+        "eng.erst.gum/nuclearity": {
+          "accuracy": 0.825,
+          "confusion_matrix_labels_0_1": [
+            [
+              162,
+              38
+            ],
+            [
+              32,
+              168
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8249606161386311,
+          "negative_f1": 0.8223350253807107,
+          "positive_f1": 0.8275862068965517
+        },
+        "eng.erst.gum/unlabeled": {
+          "accuracy": 0.83,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              31,
+              169
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8299617413918132,
+          "negative_f1": 0.8274111675126904,
+          "positive_f1": 0.8325123152709359
+        },
+        "eng.rst.rstdt/coarse": {
+          "accuracy": 0.83,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              31,
+              169
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8299617413918132,
+          "negative_f1": 0.8274111675126904,
+          "positive_f1": 0.8325123152709359
+        },
+        "eng.rst.rstdt/fine": {
+          "accuracy": 0.835,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              29,
+              171
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8349339735894358,
+          "negative_f1": 0.8316326530612245,
+          "positive_f1": 0.8382352941176471
+        },
+        "eng.rst.rstdt/nuclearity": {
+          "accuracy": 0.825,
+          "confusion_matrix_labels_0_1": [
+            [
+              162,
+              38
+            ],
+            [
+              32,
+              168
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8249606161386311,
+          "negative_f1": 0.8223350253807107,
+          "positive_f1": 0.8275862068965517
+        },
+        "eng.rst.rstdt/unlabeled": {
+          "accuracy": 0.815,
+          "confusion_matrix_labels_0_1": [
+            [
+              162,
+              38
+            ],
+            [
+              36,
+              164
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8149953748843721,
+          "negative_f1": 0.8140703517587939,
+          "positive_f1": 0.8159203980099502
+        },
+        "nld.rst.nldt/coarse": {
+          "accuracy": 0.845,
+          "confusion_matrix_labels_0_1": [
+            [
+              166,
+              34
+            ],
+            [
+              28,
+              172
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.844965117151359,
+          "negative_f1": 0.8426395939086294,
+          "positive_f1": 0.8472906403940886
+        },
+        "nld.rst.nldt/fine": {
+          "accuracy": 0.835,
+          "confusion_matrix_labels_0_1": [
+            [
+              162,
+              38
+            ],
+            [
+              28,
+              172
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8348968105065666,
+          "negative_f1": 0.8307692307692308,
+          "positive_f1": 0.8390243902439024
+        },
+        "nld.rst.nldt/nuclearity": {
+          "accuracy": 0.83,
+          "confusion_matrix_labels_0_1": [
+            [
+              163,
+              37
+            ],
+            [
+              31,
+              169
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8299617413918132,
+          "negative_f1": 0.8274111675126904,
+          "positive_f1": 0.8325123152709359
+        },
+        "nld.rst.nldt/unlabeled": {
+          "accuracy": 0.8275,
+          "confusion_matrix_labels_0_1": [
+            [
+              164,
+              36
+            ],
+            [
+              33,
+              167
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.8274902963291686,
+          "negative_f1": 0.8261964735516373,
+          "positive_f1": 0.8287841191066998
+        }
+      },
+      "reviews": 400,
+      "runtime": {
+        "numpy": "2.4.6",
+        "scikit_learn": "1.9.1",
+        "scipy": "1.17.1"
+      },
+      "source_hashes": {
+        "dependency_sentiment.py": "4b1e2d9983095171916629bcd82ff8a4c1ae7b516c85afb259c6a7f53d211c0c",
+        "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+      }
+    },
+    {
+      "arm": "mdeberta",
+      "corpus": "sfu",
+      "edus": 36850,
+      "input_hashes": {
+        "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+        "embeddings.npy": "1cd8fdc04a68cf354de0e1fe8106b7815c8d4ad4f615ee268a6b79d39a9c1290",
+        "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+        "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+        "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+        "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+        "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+        "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b"
+      },
+      "outer_folds": 5,
+      "paired": {
+        "deu.rst.pcc": {
+          "coarse_minus_unlabeled": {
+            "difference": -0.06103560187208257,
+            "interval_95": [
+              -0.09925049372420393,
+              -0.023491056737266463
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.011847996179103037,
+            "interval_95": [
+              -0.054624713005613224,
+              0.03179377825918154
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": -0.0728835980511856,
+            "interval_95": [
+              -0.11506165889076098,
+              -0.0305131577421386
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.00995780344571251,
+            "interval_95": [
+              -0.04007742483066851,
+              0.06177304619189488
+            ]
+          }
+        },
+        "eng.erst.gum": {
+          "coarse_minus_unlabeled": {
+            "difference": -0.029845312451694306,
+            "interval_95": [
+              -0.07183103769126511,
+              0.012096738919305725
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.027246593449047174,
+            "interval_95": [
+              -0.07506381898814414,
+              0.02082292070924241
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": -0.05709190590074148,
+            "interval_95": [
+              -0.1023760909684939,
+              -0.011700514241137458
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.00280869589414956,
+            "interval_95": [
+              -0.057101701891633605,
+              0.05144756740738847
+            ]
+          }
+        },
+        "eng.rst.rstdt": {
+          "coarse_minus_unlabeled": {
+            "difference": 0.0273584723407847,
+            "interval_95": [
+              -0.01695711178208568,
+              0.07045061445766268
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.025499335522201294,
+            "interval_95": [
+              -0.06409539439913871,
+              0.012480924320509729
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": 0.0018591368185834067,
+            "interval_95": [
+              -0.04067664155967606,
+              0.04493480777006986
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": -0.04737098015817054,
+            "interval_95": [
+              -0.10364179317190174,
+              0.008579559703594386
+            ]
+          }
+        },
+        "nld.rst.nldt": {
+          "coarse_minus_unlabeled": {
+            "difference": -0.037472060700187826,
+            "interval_95": [
+              -0.07736000176348665,
+              0.0024845534289721356
+            ]
+          },
+          "fine_minus_coarse": {
+            "difference": -0.06280521067627698,
+            "interval_95": [
+              -0.10041156858713751,
+              -0.02510173945300163
+            ]
+          },
+          "fine_minus_unlabeled": {
+            "difference": -0.1002772713764648,
+            "interval_95": [
+              -0.1424779283989365,
+              -0.05852313331464749
+            ]
+          },
+          "unlabeled_minus_nuclearity": {
+            "difference": 0.010003063438178028,
+            "interval_95": [
+              -0.040634977623845964,
+              0.06205949457913004
+            ]
+          }
+        }
+      },
+      "pca_components": 8,
+      "predictions_sha256": "cd4a76d78e544e84fc99e66e92910660de2ce2499469e9bcd8b72499e2caba85",
+      "protocol": "dependency-sentiment-v1",
+      "regularization_c": 1.0,
+      "representation": {
+        "embeddings_sha256": "1cd8fdc04a68cf354de0e1fe8106b7815c8d4ad4f615ee268a6b79d39a9c1290",
+        "max_tokens": 103,
+        "model": "microsoft/mdeberta-v3-base",
+        "pooling": "CLS",
+        "revision": "a0484667b22365f84929a935b5e50a51f71f159d",
+        "runtime": {
+          "batch_size": 64,
+          "device": "cuda:0",
+          "torch": "2.2.2+cu118",
+          "transformers": "4.46.3"
+        },
+        "scene_order": "rows from scenes.jsonl, then EDUs in scene order",
+        "scenes_sha256": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+        "shape": [
+          36850,
+          768
+        ]
+      },
+      "resampling": {
+        "draws": 20000,
+        "paired": true,
+        "seed": 42,
+        "unit": "review"
+      },
+      "results": {
+        "deu.rst.pcc/coarse": {
+          "accuracy": 0.5125,
+          "confusion_matrix_labels_0_1": [
+            [
+              93,
+              107
+            ],
+            [
+              88,
+              112
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5113975908142747,
+          "negative_f1": 0.4881889763779528,
+          "positive_f1": 0.5346062052505967
+        },
+        "deu.rst.pcc/fine": {
+          "accuracy": 0.5,
+          "confusion_matrix_labels_0_1": [
+            [
+              94,
+              106
+            ],
+            [
+              94,
+              106
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.4995495946351717,
+          "negative_f1": 0.4845360824742268,
+          "positive_f1": 0.5145631067961165
+        },
+        "deu.rst.pcc/nuclearity": {
+          "accuracy": 0.5625,
+          "confusion_matrix_labels_0_1": [
+            [
+              111,
+              89
+            ],
+            [
+              86,
+              114
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5624753892406448,
+          "negative_f1": 0.5591939546599496,
+          "positive_f1": 0.56575682382134
+        },
+        "deu.rst.pcc/unlabeled": {
+          "accuracy": 0.5725,
+          "confusion_matrix_labels_0_1": [
+            [
+              112,
+              88
+            ],
+            [
+              83,
+              117
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5724331926863573,
+          "negative_f1": 0.5670886075949367,
+          "positive_f1": 0.5777777777777777
+        },
+        "edu_mean": {
+          "accuracy": 0.57,
+          "confusion_matrix_labels_0_1": [
+            [
+              109,
+              91
+            ],
+            [
+              81,
+              119
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5697310819262038,
+          "negative_f1": 0.558974358974359,
+          "positive_f1": 0.5804878048780487
+        },
+        "eng.erst.gum/coarse": {
+          "accuracy": 0.5075,
+          "confusion_matrix_labels_0_1": [
+            [
+              93,
+              107
+            ],
+            [
+              90,
+              110
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5066088121669766,
+          "negative_f1": 0.4856396866840731,
+          "positive_f1": 0.5275779376498801
+        },
+        "eng.erst.gum/fine": {
+          "accuracy": 0.48,
+          "confusion_matrix_labels_0_1": [
+            [
+              89,
+              111
+            ],
+            [
+              97,
+              103
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.47936221871792944,
+          "negative_f1": 0.46113989637305697,
+          "positive_f1": 0.4975845410628019
+        },
+        "eng.erst.gum/nuclearity": {
+          "accuracy": 0.54,
+          "confusion_matrix_labels_0_1": [
+            [
+              100,
+              100
+            ],
+            [
+              84,
+              116
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5392628205128205,
+          "negative_f1": 0.5208333333333334,
+          "positive_f1": 0.5576923076923077
+        },
+        "eng.erst.gum/unlabeled": {
+          "accuracy": 0.5375,
+          "confusion_matrix_labels_0_1": [
+            [
+              98,
+              102
+            ],
+            [
+              83,
+              117
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5364541246186709,
+          "negative_f1": 0.5144356955380578,
+          "positive_f1": 0.5584725536992841
+        },
+        "eng.rst.rstdt/coarse": {
+          "accuracy": 0.53,
+          "confusion_matrix_labels_0_1": [
+            [
+              101,
+              99
+            ],
+            [
+              89,
+              111
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5297060662914321,
+          "negative_f1": 0.517948717948718,
+          "positive_f1": 0.5414634146341464
+        },
+        "eng.rst.rstdt/fine": {
+          "accuracy": 0.505,
+          "confusion_matrix_labels_0_1": [
+            [
+              93,
+              107
+            ],
+            [
+              91,
+              109
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5042067307692308,
+          "negative_f1": 0.484375,
+          "positive_f1": 0.5240384615384616
+        },
+        "eng.rst.rstdt/nuclearity": {
+          "accuracy": 0.55,
+          "confusion_matrix_labels_0_1": [
+            [
+              105,
+              95
+            ],
+            [
+              85,
+              115
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.549718574108818,
+          "negative_f1": 0.5384615384615384,
+          "positive_f1": 0.5609756097560976
+        },
+        "eng.rst.rstdt/unlabeled": {
+          "accuracy": 0.5025,
+          "confusion_matrix_labels_0_1": [
+            [
+              97,
+              103
+            ],
+            [
+              96,
+              104
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5023475939506474,
+          "negative_f1": 0.49363867684478374,
+          "positive_f1": 0.5110565110565111
+        },
+        "nld.rst.nldt/coarse": {
+          "accuracy": 0.515,
+          "confusion_matrix_labels_0_1": [
+            [
+              100,
+              100
+            ],
+            [
+              94,
+              106
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5148908504413493,
+          "negative_f1": 0.5076142131979695,
+          "positive_f1": 0.5221674876847291
+        },
+        "nld.rst.nldt/fine": {
+          "accuracy": 0.4525,
+          "confusion_matrix_labels_0_1": [
+            [
+              85,
+              115
+            ],
+            [
+              104,
+              96
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.4520856397650723,
+          "negative_f1": 0.4370179948586118,
+          "positive_f1": 0.46715328467153283
+        },
+        "nld.rst.nldt/nuclearity": {
+          "accuracy": 0.5425,
+          "confusion_matrix_labels_0_1": [
+            [
+              105,
+              95
+            ],
+            [
+              88,
+              112
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5423598477033591,
+          "negative_f1": 0.5343511450381679,
+          "positive_f1": 0.5503685503685504
+        },
+        "nld.rst.nldt/unlabeled": {
+          "accuracy": 0.5525,
+          "confusion_matrix_labels_0_1": [
+            [
+              107,
+              93
+            ],
+            [
+              86,
+              114
+            ]
+          ],
+          "documents": 400,
+          "macro_f1": 0.5523629111415371,
+          "negative_f1": 0.544529262086514,
+          "positive_f1": 0.5601965601965602
+        }
+      },
+      "reviews": 400,
+      "runtime": {
+        "numpy": "2.4.6",
+        "scikit_learn": "1.9.1",
+        "scipy": "1.17.1"
+      },
+      "source_hashes": {
+        "dependency_sentiment.py": "4b1e2d9983095171916629bcd82ff8a4c1ae7b516c85afb259c6a7f53d211c0c",
+        "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+      }
+    }
+  ],
+  "verification": "Recomputed pooled macro-F1 and accuracy from one prediction per review and condition and checked against the original test fold and label."
+}

@@ -2,7 +2,9 @@
 
 For a new machine, start with [setting up a fresh checkout](#set-up-a-fresh-checkout).
 The [meeting notes](replication/MEETING_NOTES.md) summarize the SFU and
-Amazon experiments. The sections below also preserve the original SFU
+Amazon experiments. The [dependency-weighting pilot](DEPENDENCY_PILOT.md)
+explains and reproduces the later CardiffNLP and frozen mDeBERTa comparison.
+The sections below also preserve the original SFU
 stage commands and reference outcomes.
 
 The CPU text, length, and prior controls were completed on 2026-11-18.
