@@ -38,3 +38,9 @@ In “The screen looks great, but the battery dies by noon,” equal weighting a
 - **The simple controls put the gains in context.** Equal-weight EDU pooling scored **.8174 on SFU** and **.8629 on Amazon**. TF–IDF scored **.8274** and **.8330**, respectively. Length alone scored **.6166** on SFU and **.5013** on Amazon.
 
 **Paper takeaway.** The usefulness of finer RST labels depends on the corpus and on what the classifier reads from the tree. Amazon shows that adding relation features can help on this sample of short, intact reviews. Review length, sample size, product categories, and label definitions changed together, so the comparison leaves the cause of the reversal open. [Full SFU–Amazon comparison](results/amazon/comparison.json)
+
+## Follow-up for the meeting
+
+- **Weight connections (Chistova-inspired).** Score two pieces of text the tree connects, then learn how much the relation label changes that connection's contribution. On Amazon, labels helped over unlabeled connections in three of four standards with CardiffNLP. For NLDT, fine scored .893 and coarse .885, reversing the original averaging result. [Results](../DEPENDENCY_PILOT.md#what-we-found)
+- **Combine sentiment up the tree (Bhatia-inspired).** Combine two pieces at a time, starting at the bottom. Test whether the model learns one rule for all relations, one per coarse label, or one per fine label. On Amazon the fine and coarse scores were within 0.25 macro-F1 points for all four standards. [Results](../RUNNING.md#combine-sentiment-up-the-amazon-trees)
+- **Check the public coarse parsers.** Stock GUM/eRST and RST-DT used the same PCC EDUs and built different trees. Original pooling still helped over nuclearity alone on Amazon and hurt on SFU. Stock RST-DT improved Amazon bottom-up pooling from .875 to .886. This comparison measures a change of parser as well as a change in how coarse relations are produced. [Results](../RUNNING.md#rerun-sentiment-with-the-stock-trees)

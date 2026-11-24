@@ -1,0 +1,762 @@
+{
+  "corpora": {
+    "amazon": {
+      "outcomes": {
+        "cardiff": {
+          "conditions": {
+            "eng.erst.gum/coarse": {
+              "changed_predictions": 71,
+              "interval_95": [
+                -0.014511401451257514,
+                0.0014993530911986378
+              ],
+              "mapped_macro_f1": 0.8854935590126944,
+              "stock_macro_f1": 0.8789922555043523,
+              "stock_minus_mapped": -0.0065013035083421045
+            },
+            "eng.erst.gum/nuclearity": {
+              "changed_predictions": 50,
+              "interval_95": [
+                -0.015000138794952333,
+                -0.001490895779739796
+              ],
+              "mapped_macro_f1": 0.8694796061884669,
+              "stock_macro_f1": 0.8614708742513113,
+              "stock_minus_mapped": -0.008008731937155567
+            },
+            "eng.erst.gum/unlabeled": {
+              "changed_predictions": 64,
+              "interval_95": [
+                -0.010552231829190382,
+                0.0049640492647050165
+              ],
+              "mapped_macro_f1": 0.8759720937210873,
+              "stock_macro_f1": 0.8729439682900159,
+              "stock_minus_mapped": -0.003028125431071449
+            },
+            "eng.rst.rstdt/coarse": {
+              "changed_predictions": 110,
+              "interval_95": [
+                -0.005024222507192272,
+                0.015015221060993216
+              ],
+              "mapped_macro_f1": 0.8774776703054131,
+              "stock_macro_f1": 0.8824933902532017,
+              "stock_minus_mapped": 0.005015719947788599
+            },
+            "eng.rst.rstdt/nuclearity": {
+              "changed_predictions": 85,
+              "interval_95": [
+                -0.01150541170261615,
+                0.006515047729182172
+              ],
+              "mapped_macro_f1": 0.867974122928094,
+              "stock_macro_f1": 0.8654851697399638,
+              "stock_minus_mapped": -0.0024889531881301385
+            },
+            "eng.rst.rstdt/unlabeled": {
+              "changed_predictions": 83,
+              "interval_95": [
+                -0.008476161886462852,
+                0.00950009631705196
+              ],
+              "mapped_macro_f1": 0.8759399549381901,
+              "stock_macro_f1": 0.8764480773044871,
+              "stock_minus_mapped": 0.000508122366297048
+            }
+          },
+          "input_hashes": {
+            "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+            "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+            "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+            "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+            "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+            "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+            "scores.jsonl": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+            "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/Amazon.jsonl": "b1559ff329957fa103694445dc5565babd0ecc07890323ce62ee1f5919bbfd14",
+            "stock/eng.rst.rstdt/Amazon.jsonl": "94a85cb57faa0b3b532199b304858e15fcf5ff6d575208bed0ce69b35d9d9c18"
+          },
+          "mapped_predictions_sha256": "58f63541b48c74fc3faa80d33ab4b03f4605d8ac292c9c6e33c6bf8f17305e48",
+          "published_predictions_sha256": "58f63541b48c74fc3faa80d33ab4b03f4605d8ac292c9c6e33c6bf8f17305e48",
+          "source_hashes": {
+            "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+            "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+          },
+          "stock_internal_comparisons": {
+            "eng.erst.gum": {
+              "coarse_minus_unlabeled": {
+                "difference": 0.0060482872143364785,
+                "interval_95": [
+                  -0.0029478620363297485,
+                  0.015055194590604108
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": 0.011473094038704557,
+                "interval_95": [
+                  0.002979606051109218,
+                  0.019980260731377267
+                ]
+              }
+            },
+            "eng.rst.rstdt": {
+              "coarse_minus_unlabeled": {
+                "difference": 0.006045312948714576,
+                "interval_95": [
+                  -0.002431478367342954,
+                  0.014535930478261063
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": 0.010962907564523339,
+                "interval_95": [
+                  0.002955282440093324,
+                  0.018984898082058187
+                ]
+              }
+            }
+          },
+          "stock_predictions_sha256": "ee0db3e81f1df46523a231963df0420077449577efe72f0c67d695a6cfe64718"
+        },
+        "mdeberta": {
+          "conditions": {
+            "eng.erst.gum/coarse": {
+              "changed_predictions": 413,
+              "interval_95": [
+                -0.014486166086271813,
+                0.02510845219485026
+              ],
+              "mapped_macro_f1": 0.5824998956249738,
+              "stock_macro_f1": 0.5879896997424936,
+              "stock_minus_mapped": 0.005489804117519759
+            },
+            "eng.erst.gum/nuclearity": {
+              "changed_predictions": 211,
+              "interval_95": [
+                -0.01051030182556493,
+                0.017887004265262088
+              ],
+              "mapped_macro_f1": 0.6014879450103365,
+              "stock_macro_f1": 0.6049806440515586,
+              "stock_minus_mapped": 0.0034926990412220693
+            },
+            "eng.erst.gum/unlabeled": {
+              "changed_predictions": 290,
+              "interval_95": [
+                -0.003991262344231655,
+                0.030010726289914046
+              ],
+              "mapped_macro_f1": 0.5814948733121981,
+              "stock_macro_f1": 0.5944990876229471,
+              "stock_minus_mapped": 0.013004214310749052
+            },
+            "eng.rst.rstdt/coarse": {
+              "changed_predictions": 482,
+              "interval_95": [
+                -0.0076487177530482,
+                0.034974975871409526
+              ],
+              "mapped_macro_f1": 0.579494848811898,
+              "stock_macro_f1": 0.5933453695767816,
+              "stock_minus_mapped": 0.01385052076488369
+            },
+            "eng.rst.rstdt/nuclearity": {
+              "changed_predictions": 281,
+              "interval_95": [
+                -0.004341872291801635,
+                0.027978030605760932
+              ],
+              "mapped_macro_f1": 0.5874627685148585,
+              "stock_macro_f1": 0.5989935838973424,
+              "stock_minus_mapped": 0.011530815382483905
+            },
+            "eng.rst.rstdt/unlabeled": {
+              "changed_predictions": 406,
+              "interval_95": [
+                -0.0033905163810698607,
+                0.035552790014927206
+              ],
+              "mapped_macro_f1": 0.5714098889291473,
+              "stock_macro_f1": 0.5874949468130984,
+              "stock_minus_mapped": 0.016085057883951093
+            }
+          },
+          "input_hashes": {
+            "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+            "embeddings.npy": "8aa3323aae7ef5c0ee74e63f1cd414c1c923d75bb7f0c3e9dd2db546d27f80d6",
+            "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+            "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+            "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+            "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+            "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+            "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/Amazon.jsonl": "b1559ff329957fa103694445dc5565babd0ecc07890323ce62ee1f5919bbfd14",
+            "stock/eng.rst.rstdt/Amazon.jsonl": "94a85cb57faa0b3b532199b304858e15fcf5ff6d575208bed0ce69b35d9d9c18"
+          },
+          "mapped_predictions_sha256": "16e0f4551e92951b47df1d1549b64ee12d9fe0327945bfef6ff34082405d5abd",
+          "published_predictions_sha256": "16e0f4551e92951b47df1d1549b64ee12d9fe0327945bfef6ff34082405d5abd",
+          "source_hashes": {
+            "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+            "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+          },
+          "stock_internal_comparisons": {
+            "eng.erst.gum": {
+              "coarse_minus_unlabeled": {
+                "difference": -0.006509387880453521,
+                "interval_95": [
+                  -0.020647536967378456,
+                  0.007769042675604362
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": -0.010481556428611483,
+                "interval_95": [
+                  -0.030623952678332584,
+                  0.009467882117594976
+                ]
+              }
+            },
+            "eng.rst.rstdt": {
+              "coarse_minus_unlabeled": {
+                "difference": 0.005850422763683194,
+                "interval_95": [
+                  -0.009105622783081907,
+                  0.020477527245399463
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": -0.011498637084243923,
+                "interval_95": [
+                  -0.031582791392633654,
+                  0.008962645691736326
+                ]
+              }
+            }
+          },
+          "stock_predictions_sha256": "a64558fdbf87c44993e1a454aff29d0f2f9b2a5b1d525c7181f10f2f07e3b2c0"
+        },
+        "pooling": {
+          "conditions": {
+            "eng.erst.gum/nuclearity": {
+              "changed_predictions": 52,
+              "interval_95": [
+                -0.015009941306533608,
+                -0.0010230222797004865
+              ],
+              "mapped_macro_f1": 0.8689811332831927,
+              "stock_macro_f1": 0.8609687179615413,
+              "stock_minus_mapped": -0.008012415321651423
+            },
+            "eng.erst.gum/relation-nucleus-first/coarse": {
+              "changed_predictions": 125,
+              "interval_95": [
+                -0.023494475097462317,
+                -0.0015135474967489307
+              ],
+              "mapped_macro_f1": 0.8799797165721006,
+              "stock_macro_f1": 0.8674925464557381,
+              "stock_minus_mapped": -0.012487170116362467
+            },
+            "eng.erst.gum/relation-text-order/coarse": {
+              "changed_predictions": 99,
+              "interval_95": [
+                -0.015486344546534535,
+                0.004000581131234282
+              ],
+              "mapped_macro_f1": 0.8774911487354962,
+              "stock_macro_f1": 0.8719953918341061,
+              "stock_minus_mapped": -0.0054957569013900365
+            },
+            "eng.rst.rstdt/nuclearity": {
+              "changed_predictions": 88,
+              "interval_95": [
+                -0.011018866893122998,
+                0.00704573592892483
+              ],
+              "mapped_macro_f1": 0.8669700682653596,
+              "stock_macro_f1": 0.8649836630232258,
+              "stock_minus_mapped": -0.001986405242133782
+            },
+            "eng.rst.rstdt/relation-nucleus-first/coarse": {
+              "changed_predictions": 146,
+              "interval_95": [
+                -0.0015386292985554329,
+                0.021959375209856538
+              ],
+              "mapped_macro_f1": 0.8714907152041735,
+              "stock_macro_f1": 0.8814750801355985,
+              "stock_minus_mapped": 0.00998436493142496
+            },
+            "eng.rst.rstdt/relation-text-order/coarse": {
+              "changed_predictions": 137,
+              "interval_95": [
+                -0.0010000724740040017,
+                0.021963887907586757
+              ],
+              "mapped_macro_f1": 0.8779940217070636,
+              "stock_macro_f1": 0.8884796754208455,
+              "stock_minus_mapped": 0.01048565371378185
+            }
+          },
+          "input_hashes": {
+            "baseline-config.json": "dea62f6233a82b653943a2b654bcad5eaa98dcfad47ce2ee0cb7fff3a0f0b34b",
+            "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+            "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+            "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+            "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+            "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+            "published-comparison.json": "e2a7f364030d88a7903141c24252be417b990b2c360168657acf4e39ec5849c5",
+            "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+            "scores.jsonl": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+            "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/Amazon.jsonl": "b1559ff329957fa103694445dc5565babd0ecc07890323ce62ee1f5919bbfd14",
+            "stock/eng.rst.rstdt/Amazon.jsonl": "94a85cb57faa0b3b532199b304858e15fcf5ff6d575208bed0ce69b35d9d9c18"
+          },
+          "mapped_predictions_sha256": "1d904e40e53237688cdfdbc22573a7cbe9f3edb5697b81bf6ab846c3b9bb268f",
+          "published_predictions_sha256": null,
+          "source_hashes": {
+            "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+            "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+            "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+            "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+            "stock_pooling.py": "4db300e016b1e01cc867554e6a8c4b95dfa6ccfaf69b8cdaf38fbc5aa79ae5ae"
+          },
+          "stock_internal_comparisons": null,
+          "stock_predictions_sha256": "1d904e40e53237688cdfdbc22573a7cbe9f3edb5697b81bf6ab846c3b9bb268f"
+        },
+        "recursive": {
+          "conditions": {
+            "eng.erst.gum/coarse": {
+              "changed_predictions": 100,
+              "interval_95": [
+                -0.007991638650448302,
+                0.01199613289988772
+              ],
+              "mapped_macro_f1": 0.880499253120332,
+              "stock_macro_f1": 0.8824997356244051,
+              "stock_minus_mapped": 0.002000482504073142
+            },
+            "eng.erst.gum/shared": {
+              "changed_predictions": 47,
+              "interval_95": [
+                -0.006492824255806886,
+                0.007002289505755513
+              ],
+              "mapped_macro_f1": 0.871499967874992,
+              "stock_macro_f1": 0.8719979519672314,
+              "stock_minus_mapped": 0.0004979840922394452
+            },
+            "eng.rst.rstdt/coarse": {
+              "changed_predictions": 110,
+              "interval_95": [
+                0.0009980456330859367,
+                0.021032830938360225
+              ],
+              "mapped_macro_f1": 0.8744909319698349,
+              "stock_macro_f1": 0.8854997423744203,
+              "stock_minus_mapped": 0.011008810404585456
+            },
+            "eng.rst.rstdt/shared": {
+              "changed_predictions": 72,
+              "interval_95": [
+                -0.0030208494503565107,
+                0.013039844148067468
+              ],
+              "mapped_macro_f1": 0.8669934826806514,
+              "stock_macro_f1": 0.8719988479896319,
+              "stock_minus_mapped": 0.005005365308980547
+            }
+          },
+          "input_hashes": {
+            "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+            "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+            "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+            "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+            "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+            "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+            "scores.jsonl": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+            "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/Amazon.jsonl": "b1559ff329957fa103694445dc5565babd0ecc07890323ce62ee1f5919bbfd14",
+            "stock/eng.rst.rstdt/Amazon.jsonl": "94a85cb57faa0b3b532199b304858e15fcf5ff6d575208bed0ce69b35d9d9c18"
+          },
+          "mapped_predictions_sha256": "224a058e15e9e63184f37e4c9a0fd6784d0e27e315de538c0f588f8615e0d4f6",
+          "published_predictions_sha256": "224a058e15e9e63184f37e4c9a0fd6784d0e27e315de538c0f588f8615e0d4f6",
+          "source_hashes": {
+            "recursive_sentiment.py": "53dc2e424b5d78acf6f45b0ee5d1e619a40596a763a4fffe5b79dc5b7f9f6011"
+          },
+          "stock_internal_comparisons": {
+            "eng.erst.gum": {
+              "coarse_minus_shared": {
+                "difference": 0.010501783657173691,
+                "interval_95": [
+                  0.0004955215797180252,
+                  0.021000000525000544
+                ]
+              }
+            },
+            "eng.rst.rstdt": {
+              "coarse_minus_shared": {
+                "difference": 0.013500894384788409,
+                "interval_95": [
+                  0.003011952613088817,
+                  0.024000008250011185
+                ]
+              }
+            }
+          },
+          "stock_predictions_sha256": "afcddb3bab8f66842179f6408cdb6841152c1506d357b718396b6e312c4443b9"
+        }
+      },
+      "reviews": 2000
+    },
+    "sfu": {
+      "outcomes": {
+        "cardiff": {
+          "conditions": {
+            "eng.erst.gum/coarse": {
+              "changed_predictions": 25,
+              "interval_95": [
+                -0.02998752215059857,
+                0.01496272065504398
+              ],
+              "mapped_macro_f1": 0.8449961249031226,
+              "stock_macro_f1": 0.837490858860811,
+              "stock_minus_mapped": -0.007505266042311609
+            },
+            "eng.erst.gum/nuclearity": {
+              "changed_predictions": 16,
+              "interval_95": [
+                -0.027553081403475167,
+                0.0074716957556142495
+              ],
+              "mapped_macro_f1": 0.8249606161386311,
+              "stock_macro_f1": 0.8149259703881553,
+              "stock_minus_mapped": -0.010034645750475857
+            },
+            "eng.erst.gum/unlabeled": {
+              "changed_predictions": 14,
+              "interval_95": [
+                -0.02240420679060428,
+                0.012484621174873886
+              ],
+              "mapped_macro_f1": 0.8299617413918132,
+              "stock_macro_f1": 0.824982498249825,
+              "stock_minus_mapped": -0.0049792431419882766
+            },
+            "eng.rst.rstdt/coarse": {
+              "changed_predictions": 33,
+              "interval_95": [
+                -0.027486119601778873,
+                0.022450643474804098
+              ],
+              "mapped_macro_f1": 0.8299617413918132,
+              "stock_macro_f1": 0.8274471556914305,
+              "stock_minus_mapped": -0.0025145857003827654
+            },
+            "eng.rst.rstdt/nuclearity": {
+              "changed_predictions": 17,
+              "interval_95": [
+                -0.020127614795725047,
+                0.015070733509063756
+              ],
+              "mapped_macro_f1": 0.8249606161386311,
+              "stock_macro_f1": 0.8224100951106498,
+              "stock_minus_mapped": -0.0025505210279813673
+            },
+            "eng.rst.rstdt/unlabeled": {
+              "changed_predictions": 16,
+              "interval_95": [
+                -0.007514239539651912,
+                0.02750860865425975
+              ],
+              "mapped_macro_f1": 0.8149953748843721,
+              "stock_macro_f1": 0.824982498249825,
+              "stock_minus_mapped": 0.009987123365452821
+            }
+          },
+          "input_hashes": {
+            "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+            "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+            "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+            "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+            "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+            "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+            "scores.jsonl": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+            "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/SFU.jsonl": "6c778eb60d2f0a0ffba5cb0b98d0b87b77082c273481655cc6d2639dfc7be182",
+            "stock/eng.rst.rstdt/SFU.jsonl": "3c7632cf28fdf215a9db2db56ffd9313a1e7cccdc86cfa2fcc3ad48edc7cad1d"
+          },
+          "mapped_predictions_sha256": "11f86517aa7df2c93bded1b42c03a914610e8d9a66d4314406f620153bdd47fe",
+          "published_predictions_sha256": "11f86517aa7df2c93bded1b42c03a914610e8d9a66d4314406f620153bdd47fe",
+          "source_hashes": {
+            "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+            "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+          },
+          "stock_internal_comparisons": {
+            "eng.erst.gum": {
+              "coarse_minus_unlabeled": {
+                "difference": 0.012508360610986036,
+                "interval_95": [
+                  -0.0075394680006814156,
+                  0.03279822409397159
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": 0.010056527861669662,
+                "interval_95": [
+                  -0.009999999999999901,
+                  0.030120307067841356
+                ]
+              }
+            },
+            "eng.rst.rstdt": {
+              "coarse_minus_unlabeled": {
+                "difference": 0.002464657441605511,
+                "interval_95": [
+                  -0.020090574598745293,
+                  0.024996128028200768
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": 0.0025724031391751723,
+                "interval_95": [
+                  -0.012496984278806078,
+                  0.01770072699112679
+                ]
+              }
+            }
+          },
+          "stock_predictions_sha256": "bdd28b6527be0f8bc6fe74603418ee2e46fd35d44c5ad5af4fbe739ac7219695"
+        },
+        "mdeberta": {
+          "conditions": {
+            "eng.erst.gum/coarse": {
+              "changed_predictions": 133,
+              "interval_95": [
+                -0.04846007998890235,
+                0.05247444274482664
+              ],
+              "mapped_macro_f1": 0.5066088121669766,
+              "stock_macro_f1": 0.5082296266559615,
+              "stock_minus_mapped": 0.0016208144889848786
+            },
+            "eng.erst.gum/nuclearity": {
+              "changed_predictions": 75,
+              "interval_95": [
+                -0.07606229532718808,
+                5.844115254661109e-07
+              ],
+              "mapped_macro_f1": 0.5392628205128205,
+              "stock_macro_f1": 0.5015997645747632,
+              "stock_minus_mapped": -0.0376630559380573
+            },
+            "eng.erst.gum/unlabeled": {
+              "changed_predictions": 98,
+              "interval_95": [
+                -0.035451218633701743,
+                0.0551899678015732
+              ],
+              "mapped_macro_f1": 0.5364541246186709,
+              "stock_macro_f1": 0.5462493497703045,
+              "stock_minus_mapped": 0.009795225151633558
+            },
+            "eng.rst.rstdt/coarse": {
+              "changed_predictions": 122,
+              "interval_95": [
+                -0.06750953231858646,
+                0.027462627680304243
+              ],
+              "mapped_macro_f1": 0.5297060662914321,
+              "stock_macro_f1": 0.5096935584740463,
+              "stock_minus_mapped": -0.02001250781738584
+            },
+            "eng.rst.rstdt/nuclearity": {
+              "changed_predictions": 66,
+              "interval_95": [
+                -0.03635365394961003,
+                0.035296109362851075
+              ],
+              "mapped_macro_f1": 0.549718574108818,
+              "stock_macro_f1": 0.549718574108818,
+              "stock_minus_mapped": 0.0
+            },
+            "eng.rst.rstdt/unlabeled": {
+              "changed_predictions": 114,
+              "interval_95": [
+                0.0023818132271512444,
+                0.09677773061871489
+              ],
+              "mapped_macro_f1": 0.5023475939506474,
+              "stock_macro_f1": 0.5521613219997623,
+              "stock_minus_mapped": 0.04981372804911488
+            }
+          },
+          "input_hashes": {
+            "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+            "embeddings.npy": "1cd8fdc04a68cf354de0e1fe8106b7815c8d4ad4f615ee268a6b79d39a9c1290",
+            "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+            "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+            "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+            "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+            "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+            "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/SFU.jsonl": "6c778eb60d2f0a0ffba5cb0b98d0b87b77082c273481655cc6d2639dfc7be182",
+            "stock/eng.rst.rstdt/SFU.jsonl": "3c7632cf28fdf215a9db2db56ffd9313a1e7cccdc86cfa2fcc3ad48edc7cad1d"
+          },
+          "mapped_predictions_sha256": "cd4a76d78e544e84fc99e66e92910660de2ce2499469e9bcd8b72499e2caba85",
+          "published_predictions_sha256": "cd4a76d78e544e84fc99e66e92910660de2ce2499469e9bcd8b72499e2caba85",
+          "source_hashes": {
+            "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+            "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560"
+          },
+          "stock_internal_comparisons": {
+            "eng.erst.gum": {
+              "coarse_minus_unlabeled": {
+                "difference": -0.038019723114342985,
+                "interval_95": [
+                  -0.07679897833074717,
+                  0.001977602716983827
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": 0.0446495851955413,
+                "interval_95": [
+                  -0.005992453278233869,
+                  0.09777780799268207
+                ]
+              }
+            },
+            "eng.rst.rstdt": {
+              "coarse_minus_unlabeled": {
+                "difference": -0.04246776352571602,
+                "interval_95": [
+                  -0.08254928983315618,
+                  -0.002399094946381124
+                ]
+              },
+              "unlabeled_minus_nuclearity": {
+                "difference": 0.002442747890944341,
+                "interval_95": [
+                  -0.04970765092580101,
+                  0.05500880143840826
+                ]
+              }
+            }
+          },
+          "stock_predictions_sha256": "129c37519fb66b818f81d25e884c92c5ab1594c2ecd06501d52324c0ed1716c0"
+        },
+        "pooling": {
+          "conditions": {
+            "eng.erst.gum/nuclearity": {
+              "changed_predictions": 18,
+              "interval_95": [
+                -0.029990824415982435,
+                0.00974303074642936
+              ],
+              "mapped_macro_f1": 0.8249606161386311,
+              "stock_macro_f1": 0.8148843026891808,
+              "stock_minus_mapped": -0.01007631344945037
+            },
+            "eng.erst.gum/relation-nucleus-first/coarse": {
+              "changed_predictions": 46,
+              "interval_95": [
+                -0.015122395691893544,
+                0.04738087051930521
+              ],
+              "mapped_macro_f1": 0.7899947498687467,
+              "stock_macro_f1": 0.8049561151259033,
+              "stock_minus_mapped": 0.014961365257156523
+            },
+            "eng.erst.gum/relation-text-order/coarse": {
+              "changed_predictions": 40,
+              "interval_95": [
+                -0.002633285688804737,
+                0.052661875308154006
+              ],
+              "mapped_macro_f1": 0.77997799779978,
+              "stock_macro_f1": 0.8049561151259033,
+              "stock_minus_mapped": 0.024978117326123206
+            },
+            "eng.rst.rstdt/nuclearity": {
+              "changed_predictions": 16,
+              "interval_95": [
+                -0.01753389993744403,
+                0.01750907944517488
+              ],
+              "mapped_macro_f1": 0.8224456239723414,
+              "stock_macro_f1": 0.8224100951106498,
+              "stock_minus_mapped": -3.5528861691669356e-05
+            },
+            "eng.rst.rstdt/relation-nucleus-first/coarse": {
+              "changed_predictions": 50,
+              "interval_95": [
+                -0.04501378547180068,
+                0.01534727730949646
+              ],
+              "mapped_macro_f1": 0.7998749218261414,
+              "stock_macro_f1": 0.7849946248656217,
+              "stock_minus_mapped": -0.014880296960519734
+            },
+            "eng.rst.rstdt/relation-text-order/coarse": {
+              "changed_predictions": 59,
+              "interval_95": [
+                -0.05531148979806102,
+                0.011979411542789238
+              ],
+              "mapped_macro_f1": 0.7999549898727214,
+              "stock_macro_f1": 0.7773873023218004,
+              "stock_minus_mapped": -0.02256768755092098
+            }
+          },
+          "input_hashes": {
+            "baseline_config.json": "558363bab07109c3eb5fc279a87b4aa696e865d429b907dd297caa5db5137d49",
+            "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+            "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+            "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+            "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+            "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+            "published-comparison.json": "e2a7f364030d88a7903141c24252be417b990b2c360168657acf4e39ec5849c5",
+            "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+            "scores.jsonl": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+            "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b",
+            "stock-coarse-v1.json": "1abcedd24222a5ce0db2445506a3b4fab473053a5a29300333d47d5768407f5a",
+            "stock/eng.erst.gum/SFU.jsonl": "6c778eb60d2f0a0ffba5cb0b98d0b87b77082c273481655cc6d2639dfc7be182",
+            "stock/eng.rst.rstdt/SFU.jsonl": "3c7632cf28fdf215a9db2db56ffd9313a1e7cccdc86cfa2fcc3ad48edc7cad1d"
+          },
+          "mapped_predictions_sha256": "738959eeedf54fc842b682f286eee68a6cdc2a756e1706b1126a6d2efed15ce3",
+          "published_predictions_sha256": null,
+          "source_hashes": {
+            "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+            "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+            "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+            "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+            "stock_pooling.py": "4db300e016b1e01cc867554e6a8c4b95dfa6ccfaf69b8cdaf38fbc5aa79ae5ae"
+          },
+          "stock_internal_comparisons": null,
+          "stock_predictions_sha256": "738959eeedf54fc842b682f286eee68a6cdc2a756e1706b1126a6d2efed15ce3"
+        }
+      },
+      "reviews": 400
+    }
+  },
+  "protocol": "stock-coarse-sentiment-v1",
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "label"
+    ],
+    "unit": "review"
+  },
+  "source_sha256": "4e01b929d61376e931e7fc490e8516eb24d43d3c6f67349c8dd1f8563df79958"
+}

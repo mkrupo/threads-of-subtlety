@@ -670,6 +670,74 @@ sample trees. The [report](results/stock-coarse-v1.json) records the
 checkpoint, both stages' tree hashes, and the independent whole-tree
 checks plus the 6,024 verified RS3 exports.
 
+### Rerun sentiment with the stock trees
+
+Both stock parsers take the saved PCC EDU boundaries. Stock relation names
+are used as predicted. The reference uses the colleague's fine checkpoints
+and maps their relation names after parsing. The review labels, folds,
+and frozen EDU representations match across parser choices.
+
+The table reports pooled held-out macro-F1 for the relation-aware version
+of each method. Each cell shows mapped coarse → stock coarse.
+
+| Corpus | Standard | Original LR pooling | Learned link weights with CardiffNLP | Bottom-up with CardiffNLP |
+|---|---|---:|---:|---:|
+| SFU | GUM/eRST | .7800 → .8050 | .8450 → .8375 | |
+| SFU | RST-DT | .8000 → .7774 | .8300 → .8274 | |
+| Amazon | GUM/eRST | .8775 → .8720 | .8855 → .8790 | .8805 → .8825 |
+| Amazon | RST-DT | .8780 → .8885 | .8775 → .8825 | .8745 → .8855 |
+
+All four paired intervals for original LR pooling and all four for
+CardiffNLP link weights include zero. Original LR pooling stays below
+nuclearity alone on SFU and above it on Amazon for both standards. The
+bottom-up experiment covers Amazon. For RST-DT its stock-coarse run
+gains 1.10 macro-F1 points over mapped coarse with a pointwise interval
+of +0.10 to +2.10. The frozen mDeBERTa runs remain below the CardiffNLP
+runs. [All conditions and paired intervals](results/stock-coarse-sentiment-v1.json)
+
+Run the following from the repository root. Set `stock` to the verified
+stock output above and `runs` to a fresh output directory. For each corpus
+set `prepared`, `trees`, `scores`, and `embeddings` to the original
+prepared set, parse directory, frozen CardiffNLP scores, and cached
+mDeBERTa embeddings.
+
+```bash
+uv sync --project research/sentiment --locked
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+runner=(uv run --project research/sentiment --locked --no-sync python -B -m)
+common=(--prepared "$prepared" --trees "$trees")
+"${runner[@]}" research.sentiment.stock_pooling "${common[@]}" \
+  --corpus "$corpus" --stock "$stock" --representation "$scores" --output "$runs/$corpus-pooling"
+for arm in cardiff mdeberta; do
+  representation="$scores"
+  if [ "$arm" = mdeberta ]; then representation="$embeddings"; fi
+  for source in mapped stock; do
+    stock_args=()
+    prefix=mapped-
+    if [ "$source" = stock ]; then stock_args=(--stock "$stock"); prefix=; fi
+    "${runner[@]}" research.sentiment.dependency_sentiment "${common[@]}" "${stock_args[@]}" \
+      --corpus "$corpus" --arm "$arm" --representation "$representation" --output "$runs/$prefix$corpus-$arm"
+  done
+done
+if [ "$corpus" = amazon ]; then
+  "${runner[@]}" research.sentiment.recursive_sentiment "${common[@]}" \
+    --representation "$scores" --output "$runs/mapped-amazon-recursive"
+  "${runner[@]}" research.sentiment.recursive_sentiment "${common[@]}" --stock "$stock" \
+    --representation "$scores" --output "$runs/amazon-recursive"
+fi
+```
+
+After both corpora finish, generate the report using the two prepared sets.
+The report generator validates each held-out row and checks that the
+refitted link-weight and bottom-up predictions reproduce the original
+published file hashes. Its paired intervals hold model fits fixed.
+
+```bash
+"${runner[@]}" research.sentiment.stock_sentiment_report --runs "$runs" \
+  --sfu-prepared "$sfu_prepared" --amazon-prepared "$amazon_prepared" \
+  --output "$runs/comparison.json"
+```
+
 ## Combine sentiment up the Amazon trees
 
 **Question.** When the model combines sentiment step by step up the RST

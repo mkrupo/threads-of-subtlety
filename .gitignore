@@ -202,3 +202,4 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/sentiment3-dependency-v1.json
 !/research/sentiment/results/amazon-recursive-v1.json
 !/research/sentiment/results/stock-coarse-v1.json
+!/research/sentiment/results/stock-coarse-sentiment-v1.json

@@ -12,8 +12,8 @@ from scipy.optimize import minimize
 from scipy.special import expit
 
 from .baseline import metrics, read_jsonl
-from .dependency_sentiment import input_files, vectors_for
-from .parser_pilot import INVENTORIES, RESEARCH_REVISION, canonical_maps, digest, write_json
+from .dependency_sentiment import input_files, tree_inputs, vectors_for
+from .parser_pilot import RESEARCH_REVISION, digest, write_json
 from .relation_stability import ITERATIONS, SEED, bootstrap_weights, macro_f1
 from .score_sfu import LABELS
 
@@ -120,13 +120,15 @@ def fit_predict(train, test, truth, mode, rule_count):
     return expit(fit.x[0] + fit.x[1] * values[test.roots]), fit.nit
 
 
-def paired_results(truth, metadata, predictions, results):
+def paired_results(truth, metadata, predictions, results, inventories, modes):
     weights = bootstrap_weights(metadata)
     draws = {name: macro_f1(weights, truth, pred) for name, pred in predictions.items()}
     paired = {}
-    for inventory in INVENTORIES:
+    for inventory in inventories:
         contrasts = {}
         for left, right in (("fine", "coarse"), ("fine", "shared"), ("coarse", "shared")):
+            if left not in modes:
+                continue
             a, b = (f"{inventory}/{mode}" for mode in (left, right))
             contrasts[f"{left}_minus_{right}"] = {
                 "difference": results[a]["macro_f1"] - results[b]["macro_f1"],
@@ -154,13 +156,12 @@ def run(args):
         raise ValueError("Unexpected sentiment score order")
     edu_scores = vectors[:, labels.index("positive")] - vectors[:, labels.index("negative")]
     scene_scores = np.split(edu_scores, np.cumsum([len(scene["edus"]) for scene in scenes[:-1]]))
-    maps = canonical_maps()
+    inventories = tree_inputs(args, audit, hashes)
+    modes = ("shared", "coarse") if args.stock else MODES
     probabilities, fits = {}, {}
-    for inventory in INVENTORIES:
-        trees = read_jsonl(args.trees / f"{inventory}.jsonl")
-        mapping = maps[inventory]
-        fine = sorted({label.rsplit("_", 1)[0].lower()
-                       for label in audit["inventory_reports"][inventory]["ordered_relation_table"]})
+    for inventory, (path, table, mapping) in inventories.items():
+        trees = read_jsonl(path)
+        fine = sorted({label.rsplit("_", 1)[0].lower() for label in table})
         coarse = sorted({mapping[label] for label in fine if label in mapping})
         fine_ids, coarse_ids = ({label: i for i, label in enumerate(labels)} for labels in (fine, coarse))
         records = {}
@@ -169,7 +170,7 @@ def run(args):
                 raise ValueError("A tree differs from its verified scene")
             records[scene["document_id"]] = (tree, scores)
         rule_counts = {"shared": 1, "fine": len(fine), "coarse": len(coarse)}
-        for mode in MODES:
+        for mode in modes:
             probabilities[f"{inventory}/{mode}"] = np.full(len(truth), np.nan)
             fits[f"{inventory}/{mode}"] = []
         tested = Counter()
@@ -181,7 +182,7 @@ def run(args):
             tested.update(test)
             train_trees, test_trees = (build_forest((records[doc] for doc in ids), fine_ids, coarse_ids, mapping)
                                        for ids in (train_ids, test_ids))
-            for mode in MODES:
+            for mode in modes:
                 key = f"{inventory}/{mode}"
                 scores, iterations = fit_predict(train_trees, test_trees, truth[train], mode, rule_counts[mode])
                 probabilities[key][test] = scores
@@ -193,7 +194,7 @@ def run(args):
         raise ValueError("Missing or invalid held-out probabilities")
     predictions = {name: (scores >= 0.5).astype(np.int16) for name, scores in probabilities.items()}
     results = {name: metrics(truth, prediction) for name, prediction in predictions.items()}
-    paired = paired_results(truth, metadata, predictions, results)
+    paired = paired_results(truth, metadata, predictions, results, inventories, modes)
     args.output.mkdir(parents=True)
     path = args.output / "predictions.jsonl"
     with path.open("x", encoding="utf-8") as stream:
@@ -206,6 +207,7 @@ def run(args):
                 }) + "\n")
     write_json(args.output / "report.json", {
         "protocol": "recursive-sentiment-amazon-v1", "reviews": len(truth), "edus": len(vectors),
+        "tree_source": "stock" if args.stock else "fine_checkpoint",
         "input_hashes": hashes, "mapping_revision": RESEARCH_REVISION,
         "source_sha256": digest(Path(__file__)),
         "runtime": {"numpy": np.__version__, "scipy": scipy.__version__},
@@ -222,6 +224,7 @@ def main():
     cli.set_defaults(corpus="amazon", arm="cardiff")
     cli.add_argument("--prepared", type=Path, required=True)
     cli.add_argument("--trees", type=Path, required=True)
+    cli.add_argument("--stock", type=Path, help="Use the verified stock GUM/eRST and RST-DT trees")
     cli.add_argument("--representation", type=Path, required=True, help="Frozen CardiffNLP scores.jsonl")
     cli.add_argument("--output", type=Path, required=True)
     run(cli.parse_args())

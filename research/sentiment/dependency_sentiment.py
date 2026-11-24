@@ -20,6 +20,7 @@ from .nuclearity import central_leaves
 from .parser_pilot import INVENTORIES, RESEARCH_REVISION, canonical_maps, digest, write_json
 from .relation_gate import PairGroups, fit_predict
 from .relation_stability import ITERATIONS, SEED, bootstrap_weights, macro_f1
+from .stock_coarse import INVENTORIES as STOCK_INVENTORIES, SNAPSHOT as STOCK_SNAPSHOT
 
 
 COMPONENTS = 8
@@ -160,6 +161,35 @@ def vectors_for(args, scenes, representation):
     return vectors
 
 
+def tree_inputs(args, audit, hashes):
+    if args.stock is None:
+        maps = canonical_maps()
+        return {name: (args.trees / f"{name}.jsonl",
+                       audit["inventory_reports"][name]["ordered_relation_table"], maps[name])
+                for name in INVENTORIES}
+
+    report_path = HERE / "results/stock-coarse-v1.json"
+    hashes["stock-coarse-v1.json"] = digest(report_path)
+    release = json.loads(report_path.read_text())
+    if release["mapping_revision"] != RESEARCH_REVISION:
+        raise ValueError("The stock comparison used a different mapping revision")
+    corpus = {"sfu": "SFU", "amazon": "Amazon"}[args.corpus]
+    inputs = {}
+    for name in STOCK_INVENTORIES:
+        info = release["stock_parsers"][name]
+        stock = info["corpora"][corpus]
+        path = args.stock / name / f"{corpus}.jsonl"
+        if (info["inventory"] != name or info["stock_snapshot"] != STOCK_SNAPSHOT
+                or stock["scenes_sha256"] != hashes["scenes.jsonl"]
+                or digest(path) != stock["trees_sha256"]):
+            raise ValueError(f"Stock trees do not match the verified run for {corpus}/{name}")
+        hashes[f"stock/{name}/{corpus}.jsonl"] = stock["trees_sha256"]
+        table = info["ordered_relation_table"]
+        labels = {label.rsplit("_", 1)[0].lower() for label in table}
+        inputs[name] = (path, table, {label: label for label in labels})
+    return inputs
+
+
 def summaries(predictions, truth, metadata, inventories):
     weights = bootstrap_weights(metadata)
     results, intervals = {}, {}
@@ -175,7 +205,7 @@ def summaries(predictions, truth, metadata, inventories):
         pairs = (("unlabeled", "nuclearity"), ("fine", "unlabeled"),
                  ("coarse", "unlabeled"), ("fine", "coarse"))
         intervals[inventory] = {f"{left}_minus_{right}": compare(f"{inventory}/{left}", f"{inventory}/{right}")
-                                for left, right in pairs}
+                                for left, right in pairs if f"{inventory}/{left}" in predictions}
     return results, intervals
 
 
@@ -191,10 +221,8 @@ def run(args):
     edu_reviews = np.repeat([review_ids[scene["document_id"]] for scene in scenes],
                             [len(scene["edus"]) for scene in scenes])
     vectors = vectors_for(args, scenes, representation)
-    maps = canonical_maps()
-    inventories = {name: build_inventory(read_jsonl(args.trees / f"{name}.jsonl"), scenes, review_ids,
-                                         audit["inventory_reports"][name]["ordered_relation_table"], maps[name])
-                   for name in INVENTORIES}
+    inventories = {name: build_inventory(read_jsonl(path), scenes, review_ids, table, mapping)
+                   for name, (path, table, mapping) in tree_inputs(args, audit, hashes).items()}
     probability = defaultdict(lambda: np.full(review_count, np.nan))
     fitted_gates = defaultdict(list)
     tested = Counter()
@@ -225,6 +253,8 @@ def run(args):
             for mode, labels, vocabulary in (("unlabeled", np.zeros_like(inv.fine_ids), ("all",)),
                                               ("fine", inv.fine_ids, inv.fine_labels),
                                               ("coarse", inv.coarse_ids, inv.coarse_labels)):
+                if args.stock and mode == "fine":
+                    continue
                 pairs = group_pairs(pair_values, inv.reviews, labels, review_count, len(vocabulary))
                 fitted, gates, iterations = fit_predict(
                     base[train], pairs.subset(train), truth[train], base[test], pairs.subset(test),
@@ -250,6 +280,7 @@ def run(args):
                                          "probability": float(score), "prediction": int(decision)}) + "\n")
     write_json(args.output / "report.json", {
         "protocol": "dependency-sentiment-v1", "corpus": args.corpus, "arm": args.arm,
+        "tree_source": "stock" if args.stock else "fine_checkpoint",
         "reviews": review_count, "edus": len(vectors), "input_hashes": hashes,
         "representation": representation,
         "runtime": {"numpy": np.__version__, "scipy": scipy.__version__, "scikit_learn": sklearn.__version__},
@@ -268,6 +299,7 @@ def main():
     cli.add_argument("--arm", choices=("cardiff", "mdeberta"), required=True)
     cli.add_argument("--prepared", type=Path, required=True)
     cli.add_argument("--trees", type=Path, required=True)
+    cli.add_argument("--stock", type=Path, help="Use the verified stock GUM/eRST and RST-DT trees")
     cli.add_argument("--representation", type=Path, required=True)
     cli.add_argument("--output", type=Path, required=True)
     run(cli.parse_args())
