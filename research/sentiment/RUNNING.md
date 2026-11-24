@@ -250,6 +250,32 @@ and `artifacts/sentiment/sfu-full-v1/` locally, and `sfu-full-v1/` and
 [portable summary](results/sfu-full-parser-audit.json) records both passes,
 the ordered label tables, and the checksums.
 
+### Export verified trees to RS3
+
+Run this from the repository root with `isanlp` available in the Python
+environment, as for the pilot. The exporter reconstructs the saved units
+and uses `DiscourseUnit.to_rs3()` without running inference again.
+
+```bash
+python -B -m research.sentiment.export_rs3 \
+  --corpus SFU --trees-dir artifacts/sentiment/sfu-full-v1 \
+  --audit research/sentiment/results/sfu-full-parser-audit.json \
+  --output-dir artifacts/sentiment/share/rs3
+```
+
+The layout is `SFU/<standard>/<fine|coarse>/<scene>.rs3`. The exporter
+verifies the source checksums and checks every RS3 against its source
+tree and EDU sequence. The scene index links filenames to document IDs.
+When a relation label is used for both a nucleus–satellite and a
+multinuclear attachment, the multinuclear use takes a `-multinuc`
+suffix. The included `rs3-relation-aliases.json` reverses this spelling
+for label comparisons. To export Amazon or UCI, use that corpus name and
+the corresponding run's `parser-verified/` and `parser-audit.json`.
+
+The SFU export has 8,096 files. All 60 fine pilot bodies match after
+decoding aliases. The rstWeb reader imported all files with the expected
+parent links and attachment types.
+
 ### Token length audit
 
 The [length audit](results/sfu-token-lengths.json) records counts for the
