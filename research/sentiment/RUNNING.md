@@ -4,6 +4,8 @@ For a new machine, start with [setting up a fresh checkout](#set-up-a-fresh-chec
 The [meeting notes](replication/MEETING_NOTES.md) summarize the SFU and
 Amazon experiments. The [dependency-weighting pilot](DEPENDENCY_PILOT.md)
 explains and reproduces the later CardiffNLP and frozen mDeBERTa comparison.
+The [bottom-up Amazon experiment](#combine-sentiment-up-the-amazon-trees)
+tests whether fine or coarse labels help when combining sentiment up a tree.
 The sections below also preserve the original SFU
 stage commands and reference outcomes.
 
@@ -597,6 +599,60 @@ for standard in sorted((root / "granularity/lr_mf_wad/predictions").iterdir()):
 PY
 ```
 
+
+## Combine sentiment up the Amazon trees
+
+**Question.** When the model combines sentiment step by step up the RST
+tree, does knowing the fine label help?
+
+1. Use the 2,000 Amazon reviews, the same four sets of trees, and the same
+   frozen CardiffNLP predictions. Start each EDU with one score, its
+   positive probability minus its negative probability.
+2. Combine the two sides of each split into a single score. Multiply each
+   side's score by its main or supporting weight, add the two, and apply
+   `tanh` to keep the result between −1 and +1. Use the main weight on both
+   sides of a multinuclear split. Repeat until reaching the review root.
+   This follows the composition rule in [Bhatia et al., §4](https://aclanthology.org/D15-1263.pdf#page=4).
+3. Fit the weights and a logistic output on the root score using the review
+   labels. The shared version learns one pair of weights for every split.
+   Coarse learns one pair per coarse label, and fine learns one per fine
+   label. All three use identical trees within a standard. All fits use
+   binary log loss and L2 with fixed `C=1`, centered at 0.5 for the two
+   composition weights, 1 for the output scale, and 0 for the bias.
+4. Use the frozen five folds and a 0.5 threshold. Evaluate pooled held-out
+   macro-F1. Paired 95% pointwise intervals use 20,000 resamples within
+   fold, category, and gold label and keep the fitted models fixed.
+
+| Standard | Shared rule | Coarse | Fine | Fine − coarse, F1 points (95% interval) |
+|---|---:|---:|---:|---:|
+| PCC | .8765 | .8835 | .8830 | −0.05 [−0.80, +0.65] |
+| NLDT | .8745 | .8845 | .8820 | −0.25 [−0.85, +0.35] |
+| GUM/eRST | .8715 | .8805 | .8790 | −0.15 [−0.95, +0.65] |
+| RST-DT | .8670 | .8745 | .8755 | +0.10 [−0.75, +0.95] |
+
+Both label-specific versions scored higher than the shared rule in all
+four standards. Only the NLDT coarse gain had a pointwise interval that
+excluded zero (+1.00 F1 points, interval +0.05 to +2.00). Fine and coarse
+were within 0.25 points throughout, and all four fine–coarse intervals
+included zero. This gives no clear granularity winner for bottom-up
+composition on the Amazon cohort. Regularization and the supervised
+mapping from local scores to a review prediction are specific to this
+experiment.
+
+After the [Amazon replay](#replay-sfu-amazon-and-uci-from-raw-data), point
+`prepared` at the prepared reviews, `trees` at the verified parse folder,
+and `scores` at the frozen CardiffNLP `scores.jsonl`. Run this from the repo root.
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+  uv run --project research/sentiment --locked --no-sync python -B \
+  -m research.sentiment.recursive_sentiment \
+  --prepared "$prepared" --trees "$trees" --representation "$scores" \
+  --output artifacts/sentiment/amazon-recursive-v1
+```
+
+The [aggregate report](results/amazon-recursive-v1.json) records verified
+input hashes, all paired comparisons, and the held-out prediction hash.
 
 ## Replay SFU Amazon and UCI from raw data
 

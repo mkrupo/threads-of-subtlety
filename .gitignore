@@ -200,3 +200,4 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/sfu-relation-nucleus-first-v1.json
 !/research/sentiment/results/sfu-motif-v1.json
 !/research/sentiment/results/sentiment3-dependency-v1.json
+!/research/sentiment/results/amazon-recursive-v1.json

@@ -1,0 +1,607 @@
+{
+  "decision_threshold": 0.5,
+  "edu_score": "positive probability minus negative probability",
+  "edus": 16739,
+  "fits": {
+    "deu.rst.pcc/coarse": [
+      {
+        "fold": 0,
+        "iterations": 64
+      },
+      {
+        "fold": 1,
+        "iterations": 61
+      },
+      {
+        "fold": 2,
+        "iterations": 59
+      },
+      {
+        "fold": 3,
+        "iterations": 60
+      },
+      {
+        "fold": 4,
+        "iterations": 61
+      }
+    ],
+    "deu.rst.pcc/fine": [
+      {
+        "fold": 0,
+        "iterations": 61
+      },
+      {
+        "fold": 1,
+        "iterations": 62
+      },
+      {
+        "fold": 2,
+        "iterations": 53
+      },
+      {
+        "fold": 3,
+        "iterations": 58
+      },
+      {
+        "fold": 4,
+        "iterations": 64
+      }
+    ],
+    "deu.rst.pcc/shared": [
+      {
+        "fold": 0,
+        "iterations": 16
+      },
+      {
+        "fold": 1,
+        "iterations": 17
+      },
+      {
+        "fold": 2,
+        "iterations": 14
+      },
+      {
+        "fold": 3,
+        "iterations": 16
+      },
+      {
+        "fold": 4,
+        "iterations": 15
+      }
+    ],
+    "eng.erst.gum/coarse": [
+      {
+        "fold": 0,
+        "iterations": 77
+      },
+      {
+        "fold": 1,
+        "iterations": 58
+      },
+      {
+        "fold": 2,
+        "iterations": 49
+      },
+      {
+        "fold": 3,
+        "iterations": 53
+      },
+      {
+        "fold": 4,
+        "iterations": 53
+      }
+    ],
+    "eng.erst.gum/fine": [
+      {
+        "fold": 0,
+        "iterations": 74
+      },
+      {
+        "fold": 1,
+        "iterations": 77
+      },
+      {
+        "fold": 2,
+        "iterations": 79
+      },
+      {
+        "fold": 3,
+        "iterations": 71
+      },
+      {
+        "fold": 4,
+        "iterations": 72
+      }
+    ],
+    "eng.erst.gum/shared": [
+      {
+        "fold": 0,
+        "iterations": 17
+      },
+      {
+        "fold": 1,
+        "iterations": 16
+      },
+      {
+        "fold": 2,
+        "iterations": 16
+      },
+      {
+        "fold": 3,
+        "iterations": 15
+      },
+      {
+        "fold": 4,
+        "iterations": 15
+      }
+    ],
+    "eng.rst.rstdt/coarse": [
+      {
+        "fold": 0,
+        "iterations": 71
+      },
+      {
+        "fold": 1,
+        "iterations": 63
+      },
+      {
+        "fold": 2,
+        "iterations": 58
+      },
+      {
+        "fold": 3,
+        "iterations": 65
+      },
+      {
+        "fold": 4,
+        "iterations": 65
+      }
+    ],
+    "eng.rst.rstdt/fine": [
+      {
+        "fold": 0,
+        "iterations": 100
+      },
+      {
+        "fold": 1,
+        "iterations": 90
+      },
+      {
+        "fold": 2,
+        "iterations": 95
+      },
+      {
+        "fold": 3,
+        "iterations": 76
+      },
+      {
+        "fold": 4,
+        "iterations": 79
+      }
+    ],
+    "eng.rst.rstdt/shared": [
+      {
+        "fold": 0,
+        "iterations": 17
+      },
+      {
+        "fold": 1,
+        "iterations": 14
+      },
+      {
+        "fold": 2,
+        "iterations": 15
+      },
+      {
+        "fold": 3,
+        "iterations": 14
+      },
+      {
+        "fold": 4,
+        "iterations": 16
+      }
+    ],
+    "nld.rst.nldt/coarse": [
+      {
+        "fold": 0,
+        "iterations": 56
+      },
+      {
+        "fold": 1,
+        "iterations": 53
+      },
+      {
+        "fold": 2,
+        "iterations": 53
+      },
+      {
+        "fold": 3,
+        "iterations": 47
+      },
+      {
+        "fold": 4,
+        "iterations": 54
+      }
+    ],
+    "nld.rst.nldt/fine": [
+      {
+        "fold": 0,
+        "iterations": 64
+      },
+      {
+        "fold": 1,
+        "iterations": 54
+      },
+      {
+        "fold": 2,
+        "iterations": 63
+      },
+      {
+        "fold": 3,
+        "iterations": 55
+      },
+      {
+        "fold": 4,
+        "iterations": 65
+      }
+    ],
+    "nld.rst.nldt/shared": [
+      {
+        "fold": 0,
+        "iterations": 14
+      },
+      {
+        "fold": 1,
+        "iterations": 13
+      },
+      {
+        "fold": 2,
+        "iterations": 15
+      },
+      {
+        "fold": 3,
+        "iterations": 16
+      },
+      {
+        "fold": 4,
+        "iterations": 15
+      }
+    ]
+  },
+  "input_hashes": {
+    "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+    "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+    "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+    "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+    "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+    "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+    "scores.jsonl": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+    "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e"
+  },
+  "mapping_revision": "f06309b62cbc53dce0c98668cac225666dfb64d7",
+  "outer_folds": 5,
+  "paired": {
+    "deu.rst.pcc": {
+      "coarse_minus_shared": {
+        "difference": 0.007000509754234496,
+        "interval_95": [
+          -0.002498941937374827,
+          0.016532299156967613
+        ]
+      },
+      "fine_minus_coarse": {
+        "difference": -0.0005007908838874364,
+        "interval_95": [
+          -0.007993561792555203,
+          0.006504772716319159
+        ]
+      },
+      "fine_minus_shared": {
+        "difference": 0.00649971887034706,
+        "interval_95": [
+          -0.0030219158769665324,
+          0.016009923937472702
+        ]
+      }
+    },
+    "eng.erst.gum": {
+      "coarse_minus_shared": {
+        "difference": 0.008999285245339994,
+        "interval_95": [
+          -0.0005010709796880508,
+          0.018517062763039913
+        ]
+      },
+      "fine_minus_coarse": {
+        "difference": -0.0015022781959588283,
+        "interval_95": [
+          -0.00950228966764442,
+          0.006498897408383857
+        ]
+      },
+      "fine_minus_shared": {
+        "difference": 0.007497007049381166,
+        "interval_95": [
+          -0.0030163122981880647,
+          0.01848352219540811
+        ]
+      }
+    },
+    "eng.rst.rstdt": {
+      "coarse_minus_shared": {
+        "difference": 0.0074974492891835,
+        "interval_95": [
+          -0.0020004220891046225,
+          0.01699910919037924
+        ]
+      },
+      "fine_minus_coarse": {
+        "difference": 0.0010082899003018841,
+        "interval_95": [
+          -0.007493450906577437,
+          0.009501837631926155
+        ]
+      },
+      "fine_minus_shared": {
+        "difference": 0.008505739189485384,
+        "interval_95": [
+          -0.002987278219332459,
+          0.02000102036020947
+        ]
+      }
+    },
+    "nld.rst.nldt": {
+      "coarse_minus_shared": {
+        "difference": 0.010001508518825863,
+        "interval_95": [
+          0.0005004612832099631,
+          0.020000249127975562
+        ]
+      },
+      "fine_minus_coarse": {
+        "difference": -0.0025010331345509673,
+        "interval_95": [
+          -0.00851414917333718,
+          0.0035076251875817807
+        ]
+      },
+      "fine_minus_shared": {
+        "difference": 0.007500475384274896,
+        "interval_95": [
+          -0.002503381919190012,
+          0.017997484659095994
+        ]
+      }
+    }
+  },
+  "predictions_sha256": "224a058e15e9e63184f37e4c9a0fd6784d0e27e315de538c0f588f8615e0d4f6",
+  "protocol": "recursive-sentiment-amazon-v1",
+  "regularization_c": 1.0,
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "label"
+    ],
+    "unit": "review"
+  },
+  "results": {
+    "deu.rst.pcc/coarse": {
+      "accuracy": 0.8835,
+      "confusion_matrix_labels_0_1": [
+        [
+          885,
+          115
+        ],
+        [
+          118,
+          882
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8834997378744103,
+      "negative_f1": 0.8836744882675986,
+      "positive_f1": 0.8833249874812218
+    },
+    "deu.rst.pcc/fine": {
+      "accuracy": 0.883,
+      "confusion_matrix_labels_0_1": [
+        [
+          886,
+          114
+        ],
+        [
+          120,
+          880
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8829989469905228,
+      "negative_f1": 0.8833499501495513,
+      "positive_f1": 0.8826479438314945
+    },
+    "deu.rst.pcc/shared": {
+      "accuracy": 0.8765,
+      "confusion_matrix_labels_0_1": [
+        [
+          874,
+          126
+        ],
+        [
+          121,
+          879
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8764992281201758,
+      "negative_f1": 0.8761904761904762,
+      "positive_f1": 0.8768079800498753
+    },
+    "eng.erst.gum/coarse": {
+      "accuracy": 0.8805,
+      "confusion_matrix_labels_0_1": [
+        [
+          878,
+          122
+        ],
+        [
+          117,
+          883
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.880499253120332,
+      "negative_f1": 0.8802005012531329,
+      "positive_f1": 0.8807980049875311
+    },
+    "eng.erst.gum/fine": {
+      "accuracy": 0.879,
+      "confusion_matrix_labels_0_1": [
+        [
+          874,
+          126
+        ],
+        [
+          116,
+          884
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8789969749243731,
+      "negative_f1": 0.878391959798995,
+      "positive_f1": 0.8796019900497513
+    },
+    "eng.erst.gum/shared": {
+      "accuracy": 0.8715,
+      "confusion_matrix_labels_0_1": [
+        [
+          871,
+          129
+        ],
+        [
+          128,
+          872
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.871499967874992,
+      "negative_f1": 0.8714357178589295,
+      "positive_f1": 0.8715642178910544
+    },
+    "eng.rst.rstdt/coarse": {
+      "accuracy": 0.8745,
+      "confusion_matrix_labels_0_1": [
+        [
+          866,
+          134
+        ],
+        [
+          117,
+          883
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8744909319698349,
+      "negative_f1": 0.8734241048915784,
+      "positive_f1": 0.8755577590480912
+    },
+    "eng.rst.rstdt/fine": {
+      "accuracy": 0.8755,
+      "confusion_matrix_labels_0_1": [
+        [
+          873,
+          127
+        ],
+        [
+          122,
+          878
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8754992218701367,
+      "negative_f1": 0.8751879699248121,
+      "positive_f1": 0.8758104738154614
+    },
+    "eng.rst.rstdt/shared": {
+      "accuracy": 0.867,
+      "confusion_matrix_labels_0_1": [
+        [
+          860,
+          140
+        ],
+        [
+          126,
+          874
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8669934826806514,
+      "negative_f1": 0.8660624370594159,
+      "positive_f1": 0.8679245283018868
+    },
+    "nld.rst.nldt/coarse": {
+      "accuracy": 0.8845,
+      "confusion_matrix_labels_0_1": [
+        [
+          884,
+          116
+        ],
+        [
+          115,
+          885
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8844999711249928,
+      "negative_f1": 0.8844422211105553,
+      "positive_f1": 0.8845577211394303
+    },
+    "nld.rst.nldt/fine": {
+      "accuracy": 0.882,
+      "confusion_matrix_labels_0_1": [
+        [
+          885,
+          115
+        ],
+        [
+          121,
+          879
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8819989379904418,
+      "negative_f1": 0.8823529411764706,
+      "positive_f1": 0.8816449348044132
+    },
+    "nld.rst.nldt/shared": {
+      "accuracy": 0.8745,
+      "confusion_matrix_labels_0_1": [
+        [
+          871,
+          129
+        ],
+        [
+          122,
+          878
+        ]
+      ],
+      "documents": 2000,
+      "macro_f1": 0.8744984626061669,
+      "negative_f1": 0.8740592072252885,
+      "positive_f1": 0.8749377179870453
+    }
+  },
+  "reviews": 2000,
+  "runtime": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1"
+  },
+  "source_sha256": "fa814ca6c078eadd6f5ca7758cf3ef3e7fa35173d676dd476ee7f1e6ed63de22",
+  "verification": {
+    "independent_check": "Recomputed pooled metrics and paired point estimates for all 12 conditions from the saved predictions and checked prediction identity, gold label, held-out fold and threshold for each review.",
+    "repeat_fit": "A separate rerun produced byte-identical predictions and aggregate metrics."
+  }
+}
