@@ -39,8 +39,27 @@ In “The screen looks great, but the battery dies by noon,” equal weighting a
 
 **Paper takeaway.** The usefulness of finer RST labels depends on the corpus and on what the classifier reads from the tree. Amazon shows that adding relation features can help on this sample of short, intact reviews. Review length, sample size, product categories, and label definitions changed together, so the comparison leaves the cause of the reversal open. [Full SFU–Amazon comparison](results/amazon/comparison.json)
 
-## Follow-up for the meeting
+## Experiment 3 — Weighting connections in the tree
 
-- **Weight connections (Chistova-inspired).** Score two pieces of text the tree connects, then learn how much the relation label changes that connection's contribution. On Amazon, labels helped over unlabeled connections in three of four standards with CardiffNLP. For NLDT, fine scored .893 and coarse .885, reversing the original averaging result. [Results](../DEPENDENCY_PILOT.md#what-we-found)
+| Corpus | Standard | Unlabeled links | Fine | Mapped coarse |
+|---|---|---:|---:|---:|
+| SFU | PCC | .8200 | **.8399** | .8374 |
+| SFU | NLDT | .8275 | .8349 | **.8450** |
+| SFU | GUM/eRST | .8300 | .8325 | **.8450** |
+| SFU | RST-DT | .8150 | **.8349** | .8300 |
+| Amazon | PCC | .8710 | **.8895** | .8845 |
+| Amazon | NLDT | .8690 | **.8925** | .8845 |
+| Amazon | GUM/eRST | .8760 | **.8890** | .8855 |
+| Amazon | RST-DT | .8759 | .8770 | **.8775** |
+
+Held-out macro-F1 from the same five folds. Bold marks the higher labeled
+score in each row.
+
+- **What changed.** We kept the same trees, CardiffNLP EDU scores, and nuclearity averages. The model also scores each pair of EDUs connected by the tree. Unlabeled links all get equal weight. Fine and coarse learn a weight for each label. [Inspiration from Chistova, §3.2](https://aclanthology.org/2023.findings-acl.209.pdf#page=3)
+- **Do labels help?** On Amazon, both fine and coarse beat unlabeled links for PCC, NLDT, and GUM/eRST, with paired intervals above zero. On SFU, all intervals for adding labels include zero.
+- **Does finer detail help?** Amazon NLDT flipped from a 1.30-point coarse lead with the original averages to a 0.80-point fine lead with link weighting. SFU GUM/eRST favored coarse by 1.25 points. [Results and paired intervals](../DEPENDENCY_PILOT.md#what-we-found)
+
+## Other follow-ups
+
 - **Combine sentiment up the tree (Bhatia-inspired).** Combine two pieces at a time, starting at the bottom. Test whether the model learns one rule for all relations, one per coarse label, or one per fine label. On Amazon the fine and coarse scores were within 0.25 macro-F1 points for all four standards. [Results](../RUNNING.md#combine-sentiment-up-the-amazon-trees)
 - **Check the public coarse parsers.** Stock GUM/eRST and RST-DT used the same PCC EDUs and built different trees. Original pooling still helped over nuclearity alone on Amazon and hurt on SFU. Stock RST-DT improved Amazon bottom-up pooling from .875 to .886. This comparison measures a change of parser as well as a change in how coarse relations are produced. [Results](../RUNNING.md#rerun-sentiment-with-the-stock-trees)
