@@ -1,0 +1,12 @@
+{
+  "raw_rows_verified": 2000,
+  "tweet_train_unique_normalized": 45513,
+  "normalized_full_review_overlap": 0,
+  "earliest_review": "2022-01-01T02:46:05.840000+00:00",
+  "latest_review": "2023-08-31T17:47:53.135000+00:00",
+  "unique_texts_reviewers_products": {
+    "body": 2000,
+    "product": 2000,
+    "reviewer": 2000
+  }
+}

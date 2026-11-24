@@ -1,0 +1,123 @@
+--- a/research/sentiment/baseline.py
++++ b/research/sentiment/baseline.py
+@@ -64,6 +64,10 @@
+ 
+ 
+ def validate_inputs(records: list[dict], splits: dict, config: dict) -> dict[str, dict]:
++    if config.get("grouped_duplicate_cv"):
++        from .prepare_uci import validate_grouped_inputs
++
++        return validate_grouped_inputs(records, splits, config["seed"])
+     by_id = {row["document_id"]: row for row in records}
+     if len(by_id) != len(records) or not records:
+         raise ValueError("Duplicate document IDs or empty corpus")
+@@ -148,8 +152,11 @@
+     for row in records:
+         normalized = " ".join(row["text"].split())
+         text_hash = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
++        document_id = f"{config.get('document_id_prefix', 'sfu')}-{text_hash}"
++        if config.get("grouped_duplicate_cv"):
++            document_id += f"-{row['domain']}-{row['release_row']}"
+         if (row["text_normalized"] != normalized or row["text_sha256"] != text_hash
+-                or row["document_id"] != f"{config.get('document_id_prefix', 'sfu')}-{text_hash}"
++                or row["document_id"] != document_id
+                 or row["whitespace_tokens"] != len(normalized.split())):
+             raise ValueError("Review text, normalization, hash, length or ID disagree")
+     expected_manifest = []
+--- a/research/sentiment/edu_baseline.py
++++ b/research/sentiment/edu_baseline.py
+@@ -22,7 +22,7 @@
+ )
+ 
+ 
+-PROTOCOL = "amazon23-short-edu-mean-v1"
++PROTOCOL = "uci-sls-edu-mean-v1"
+ CONTROL = "edu_mean_lr"
+ RESULTS = HERE / "results"
+ 
+--- a/research/sentiment/nuclearity.py
++++ b/research/sentiment/nuclearity.py
+@@ -144,7 +144,7 @@
+         for row in predictions:
+             stream.write(json.dumps(row, sort_keys=True, allow_nan=False) + "\n")
+     report = {
+-        "protocol": "amazon23-short-nuclearity-v1",
++        "protocol": "uci-sls-nuclearity-v1",
+         "primary_metric": baseline["primary_metric"],
+         "features": {
+             "group_order": ["central", "supporting"],
+--- a/research/sentiment/relation_pooling.py
++++ b/research/sentiment/relation_pooling.py
+@@ -217,7 +217,7 @@
+         for row in predictions:
+             stream.write(json.dumps(row, sort_keys=True, allow_nan=False) + "\n")
+     report = {
+-        "protocol": "amazon23-short-relation-pooling-v1",
++        "protocol": "uci-sls-relation-pooling-v1",
+         "primary_metric": reference["primary_metric"],
+         "research_revision": RESEARCH_REVISION,
+         "features": {
+@@ -238,12 +238,12 @@
+         "inventories": inventories,
+     }
+     if nucleus_first:
+-        report["protocol"] = "amazon23-short-relation-nucleus-first-v1"
++        report["protocol"] = "uci-sls-relation-nucleus-first-v1"
+         report["features"]["side_order"] = ["nucleus for NS/SN, left for NN", "satellite for NS/SN, right for NN"]
+         report["source_hashes"]["relation_stability.py"] = digest(HERE / "relation_stability.py")
+         report["resampling"] = {
+-            "seed": SEED, "draws": ITERATIONS, "unit": "review", "paired": True,
+-            "strata": ["outer_fold", "domain", "gold_label"],
++            "seed": SEED, "draws": ITERATIONS, "unit": "duplicate group", "paired": True,
++            "strata": ["outer_fold", "group_domain_signature", "gold_label"],
+         }
+     write_json(output / "report.json", report)
+     return report
+--- a/research/sentiment/relation_stability.py
++++ b/research/sentiment/relation_stability.py
+@@ -16,6 +16,10 @@
+ 
+ 
+ def bootstrap_weights(metadata):
++    if "duplicate_group" in metadata[0]:
++        from .prepare_uci import grouped_bootstrap_weights
++
++        return grouped_bootstrap_weights(metadata, ITERATIONS, SEED)
+     strata = defaultdict(list)
+     for i, row in enumerate(metadata):
+         strata[row["outer_fold"], row["domain"], row["label"]].append(i)
+@@ -97,10 +101,10 @@
+             "differences_omitting_each_fold": masked_gaps(matrix, truth, folds, omit=True),
+         }
+     return {
+-        "protocol": "amazon23-short-relation-stability-v1",
++        "protocol": "uci-sls-relation-stability-v1",
+         "comparison": "fine minus coarse macro-F1 on fixed held-out predictions",
+-        "resampling": {"seed": SEED, "draws": ITERATIONS, "unit": "review", "paired": True,
+-                       "strata": ["outer_fold", "domain", "gold_label"]},
++        "resampling": {"seed": SEED, "draws": ITERATIONS, "unit": "duplicate group", "paired": True,
++                       "strata": ["outer_fold", "group_domain_signature", "gold_label"]},
+         "reviews": len(metadata),
+         "input_hashes": hashes,
+         "source_sha256": digest(HERE / "relation_stability.py"),
+--- a/research/sentiment/motif_sfu.py
++++ b/research/sentiment/motif_sfu.py
+@@ -228,7 +228,7 @@
+         for row in predictions:
+             stream.write(json.dumps(row, sort_keys=True, allow_nan=False) + "\n")
+     report = {
+-        "protocol": "amazon23-short-motif-v1", "research_revision": RESEARCH_REVISION,
++        "protocol": "uci-sls-motif-v1", "research_revision": RESEARCH_REVISION,
+         "features": "M3 frequency and weighted average depth from the training-partition fine catalog and its coarse projection",
+         "primary_metric": config["primary_metric"], "inputs_sha256": inputs,
+         "predictions_sha256": digest(path), "reviews": len(by_id),
+@@ -237,7 +237,8 @@
+         )},
+         "runtime": {"python": sys.version.split()[0], "numpy": np.__version__,
+                     "networkx": nx.__version__, "scikit_learn": sklearn.__version__},
+-        "resampling": {"seed": SEED, "draws": ITERATIONS, "strata": ["outer_fold", "domain", "gold_label"],
++        "resampling": {"seed": SEED, "draws": ITERATIONS, "unit": "duplicate group",
++                       "strata": ["outer_fold", "group_domain_signature", "gold_label"],
+                        "intervals": "pointwise percentile intervals conditional on saved held-out predictions"},
+         "inventories": inventories, "between_inventories": between,
+     }

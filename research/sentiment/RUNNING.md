@@ -1,4 +1,9 @@
-# Reproduce the sentiment controls and parser pilot
+# Reproduce the sentiment experiments
+
+For a new machine, start with [setting up a fresh checkout](#set-up-a-fresh-checkout).
+The [meeting notes](replication/MEETING_NOTES.md) summarize the SFU and
+Amazon experiments. The sections below also preserve the original SFU
+stage commands and reference outcomes.
 
 The CPU text, length, and prior controls were completed on 2026-11-18.
 The four-inventory parser pilot is documented below.
@@ -588,4 +593,223 @@ for standard in sorted((root / "granularity/lr_mf_wad/predictions").iterdir()):
         scores[granularity] = score
     print(standard.name, len(ids), scores, scores["fine"] - scores["coarse"])
 PY
+```
+
+
+## Replay SFU Amazon and UCI from raw data
+
+The aggregate reports and source manifests are under
+[replication/results](replication/results). Amazon uses 2,000 reviews from
+four categories, written from January 2022 through August 2023. The
+preparation code fixes the length filter, cohort quotas, and star-to-polarity
+mapping. UCI uses every released sentence and the authors' binary labels.
+Its folds keep identical normalized texts together across categories and
+both levels of cross-validation. Paired UCI intervals resample those
+duplicate groups together.
+
+Both runs use the published SFU scorer, parser checkpoints, and training
+settings. The staging script starts from commit
+25499ace90e23203da204abb92c32fb0ab8de41b. It gives the external cohorts their
+own preparation checks, provenance, and outputs. The converter uses the
+parser's joined-EDU tokenization for alignment retries. The original SFU
+scripts and checksum references are preserved.
+
+### Set up a fresh checkout
+
+Use `sentiment2` on Max's fork. The [meeting notes](replication/MEETING_NOTES.md)
+explain the model inputs and review-level findings. The
+[fresh SFU audit](replication/results/sfu-reproduction.json) records what
+matched on the RTX 4080 under WSL2. The result JSON files are portable.
+Inference also requires the collaborator's original `erst/` and
+`rstdt/` checkpoint folders, each with its weights, config, and relation
+table.
+
+From the repository root, configure the assets directory and verify that
+the canonical mapping commit is available. If the check fails, fetch
+`research/unirst2-canonical` from the fork.
+
+```bash
+scripts="$PWD/research/sentiment/replication"
+assets="$PWD/artifacts/sentiment/assets"
+export UNIRST_CHECKPOINTS="$PWD/HC3_project"
+mkdir -p "$assets"
+git cat-file -e f06309b62cbc53dce0c98668cac225666dfb64d7^{commit}
+```
+
+Create the three runtimes. For CPU parsing, use `--torch-backend cpu`
+and set `CUDA_DEVICE=-1` when running the parser.
+
+```bash
+uv venv --python 3.10 "$assets/parser-venv"
+uv pip install --python "$assets/parser-venv/bin/python" --torch-backend cu118 \
+  torch==2.2.2 numpy==1.26.4
+uv pip install --python "$assets/parser-venv/bin/python" \
+  transformers==4.46.3 tokenizers==0.20.3 huggingface_hub==0.26.5 \
+  sentsplit==1.0.8 setuptools==80.9.0 sentencepiece==0.2.3 \
+  'isanlp @ git+https://github.com/iinemo/isanlp.git@2a102e59f9718acc7fe259dd8d83c66d5da39794' \
+  'rstconverter @ git+https://github.com/rst-workbench/rst-converter-service.git@b7eaa16f58f471e8ccc40344c509b5169e589cd2' \
+  'isanlp_rst @ git+https://github.com/ruthenian8/isanlp_rst.git@cb73639acef90163833c4b5043669dc1e7cf0316'
+
+uv venv --python 3.12 "$assets/scorer-venv"
+uv pip install --python "$assets/scorer-venv/bin/python" \
+  numpy==2.2.6 onnxruntime==1.22.1 tokenizers==0.21.4
+
+UV_PROJECT_ENVIRONMENT="$assets/classifier-exact-venv" \
+  uv sync --project research/sentiment --locked --python 3.11.15
+uv pip install --python "$assets/classifier-exact-venv/bin/python" networkx==3.1
+```
+
+The [package lists](replication/runtime/) record the environment actually
+used under WSL2 on the RTX 4080. If your uv release lacks the 3.11.15
+interpreter, install the archived build for your platform and pass its
+Python executable to `uv sync --python`. [Python 3.11.15 build used for the replay](https://github.com/astral-sh/python-build-standalone/releases/tag/20260324)
+
+Stage the pinned public weights and tokenizers. The helper verifies the
+local fine checkpoints and the stock UniRST and CardiffNLP files before
+inference. It also sets the pinned tokenizer aliases for offline parsing.
+
+```bash
+"$assets/parser-venv/bin/python" -B "$scripts/prepare-model-assets.py" \
+  --assets "$assets" --checkpoints "$UNIRST_CHECKPOINTS"
+```
+
+### Raw inputs
+
+Keep raw files and generated per-review artifacts under the ignored
+`artifacts/sentiment/` directory. Fetch the TweetEval training file for
+both external corpora. The published cohort reports record the expected
+data and model hashes.
+
+```bash
+tweeteval_revision=3eb5e91dd5070b5a5931df4e70cbab5978e3c50c
+tweeteval_train="$assets/tweeteval-sentiment-train.txt"
+curl -fL "https://raw.githubusercontent.com/cardiffnlp/tweeteval/$tweeteval_revision/datasets/sentiment/train_text.txt" \
+  -o "$tweeteval_train"
+```
+
+For SFU, use the official English raw ZIP as `sfu_zip`. For UCI, use the
+official Sentiment Labelled Sentences ZIP as `uci_zip`. [SFU source](https://www.sfu.ca/~mtaboada/SFU_Review_Corpus.html) · [UCI source](https://archive.ics.uci.edu/dataset/331/sentiment%2Blabelled%2Bsentences)
+
+```bash
+sfu_zip="$assets/SFU_Review_Corpus_Raw.zip"
+uci_zip="$assets/uci-sentiment-labelled-sentences.zip"
+curl -fL https://www.sfu.ca/~mtaboada/docs/research/SFU_Review_Corpus_Raw.zip -o "$sfu_zip"
+curl -fL 'https://archive.ics.uci.edu/static/public/331/sentiment%2Blabelled%2Bsentences.zip' -o "$uci_zip"
+```
+
+For Amazon, create a fresh run directory and download its four source
+archives and the language ID model there. The expected archive hashes
+are in the [Amazon cohort manifest](replication/results/amazon/cohort.json).
+
+```bash
+run="$(mktemp -d "$PWD/artifacts/sentiment/amazon23-short-v1.XXXXXX")"
+amazon_source=https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw/review_categories
+for category in All_Beauty Appliances Musical_Instruments Software; do
+  curl -fL "$amazon_source/$category.jsonl.gz" -o "$run/$category.jsonl.gz"
+done
+curl -fL https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz -o "$run/lid.176.ftz"
+cp "$tweeteval_train" "$run/tweeteval-sentiment-train.txt"
+printf '%s\n' "$tweeteval_revision" > "$run/tweeteval-revision.txt"
+uv venv --python 3.10 "$assets/amazon-prep-venv"
+prep_python="$assets/amazon-prep-venv/bin/python"
+uv pip install --python "$prep_python" fasttext-wheel==0.9.2 numpy==1.26.4 tokenizers==0.20.3
+```
+
+### Prepare and run
+
+Use a fresh directory beneath the checkout for each run. The SFU command
+builds the full comparison-compatible layout and uses the published
+checksum references for its scorer and downstream inputs.
+
+```bash
+sfu_run="$(mktemp -d "$PWD/artifacts/sentiment/sfu-repro.XXXXXX")"
+bash "$scripts/run-sfu.sh" "$sfu_run" "$assets" "$sfu_zip"
+```
+
+The scorer and downstream SFU stages check the historical SHA-256 values.
+If a different machine produces a mismatch, inspect the preceding stage
+report to locate the first difference. The WSL2 replay matched the EDU
+and discourse predictions byte for byte. Its text-control metrics matched
+with different TF–IDF artifact hashes. [Fresh SFU audit](replication/results/sfu-reproduction.json)
+
+For Amazon, use the run directory populated above. For UCI, create a
+fresh directory. Each preparation regenerates the corpus and folds
+before any fitting.
+
+```bash
+bash "$scripts/stage.sh" "$run" amazon
+(
+  cd "$run/source"
+  "$prep_python" -B -m research.sentiment.prepare_amazon \
+    --run-dir "$run" \
+    --tokenizer "$assets/hf/hub/models--xlm-roberta-base/snapshots/e73636d4f797dec63c3081bb6ed5c7b0bb3f2089/tokenizer.json"
+)
+cmp "$run/baseline_config.json" "$scripts/results/amazon/baseline-config.json"
+python -B "$scripts/verify-amazon.py" --run-dir "$run" > "$run/cohort-verification.json"
+```
+
+```bash
+run="$(mktemp -d "$PWD/artifacts/sentiment/uci-sls-v1.XXXXXX")"
+bash "$scripts/stage.sh" "$run" uci
+(
+  cd "$run/source"
+  "$assets/classifier-exact-venv/bin/python" -B -m research.sentiment.prepare_uci \
+    --run-dir "$run" --archive "$uci_zip" --tweeteval-train "$tweeteval_train"
+)
+cmp "$run/baseline_config.json" "$scripts/results/uci/baseline-config.json"
+```
+
+Then fit the text controls, parse all four inventories, and run the
+remaining classifier and uncertainty comparisons.
+
+```bash
+(
+  cd "$run/source"
+  cp "$run/baseline_config.json" research/sentiment/baseline_config.json
+  "$assets/classifier-exact-venv/bin/python" -B -m research.sentiment.baseline \
+    --prepared-dir "$run/prepared" --output-dir "$run/text-controls"
+)
+bash "$scripts/run-parser.sh" "$run" "$assets"
+bash "$scripts/run-classifiers.sh" "$run" "$assets"
+```
+
+The parser runner defaults to one process on GPU 0. Set
+`UNIRST_JOBS=2` to share the GPU between two inventory processes after
+PCC segmentation when it has enough memory. Set `CUDA_DEVICE=-1` with
+CPU Torch to run sequentially on CPU.
+
+### Read and verify the comparisons
+
+The [three-corpus report](replication/results/uci/comparison.json) contains
+all 32 macro-F1 and accuracy comparisons, parser coverage, and paired
+intervals. The [Amazon report](replication/results/amazon/comparison.json)
+also records its temporal and TweetEval checks.
+
+The 2026-11-21 handover check regenerated the prepared inputs, folds, and
+parser samples from the raw archives for all three corpora. They matched
+the previous runs byte for byte. Offline model staging verified the
+pinned files. SFU scoring and classifier fitting from the verified trees
+again produced identical downstream predictions and text-order intervals.
+
+UCI has 3,000 labelled sentences, with 500 per polarity in each of its
+three domains. The complete release produced 5,208 EDUs and 12,000
+verified trees. Each sentence occupied one scene, and 1,544 sentences
+contained one EDU. The verifier independently checked all 3,000 raw
+labels and texts and recomputed the metrics for 96,000 held-out
+predictions. Full fine and coarse results are in the report.
+
+Use `sfu_run` from the SFU command above. Run the Amazon comparison
+from the branch checkout. Run the three-corpus comparison with the
+staged UCI source so the comparison uses its grouped bootstrap.
+
+```bash
+PYTHONPATH="$PWD" "$assets/classifier-exact-venv/bin/python" -B \
+  "$scripts/compare-to-sfu.py" --sfu-run "$sfu_run" --amazon-run "$run" \
+  > "$run/comparison.json"
+```
+
+```bash
+PYTHONPATH="$run/source" "$assets/classifier-exact-venv/bin/python" -B \
+  "$scripts/compare-to-sfu.py" --sfu-run "$sfu_run" --uci-run "$run" \
+  --uci-archive "$uci_zip" > "$run/comparison.json"
 ```

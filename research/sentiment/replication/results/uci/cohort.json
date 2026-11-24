@@ -1,0 +1,80 @@
+{
+  "archive_sha256": "afc26626d710899948693e1a61405dce197f57ffa719fa1130d346b4cc095343",
+  "corpus": "UCI Sentiment Labelled Sentences (Kotzias et al., 2015)",
+  "distinct_groups": 2972,
+  "document_count": 3000,
+  "document_id": "SHA-256 of whitespace-normalized body plus original domain and file line",
+  "duplicate_text_groups": 21,
+  "group_identity": "SHA-256 of HTML-unescaped, NFKC, casefolded alphanumeric word sequence",
+  "labels": {
+    "negative": 0,
+    "positive": 1
+  },
+  "outputs_sha256": {
+    "manifest.jsonl": "562c487baf06eb34aff628444f30001db3349ba7533e80f7cc667e269c234c3f",
+    "reviews.jsonl": "25e441572dcd1b2123581baa0b6468880a58e5310efc56e7caca9710d4ecdfe4",
+    "splits.json": "3afbe8de8937b01d40a82bbd9738c8a124d7f5c5bd412be368bdb7a397d7ba54"
+  },
+  "sources_sha256": {
+    "prepare_uci.py": "b1ff76a345c195d14d10f1997e9e37ddb89c7ac5783b60329ae1884aa77263a9"
+  },
+  "split_policy": {
+    "algorithm": "StratifiedGroupKFold (shuffle=True)",
+    "groups": "duplicate_group",
+    "inner_folds": 4,
+    "inner_seed": "seed + zero-based outer fold + 1",
+    "outer_folds": 5,
+    "outer_test_counts": [
+      {
+        "amazon_cells/0": 100,
+        "amazon_cells/1": 100,
+        "imdb/0": 100,
+        "imdb/1": 100,
+        "yelp/0": 100,
+        "yelp/1": 100
+      },
+      {
+        "amazon_cells/0": 100,
+        "amazon_cells/1": 100,
+        "imdb/0": 100,
+        "imdb/1": 100,
+        "yelp/0": 100,
+        "yelp/1": 100
+      },
+      {
+        "amazon_cells/0": 100,
+        "amazon_cells/1": 100,
+        "imdb/0": 100,
+        "imdb/1": 100,
+        "yelp/0": 100,
+        "yelp/1": 100
+      },
+      {
+        "amazon_cells/0": 100,
+        "amazon_cells/1": 100,
+        "imdb/0": 100,
+        "imdb/1": 100,
+        "yelp/0": 100,
+        "yelp/1": 100
+      },
+      {
+        "amazon_cells/0": 100,
+        "amazon_cells/1": 100,
+        "imdb/0": 100,
+        "imdb/1": 100,
+        "yelp/0": 100,
+        "yelp/1": 100
+      }
+    ],
+    "seed": 42,
+    "strata": [
+      "domain",
+      "label"
+    ]
+  },
+  "tweeteval_audit": {
+    "normalized_full_text_matches": 0,
+    "sha256": "368f01052ea6fd8ffc408a2a2e6ac9669e31542581a0396ef16591ea26eb98a6",
+    "training_rows": 45615
+  }
+}

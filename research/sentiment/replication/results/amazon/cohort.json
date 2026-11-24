@@ -1,0 +1,145 @@
+{
+  "archive_sha256": "7492462f0b6a3830da415a0f754aebf5b0c23a2b15448470a6290543a73cb12b",
+  "archive_sha256_definition": "SHA-256 of the sorted JSON object mapping source filenames to raw SHA-256",
+  "corpus": "McAuley Lab Amazon Reviews '23",
+  "document_count": 2000,
+  "outputs_sha256": {
+    "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+    "reviews.jsonl": "d67e2d261c4893684b18e090cd7497e0c39e75a395ef4c74d9d6b0edf9ccf1ed",
+    "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e"
+  },
+  "selection": {
+    "domain_by_label": {
+      "All_Beauty/0": {
+        "candidate_time_and_rating": 19150,
+        "duplicate_text_reviewer_or_product": 13,
+        "language_exclusions": 8,
+        "length_exclusions": 485,
+        "selected": 250
+      },
+      "All_Beauty/1": {
+        "candidate_time_and_rating": 50224,
+        "duplicate_text_reviewer_or_product": 55,
+        "language_exclusions": 4,
+        "length_exclusions": 630,
+        "selected": 250
+      },
+      "Appliances/0": {
+        "candidate_time_and_rating": 88398,
+        "duplicate_text_reviewer_or_product": 25,
+        "language_exclusions": 5,
+        "length_exclusions": 406,
+        "selected": 250
+      },
+      "Appliances/1": {
+        "candidate_time_and_rating": 310778,
+        "duplicate_text_reviewer_or_product": 48,
+        "language_exclusions": 4,
+        "length_exclusions": 759,
+        "selected": 250
+      },
+      "Musical_Instruments/0": {
+        "candidate_time_and_rating": 74234,
+        "duplicate_text_reviewer_or_product": 7,
+        "language_exclusions": 5,
+        "length_exclusions": 315,
+        "selected": 250
+      },
+      "Musical_Instruments/1": {
+        "candidate_time_and_rating": 325877,
+        "duplicate_text_reviewer_or_product": 20,
+        "language_exclusions": 4,
+        "length_exclusions": 441,
+        "selected": 250
+      },
+      "Software/0": {
+        "candidate_time_and_rating": 50909,
+        "duplicate_text_reviewer_or_product": 136,
+        "language_exclusions": 7,
+        "length_exclusions": 753,
+        "selected": 250
+      },
+      "Software/1": {
+        "candidate_time_and_rating": 116370,
+        "duplicate_text_reviewer_or_product": 176,
+        "language_exclusions": 12,
+        "length_exclusions": 2858,
+        "selected": 250
+      }
+    },
+    "domains": [
+      "All_Beauty",
+      "Appliances",
+      "Musical_Instruments",
+      "Software"
+    ],
+    "earliest": "2022-01-01T02:46:05.840000+00:00",
+    "english_classifier": {
+      "min_p": 0.8,
+      "model": "lid.176.ftz",
+      "sha256": "8f3472cfe8738a7b6099e8e999c3cbfae0dcd15696aac7d7738a8039db603e83"
+    },
+    "latest": "2023-08-31T17:47:53.135000+00:00",
+    "per_domain_and_label": 250,
+    "rating_counts": {
+      "1": 723,
+      "2": 277,
+      "4": 187,
+      "5": 813
+    },
+    "ratings": {
+      "negative": [
+        1,
+        2
+      ],
+      "positive": [
+        4,
+        5
+      ]
+    },
+    "timestamps_from": "2022-01-01T00:00:00+00:00",
+    "tweeteval_train": {
+      "normalized_full_review_matches": 0,
+      "revision": "3eb5e91dd5070b5a5931df4e70cbab5978e3c50c",
+      "rows": 45615,
+      "sha256": "368f01052ea6fd8ffc408a2a2e6ac9669e31542581a0396ef16591ea26eb98a6"
+    },
+    "unique_normalized_reviews": 2000,
+    "unique_products": 2000,
+    "unique_reviewers": 2000,
+    "whitespace_tokens": {
+      "max": 134,
+      "median": 48.0,
+      "min": 7,
+      "p95": 103.0
+    },
+    "xlm_r_content_tokens": {
+      "max": 160,
+      "max_allowed": 160,
+      "median": 63.0,
+      "min": 40,
+      "min_allowed": 40,
+      "p95": 135.95,
+      "tokenizer_sha256": "a898ea75433890f6610f4e470b8ebeb0c21dce5c8dd61f892eb09eb5919d2e2c"
+    }
+  },
+  "source_archives_sha256": {
+    "All_Beauty.jsonl.gz": "ee00e66835567c3f12fde6a482f8d7055c22cac2d0924f677263affdd8a0e349",
+    "Appliances.jsonl.gz": "150f209befceaa6f837abc997065b2d251034bbbda19bebc4ad56dac779730c2",
+    "Musical_Instruments.jsonl.gz": "0e7bf61672d2a984b153d6999ac7321fb4b29642f05c04496f54507437bbbfee",
+    "Software.jsonl.gz": "ad5ee05daaa71932a211d123d496c0b744eba9caa026ba667cd4a0986ebb31be"
+  },
+  "sources_sha256": {
+    "corpus.py": "cabf96ab09f98ec893cc050acf77edf8b711b6513c47f112a69352ff2d04a42e",
+    "prepare_amazon.py": "a83972d0e225f07eb5e25ffb53d8c581410b67b6613686ed5d43f592a09b3658"
+  },
+  "split_policy": {
+    "inner_folds": 4,
+    "outer_folds": 5,
+    "seed": 42,
+    "strata": [
+      "domain",
+      "label"
+    ]
+  }
+}

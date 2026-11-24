@@ -1,0 +1,53 @@
+{
+  "cleaning": "versioned corpus normalization only; retain review content and ratings",
+  "controls": [
+    "class_prior",
+    "length_only",
+    "tfidf_lr"
+  ],
+  "decision_threshold": 0.5,
+  "document_id_prefix": "uci",
+  "expected_corpus": {
+    "archive_sha256": "afc26626d710899948693e1a61405dce197f57ffa719fa1130d346b4cc095343",
+    "documents": 3000,
+    "domains": 3,
+    "per_domain_label": 500
+  },
+  "grouped_duplicate_cv": true,
+  "inner_folds": 4,
+  "interpretation": "Text controls only: no RST model or framework comparison yet.",
+  "label_names": {
+    "0": "negative",
+    "1": "positive"
+  },
+  "logistic_regression": {
+    "class_weight": null,
+    "max_iter": 2000,
+    "solver": "liblinear",
+    "tol": 0.0001
+  },
+  "outer_folds": 5,
+  "primary_metric": "pooled_out_of_fold_macro_f1",
+  "protocol": "uci-sls-text-controls-v1",
+  "regularization_C": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "schema_version": 1,
+  "seed": 42,
+  "selection_metric": "mean_inner_macro_f1",
+  "tfidf": {
+    "lowercase": true,
+    "max_df": 1.0,
+    "max_features": 20000,
+    "min_df": 2,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "norm": "l2",
+    "sublinear_tf": true
+  },
+  "tie_break": "first best candidate, with C ordered from smaller to larger"
+}

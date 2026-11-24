@@ -6,7 +6,7 @@ argumentation, and sentiment to study that question.
 
 ## What fine versus coarse means
 
-For HC3 and SFU, PCC and NLDT use stock UniRST. GUM/eRST and RST-DT use
+For HC3 and the sentiment experiments, PCC and NLDT use stock UniRST. GUM/eRST and RST-DT use
 the colleague’s fine-tuned checkpoints. Each inventory predicts its own
 trees from the same text chunks and PCC clause boundaries. Within an
 inventory, **both runs use the same trees**. Fine keeps the predicted
@@ -33,9 +33,17 @@ coarse GUM/eRST and RST-DT parsers scored higher. [Model provenance](MODEL_PROVE
   material separately scored **0.822–0.832**. Adding sentiment by relation
   label scored lower in every run. Coarse led fine in three inventories,
   and all four paired resampling intervals include a tie. [SFU results](RUNNING.md#finecoarse-relation-pooling) · [Stability check](RUNNING.md#finecoarse-stability)
+- **Amazon sentiment.** On 2,000 shorter reviews, equal-weight pooling
+  scored **0.863** and adding relation blocks improved all eight
+  text-order conditions over their nuclearity controls. Coarse NLDT
+  reached **0.884**, a gain of **2.00 macro-F1 points** over nuclearity.
+  [SFU–Amazon results](replication/results/amazon/comparison.json)
 - **HC3-style motifs on SFU.** With motif frequency and depth as the
   review's only inputs, fine led in three inventories. Every fine/coarse
   and between-inventory interval includes a tie. [Motif results](RUNNING.md#hc3-style-motifs-on-sfu)
+- **UCI sentence check.** Over half of its 3,000 sentences had just one
+  EDU. It documents how the pipeline behaves with very little discourse
+  structure. [Three-corpus results](replication/results/uci/comparison.json)
 
 ## How SFU gets one prediction per review
 
@@ -51,9 +59,11 @@ the sentiment on each side of the concession, pooled by relation name.
 
 ## What goes into the paper
 
-SFU gives us a bounded comparison of the four inventories and both
-granularities. Separating main points and supporting material gave a
-small observed gain. The fine/coarse pattern varied with the features,
-and the SFU intervals leave the direction uncertain. The two feature
-comparisons, controls, and limitations are in the manuscript section.
-[LaTeX section](paper/sentiment.tex) · [BibTeX](paper/sentiment.bib) · [Method sources](RELATED_WORK.md#attribution-for-the-completed-sfu-experiments)
+Use HC3 as the main granularity experiment and SFU plus Amazon as the
+two review sentiment corpora. Relation pooling changed direction across
+the corpora. Length, label definitions, category mix, and sample size
+changed together. The meeting notes cover both review experiments and
+what each classifier sees. The committed LaTeX section covers SFU.
+[Meeting notes](replication/MEETING_NOTES.md) · [Runbook](RUNNING.md) ·
+[LaTeX section](paper/sentiment.tex) · [BibTeX](paper/sentiment.bib) ·
+[Method sources](RELATED_WORK.md#attribution-for-the-completed-sfu-experiments)
