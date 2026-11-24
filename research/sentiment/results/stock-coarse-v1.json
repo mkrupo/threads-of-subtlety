@@ -1,0 +1,424 @@
+{
+  "comparison_source_sha256": "e35ef22a0f0808f8efbab96b992e037caedea3d5eb1d05bcb7d7f67327bb9fb2",
+  "comparisons": {
+    "Amazon": {
+      "eng.erst.gum": {
+        "counts": {
+          "identical_scenes": 450,
+          "internal_splits": 14739,
+          "multiedu_scenes": 1999,
+          "same_shape_and_nuclearity_scenes": 796,
+          "same_shape_scenes": 1332,
+          "same_split": 13068,
+          "same_split_and_nuclearity": 12026,
+          "same_split_nuclearity_and_label": 10844,
+          "scenes": 2000,
+          "single_edu_scenes": 1
+        },
+        "example": {
+          "edus": 4,
+          "mapped_root_split_after_edu": 3,
+          "scene": "d1324-s00",
+          "stock_root_split_after_edu": 1
+        },
+        "fine_trees_sha256": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+        "observed_labels": {
+          "mapped": {
+            "adversative": 1707,
+            "attribution": 217,
+            "causal": 1579,
+            "condition": 440,
+            "context": 1202,
+            "elaboration": 3185,
+            "evaluation": 1434,
+            "explanation": 1134,
+            "joint": 2597,
+            "mode": 172,
+            "organization": 265,
+            "purpose": 511,
+            "restatement": 109,
+            "same-unit": 135,
+            "topic": 52
+          },
+          "stock": {
+            "adversative": 1546,
+            "attribution": 218,
+            "causal": 1144,
+            "condition": 438,
+            "context": 1041,
+            "elaboration": 4159,
+            "evaluation": 1435,
+            "explanation": 972,
+            "joint": 2599,
+            "mode": 155,
+            "organization": 303,
+            "purpose": 483,
+            "restatement": 66,
+            "same-unit": 142,
+            "topic": 38
+          }
+        },
+        "observed_only_in_mapped": [],
+        "observed_only_in_stock": []
+      },
+      "eng.rst.rstdt": {
+        "counts": {
+          "identical_scenes": 245,
+          "internal_splits": 14739,
+          "multiedu_scenes": 1999,
+          "same_shape_and_nuclearity_scenes": 472,
+          "same_shape_scenes": 1186,
+          "same_split": 12547,
+          "same_split_and_nuclearity": 10766,
+          "same_split_nuclearity_and_label": 9405,
+          "scenes": 2000,
+          "single_edu_scenes": 1
+        },
+        "example": {
+          "edus": 3,
+          "mapped_root_split_after_edu": 2,
+          "scene": "d1371-s00",
+          "stock_root_split_after_edu": 1
+        },
+        "fine_trees_sha256": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+        "observed_labels": {
+          "mapped": {
+            "adversative": 1448,
+            "attribution": 240,
+            "background": 965,
+            "causal": 1588,
+            "comparison": 96,
+            "condition": 432,
+            "elaboration": 3890,
+            "enablement": 377,
+            "evaluation": 1899,
+            "explanation": 604,
+            "joint": 2197,
+            "manner-means": 119,
+            "same-unit": 142,
+            "summary": 37,
+            "temporal": 579,
+            "textual-organization": 57,
+            "topic-change": 7,
+            "topic-comment": 62
+          },
+          "stock": {
+            "adversative": 1420,
+            "attribution": 221,
+            "background": 1048,
+            "causal": 1128,
+            "comparison": 130,
+            "condition": 491,
+            "elaboration": 4237,
+            "enablement": 380,
+            "evaluation": 1496,
+            "explanation": 922,
+            "joint": 2165,
+            "manner-means": 76,
+            "same-unit": 152,
+            "summary": 57,
+            "temporal": 681,
+            "textual-organization": 73,
+            "topic-change": 5,
+            "topic-comment": 57
+          }
+        },
+        "observed_only_in_mapped": [],
+        "observed_only_in_stock": []
+      }
+    },
+    "SFU": {
+      "eng.erst.gum": {
+        "counts": {
+          "identical_scenes": 37,
+          "internal_splits": 35838,
+          "multiedu_scenes": 1011,
+          "same_shape_and_nuclearity_scenes": 73,
+          "same_shape_scenes": 168,
+          "same_split": 31163,
+          "same_split_and_nuclearity": 29123,
+          "same_split_nuclearity_and_label": 26656,
+          "scenes": 1012,
+          "single_edu_scenes": 1
+        },
+        "example": {
+          "edus": 5,
+          "mapped_root_split_after_edu": 4,
+          "scene": "d249-s02",
+          "stock_root_split_after_edu": 3
+        },
+        "fine_trees_sha256": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+        "observed_labels": {
+          "mapped": {
+            "adversative": 3930,
+            "attribution": 882,
+            "causal": 1765,
+            "condition": 1004,
+            "context": 2792,
+            "elaboration": 7894,
+            "evaluation": 2854,
+            "explanation": 2171,
+            "joint": 7882,
+            "mode": 473,
+            "organization": 1483,
+            "purpose": 1043,
+            "restatement": 306,
+            "same-unit": 1117,
+            "topic": 242
+          },
+          "stock": {
+            "adversative": 3511,
+            "attribution": 912,
+            "causal": 1217,
+            "condition": 994,
+            "context": 2454,
+            "elaboration": 9614,
+            "evaluation": 2474,
+            "explanation": 1665,
+            "joint": 8478,
+            "mode": 361,
+            "organization": 1576,
+            "purpose": 988,
+            "restatement": 238,
+            "same-unit": 1156,
+            "topic": 200
+          }
+        },
+        "observed_only_in_mapped": [],
+        "observed_only_in_stock": []
+      },
+      "eng.rst.rstdt": {
+        "counts": {
+          "identical_scenes": 25,
+          "internal_splits": 35838,
+          "multiedu_scenes": 1011,
+          "same_shape_and_nuclearity_scenes": 45,
+          "same_shape_scenes": 116,
+          "same_split": 29708,
+          "same_split_and_nuclearity": 26627,
+          "same_split_nuclearity_and_label": 23760,
+          "scenes": 1012,
+          "single_edu_scenes": 1
+        },
+        "example": {
+          "edus": 5,
+          "mapped_root_split_after_edu": 4,
+          "scene": "d249-s02",
+          "stock_root_split_after_edu": 3
+        },
+        "fine_trees_sha256": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+        "observed_labels": {
+          "mapped": {
+            "adversative": 3303,
+            "attribution": 944,
+            "background": 2258,
+            "causal": 1688,
+            "comparison": 422,
+            "condition": 1022,
+            "elaboration": 10298,
+            "enablement": 744,
+            "evaluation": 3362,
+            "explanation": 1835,
+            "joint": 6545,
+            "manner-means": 338,
+            "same-unit": 1070,
+            "summary": 19,
+            "temporal": 1043,
+            "textual-organization": 583,
+            "topic-change": 102,
+            "topic-comment": 262
+          },
+          "stock": {
+            "adversative": 3283,
+            "attribution": 954,
+            "background": 2413,
+            "causal": 1325,
+            "comparison": 427,
+            "condition": 1099,
+            "elaboration": 10143,
+            "enablement": 778,
+            "evaluation": 2575,
+            "explanation": 1653,
+            "joint": 7760,
+            "manner-means": 178,
+            "same-unit": 1193,
+            "summary": 89,
+            "temporal": 1082,
+            "textual-organization": 660,
+            "topic-change": 58,
+            "topic-comment": 168
+          }
+        },
+        "observed_only_in_mapped": [],
+        "observed_only_in_stock": []
+      }
+    }
+  },
+  "export": {
+    "count": 6024,
+    "format": "RS3",
+    "zip_sha256": "c505a078085c3d269fb1bfc9ac2924fcc519942d1089332ec8b8c05629d0ba8a"
+  },
+  "mapping_revision": "f06309b62cbc53dce0c98668cac225666dfb64d7",
+  "stock_parsers": {
+    "eng.erst.gum": {
+      "corpora": {
+        "Amazon": {
+          "alignment_retries_this_attempt": 33,
+          "edus": 16739,
+          "parse_seconds": 218.76392429880798,
+          "resume_sha256": "3fc86f47ec8f00844d4c68ac2a4872bd051872b008a0998dbb8a2c2572876820",
+          "resumed_scenes": 678,
+          "scenes": 2000,
+          "scenes_sha256": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+          "trees_sha256": "b1559ff329957fa103694445dc5565babd0ecc07890323ce62ee1f5919bbfd14"
+        },
+        "SFU": {
+          "alignment_retries_this_attempt": 0,
+          "edus": 36850,
+          "parse_seconds": 5.60755930095911,
+          "resume_sha256": "6c778eb60d2f0a0ffba5cb0b98d0b87b77082c273481655cc6d2639dfc7be182",
+          "resumed_scenes": 1012,
+          "scenes": 1012,
+          "scenes_sha256": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+          "trees_sha256": "6c778eb60d2f0a0ffba5cb0b98d0b87b77082c273481655cc6d2639dfc7be182"
+        }
+      },
+      "inventory": "eng.erst.gum",
+      "model_hashes": {
+        "best_weights.pt": "1cb7f7df68db3fc996b3fa904dbf443f5bffa0ba403a6fb5f6acc2231b965b6e",
+        "config.json": "1ab914b2c4ce48f119b1623a02fb84d9f81ca4cecb7e5f864ce96b0688acaa51",
+        "relation_table_eng.erst.gum.txt": "44c528d649f0ea75db80bca2de49c7a2f2a8bc100011b772a5dd797478614d28"
+      },
+      "ordered_relation_table": [
+        "Adversative_NN",
+        "Adversative_NS",
+        "Adversative_SN",
+        "Attribution_NS",
+        "Attribution_SN",
+        "Causal_NS",
+        "Causal_SN",
+        "Context_NS",
+        "Context_SN",
+        "Condition_NS",
+        "Condition_SN",
+        "Elaboration_NS",
+        "Evaluation_NS",
+        "Evaluation_SN",
+        "Explanation_NS",
+        "Explanation_SN",
+        "Joint_NN",
+        "Mode_NS",
+        "Mode_SN",
+        "Organization_NS",
+        "Organization_SN",
+        "Purpose_NS",
+        "Purpose_SN",
+        "Restatement_NN",
+        "Restatement_NS",
+        "Same-unit_NN",
+        "Topic_SN"
+      ],
+      "runtime": {
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "source_hashes": {
+        "parse_sfu.py": "401a11f8d86bedbcab89b5664e144bbcf3550cf0a4ee53e98373f0c4c9f760b1",
+        "parser_pilot.py": "0248f805e18039f103213f0d7db0b3e9f8197edb4c4202fabd0f1eac3ead0a41",
+        "stock_coarse.py": "ca4326c67d56bc6e6863cdadd869fb6fe6e9422745de7aa5253aedf68c2c3965"
+      },
+      "stock_snapshot": "b99b1c0f39435971b9daaa450e8476ef7b1a554a"
+    },
+    "eng.rst.rstdt": {
+      "corpora": {
+        "Amazon": {
+          "alignment_retries_this_attempt": 33,
+          "edus": 16739,
+          "parse_seconds": 227.41573608852923,
+          "resume_sha256": "e5fbc678202674a7e3bb321a47d202df2d55f2abf6152098d72a082a5eac2618",
+          "resumed_scenes": 678,
+          "scenes": 2000,
+          "scenes_sha256": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+          "trees_sha256": "94a85cb57faa0b3b532199b304858e15fcf5ff6d575208bed0ce69b35d9d9c18"
+        },
+        "SFU": {
+          "alignment_retries_this_attempt": 0,
+          "edus": 36850,
+          "parse_seconds": 5.199817270040512,
+          "resume_sha256": "3c7632cf28fdf215a9db2db56ffd9313a1e7cccdc86cfa2fcc3ad48edc7cad1d",
+          "resumed_scenes": 1012,
+          "scenes": 1012,
+          "scenes_sha256": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+          "trees_sha256": "3c7632cf28fdf215a9db2db56ffd9313a1e7cccdc86cfa2fcc3ad48edc7cad1d"
+        }
+      },
+      "inventory": "eng.rst.rstdt",
+      "model_hashes": {
+        "best_weights.pt": "1cb7f7df68db3fc996b3fa904dbf443f5bffa0ba403a6fb5f6acc2231b965b6e",
+        "config.json": "1ab914b2c4ce48f119b1623a02fb84d9f81ca4cecb7e5f864ce96b0688acaa51",
+        "relation_table_eng.rst.rstdt.txt": "33d82ef5c53868cdff14645ddfb13d638ed16df1c857c56fa3e72c5c0df2201c"
+      },
+      "ordered_relation_table": [
+        "Adversative_NN",
+        "Adversative_NS",
+        "Adversative_SN",
+        "Attribution_NS",
+        "Attribution_SN",
+        "Background_NS",
+        "Background_SN",
+        "Causal_NN",
+        "Causal_NS",
+        "Causal_SN",
+        "Comparison_NN",
+        "Comparison_NS",
+        "Comparison_SN",
+        "Condition_NN",
+        "Condition_NS",
+        "Condition_SN",
+        "Elaboration_NS",
+        "Elaboration_SN",
+        "Enablement_NS",
+        "Enablement_SN",
+        "Evaluation_NN",
+        "Evaluation_NS",
+        "Evaluation_SN",
+        "Explanation_NN",
+        "Explanation_NS",
+        "Explanation_SN",
+        "Joint_NN",
+        "Manner-Means_NS",
+        "Manner-Means_SN",
+        "Same-unit_NN",
+        "Summary_NN",
+        "Summary_NS",
+        "Summary_SN",
+        "Temporal_NN",
+        "Temporal_NS",
+        "Temporal_SN",
+        "Textual-organization_NN",
+        "Topic-Change_NN",
+        "Topic-Change_NS",
+        "Topic-Comment_NN",
+        "Topic-Comment_NS",
+        "Topic-Comment_SN"
+      ],
+      "runtime": {
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "source_hashes": {
+        "parse_sfu.py": "401a11f8d86bedbcab89b5664e144bbcf3550cf0a4ee53e98373f0c4c9f760b1",
+        "parser_pilot.py": "0248f805e18039f103213f0d7db0b3e9f8197edb4c4202fabd0f1eac3ead0a41",
+        "stock_coarse.py": "ca4326c67d56bc6e6863cdadd869fb6fe6e9422745de7aa5253aedf68c2c3965"
+      },
+      "stock_snapshot": "b99b1c0f39435971b9daaa450e8476ef7b1a554a"
+    }
+  },
+  "verification": {
+    "independent_check": "Recomputed whole-tree agreement on branching, nuclearity, and mapped relation names from nested tree signatures for all scenes.",
+    "rs3": "Verified each exported tree's EDU text, IDs, group types and attachment labels against its stock tree. Checked archive integrity and per-folder counts."
+  }
+}

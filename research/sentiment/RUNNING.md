@@ -6,6 +6,8 @@ Amazon experiments. The [dependency-weighting pilot](DEPENDENCY_PILOT.md)
 explains and reproduces the later CardiffNLP and frozen mDeBERTa comparison.
 The [bottom-up Amazon experiment](#combine-sentiment-up-the-amazon-trees)
 tests whether fine or coarse labels help when combining sentiment up a tree.
+The [stock-coarse tree comparison](#compare-stock-coarse-and-mapped-trees)
+reparses the same SFU and Amazon EDUs with the public coarse checkpoints.
 The sections below also preserve the original SFU
 stage commands and reference outcomes.
 
@@ -599,6 +601,74 @@ for standard in sorted((root / "granularity/lr_mf_wad/predictions").iterdir()):
 PY
 ```
 
+
+## Compare stock coarse and mapped trees
+
+The sentiment experiments parse once using the fine checkpoint and then
+rename its relations with the research map. To see what changes when using
+the released coarse parser, run stock GUM/eRST and RST-DT on the exact same
+PCC EDUs and scene boundaries. The runner uses the pinned stock UniRST
+snapshot and the same parser environment as the original parsing pilot.
+It retries text-alignment errors with the supplied-EDU converter and
+validates the leaf text and binary tree for every scene. Use the converter
+from the Amazon replay, which tokenizes the joined EDUs before aligning
+punctuation. Apply its patch to an isolated copy of the parser source.
+
+Set `sfu_trees` and `amazon_trees` to the original verified parse directories
+and `stock_snapshot` to the released checkpoint described above. Use the
+parser Python environment for both steps and a fresh `stock_output`.
+Run one parser per GPU when two GPUs are available.
+
+```bash
+parser_python=/path/to/parser/venv/bin/python
+stock_source="$(mktemp -d)"
+cp --parents research/sentiment/{stock_coarse.py,parse_sfu.py,parser_pilot.py} "$stock_source"
+cp --parents research/sentiment/{results/sfu-full-parser-audit.json,replication/results/amazon/parser-audit.json} "$stock_source"
+amazon_patch="$PWD/research/sentiment/replication/amazon.patch"
+(cd "$stock_source" && git apply --include=research/sentiment/parse_sfu.py "$amazon_patch")
+
+# Use absolute paths for the checkpoint, tree directories, and output.
+for inventory in eng.erst.gum eng.rst.rstdt; do
+  (cd "$stock_source" && "$parser_python" -B -u -m research.sentiment.stock_coarse \
+      --sfu-scenes "$sfu_trees/scenes.jsonl" --amazon-scenes "$amazon_trees/scenes.jsonl" \
+      --stock-snapshot "$stock_snapshot" --inventory "$inventory" --cuda-device 0 \
+      --output "$stock_output/$inventory")
+done
+
+"$parser_python" -B -m research.sentiment.compare_stock_coarse \
+  --stock "$stock_output" --sfu-trees "$sfu_trees" --amazon-trees "$amazon_trees" \
+  --report "$stock_output/comparison.json" --rs3-output "$stock_output/rs3"
+```
+
+The comparison matches nodes by their EDU spans and split points. For
+scenes with at least two EDUs, it counts how many trees have the same
+branching, how many also agree on nuclearity, and how many agree on all
+coarse labels as well. Single-EDU scenes have no split and get their own
+count. The RS3 output uses `<corpus>/<standard>/stock-coarse/<scene>.rs3`
+and includes a scene index for joining the exports to the mapped trees.
+If a parse run was interrupted, add `--resume-from` with the prior
+inventory directory and use a fresh output directory. The runner checks
+scene identities for the saved prefix and reparses three sample trees per
+corpus before reusing it.
+
+| Corpus | Standard | Scenes with 2+ EDUs | Branching changed | Branching, nuclearity and coarse labels all match |
+|---|---|---:|---:|---:|
+| Amazon | GUM/eRST | 1,999 | 667 (33.4%) | 450 |
+| Amazon | RST-DT | 1,999 | 813 (40.7%) | 245 |
+| SFU | GUM/eRST | 1,011 | 843 (83.4%) | 37 |
+| SFU | RST-DT | 1,011 | 895 (88.5%) | 25 |
+
+The stock and mapped trees used the same set of coarse relation names in
+each comparison. For example, on the three-EDU Amazon scene `d1371-s00`,
+stock RST-DT groups EDU 2 with EDU 3, and the mapped tree groups EDU 1
+with EDU 2. Mapping after parsing isolates label granularity. Replacing
+the fine parser with stock UniRST also changes the tree features.
+
+The recovered run reused 1,012 SFU trees and 678 Amazon trees per stock
+inventory after checking their scene identities and reproducing the
+sample trees. The [report](results/stock-coarse-v1.json) records the
+checkpoint, both stages' tree hashes, and the independent whole-tree
+checks plus the 6,024 verified RS3 exports.
 
 ## Combine sentiment up the Amazon trees
 
