@@ -1,0 +1,42 @@
+{
+  "documents": 16000,
+  "edus": 135387,
+  "labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "model": {
+    "id": "Xenova/twitter-roberta-base-sentiment-latest",
+    "revision": "f3ec4d0925f90c3ca7ee7814f52d6ee7cf180445",
+    "sha256": {
+      "config.json": "cdf2b36e0066bd9996e3b9fb3f7c095dc656a0e62c6e3a7327d4ff5541e55b51",
+      "model.onnx": "046f7e4cc46b399558fa9b2de966f6b0d42c69e4b01f582bfb4099b01a0bb5d7",
+      "tokenizer.json": "1e6506713f00e34406a757acb80f9f3233c1c3950857d32bbc41bcd419d5d8b6"
+    }
+  },
+  "parser_audit_sha256": "b8f7661dd15dd0e7afd2bcb217dce0e489dd648552f8f178b933c71572f0c37e",
+  "runtime": {
+    "batch_size": 64,
+    "intra_op_threads": 4,
+    "packages": {
+      "numpy": "2.2.6",
+      "onnxruntime": "1.22.1",
+      "tokenizers": "0.21.4"
+    },
+    "provider": "CPUExecutionProvider"
+  },
+  "scenes": 16000,
+  "scenes_sha256": "27f7c0057a02b04c7f0516d51a89668f007173ecd10de288741aae918bc3f61f",
+  "scores_sha256": "d37e31bb92d120bb0e40c1b7d576cfad786ee6b3d7b348c7506c1059f5e01e79",
+  "seconds": 230.1971212659264,
+  "source_sha256": {
+    "score_cohort.py": "4e099d59ac27372072e867fefd01af75c2249f9158ba2bba918e81e4296fb42f",
+    "score_sfu.py": "2843e0e0ef6e5e5efb14d2eb3092399d6742799b5cf200d14512d907e46e0e70"
+  },
+  "top_labels": {
+    "negative": 30580,
+    "neutral": 75794,
+    "positive": 29013
+  }
+}

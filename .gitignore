@@ -211,3 +211,6 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/amazon-split-parser-audit-v1.json
 !/research/sentiment/results/amazon-confirm-cohort-verification-v1.json
 !/research/sentiment/results/amazon-confirm-provenance-v1.json
+!/research/sentiment/results/amazon-confirm-parser-audit-v1.json
+!/research/sentiment/results/amazon-confirm-edu-scores-v1.json
+!/research/sentiment/results/amazon-confirm-*-report-v1.json
