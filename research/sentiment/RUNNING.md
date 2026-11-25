@@ -1116,3 +1116,72 @@ cheaply. The direct fine-versus-coarse gain in the gate model is about
 are exploratory and reuse the development data. The pre-registered
 [confirmation plan](GRANULARITY_CONFIRMATION.md) tests the contrast on a new
 16,000-review cohort.
+
+## Split-tree ablation on Amazon
+
+**Question.** SFU reviews longer than the parser window are cut into scenes,
+and each scene gets a separate tree. The trees are never joined. How much
+sentiment signal does such a cut remove when nothing else changes?
+
+1. `split_ablation prepare` cuts each verified Amazon review in two at the
+   sentence-final EDU boundary that best balances the words on each side.
+   The 97 reviews without such a boundary stay whole. Both halves keep the
+   original PCC EDUs, so the CardiffNLP scores are reused unchanged. 1,903
+   reviews became 3,903 scenes with all 16,739 EDUs in the original order.
+2. `run-split-parser-1080ti.sh` reparses the halves on the GTX 1080 Ti host
+   with the exact staged parser code of the Amazon run. Its code hash is
+   `833d42e7…`, computed over all staged `.py` files, and its `sample.json`
+   matches. The supplied scene file replaces PCC segmentation. All 3,903
+   scenes received trees in every standard. Each standard needed 50 converter
+   retries, and the audit found no unmapped labels.
+   [Split parser audit](results/amazon-split-parser-audit-v1.json)
+3. `split_ablation analyze` refits nuclearity, text-order relation pooling and
+   the gate models on intact and split trees with the same folds. The intact
+   refits must reproduce the published gate predictions and pooling macro-F1.
+   It then reports the paired split-minus-intact log-loss.
+
+```bash
+A=artifacts/sentiment; S=$A/amazon-split-v1; AM=$A/amazon23-short-v1.4YbtTy
+"$AM/prep-venv/bin/python" -B -m research.sentiment.split_ablation prepare \
+  --intact-trees $AM/parser-verified \
+  --intact-audit research/sentiment/replication/results/amazon/parser-audit.json \
+  --sample $AM/sample.json --tokenizer $AM/xlm-roberta-base-tokenizer.json --output $S/split-input
+# On the GPU host: a fresh run dir with the staged Amazon parser source, sample.json
+# and split-input/, then
+#   bash replication/launch-detached.sh RUN_DIR run-split-parser-1080ti.sh
+# Copy back parser-verified/ and parser-audit.json, then:
+uv run --project research/sentiment --locked --no-sync python -B -m research.sentiment.split_ablation analyze \
+  --prepared $AM/prepared --intact-trees $AM/parser-verified \
+  --scores $AM/edu-scores/scores.jsonl \
+  --gate-predictions $A/sentiment3-v1.OzbMlX/amazon-cardiff/predictions.jsonl \
+  --split-trees $S/parser-verified --split-audit $S/parser-audit.json \
+  --split-manifest $S/split-input/split-manifest.json --sample $AM/sample.json --output $S/analysis
+```
+
+The 2026-11-25 run used remote directory
+`/scratch/threads-of-subtlety/amazon-split-v1.Ko3Ql4` and took 21 minutes on
+both cards. `split-manifest.json` records every cut and has SHA-256
+`37a7bdb7…`. [Report](results/amazon-split-ablation-v1.json)
+
+### What one cut costs
+
+On the 1,903 split reviews, the gate model lost accuracy in all 12 standard ×
+granularity conditions. Log-loss rose by 0.0047–0.0115 nats for unlabeled,
+coarse and fine links. Every individual interval includes zero, and the 12
+conditions share reviews, so they are not independent tests. Even after the
+cut, labelled gate models remained clearly better than unlabeled models on
+intact trees. For example, PCC fine on split trees scored .2909 against .3059
+for unlabeled links on intact trees.
+
+Nuclearity lost 0.5–1.1 macro-F1 points in each standard. Its log-loss
+changes were small, with intervals that include zero. Coarse text-order
+pooling hardly moved: the change ranged from −6.6 to +2.6 ×10⁻³, with every
+interval including zero. Fine pooling moved erratically in both directions,
+which matches its overfitting in the diagnostics above.
+
+On SFU, relation pooling scored 3–6 macro-F1 points below nuclearity. One
+balanced cut does not reproduce that loss. Splitting therefore appears to
+explain little of the SFU–Amazon difference, although SFU reviews have up to
+eight cuts at paragraph boundaries, not one. Review length, the 400-review
+sample and plot description scored as sentiment remain the stronger
+candidates.

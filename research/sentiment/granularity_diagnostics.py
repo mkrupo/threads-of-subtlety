@@ -35,7 +35,6 @@ from .baseline import HERE, metrics, read_jsonl
 from .dependency_sentiment import (
     REGULARIZATION_C, average, build_inventory, group_pairs, input_files, tree_inputs, vectors_for,
 )
-from .edu_baseline import mean_edu_scores
 from .parser_pilot import INVENTORIES, digest, write_json
 from .relation_gate import fit_predict
 from .relation_stability import ITERATIONS, SEED, bootstrap_weights
@@ -102,7 +101,63 @@ def load_inputs(corpus, prepared, trees, scores):
     vectors = vectors_for(args, scenes, representation)
     return SimpleNamespace(args=args, audit=audit, scenes=scenes, hashes=hashes, metadata=metadata,
                            splits=splits, vectors=vectors,
-                           truth=np.array([row["label"] for row in metadata], dtype=np.int16))
+                           truth=np.array([row["label"] for row in metadata], dtype=np.int16),
+                           tree_specs=tree_inputs(args, audit, dict(hashes)))
+
+
+def load_cohort(prepared, trees, scores, audit_path, manifest_path, sample_path):
+    """Verify and load a cohort parsed outside the published SFU and Amazon runs.
+
+    Checks the prepared manifest and folds, parser sample, scene file and four
+    tree files against the cohort's parser audit, and the EDU scores against
+    their score manifest. Relation maps come from the parser sample.
+    """
+    audit = json.loads(audit_path.read_text())
+    manifest = json.loads(manifest_path.read_text())
+    sample = json.loads(sample_path.read_text())
+    if manifest["scenes_sha256"] != audit["segmentation"]["scenes_sha256"]:
+        raise ValueError("The EDU scores belong to a different scene file")
+    if (audit["complete_documents_across_inventories"] != audit["documents"]
+            or any(info["unmapped_observed"] for info in audit["inventory_reports"].values())):
+        raise ValueError("The parser audit reports incomplete trees or unmapped relation labels")
+    checks = [(prepared / name, audit["prepared_inputs_sha256"][name]) for name in ("manifest.jsonl", "splits.json")]
+    checks += [(sample_path, audit["sample_sha256"]), (trees / "scenes.jsonl", audit["segmentation"]["scenes_sha256"]),
+               (scores, manifest["scores_sha256"])]
+    checks += [(trees / f"{name}.jsonl", audit["inventory_reports"][name]["trees_sha256"]) for name in INVENTORIES]
+    hashes = {"parser-audit.json": digest(audit_path), "scores-manifest.json": digest(manifest_path)}
+    for path, expected in checks:
+        if digest(path) != expected:
+            raise ValueError(f"Checksum mismatch for {path}")
+        hashes[path.name] = expected
+    args = SimpleNamespace(corpus="cohort", arm="cardiff", prepared=prepared, trees=trees, representation=scores,
+                           stock=None)
+    scenes = read_jsonl(trees / "scenes.jsonl")
+    metadata = sorted(read_jsonl(prepared / "manifest.jsonl"), key=lambda row: row["document_id"])
+    specs = {name: (trees / f"{name}.jsonl", audit["inventory_reports"][name]["ordered_relation_table"],
+                    sample["maps"][name]) for name in INVENTORIES}
+    return SimpleNamespace(args=args, audit=audit, scenes=scenes, hashes=hashes, metadata=metadata,
+                           splits=json.loads((prepared / "splits.json").read_text()),
+                           vectors=vectors_for(args, scenes, manifest),
+                           truth=np.array([row["label"] for row in metadata], dtype=np.int16), tree_specs=specs)
+
+
+def add_data_arguments(command, corpora=tuple(CORPORA)):
+    command.add_argument("--corpus", choices=corpora, required=True)
+    command.add_argument("--prepared", type=Path, required=True)
+    command.add_argument("--trees", type=Path, required=True)
+    command.add_argument("--scores", type=Path, required=True, help="Frozen CardiffNLP scores.jsonl")
+    if "cohort" in corpora:
+        command.add_argument("--audit", type=Path, help="Cohort parser-audit.json")
+        command.add_argument("--scores-manifest", type=Path, help="Cohort EDU score manifest.json")
+        command.add_argument("--sample", type=Path, help="Cohort parser sample.json with the relation maps")
+
+
+def load_data(args):
+    if args.corpus != "cohort":
+        return load_inputs(args.corpus, args.prepared, args.trees, args.scores)
+    if None in (args.audit, args.scores_manifest, args.sample):
+        raise ValueError("A cohort needs --audit, --scores-manifest and --sample")
+    return load_cohort(args.prepared, args.trees, args.scores, args.audit, args.scores_manifest, args.sample)
 
 
 def published_predictions(path, expected_hash, metadata, condition_key="condition"):
@@ -134,7 +189,7 @@ class GateData:
     """Fold-independent inputs of the CardiffNLP relation-gate model for one inventory."""
 
     def __init__(self, data, inventory):
-        tree_path, table, mapping = tree_inputs(data.args, data.audit, dict(data.hashes))[inventory]
+        tree_path, table, mapping = data.tree_specs[inventory]
         metadata = data.metadata
         review_ids = {row["document_id"]: i for i, row in enumerate(metadata)}
         self.inv = build_inventory(read_jsonl(tree_path), data.scenes, review_ids, table, mapping)
@@ -236,17 +291,30 @@ def summarize_fit(truth, probability):
     return {"log_loss": float(log_loss(truth, probability).mean()), **metrics(truth, prediction)}
 
 
+def reference_predictions(args, data):
+    """Gate-model predictions that the real-label refit must reproduce."""
+    if args.corpus == "cohort":
+        if args.reference_report is None or args.reference_predictions is None:
+            raise ValueError("A cohort scramble needs --reference-report and --reference-predictions")
+        expected = json.loads(args.reference_report.read_text())["predictions_sha256"]
+        path = args.reference_predictions
+    else:
+        if args.gate_predictions is None:
+            raise ValueError("--gate-predictions is required for SFU and Amazon")
+        expected, path = gate_run(args.corpus)["predictions_sha256"], args.gate_predictions
+    return published_predictions(path, expected, data.metadata), expected
+
+
 def run_scramble(args):
     start = perf_counter()
-    data = load_inputs(args.corpus, args.prepared, args.trees, args.scores)
-    run = gate_run(args.corpus)
-    saved = published_predictions(args.gate_predictions, run["predictions_sha256"], data.metadata)
+    data = load_data(args)
+    saved, reference_hash = reference_predictions(args, data)
     inventories = args.inventories or list(INVENTORIES)
     report = {"protocol": "granularity-scramble-v1", "corpus": args.corpus, "permutations": args.permutations,
               "permutation_seed": [SEED, "inventory index", "permutation index"],
               "null": "fine labels shuffled among the links of each mapped coarse group, across the corpus",
               "regularization_c": REGULARIZATION_C, "input_hashes": {**data.hashes,
-              "gate_predictions.jsonl": run["predictions_sha256"]},
+              "gate_predictions.jsonl": reference_hash},
               "inventories": {}}
     args.output.mkdir(parents=True)
     with (args.output / "permutations.jsonl").open("x", encoding="utf-8") as stream:
@@ -319,21 +387,31 @@ def run_scramble(args):
 
 # Log-loss reanalysis -----------------------------------------------------------------
 
-def pooling_probabilities(data, scores_path, corpus):
-    """Refit relation pooling and require the published macro-F1 for every condition."""
+def mean_scores(score_rows):
+    """Equal-weight EDU mean per review, as edu_baseline.mean_edu_scores but from loaded rows."""
+    by_review = {}
+    for row in score_rows:
+        by_review.setdefault(row["document_id"], []).extend(row["probabilities"])
+    return {name: np.mean(scores, axis=0, dtype=np.float64) for name, scores in by_review.items()}
+
+
+def pooling_probabilities(data, score_rows, corpus, *, check_published=True):
+    """Refit relation pooling; by default require the published macro-F1 for every condition."""
     config = json.loads(CONFIGS[corpus].read_text())
     published = json.loads(PUBLISHED["comparison"].read_text())["macro_f1_and_accuracy"]
     by_id = {row["document_id"]: row for row in data.metadata}
-    uniform = uniform_predictions(mean_edu_scores(scores_path), by_id, data.splits, config)
+    uniform = uniform_predictions(mean_scores(score_rows), by_id, data.splits, config)
     evaluation = Evaluation(by_id, data.splits, config, uniform)
-    score_rows = read_jsonl(scores_path)
     index = {row["document_id"]: i for i, row in enumerate(data.metadata)}
     probabilities = {}
-    for inventory, (path, table, mapping) in tree_inputs(data.args, data.audit, dict(data.hashes)).items():
-        for feature, features in feature_sets(score_rows, read_jsonl(path), table, mapping, "fine_checkpoint"):
+    for inventory, (path, table, mapping) in data.tree_specs.items():
+        trees = read_jsonl(path)
+        if [(t["key"], t["document_id"]) for t in trees] != [(s["key"], s["document_id"]) for s in score_rows]:
+            raise ValueError(f"Trees and EDU scores cover different scenes for {inventory}")
+        for feature, features in feature_sets(score_rows, trees, table, mapping, "fine_checkpoint"):
             rows, outcome, _ = evaluation.fit(features, inventory)
             target = published[f"{inventory}/{feature}"][CORPORA[corpus]]["macro_f1"]
-            if abs(outcome["macro_f1"] - target) > 1e-12:
+            if check_published and abs(outcome["macro_f1"] - target) > 1e-12:
                 raise ValueError(f"Pooling refit {inventory}/{feature} differs from the published macro-F1")
             values = np.full(len(index), np.nan)
             for row in rows:
@@ -349,7 +427,7 @@ def run_loss(args):
     hashes = {**data.hashes, "gate_predictions.jsonl": run["predictions_sha256"]}
     probabilities = {f"gate/{key}": value for key, value in published_predictions(
         args.gate_predictions, run["predictions_sha256"], metadata).items()}
-    pooling, config_hash = pooling_probabilities(data, args.scores, args.corpus)
+    pooling, config_hash = pooling_probabilities(data, read_jsonl(args.scores), args.corpus)
     probabilities.update(pooling)
     hashes[CONFIGS[args.corpus].name] = config_hash
     contrasts = []
@@ -399,10 +477,10 @@ def run_loss(args):
 
 # Provenance -------------------------------------------------------------------
 
-def source_hashes():
+def source_hashes(extra=()):
     names = ("granularity_diagnostics.py", "dependency_sentiment.py", "relation_gate.py", "relation_pooling.py",
              "nuclearity.py", "stock_pooling.py", "edu_baseline.py", "baseline.py", "relation_stability.py",
-             "uv.lock")
+             "uv.lock", *extra)
     return {name: digest(HERE / name) for name in names}
 
 
@@ -414,20 +492,19 @@ def runtime():
 def main():
     cli = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = cli.add_subparsers(dest="command", required=True)
-    for name in ("loss", "scramble"):
+    for name, corpora in (("loss", tuple(CORPORA)), ("scramble", (*CORPORA, "cohort"))):
         command = sub.add_parser(name)
-        command.add_argument("--corpus", choices=CORPORA, required=True)
-        command.add_argument("--prepared", type=Path, required=True)
-        command.add_argument("--trees", type=Path, required=True)
-        command.add_argument("--scores", type=Path, required=True, help="Frozen CardiffNLP scores.jsonl")
-        command.add_argument("--gate-predictions", type=Path, required=True,
-                             help="Published CardiffNLP relation-gate predictions.jsonl")
+        add_data_arguments(command, corpora)
+        command.add_argument("--gate-predictions", type=Path, required=name == "loss",
+                             help="Published CardiffNLP relation-gate predictions.jsonl (SFU and Amazon)")
         command.add_argument("--output", type=Path, required=True)
     sub.choices["loss"].add_argument("--recursive-predictions", type=Path,
                                      help="Published Amazon recursive predictions.jsonl")
     scramble = sub.choices["scramble"]
     scramble.add_argument("--permutations", type=int, default=200)
     scramble.add_argument("--inventories", nargs="+", choices=INVENTORIES)
+    scramble.add_argument("--reference-report", type=Path, help="Cohort: confirm_granularity primary report.json")
+    scramble.add_argument("--reference-predictions", type=Path, help="Cohort: its predictions.jsonl")
     args = cli.parse_args()
     if args.output.exists():
         raise FileExistsError(args.output)
