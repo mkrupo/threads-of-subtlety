@@ -12,7 +12,7 @@ Chistova (2023) encodes each discourse unit with mDeBERTa and scores pairs
 of units to predict argument links such as support and attack. RST relations
 modify those pair scores by multiplication after encoding. The experiment
 also tests whether the presence of an RST link is enough, using unlabeled
-adjacency. [Paper, §3.2](https://aclanthology.org/2023.findings-acl.209.pdf#page=3)
+adjacency. [Paper, §3, “Discourse-driven BAP,” p. 3378](https://aclanthology.org/2023.findings-acl.209.pdf#page=3)
 
 Here the target is one positive or negative label per review. For example,
 if “the camera works well” is the nucleus of a concession and “it is heavy”

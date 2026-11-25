@@ -55,7 +55,7 @@ In “The screen looks great, but the battery dies by noon,” equal weighting a
 Held-out macro-F1 from the same five folds. Bold marks the higher labeled
 score in each row.
 
-- **What changed.** We kept the same trees, CardiffNLP EDU scores, and nuclearity averages. The model also scores each pair of EDUs connected by the tree. Unlabeled links all get equal weight. Fine and coarse learn a weight for each label. [Inspiration from Chistova, §3.2](https://aclanthology.org/2023.findings-acl.209.pdf#page=3)
+- **What changed.** We kept the same trees, CardiffNLP EDU scores, and nuclearity averages. The model also scores each pair of EDUs connected by the tree. Unlabeled links all get equal weight. Fine and coarse learn a weight for each label. [Chistova, §3, “Discourse-driven BAP,” p. 3378](https://aclanthology.org/2023.findings-acl.209.pdf#page=3)
 - **Do labels help?** On Amazon, both fine and coarse beat unlabeled links for PCC, NLDT, and GUM/eRST, with paired intervals above zero. On SFU, all intervals for adding labels include zero.
 - **Does finer detail help?** Amazon NLDT flipped from a 1.30-point coarse lead with the original averages to a 0.80-point fine lead with link weighting. SFU GUM/eRST favored coarse by 1.25 points. [Results and paired intervals](../DEPENDENCY_PILOT.md#what-we-found)
 
