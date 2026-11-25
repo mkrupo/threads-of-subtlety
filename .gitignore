@@ -209,3 +209,5 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/granularity-scramble-amazon-v1.json
 !/research/sentiment/results/amazon-split-ablation-v1.json
 !/research/sentiment/results/amazon-split-parser-audit-v1.json
+!/research/sentiment/results/amazon-confirm-cohort-verification-v1.json
+!/research/sentiment/results/amazon-confirm-provenance-v1.json

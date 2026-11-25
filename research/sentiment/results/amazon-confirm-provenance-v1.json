@@ -1,0 +1,161 @@
+{
+  "archive_sha256": "7492462f0b6a3830da415a0f754aebf5b0c23a2b15448470a6290543a73cb12b",
+  "corpus": "McAuley Lab Amazon Reviews '23, confirmation cohort",
+  "document_count": 16000,
+  "excluded_exploration_cohort": {
+    "prepared_outputs_sha256": {
+      "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+      "reviews.jsonl": "d67e2d261c4893684b18e090cd7497e0c39e75a395ef4c74d9d6b0edf9ccf1ed",
+      "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e"
+    },
+    "products": 2000,
+    "reviewers": 2000,
+    "texts": 2000
+  },
+  "outputs_sha256": {
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "selection": {
+    "domain_by_label": {
+      "All_Beauty/0": {
+        "candidate_time_and_rating": 19150,
+        "duplicate_text_reviewer_or_product": 462,
+        "exploration_text_reviewer_or_product": 1526,
+        "language_exclusions": 81,
+        "length_exclusions": 4992,
+        "selected": 2000
+      },
+      "All_Beauty/1": {
+        "candidate_time_and_rating": 50224,
+        "duplicate_text_reviewer_or_product": 1549,
+        "exploration_text_reviewer_or_product": 2959,
+        "language_exclusions": 80,
+        "length_exclusions": 8570,
+        "selected": 2000
+      },
+      "Appliances/0": {
+        "candidate_time_and_rating": 88398,
+        "duplicate_text_reviewer_or_product": 709,
+        "exploration_text_reviewer_or_product": 1931,
+        "language_exclusions": 47,
+        "length_exclusions": 4153,
+        "selected": 2000
+      },
+      "Appliances/1": {
+        "candidate_time_and_rating": 310778,
+        "duplicate_text_reviewer_or_product": 1372,
+        "exploration_text_reviewer_or_product": 2991,
+        "language_exclusions": 50,
+        "length_exclusions": 10037,
+        "selected": 2000
+      },
+      "Musical_Instruments/0": {
+        "candidate_time_and_rating": 74234,
+        "duplicate_text_reviewer_or_product": 368,
+        "exploration_text_reviewer_or_product": 702,
+        "language_exclusions": 53,
+        "length_exclusions": 3041,
+        "selected": 2000
+      },
+      "Musical_Instruments/1": {
+        "candidate_time_and_rating": 325877,
+        "duplicate_text_reviewer_or_product": 753,
+        "exploration_text_reviewer_or_product": 931,
+        "language_exclusions": 52,
+        "length_exclusions": 5532,
+        "selected": 2000
+      },
+      "Software/0": {
+        "candidate_time_and_rating": 50909,
+        "duplicate_text_reviewer_or_product": 1573,
+        "exploration_text_reviewer_or_product": 12515,
+        "language_exclusions": 119,
+        "length_exclusions": 10502,
+        "selected": 2000
+      },
+      "Software/1": {
+        "candidate_time_and_rating": 116370,
+        "duplicate_text_reviewer_or_product": 4534,
+        "exploration_text_reviewer_or_product": 43327,
+        "language_exclusions": 140,
+        "length_exclusions": 45638,
+        "selected": 2000
+      }
+    },
+    "domains": [
+      "All_Beauty",
+      "Appliances",
+      "Musical_Instruments",
+      "Software"
+    ],
+    "earliest": "2022-01-01T00:17:33.347000+00:00",
+    "english_classifier": {
+      "min_p": 0.8,
+      "model": "lid.176.ftz",
+      "sha256": "8f3472cfe8738a7b6099e8e999c3cbfae0dcd15696aac7d7738a8039db603e83"
+    },
+    "latest": "2023-09-11T02:13:11.515000+00:00",
+    "per_domain_and_label": 2000,
+    "rating_counts": {
+      "1": 5742,
+      "2": 2258,
+      "4": 1695,
+      "5": 6305
+    },
+    "ratings": {
+      "negative": [
+        1,
+        2
+      ],
+      "positive": [
+        4,
+        5
+      ]
+    },
+    "timestamps_from": "2022-01-01T00:00:00+00:00",
+    "tweeteval_train": {
+      "revision": "3eb5e91dd5070b5a5931df4e70cbab5978e3c50c",
+      "rows_normalized_unique": 45513,
+      "sha256": "368f01052ea6fd8ffc408a2a2e6ac9669e31542581a0396ef16591ea26eb98a6"
+    },
+    "unique_products": 16000,
+    "unique_reviewers": 16000,
+    "whitespace_tokens": {
+      "max": 146,
+      "median": 49.0,
+      "min": 4,
+      "p95": 103.0
+    },
+    "xlm_r_content_tokens": {
+      "max": 160,
+      "max_allowed": 160,
+      "median": 64.0,
+      "min": 40,
+      "min_allowed": 40,
+      "p95": 135.0,
+      "tokenizer_sha256": "a898ea75433890f6610f4e470b8ebeb0c21dce5c8dd61f892eb09eb5919d2e2c"
+    }
+  },
+  "source_archives_sha256": {
+    "All_Beauty.jsonl.gz": "ee00e66835567c3f12fde6a482f8d7055c22cac2d0924f677263affdd8a0e349",
+    "Appliances.jsonl.gz": "150f209befceaa6f837abc997065b2d251034bbbda19bebc4ad56dac779730c2",
+    "Musical_Instruments.jsonl.gz": "0e7bf61672d2a984b153d6999ac7321fb4b29642f05c04496f54507437bbbfee",
+    "Software.jsonl.gz": "ad5ee05daaa71932a211d123d496c0b744eba9caa026ba667cd4a0986ebb31be"
+  },
+  "sources_sha256": {
+    "corpus.py": "cabf96ab09f98ec893cc050acf77edf8b711b6513c47f112a69352ff2d04a42e",
+    "prepare_amazon.py": "a83972d0e225f07eb5e25ffb53d8c581410b67b6613686ed5d43f592a09b3658",
+    "prepare_amazon_confirm.py": "8af713940db135385085894f5cb2d3d58c4e1040c728f2835e51d7b1ed6619f5"
+  },
+  "split_policy": {
+    "inner_folds": 4,
+    "outer_folds": 5,
+    "seed": 42,
+    "strata": [
+      "domain",
+      "label"
+    ]
+  }
+}

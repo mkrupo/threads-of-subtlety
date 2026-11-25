@@ -117,6 +117,10 @@ def load_cohort(prepared, trees, scores, audit_path, manifest_path, sample_path)
     sample = json.loads(sample_path.read_text())
     if manifest["scenes_sha256"] != audit["segmentation"]["scenes_sha256"]:
         raise ValueError("The EDU scores belong to a different scene file")
+    frozen = json.loads((HERE / "results/sfu-edu-scores-v1.json").read_text())
+    if (manifest["model"] != frozen["model"] or manifest["labels"] != frozen["labels"]
+            or manifest.get("parser_audit_sha256", digest(audit_path)) != digest(audit_path)):
+        raise ValueError("The EDU scores come from a different scorer or parser audit")
     if (audit["complete_documents_across_inventories"] != audit["documents"]
             or any(info["unmapped_observed"] for info in audit["inventory_reports"].values())):
         raise ValueError("The parser audit reports incomplete trees or unmapped relation labels")
@@ -378,6 +382,13 @@ def run_scramble(args):
             }
             print(f"{args.corpus} {inventory}: {args.permutations} permutations after "
                   f"{perf_counter() - start:.0f}s", flush=True)
+    tests = ("fine_log_loss_lower_than_scrambled", "fine_macro_f1_higher_than_scrambled",
+             "gate_spread_higher_than_scrambled")
+    for test in tests:
+        adjusted = holm({name: row["permutation_p"][test] for name, row in report["inventories"].items()})
+        for name, value in adjusted.items():
+            report["inventories"][name].setdefault("permutation_holm_p", {})[test] = value
+    report["holm_family"] = "each permutation test across the standards in this report"
     report["predictions_sha256"] = digest(args.output / "permutations.jsonl")
     report["source_hashes"] = source_hashes()
     report["runtime"] = runtime()

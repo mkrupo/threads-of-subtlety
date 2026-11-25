@@ -1,0 +1,44 @@
+{
+  "exploration_reviews": 64,
+  "outer_fold_cells": 40,
+  "overlap_with_exploration": {
+    "product_sha256": 0,
+    "reviewer_sha256": 0,
+    "text_sha256": 0
+  },
+  "per_domain_and_label": 2000,
+  "prepared_outputs_sha256": {
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "problems": [],
+  "rating_counts": {
+    "1": 5742,
+    "2": 2258,
+    "4": 1695,
+    "5": 6305
+  },
+  "reviews": 16000,
+  "sample_sha256": "a1c27bcbd7bcc6d6306b0986cd3f2f329069074a47c0b264d3236243cd52f54c",
+  "selection_inputs_match_exploration": [
+    "archives",
+    "language_id_model",
+    "tokenizer",
+    "tweeteval_revision",
+    "tweeteval_train"
+  ],
+  "timestamps": [
+    "2022-01-01T00:17:33.347000+00:00",
+    "2023-09-11T02:13:11.515000+00:00"
+  ],
+  "xlm_r_content_tokens": {
+    "max": 160,
+    "max_allowed": 160,
+    "median": 64.0,
+    "min": 40,
+    "min_allowed": 40,
+    "p95": 135.0,
+    "tokenizer_sha256": "a898ea75433890f6610f4e470b8ebeb0c21dce5c8dd61f892eb09eb5919d2e2c"
+  }
+}
