@@ -203,3 +203,7 @@ threads-of-subtlety.code-workspace
 !/research/sentiment/results/amazon-recursive-v1.json
 !/research/sentiment/results/stock-coarse-v1.json
 !/research/sentiment/results/stock-coarse-sentiment-v1.json
+!/research/sentiment/results/granularity-loss-sfu-v1.json
+!/research/sentiment/results/granularity-loss-amazon-v1.json
+!/research/sentiment/results/granularity-scramble-sfu-v1.json
+!/research/sentiment/results/granularity-scramble-amazon-v1.json

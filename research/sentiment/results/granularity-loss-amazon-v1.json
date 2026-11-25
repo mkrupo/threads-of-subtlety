@@ -1,0 +1,1258 @@
+{
+  "conditions": {
+    "gate/deu.rst.pcc/coarse": {
+      "accuracy": 0.8845,
+      "confusion_matrix_labels_0_1": [
+        [
+          895,
+          105
+        ],
+        [
+          126,
+          874
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2866788286524585,
+      "macro_f1": 0.8844872647209354,
+      "negative_f1": 0.8857001484413657,
+      "positive_f1": 0.8832743810005053
+    },
+    "gate/deu.rst.pcc/fine": {
+      "accuracy": 0.8895,
+      "confusion_matrix_labels_0_1": [
+        [
+          900,
+          100
+        ],
+        [
+          121,
+          879
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2841820557403344,
+      "macro_f1": 0.8894878160317174,
+      "negative_f1": 0.8906481939633845,
+      "positive_f1": 0.8883274381000505
+    },
+    "gate/deu.rst.pcc/nuclearity": {
+      "accuracy": 0.8655,
+      "confusion_matrix_labels_0_1": [
+        [
+          884,
+          116
+        ],
+        [
+          153,
+          847
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.31754352360635696,
+      "macro_f1": 0.8654539516149402,
+      "negative_f1": 0.8679430535100638,
+      "positive_f1": 0.8629648497198166
+    },
+    "gate/deu.rst.pcc/unlabeled": {
+      "accuracy": 0.871,
+      "confusion_matrix_labels_0_1": [
+        [
+          888,
+          112
+        ],
+        [
+          146,
+          854
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3022696814087556,
+      "macro_f1": 0.8709627082226763,
+      "negative_f1": 0.8731563421828908,
+      "positive_f1": 0.8687690742624619
+    },
+    "gate/edu_mean": {
+      "accuracy": 0.863,
+      "confusion_matrix_labels_0_1": [
+        [
+          884,
+          116
+        ],
+        [
+          158,
+          842
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3145845306389777,
+      "macro_f1": 0.8629395563443478,
+      "negative_f1": 0.8658178256611165,
+      "positive_f1": 0.8600612870275791
+    },
+    "gate/eng.erst.gum/coarse": {
+      "accuracy": 0.8855,
+      "confusion_matrix_labels_0_1": [
+        [
+          893,
+          107
+        ],
+        [
+          122,
+          878
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2873495813013343,
+      "macro_f1": 0.8854935590126944,
+      "negative_f1": 0.8863523573200992,
+      "positive_f1": 0.8846347607052897
+    },
+    "gate/eng.erst.gum/fine": {
+      "accuracy": 0.889,
+      "confusion_matrix_labels_0_1": [
+        [
+          896,
+          104
+        ],
+        [
+          118,
+          882
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.28637978362429933,
+      "macro_f1": 0.8889945607334759,
+      "negative_f1": 0.8897715988083416,
+      "positive_f1": 0.8882175226586103
+    },
+    "gate/eng.erst.gum/nuclearity": {
+      "accuracy": 0.8695,
+      "confusion_matrix_labels_0_1": [
+        [
+          882,
+          118
+        ],
+        [
+          143,
+          857
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3181474162955219,
+      "macro_f1": 0.8694796061884669,
+      "negative_f1": 0.8711111111111111,
+      "positive_f1": 0.8678481012658228
+    },
+    "gate/eng.erst.gum/unlabeled": {
+      "accuracy": 0.876,
+      "confusion_matrix_labels_0_1": [
+        [
+          891,
+          109
+        ],
+        [
+          139,
+          861
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.30146275686627216,
+      "macro_f1": 0.8759720937210873,
+      "negative_f1": 0.8778325123152709,
+      "positive_f1": 0.8741116751269036
+    },
+    "gate/eng.rst.rstdt/coarse": {
+      "accuracy": 0.8775,
+      "confusion_matrix_labels_0_1": [
+        [
+          891,
+          109
+        ],
+        [
+          136,
+          864
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.29046056410494225,
+      "macro_f1": 0.8774776703054131,
+      "negative_f1": 0.8791317217562901,
+      "positive_f1": 0.8758236188545362
+    },
+    "gate/eng.rst.rstdt/fine": {
+      "accuracy": 0.877,
+      "confusion_matrix_labels_0_1": [
+        [
+          886,
+          114
+        ],
+        [
+          132,
+          868
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2871477377197402,
+      "macro_f1": 0.8769900361929317,
+      "negative_f1": 0.8780971258671952,
+      "positive_f1": 0.875882946518668
+    },
+    "gate/eng.rst.rstdt/nuclearity": {
+      "accuracy": 0.868,
+      "confusion_matrix_labels_0_1": [
+        [
+          882,
+          118
+        ],
+        [
+          146,
+          854
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.31832455869352366,
+      "macro_f1": 0.867974122928094,
+      "negative_f1": 0.8698224852071006,
+      "positive_f1": 0.8661257606490872
+    },
+    "gate/eng.rst.rstdt/unlabeled": {
+      "accuracy": 0.876,
+      "confusion_matrix_labels_0_1": [
+        [
+          898,
+          102
+        ],
+        [
+          146,
+          854
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.30034871088925374,
+      "macro_f1": 0.8759399549381901,
+      "negative_f1": 0.8786692759295499,
+      "positive_f1": 0.8732106339468303
+    },
+    "gate/nld.rst.nldt/coarse": {
+      "accuracy": 0.8845,
+      "confusion_matrix_labels_0_1": [
+        [
+          897,
+          103
+        ],
+        [
+          128,
+          872
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2879740912031988,
+      "macro_f1": 0.8844819503047351,
+      "negative_f1": 0.8859259259259259,
+      "positive_f1": 0.8830379746835443
+    },
+    "gate/nld.rst.nldt/fine": {
+      "accuracy": 0.8925,
+      "confusion_matrix_labels_0_1": [
+        [
+          909,
+          91
+        ],
+        [
+          124,
+          876
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2860700604977343,
+      "macro_f1": 0.8924707251549234,
+      "negative_f1": 0.8942449581898672,
+      "positive_f1": 0.8906964921199797
+    },
+    "gate/nld.rst.nldt/nuclearity": {
+      "accuracy": 0.864,
+      "confusion_matrix_labels_0_1": [
+        [
+          878,
+          122
+        ],
+        [
+          150,
+          850
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.32017860684827143,
+      "macro_f1": 0.8639733387743997,
+      "negative_f1": 0.8658777120315582,
+      "positive_f1": 0.8620689655172413
+    },
+    "gate/nld.rst.nldt/unlabeled": {
+      "accuracy": 0.869,
+      "confusion_matrix_labels_0_1": [
+        [
+          886,
+          114
+        ],
+        [
+          148,
+          852
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3044375127166788,
+      "macro_f1": 0.8689621300555861,
+      "negative_f1": 0.8711897738446411,
+      "positive_f1": 0.866734486266531
+    },
+    "pooling/deu.rst.pcc/nuclearity": {
+      "accuracy": 0.8655,
+      "confusion_matrix_labels_0_1": [
+        [
+          884,
+          116
+        ],
+        [
+          153,
+          847
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3181805993197467,
+      "macro_f1": 0.8654539516149402,
+      "negative_f1": 0.8679430535100638,
+      "positive_f1": 0.8629648497198166
+    },
+    "pooling/deu.rst.pcc/relation-nucleus-first/coarse": {
+      "accuracy": 0.8755,
+      "confusion_matrix_labels_0_1": [
+        [
+          892,
+          108
+        ],
+        [
+          141,
+          859
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2968632506179095,
+      "macro_f1": 0.8754660956445393,
+      "negative_f1": 0.8775209050664043,
+      "positive_f1": 0.8734112862226742
+    },
+    "pooling/deu.rst.pcc/relation-nucleus-first/fine": {
+      "accuracy": 0.8725,
+      "confusion_matrix_labels_0_1": [
+        [
+          881,
+          119
+        ],
+        [
+          136,
+          864
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3237283722634027,
+      "macro_f1": 0.8724907874593939,
+      "negative_f1": 0.873574615765989,
+      "positive_f1": 0.8714069591527988
+    },
+    "pooling/deu.rst.pcc/relation-text-order/coarse": {
+      "accuracy": 0.8795,
+      "confusion_matrix_labels_0_1": [
+        [
+          893,
+          107
+        ],
+        [
+          134,
+          866
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2984365781991036,
+      "macro_f1": 0.8794780348718554,
+      "negative_f1": 0.8811050814010853,
+      "positive_f1": 0.8778509883426254
+    },
+    "pooling/deu.rst.pcc/relation-text-order/fine": {
+      "accuracy": 0.8745,
+      "confusion_matrix_labels_0_1": [
+        [
+          885,
+          115
+        ],
+        [
+          136,
+          864
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3299396122403012,
+      "macro_f1": 0.8744861620993715,
+      "negative_f1": 0.875804057397328,
+      "positive_f1": 0.8731682668014149
+    },
+    "pooling/eng.erst.gum/nuclearity": {
+      "accuracy": 0.869,
+      "confusion_matrix_labels_0_1": [
+        [
+          881,
+          119
+        ],
+        [
+          143,
+          857
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.31784129042352827,
+      "macro_f1": 0.8689811332831927,
+      "negative_f1": 0.8705533596837944,
+      "positive_f1": 0.8674089068825911
+    },
+    "pooling/eng.erst.gum/relation-nucleus-first/coarse": {
+      "accuracy": 0.88,
+      "confusion_matrix_labels_0_1": [
+        [
+          893,
+          107
+        ],
+        [
+          133,
+          867
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.30660343419877517,
+      "macro_f1": 0.8799797165721006,
+      "negative_f1": 0.8815399802566634,
+      "positive_f1": 0.878419452887538
+    },
+    "pooling/eng.erst.gum/relation-nucleus-first/fine": {
+      "accuracy": 0.874,
+      "confusion_matrix_labels_0_1": [
+        [
+          890,
+          110
+        ],
+        [
+          142,
+          858
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.33290840479238887,
+      "macro_f1": 0.8739677357403495,
+      "negative_f1": 0.8759842519685039,
+      "positive_f1": 0.8719512195121951
+    },
+    "pooling/eng.erst.gum/relation-text-order/coarse": {
+      "accuracy": 0.8775,
+      "confusion_matrix_labels_0_1": [
+        [
+          886,
+          114
+        ],
+        [
+          131,
+          869
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3033787940363428,
+      "macro_f1": 0.8774911487354962,
+      "negative_f1": 0.8785324739712445,
+      "positive_f1": 0.8764498234997479
+    },
+    "pooling/eng.erst.gum/relation-text-order/fine": {
+      "accuracy": 0.8705,
+      "confusion_matrix_labels_0_1": [
+        [
+          883,
+          117
+        ],
+        [
+          142,
+          858
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.33404965341124465,
+      "macro_f1": 0.8704797624628848,
+      "negative_f1": 0.8720987654320987,
+      "positive_f1": 0.8688607594936709
+    },
+    "pooling/eng.rst.rstdt/nuclearity": {
+      "accuracy": 0.867,
+      "confusion_matrix_labels_0_1": [
+        [
+          882,
+          118
+        ],
+        [
+          148,
+          852
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3188120902608773,
+      "macro_f1": 0.8669700682653596,
+      "negative_f1": 0.8689655172413793,
+      "positive_f1": 0.86497461928934
+    },
+    "pooling/eng.rst.rstdt/relation-nucleus-first/coarse": {
+      "accuracy": 0.8715,
+      "confusion_matrix_labels_0_1": [
+        [
+          880,
+          120
+        ],
+        [
+          137,
+          863
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.31367762667082777,
+      "macro_f1": 0.8714907152041735,
+      "negative_f1": 0.872583044124938,
+      "positive_f1": 0.8703983862834089
+    },
+    "pooling/eng.rst.rstdt/relation-nucleus-first/fine": {
+      "accuracy": 0.8745,
+      "confusion_matrix_labels_0_1": [
+        [
+          889,
+          111
+        ],
+        [
+          140,
+          860
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3550334367118881,
+      "macro_f1": 0.874473608076098,
+      "negative_f1": 0.8762937407589946,
+      "positive_f1": 0.8726534753932014
+    },
+    "pooling/eng.rst.rstdt/relation-text-order/coarse": {
+      "accuracy": 0.878,
+      "confusion_matrix_labels_0_1": [
+        [
+          885,
+          115
+        ],
+        [
+          129,
+          871
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3033736420074524,
+      "macro_f1": 0.8779940217070636,
+      "negative_f1": 0.8788480635551142,
+      "positive_f1": 0.877139979859013
+    },
+    "pooling/eng.rst.rstdt/relation-text-order/fine": {
+      "accuracy": 0.8755,
+      "confusion_matrix_labels_0_1": [
+        [
+          890,
+          110
+        ],
+        [
+          139,
+          861
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3442690294633912,
+      "macro_f1": 0.8754738183703124,
+      "negative_f1": 0.8772794480039429,
+      "positive_f1": 0.8736681887366818
+    },
+    "pooling/nld.rst.nldt/nuclearity": {
+      "accuracy": 0.864,
+      "confusion_matrix_labels_0_1": [
+        [
+          880,
+          120
+        ],
+        [
+          152,
+          848
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.32073737260016494,
+      "macro_f1": 0.8639651750848217,
+      "negative_f1": 0.8661417322834646,
+      "positive_f1": 0.8617886178861789
+    },
+    "pooling/nld.rst.nldt/relation-nucleus-first/coarse": {
+      "accuracy": 0.8815,
+      "confusion_matrix_labels_0_1": [
+        [
+          894,
+          106
+        ],
+        [
+          131,
+          869
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.29773425943012416,
+      "macro_f1": 0.8814814814814815,
+      "negative_f1": 0.882962962962963,
+      "positive_f1": 0.88
+    },
+    "pooling/nld.rst.nldt/relation-nucleus-first/fine": {
+      "accuracy": 0.871,
+      "confusion_matrix_labels_0_1": [
+        [
+          884,
+          116
+        ],
+        [
+          142,
+          858
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3274802419790905,
+      "macro_f1": 0.8709781953150082,
+      "negative_f1": 0.8726554787759131,
+      "positive_f1": 0.8693009118541033
+    },
+    "pooling/nld.rst.nldt/relation-text-order/coarse": {
+      "accuracy": 0.884,
+      "confusion_matrix_labels_0_1": [
+        [
+          902,
+          98
+        ],
+        [
+          134,
+          866
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.29740322431178856,
+      "macro_f1": 0.8839624038188373,
+      "negative_f1": 0.8860510805500982,
+      "positive_f1": 0.8818737270875764
+    },
+    "pooling/nld.rst.nldt/relation-text-order/fine": {
+      "accuracy": 0.871,
+      "confusion_matrix_labels_0_1": [
+        [
+          886,
+          114
+        ],
+        [
+          144,
+          856
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.32916168403823837,
+      "macro_f1": 0.8709709684679052,
+      "negative_f1": 0.8729064039408867,
+      "positive_f1": 0.8690355329949239
+    },
+    "recursive/deu.rst.pcc/coarse": {
+      "accuracy": 0.8835,
+      "confusion_matrix_labels_0_1": [
+        [
+          885,
+          115
+        ],
+        [
+          118,
+          882
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2902224553927284,
+      "macro_f1": 0.8834997378744103,
+      "negative_f1": 0.8836744882675986,
+      "positive_f1": 0.8833249874812218
+    },
+    "recursive/deu.rst.pcc/fine": {
+      "accuracy": 0.883,
+      "confusion_matrix_labels_0_1": [
+        [
+          886,
+          114
+        ],
+        [
+          120,
+          880
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.29021730982473876,
+      "macro_f1": 0.8829989469905228,
+      "negative_f1": 0.8833499501495513,
+      "positive_f1": 0.8826479438314945
+    },
+    "recursive/deu.rst.pcc/shared": {
+      "accuracy": 0.8765,
+      "confusion_matrix_labels_0_1": [
+        [
+          874,
+          126
+        ],
+        [
+          121,
+          879
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3055884821008157,
+      "macro_f1": 0.8764992281201758,
+      "negative_f1": 0.8761904761904762,
+      "positive_f1": 0.8768079800498753
+    },
+    "recursive/eng.erst.gum/coarse": {
+      "accuracy": 0.8805,
+      "confusion_matrix_labels_0_1": [
+        [
+          878,
+          122
+        ],
+        [
+          117,
+          883
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2897860489846763,
+      "macro_f1": 0.880499253120332,
+      "negative_f1": 0.8802005012531329,
+      "positive_f1": 0.8807980049875311
+    },
+    "recursive/eng.erst.gum/fine": {
+      "accuracy": 0.879,
+      "confusion_matrix_labels_0_1": [
+        [
+          874,
+          126
+        ],
+        [
+          116,
+          884
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2958141914072952,
+      "macro_f1": 0.8789969749243731,
+      "negative_f1": 0.878391959798995,
+      "positive_f1": 0.8796019900497513
+    },
+    "recursive/eng.erst.gum/shared": {
+      "accuracy": 0.8715,
+      "confusion_matrix_labels_0_1": [
+        [
+          871,
+          129
+        ],
+        [
+          128,
+          872
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.30709951035442534,
+      "macro_f1": 0.871499967874992,
+      "negative_f1": 0.8714357178589295,
+      "positive_f1": 0.8715642178910544
+    },
+    "recursive/eng.rst.rstdt/coarse": {
+      "accuracy": 0.8745,
+      "confusion_matrix_labels_0_1": [
+        [
+          866,
+          134
+        ],
+        [
+          117,
+          883
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3041374464474315,
+      "macro_f1": 0.8744909319698349,
+      "negative_f1": 0.8734241048915784,
+      "positive_f1": 0.8755577590480912
+    },
+    "recursive/eng.rst.rstdt/fine": {
+      "accuracy": 0.8755,
+      "confusion_matrix_labels_0_1": [
+        [
+          873,
+          127
+        ],
+        [
+          122,
+          878
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3031976892275385,
+      "macro_f1": 0.8754992218701367,
+      "negative_f1": 0.8751879699248121,
+      "positive_f1": 0.8758104738154614
+    },
+    "recursive/eng.rst.rstdt/shared": {
+      "accuracy": 0.867,
+      "confusion_matrix_labels_0_1": [
+        [
+          860,
+          140
+        ],
+        [
+          126,
+          874
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.31183758383968246,
+      "macro_f1": 0.8669934826806514,
+      "negative_f1": 0.8660624370594159,
+      "positive_f1": 0.8679245283018868
+    },
+    "recursive/nld.rst.nldt/coarse": {
+      "accuracy": 0.8845,
+      "confusion_matrix_labels_0_1": [
+        [
+          884,
+          116
+        ],
+        [
+          115,
+          885
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.28400249915460846,
+      "macro_f1": 0.8844999711249928,
+      "negative_f1": 0.8844422211105553,
+      "positive_f1": 0.8845577211394303
+    },
+    "recursive/nld.rst.nldt/fine": {
+      "accuracy": 0.882,
+      "confusion_matrix_labels_0_1": [
+        [
+          885,
+          115
+        ],
+        [
+          121,
+          879
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.2892554797193906,
+      "macro_f1": 0.8819989379904418,
+      "negative_f1": 0.8823529411764706,
+      "positive_f1": 0.8816449348044132
+    },
+    "recursive/nld.rst.nldt/shared": {
+      "accuracy": 0.8745,
+      "confusion_matrix_labels_0_1": [
+        [
+          871,
+          129
+        ],
+        [
+          122,
+          878
+        ]
+      ],
+      "documents": 2000,
+      "log_loss": 0.3067899812620706,
+      "macro_f1": 0.8744984626061669,
+      "negative_f1": 0.8740592072252885,
+      "positive_f1": 0.8749377179870453
+    }
+  },
+  "contrasts": {
+    "fine_vs_coarse": {
+      "gate/deu.rst.pcc/fine - gate/deu.rst.pcc/coarse": {
+        "bootstrap_p": 0.2765,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.006982767096327551,
+          0.0020549450451435593
+        ],
+        "log_loss_difference": -0.002496772912124079,
+        "macro_f1_difference": 0.005000551310782031
+      },
+      "gate/eng.erst.gum/fine - gate/eng.erst.gum/coarse": {
+        "bootstrap_p": 0.6252,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.0050589078305766175,
+          0.003112918167601503
+        ],
+        "log_loss_difference": -0.0009697976770349781,
+        "macro_f1_difference": 0.0035010017207814936
+      },
+      "gate/eng.rst.rstdt/fine - gate/eng.rst.rstdt/coarse": {
+        "bootstrap_p": 0.2712,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.008992697927130365,
+          0.002733498820392159
+        ],
+        "log_loss_difference": -0.003312826385202028,
+        "macro_f1_difference": -0.00048763411248142763
+      },
+      "gate/nld.rst.nldt/fine - gate/nld.rst.nldt/coarse": {
+        "bootstrap_p": 0.3756,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.006194436426500615,
+          0.002349692486606642
+        ],
+        "log_loss_difference": -0.0019040307054644656,
+        "macro_f1_difference": 0.00798877485018834
+      },
+      "pooling/deu.rst.pcc/relation-nucleus-first/fine - pooling/deu.rst.pcc/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.0,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.014449439133059636,
+          0.04004236274526667
+        ],
+        "log_loss_difference": 0.02686512164549315,
+        "macro_f1_difference": -0.0029753081851453533
+      },
+      "pooling/deu.rst.pcc/relation-text-order/fine - pooling/deu.rst.pcc/relation-text-order/coarse": {
+        "bootstrap_p": 0.0,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.018314124398380927,
+          0.04549387116350326
+        ],
+        "log_loss_difference": 0.03150303404119764,
+        "macro_f1_difference": -0.0049918727724839185
+      },
+      "pooling/eng.erst.gum/relation-nucleus-first/fine - pooling/eng.erst.gum/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.004,
+        "holm_p": 0.036000000000000004,
+        "interval_95": [
+          0.008402102222621458,
+          0.04564262559676956
+        ],
+        "log_loss_difference": 0.026304970593613697,
+        "macro_f1_difference": -0.00601198083175114
+      },
+      "pooling/eng.erst.gum/relation-text-order/fine - pooling/eng.erst.gum/relation-text-order/coarse": {
+        "bootstrap_p": 0.0005,
+        "holm_p": 0.006,
+        "interval_95": [
+          0.013210912934076858,
+          0.04896753987526009
+        ],
+        "log_loss_difference": 0.030670859374901827,
+        "macro_f1_difference": -0.007011386272611331
+      },
+      "pooling/eng.rst.rstdt/relation-nucleus-first/fine - pooling/eng.rst.rstdt/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.0005,
+        "holm_p": 0.006,
+        "interval_95": [
+          0.017769577129375748,
+          0.06615746897435384
+        ],
+        "log_loss_difference": 0.041355810041060315,
+        "macro_f1_difference": 0.0029828928719244363
+      },
+      "pooling/eng.rst.rstdt/relation-text-order/fine - pooling/eng.rst.rstdt/relation-text-order/coarse": {
+        "bootstrap_p": 0.0007,
+        "holm_p": 0.007,
+        "interval_95": [
+          0.01817401800413597,
+          0.06514934482651652
+        ],
+        "log_loss_difference": 0.04089538745593879,
+        "macro_f1_difference": -0.002520203336751292
+      },
+      "pooling/nld.rst.nldt/relation-nucleus-first/fine - pooling/nld.rst.nldt/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.0,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.017536261853017605,
+          0.04283925547013916
+        ],
+        "log_loss_difference": 0.02974598254896632,
+        "macro_f1_difference": -0.010503286166473336
+      },
+      "pooling/nld.rst.nldt/relation-text-order/fine - pooling/nld.rst.nldt/relation-text-order/coarse": {
+        "bootstrap_p": 0.0,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.019819485193529836,
+          0.04440477661795798
+        ],
+        "log_loss_difference": 0.031758459726449806,
+        "macro_f1_difference": -0.012991435350932057
+      },
+      "recursive/deu.rst.pcc/fine - recursive/deu.rst.pcc/coarse": {
+        "bootstrap_p": 0.9843,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.006684925506818591,
+          0.006799608364282709
+        ],
+        "log_loss_difference": -5.145567989639499e-06,
+        "macro_f1_difference": -0.0005007908838874364
+      },
+      "recursive/eng.erst.gum/fine - recursive/eng.erst.gum/coarse": {
+        "bootstrap_p": 0.1703,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.0024794692519102654,
+          0.014499442288403247
+        ],
+        "log_loss_difference": 0.006028142422618898,
+        "macro_f1_difference": -0.0015022781959588283
+      },
+      "recursive/eng.rst.rstdt/fine - recursive/eng.rst.rstdt/coarse": {
+        "bootstrap_p": 0.8443,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.010283930111855735,
+          0.008702697173512262
+        ],
+        "log_loss_difference": -0.0009397572198930337,
+        "macro_f1_difference": 0.0010082899003018841
+      },
+      "recursive/nld.rst.nldt/fine - recursive/nld.rst.nldt/coarse": {
+        "bootstrap_p": 0.0189,
+        "holm_p": 0.1512,
+        "interval_95": [
+          0.000844111136714286,
+          0.009637906209696201
+        ],
+        "log_loss_difference": 0.005252980564782128,
+        "macro_f1_difference": -0.0025010331345509673
+      }
+    },
+    "labels_vs_unlabeled": {
+      "gate/deu.rst.pcc/coarse - gate/deu.rst.pcc/unlabeled": {
+        "bootstrap_p": 0.0002,
+        "holm_p": 0.003,
+        "interval_95": [
+          -0.024051426879853927,
+          -0.006917432197864285
+        ],
+        "log_loss_difference": -0.015590852756297124,
+        "macro_f1_difference": 0.013524556498259122
+      },
+      "gate/deu.rst.pcc/fine - gate/deu.rst.pcc/unlabeled": {
+        "bootstrap_p": 0.0002,
+        "holm_p": 0.003,
+        "interval_95": [
+          -0.02744610714387656,
+          -0.008459604134326644
+        ],
+        "log_loss_difference": -0.018087625668421203,
+        "macro_f1_difference": 0.018525107809041153
+      },
+      "gate/eng.erst.gum/coarse - gate/eng.erst.gum/unlabeled": {
+        "bootstrap_p": 0.0008,
+        "holm_p": 0.007200000000000001,
+        "interval_95": [
+          -0.02222898659984112,
+          -0.006053980400847679
+        ],
+        "log_loss_difference": -0.014113175564937852,
+        "macro_f1_difference": 0.009521465291607134
+      },
+      "gate/eng.erst.gum/fine - gate/eng.erst.gum/unlabeled": {
+        "bootstrap_p": 0.0006,
+        "holm_p": 0.006599999999999999,
+        "interval_95": [
+          -0.02409744216329713,
+          -0.006205392600088751
+        ],
+        "log_loss_difference": -0.01508297324197283,
+        "macro_f1_difference": 0.013022467012388628
+      },
+      "gate/eng.rst.rstdt/coarse - gate/eng.rst.rstdt/unlabeled": {
+        "bootstrap_p": 0.017,
+        "holm_p": 0.085,
+        "interval_95": [
+          -0.018002181003290155,
+          -0.0017535790825352392
+        ],
+        "log_loss_difference": -0.009888146784311491,
+        "macro_f1_difference": 0.0015377153672230248
+      },
+      "gate/eng.rst.rstdt/fine - gate/eng.rst.rstdt/unlabeled": {
+        "bootstrap_p": 0.0076,
+        "holm_p": 0.047599999999999996,
+        "interval_95": [
+          -0.02231125938952759,
+          -0.0038716904506846494
+        ],
+        "log_loss_difference": -0.013200973169513519,
+        "macro_f1_difference": 0.0010500812547415972
+      },
+      "gate/nld.rst.nldt/coarse - gate/nld.rst.nldt/unlabeled": {
+        "bootstrap_p": 0.0002,
+        "holm_p": 0.003,
+        "interval_95": [
+          -0.024654685127400152,
+          -0.00807481939274599
+        ],
+        "log_loss_difference": -0.016463421513480014,
+        "macro_f1_difference": 0.015519820249148997
+      },
+      "gate/nld.rst.nldt/fine - gate/nld.rst.nldt/unlabeled": {
+        "bootstrap_p": 0.0,
+        "holm_p": 0.0,
+        "interval_95": [
+          -0.027553193029853727,
+          -0.00904963578128713
+        ],
+        "log_loss_difference": -0.01836745221894448,
+        "macro_f1_difference": 0.023508595099337337
+      },
+      "recursive/deu.rst.pcc/coarse - recursive/deu.rst.pcc/shared": {
+        "bootstrap_p": 0.0059,
+        "holm_p": 0.0472,
+        "interval_95": [
+          -0.026066901228771477,
+          -0.004521815618464007
+        ],
+        "log_loss_difference": -0.015366026708087288,
+        "macro_f1_difference": 0.007000509754234496
+      },
+      "recursive/deu.rst.pcc/fine - recursive/deu.rst.pcc/shared": {
+        "bootstrap_p": 0.0193,
+        "holm_p": 0.085,
+        "interval_95": [
+          -0.02814459261923031,
+          -0.0026932076750930153
+        ],
+        "log_loss_difference": -0.015371172276076928,
+        "macro_f1_difference": 0.00649971887034706
+      },
+      "recursive/eng.erst.gum/coarse - recursive/eng.erst.gum/shared": {
+        "bootstrap_p": 0.0007,
+        "holm_p": 0.007,
+        "interval_95": [
+          -0.02733663607200241,
+          -0.007373826958169742
+        ],
+        "log_loss_difference": -0.01731346136974904,
+        "macro_f1_difference": 0.008999285245339994
+      },
+      "recursive/eng.erst.gum/fine - recursive/eng.erst.gum/shared": {
+        "bootstrap_p": 0.0974,
+        "holm_p": 0.2922,
+        "interval_95": [
+          -0.024776068064569463,
+          0.0020740583619021087
+        ],
+        "log_loss_difference": -0.01128531894713014,
+        "macro_f1_difference": 0.007497007049381166
+      },
+      "recursive/eng.rst.rstdt/coarse - recursive/eng.rst.rstdt/shared": {
+        "bootstrap_p": 0.1734,
+        "holm_p": 0.3468,
+        "interval_95": [
+          -0.018949276438763714,
+          0.003524614580088667
+        ],
+        "log_loss_difference": -0.00770013739225095,
+        "macro_f1_difference": 0.0074974492891835
+      },
+      "recursive/eng.rst.rstdt/fine - recursive/eng.rst.rstdt/shared": {
+        "bootstrap_p": 0.2329,
+        "holm_p": 0.3468,
+        "interval_95": [
+          -0.022855768789946756,
+          0.005769749606942771
+        ],
+        "log_loss_difference": -0.008639894612143983,
+        "macro_f1_difference": 0.008505739189485384
+      },
+      "recursive/nld.rst.nldt/coarse - recursive/nld.rst.nldt/shared": {
+        "bootstrap_p": 0.0002,
+        "holm_p": 0.003,
+        "interval_95": [
+          -0.03446006774896465,
+          -0.010634377314705287
+        ],
+        "log_loss_difference": -0.02278748210746212,
+        "macro_f1_difference": 0.010001508518825863
+      },
+      "recursive/nld.rst.nldt/fine - recursive/nld.rst.nldt/shared": {
+        "bootstrap_p": 0.0068,
+        "holm_p": 0.047599999999999996,
+        "interval_95": [
+          -0.029976516301222597,
+          -0.004859864903517048
+        ],
+        "log_loss_difference": -0.017534501542679992,
+        "macro_f1_difference": 0.007500475384274896
+      }
+    }
+  },
+  "corpus": "amazon",
+  "families": "Holm adjustment within each family and corpus",
+  "input_hashes": {
+    "baseline-config.json": "dea62f6233a82b653943a2b654bcad5eaa98dcfad47ce2ee0cb7fff3a0f0b34b",
+    "deu.rst.pcc.jsonl": "84fa6cbcb9d65e1e1ed0403c5c6e587173ce6521be88759591ee6fa853794ffd",
+    "eng.erst.gum.jsonl": "90d239585ea52a6fe37ad8f24344791c19dc3c872c4325e565018704ba82727d",
+    "eng.rst.rstdt.jsonl": "9ffc56fc54f8ed73bc1a20cd0f34f35b8e864b8c3d4798b37801ebe51e178079",
+    "gate_predictions.jsonl": "58f63541b48c74fc3faa80d33ab4b03f4605d8ac292c9c6e33c6bf8f17305e48",
+    "manifest.jsonl": "ec0d7910b41e4ae59abda7fffb98e73bd52c48501b07128f7a461cb67ac387b1",
+    "nld.rst.nldt.jsonl": "4fc0168bf2e2cd88c4b33e430ecf7d989be201b80fee5b897a5cc0802724c75e",
+    "recursive_predictions.jsonl": "224a058e15e9e63184f37e4c9a0fd6784d0e27e315de538c0f588f8615e0d4f6",
+    "scenes.jsonl": "2fe4c92ec58653a86dc2909d05a964256347fb15582f0234124928952666db6b",
+    "scores.jsonl": "e06879c4f0ba924c0b116c1d203c1a3f62e0d4d290d94ad83e8426295db414c9",
+    "splits.json": "ca6f86bbc47bfdd19346b44f4de3df7aeb37faa1fbff29e536d49d5ba513a02e"
+  },
+  "metric": "held-out binary log-loss; negative differences favour the left condition",
+  "protocol": "granularity-loss-v1",
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "label"
+    ],
+    "unit": "review"
+  },
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+    "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+    "granularity_diagnostics.py": "0104cfbda003c98a8b8e5a52d3384c7e50d4e409d65e551cea4101a2e5b1d6f0",
+    "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+    "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560",
+    "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+    "relation_stability.py": "924fa292df35e13704ad19486f92c5cc4fa0d1346f0fc2bb54d7b940f39fea17",
+    "stock_pooling.py": "4db300e016b1e01cc867554e6a8c4b95dfa6ccfaf69b8cdaf38fbc5aa79ae5ae",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  }
+}

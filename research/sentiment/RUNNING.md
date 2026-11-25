@@ -8,6 +8,9 @@ The [bottom-up Amazon experiment](#combine-sentiment-up-the-amazon-trees)
 tests whether fine or coarse labels help when combining sentiment up a tree.
 The [stock-coarse tree comparison](#compare-stock-coarse-and-mapped-trees)
 reparses the same SFU and Amazon EDUs with the public coarse checkpoints.
+The [fine/coarse diagnostics](#finecoarse-diagnostics-with-log-loss-and-scrambled-labels)
+compare log-loss and test fine labels against labels scrambled within their
+coarse groups.
 The sections below also preserve the original SFU
 stage commands and reference outcomes.
 
@@ -1009,3 +1012,107 @@ PYTHONPATH="$run/source" "$assets/classifier-exact-venv/bin/python" -B \
   "$scripts/compare-to-sfu.py" --sfu-run "$sfu_run" --uci-run "$run" \
   --uci-archive "$uci_zip" > "$run/comparison.json"
 ```
+
+## Fine/coarse diagnostics with log-loss and scrambled labels
+
+**Question.** Do fine labels carry sentiment information that their coarse
+group loses, beyond simply adding parameters? Exploratory, 2026-11-25, on the
+same SFU and Amazon cohorts that were used to develop the models.
+
+1. **Log-loss reanalysis** (`granularity_diagnostics loss`). Macro-F1 changes
+   only when a review crosses the 0.5 threshold. Held-out log-loss uses every
+   predicted probability. The command compares fine with mapped coarse, and
+   labelled with unlabeled models, for relation pooling (refitted; every
+   macro-F1 must equal the published value), the relation-gate model and the
+   Amazon recursive model (published predictions, checked by hash). Intervals
+   are paired bootstrap percentiles over 20,000 draws within fold, category
+   and gold label. Holm adjustment is applied within each family and corpus.
+2. **Scrambled-label control** (`granularity_diagnostics scramble`). The fine
+   gate model is refitted 1,000 times per standard after shuffling fine labels
+   among the links of each coarse group across the corpus. Each fine label
+   keeps its link count and coarse parent. If real fine labels beat the
+   scrambled ones, the distinctions inside coarse groups carry information.
+   The command also compares the spread of learned gates among sibling fine
+   labels, as a link-weighted variance of log gates, with the scrambled fits.
+   The refit with real labels must match the published fine, coarse and
+   unlabeled predictions; all 24 matched exactly.
+
+```bash
+A=artifacts/sentiment   # verified inputs from the earlier runs
+out=$A/granularity-diagnostics-v1
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+run="uv run --project research/sentiment --locked --no-sync python -B -m research.sentiment.granularity_diagnostics"
+sfu=(--corpus sfu --prepared $A/sfu-v1/prepared --trees $A/sfu-full-v1
+     --scores $A/sfu-edu-scores-v1/scores.jsonl
+     --gate-predictions $A/sentiment3-v1.OzbMlX/sfu-cardiff/predictions.jsonl)
+amazon=(--corpus amazon --prepared $A/amazon23-short-v1.4YbtTy/prepared
+        --trees $A/amazon23-short-v1.4YbtTy/parser-verified
+        --scores $A/amazon23-short-v1.4YbtTy/edu-scores/scores.jsonl
+        --gate-predictions $A/sentiment3-v1.OzbMlX/amazon-cardiff/predictions.jsonl)
+$run loss "${sfu[@]}" --output $out/sfu-loss.json
+$run loss "${amazon[@]}" --recursive-predictions $A/amazon-recursive-v1/predictions.jsonl \
+  --output $out/amazon-loss.json
+$run scramble "${sfu[@]}" --permutations 1000 --output $out/sfu-scramble
+$run scramble "${amazon[@]}" --permutations 1000 --output $out/amazon-scramble
+python -B -m research.sentiment.granularity_summary $out/*-loss.json $out/*-scramble/report.json
+```
+
+The reports are copied to `results/granularity-{loss,scramble}-{sfu,amazon}-v1.json`.
+The 1,000 permutation rows per standard stay with the artifacts. Each report
+records their SHA-256. On one CPU thread, the SFU scramble took 9 minutes and
+the Amazon scramble 22 minutes.
+
+### What the diagnostics found
+
+**Labels help on Amazon.** In the gate model, fine and coarse labels both
+lowered Amazon log-loss against unlabeled links by 0.010–0.018 nats. Seven of
+the eight contrasts survive Holm adjustment; RST-DT coarse gives Holm p = .085.
+On SFU the labelled models also had lower log-loss, but no contrast survives
+the adjustment.
+
+**Fine against coarse depends on the model.**
+
+| Model | Amazon fine − coarse log-loss (×10⁻³) | Reading |
+|---|---|---|
+| Relation pooling, text order and nucleus first | +26 to +41 in all 8; all Holm p ≤ .036 | Fine is reliably *worse* |
+| Relation gates | −1.0 to −3.3 in all 4; all intervals include 0 | Fine leans better |
+| Recursive composition | −0.9 to +6.0; NLDT +5.3 [+0.8, +9.6], Holm p = .151; others include 0 | No reliable difference |
+
+Pooling gives each fine label six of its own feature columns, and most are
+zero in most reviews. Its fine models therefore become overconfident, even
+when their macro-F1 barely moves. The gate model needs one extra number per
+label, so it can use fine labels without that cost.
+
+**Scrambled labels (gate model, 1,000 permutations).**
+
+| Corpus | Standard | Fine | Coarse | Scrambled fine, mean [95% range] | p fine < scrambled | p sibling gate spread > scrambled |
+|---|---|---:|---:|---:|---:|---:|
+| Amazon | PCC | .2842 | .2867 | .2889 [.2859, .2917] | .004 | .005 |
+| Amazon | NLDT | .2861 | .2880 | .2900 [.2867, .2929] | .010 | .018 |
+| Amazon | GUM/eRST | .2864 | .2873 | .2899 [.2865, .2933] | .024 | .036 |
+| Amazon | RST-DT | .2871 | .2905 | .2934 [.2896, .2970] | .002 | .001 |
+| SFU | PCC | .3886 | .3930 | .3896 [.3682, .4143] | .476 | .202 |
+| SFU | NLDT | .3734 | .3741 | .3810 [.3642, .3971] | .180 | .007 |
+| SFU | GUM/eRST | .3770 | .3798 | .3843 [.3702, .3993] | .156 | .012 |
+| SFU | RST-DT | .3962 | .3932 | .4055 [.3900, .4207] | .112 | .038 |
+
+On Amazon, real fine labels beat scrambled ones in all four standards. All
+four permutation p-values remain below .05 after Holm adjustment. Scrambled
+fine labels score *worse* than coarse labels, so the extra parameters cost
+accuracy. Real fine labels recover that cost and slightly improve on coarse.
+Sibling labels receive more distinct weights than scrambled siblings, and the
+pattern repeats across standards. For example, *contrast* gets more weight
+than *concession* everywhere: NLDT 1.20 against 0.28, PCC 1.01 against 0.40,
+RST-DT `contrast-mn` 1.08 against 0.23, and GUM 0.78 against 0.43. *Evaluation*
+and *summary* also get more weight than their siblings. On SFU, three of four
+standards also learn more distinct sibling weights than chance at
+uncorrected p < .05, and two remain below .05 after Holm adjustment. The 400
+reviews give too little held-out signal to show better predictions.
+
+**What this does and does not establish.** Fine distinctions inside coarse
+groups carry some sentiment-relevant information when a model can use them
+cheaply. The direct fine-versus-coarse gain in the gate model is about
+0.001–0.003 nats on Amazon, and each interval includes zero. These analyses
+are exploratory and reuse the development data. The pre-registered
+[confirmation plan](GRANULARITY_CONFIRMATION.md) tests the contrast on a new
+16,000-review cohort.

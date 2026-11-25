@@ -1,0 +1,921 @@
+{
+  "conditions": {
+    "gate/deu.rst.pcc/coarse": {
+      "accuracy": 0.8375,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          28,
+          172
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.3929734950920256,
+      "macro_f1": 0.8374176927069329,
+      "negative_f1": 0.8337595907928389,
+      "positive_f1": 0.8410757946210269
+    },
+    "gate/deu.rst.pcc/fine": {
+      "accuracy": 0.84,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          27,
+          173
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.3885619138561483,
+      "macro_f1": 0.8398999374609131,
+      "negative_f1": 0.8358974358974359,
+      "positive_f1": 0.8439024390243902
+    },
+    "gate/deu.rst.pcc/nuclearity": {
+      "accuracy": 0.825,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          32,
+          168
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4001183424839347,
+      "macro_f1": 0.8249606161386311,
+      "negative_f1": 0.8223350253807107,
+      "positive_f1": 0.8275862068965517
+    },
+    "gate/deu.rst.pcc/unlabeled": {
+      "accuracy": 0.82,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          35,
+          165
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.3980266059855969,
+      "macro_f1": 0.8199954998874972,
+      "negative_f1": 0.8190954773869347,
+      "positive_f1": 0.8208955223880597
+    },
+    "gate/edu_mean": {
+      "accuracy": 0.82,
+      "confusion_matrix_labels_0_1": [
+        [
+          161,
+          39
+        ],
+        [
+          33,
+          167
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4053030802024222,
+      "macro_f1": 0.8199594908854493,
+      "negative_f1": 0.817258883248731,
+      "positive_f1": 0.8226600985221675
+    },
+    "gate/eng.erst.gum/coarse": {
+      "accuracy": 0.845,
+      "confusion_matrix_labels_0_1": [
+        [
+          168,
+          32
+        ],
+        [
+          30,
+          170
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.37975679017460096,
+      "macro_f1": 0.8449961249031226,
+      "negative_f1": 0.8442211055276382,
+      "positive_f1": 0.845771144278607
+    },
+    "gate/eng.erst.gum/fine": {
+      "accuracy": 0.8325,
+      "confusion_matrix_labels_0_1": [
+        [
+          166,
+          34
+        ],
+        [
+          33,
+          167
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.37699123309260946,
+      "macro_f1": 0.832498953118457,
+      "negative_f1": 0.8320802005012531,
+      "positive_f1": 0.8329177057356608
+    },
+    "gate/eng.erst.gum/nuclearity": {
+      "accuracy": 0.825,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          32,
+          168
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4109911106876774,
+      "macro_f1": 0.8249606161386311,
+      "negative_f1": 0.8223350253807107,
+      "positive_f1": 0.8275862068965517
+    },
+    "gate/eng.erst.gum/unlabeled": {
+      "accuracy": 0.83,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          31,
+          169
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.40065903286448645,
+      "macro_f1": 0.8299617413918132,
+      "negative_f1": 0.8274111675126904,
+      "positive_f1": 0.8325123152709359
+    },
+    "gate/eng.rst.rstdt/coarse": {
+      "accuracy": 0.83,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          31,
+          169
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.3931511914002184,
+      "macro_f1": 0.8299617413918132,
+      "negative_f1": 0.8274111675126904,
+      "positive_f1": 0.8325123152709359
+    },
+    "gate/eng.rst.rstdt/fine": {
+      "accuracy": 0.835,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          29,
+          171
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.39621001978468995,
+      "macro_f1": 0.8349339735894358,
+      "negative_f1": 0.8316326530612245,
+      "positive_f1": 0.8382352941176471
+    },
+    "gate/eng.rst.rstdt/nuclearity": {
+      "accuracy": 0.825,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          32,
+          168
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4206272734482115,
+      "macro_f1": 0.8249606161386311,
+      "negative_f1": 0.8223350253807107,
+      "positive_f1": 0.8275862068965517
+    },
+    "gate/eng.rst.rstdt/unlabeled": {
+      "accuracy": 0.815,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          36,
+          164
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4200663153664594,
+      "macro_f1": 0.8149953748843721,
+      "negative_f1": 0.8140703517587939,
+      "positive_f1": 0.8159203980099502
+    },
+    "gate/nld.rst.nldt/coarse": {
+      "accuracy": 0.845,
+      "confusion_matrix_labels_0_1": [
+        [
+          166,
+          34
+        ],
+        [
+          28,
+          172
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.37410362388371354,
+      "macro_f1": 0.844965117151359,
+      "negative_f1": 0.8426395939086294,
+      "positive_f1": 0.8472906403940886
+    },
+    "gate/nld.rst.nldt/fine": {
+      "accuracy": 0.835,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          28,
+          172
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.3733736400808849,
+      "macro_f1": 0.8348968105065666,
+      "negative_f1": 0.8307692307692308,
+      "positive_f1": 0.8390243902439024
+    },
+    "gate/nld.rst.nldt/nuclearity": {
+      "accuracy": 0.83,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          31,
+          169
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.39561559673658186,
+      "macro_f1": 0.8299617413918132,
+      "negative_f1": 0.8274111675126904,
+      "positive_f1": 0.8325123152709359
+    },
+    "gate/nld.rst.nldt/unlabeled": {
+      "accuracy": 0.8275,
+      "confusion_matrix_labels_0_1": [
+        [
+          164,
+          36
+        ],
+        [
+          33,
+          167
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.39981378309355137,
+      "macro_f1": 0.8274902963291686,
+      "negative_f1": 0.8261964735516373,
+      "positive_f1": 0.8287841191066998
+    },
+    "pooling/deu.rst.pcc/nuclearity": {
+      "accuracy": 0.8225,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          33,
+          167
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4044865866817286,
+      "macro_f1": 0.8224722612908267,
+      "negative_f1": 0.8202531645569621,
+      "positive_f1": 0.8246913580246914
+    },
+    "pooling/deu.rst.pcc/relation-nucleus-first/coarse": {
+      "accuracy": 0.785,
+      "confusion_matrix_labels_0_1": [
+        [
+          157,
+          43
+        ],
+        [
+          43,
+          157
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4501928856050172,
+      "macro_f1": 0.785,
+      "negative_f1": 0.785,
+      "positive_f1": 0.785
+    },
+    "pooling/deu.rst.pcc/relation-nucleus-first/fine": {
+      "accuracy": 0.785,
+      "confusion_matrix_labels_0_1": [
+        [
+          160,
+          40
+        ],
+        [
+          46,
+          154
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4823380677301429,
+      "macro_f1": 0.7849516141131755,
+      "negative_f1": 0.7881773399014779,
+      "positive_f1": 0.7817258883248731
+    },
+    "pooling/deu.rst.pcc/relation-text-order/coarse": {
+      "accuracy": 0.7875,
+      "confusion_matrix_labels_0_1": [
+        [
+          157,
+          43
+        ],
+        [
+          42,
+          158
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4477417810540387,
+      "macro_f1": 0.7874986718666992,
+      "negative_f1": 0.7869674185463659,
+      "positive_f1": 0.7880299251870324
+    },
+    "pooling/deu.rst.pcc/relation-text-order/fine": {
+      "accuracy": 0.79,
+      "confusion_matrix_labels_0_1": [
+        [
+          158,
+          42
+        ],
+        [
+          42,
+          158
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.5018602077407068,
+      "macro_f1": 0.79,
+      "negative_f1": 0.79,
+      "positive_f1": 0.79
+    },
+    "pooling/eng.erst.gum/nuclearity": {
+      "accuracy": 0.825,
+      "confusion_matrix_labels_0_1": [
+        [
+          162,
+          38
+        ],
+        [
+          32,
+          168
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4155341075082309,
+      "macro_f1": 0.8249606161386311,
+      "negative_f1": 0.8223350253807107,
+      "positive_f1": 0.8275862068965517
+    },
+    "pooling/eng.erst.gum/relation-nucleus-first/coarse": {
+      "accuracy": 0.79,
+      "confusion_matrix_labels_0_1": [
+        [
+          157,
+          43
+        ],
+        [
+          41,
+          159
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.42262884448855254,
+      "macro_f1": 0.7899947498687467,
+      "negative_f1": 0.7889447236180904,
+      "positive_f1": 0.7910447761194029
+    },
+    "pooling/eng.erst.gum/relation-nucleus-first/fine": {
+      "accuracy": 0.7875,
+      "confusion_matrix_labels_0_1": [
+        [
+          159,
+          41
+        ],
+        [
+          44,
+          156
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.5161145076813897,
+      "macro_f1": 0.7874880462025988,
+      "negative_f1": 0.7890818858560794,
+      "positive_f1": 0.7858942065491183
+    },
+    "pooling/eng.erst.gum/relation-text-order/coarse": {
+      "accuracy": 0.78,
+      "confusion_matrix_labels_0_1": [
+        [
+          158,
+          42
+        ],
+        [
+          46,
+          154
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4559315599063946,
+      "macro_f1": 0.77997799779978,
+      "negative_f1": 0.7821782178217822,
+      "positive_f1": 0.7777777777777778
+    },
+    "pooling/eng.erst.gum/relation-text-order/fine": {
+      "accuracy": 0.7675,
+      "confusion_matrix_labels_0_1": [
+        [
+          153,
+          47
+        ],
+        [
+          46,
+          154
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.563265894543306,
+      "macro_f1": 0.7674985468659179,
+      "negative_f1": 0.7669172932330827,
+      "positive_f1": 0.7680798004987531
+    },
+    "pooling/eng.rst.rstdt/nuclearity": {
+      "accuracy": 0.8225,
+      "confusion_matrix_labels_0_1": [
+        [
+          161,
+          39
+        ],
+        [
+          32,
+          168
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.41977533190755123,
+      "macro_f1": 0.8224456239723414,
+      "negative_f1": 0.8193384223918575,
+      "positive_f1": 0.8255528255528255
+    },
+    "pooling/eng.rst.rstdt/relation-nucleus-first/coarse": {
+      "accuracy": 0.8,
+      "confusion_matrix_labels_0_1": [
+        [
+          155,
+          45
+        ],
+        [
+          35,
+          165
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.41960329703289434,
+      "macro_f1": 0.7998749218261414,
+      "negative_f1": 0.7948717948717948,
+      "positive_f1": 0.8048780487804879
+    },
+    "pooling/eng.rst.rstdt/relation-nucleus-first/fine": {
+      "accuracy": 0.765,
+      "confusion_matrix_labels_0_1": [
+        [
+          154,
+          46
+        ],
+        [
+          48,
+          152
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4781804437429368,
+      "macro_f1": 0.7649941248531213,
+      "negative_f1": 0.7661691542288557,
+      "positive_f1": 0.7638190954773869
+    },
+    "pooling/eng.rst.rstdt/relation-text-order/coarse": {
+      "accuracy": 0.8,
+      "confusion_matrix_labels_0_1": [
+        [
+          157,
+          43
+        ],
+        [
+          37,
+          163
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4328020687785681,
+      "macro_f1": 0.7999549898727214,
+      "negative_f1": 0.7969543147208121,
+      "positive_f1": 0.8029556650246306
+    },
+    "pooling/eng.rst.rstdt/relation-text-order/fine": {
+      "accuracy": 0.77,
+      "confusion_matrix_labels_0_1": [
+        [
+          156,
+          44
+        ],
+        [
+          48,
+          152
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.5147810762727815,
+      "macro_f1": 0.7699769976997699,
+      "negative_f1": 0.7722772277227723,
+      "positive_f1": 0.7676767676767676
+    },
+    "pooling/nld.rst.nldt/nuclearity": {
+      "accuracy": 0.8325,
+      "confusion_matrix_labels_0_1": [
+        [
+          163,
+          37
+        ],
+        [
+          30,
+          170
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4004697613490581,
+      "macro_f1": 0.8324486874105195,
+      "negative_f1": 0.8295165394402035,
+      "positive_f1": 0.8353808353808354
+    },
+    "pooling/nld.rst.nldt/relation-nucleus-first/coarse": {
+      "accuracy": 0.7975,
+      "confusion_matrix_labels_0_1": [
+        [
+          156,
+          44
+        ],
+        [
+          37,
+          163
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4520037341101036,
+      "macro_f1": 0.7974379653768966,
+      "negative_f1": 0.7938931297709924,
+      "positive_f1": 0.800982800982801
+    },
+    "pooling/nld.rst.nldt/relation-nucleus-first/fine": {
+      "accuracy": 0.785,
+      "confusion_matrix_labels_0_1": [
+        [
+          157,
+          43
+        ],
+        [
+          43,
+          157
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.4747973795181572,
+      "macro_f1": 0.785,
+      "negative_f1": 0.785,
+      "positive_f1": 0.785
+    },
+    "pooling/nld.rst.nldt/relation-text-order/coarse": {
+      "accuracy": 0.8,
+      "confusion_matrix_labels_0_1": [
+        [
+          159,
+          41
+        ],
+        [
+          39,
+          161
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.45074293770279694,
+      "macro_f1": 0.7999949998749969,
+      "negative_f1": 0.7989949748743719,
+      "positive_f1": 0.8009950248756219
+    },
+    "pooling/nld.rst.nldt/relation-text-order/fine": {
+      "accuracy": 0.7975,
+      "confusion_matrix_labels_0_1": [
+        [
+          157,
+          43
+        ],
+        [
+          38,
+          162
+        ]
+      ],
+      "documents": 400,
+      "log_loss": 0.49114887750489267,
+      "macro_f1": 0.7974683544303798,
+      "negative_f1": 0.7949367088607595,
+      "positive_f1": 0.8
+    }
+  },
+  "contrasts": {
+    "fine_vs_coarse": {
+      "gate/deu.rst.pcc/fine - gate/deu.rst.pcc/coarse": {
+        "bootstrap_p": 0.6554,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.022996178450724936,
+          0.013877978353327722
+        ],
+        "log_loss_difference": -0.004411581235877315,
+        "macro_f1_difference": 0.0024822447539801784
+      },
+      "gate/eng.erst.gum/fine - gate/eng.erst.gum/coarse": {
+        "bootstrap_p": 0.7212,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.018347085233064123,
+          0.013065097901182099
+        ],
+        "log_loss_difference": -0.0027655570819914987,
+        "macro_f1_difference": -0.012497171784665584
+      },
+      "gate/eng.rst.rstdt/fine - gate/eng.rst.rstdt/coarse": {
+        "bootstrap_p": 0.7133,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.012629651432751562,
+          0.018795580487338235
+        ],
+        "log_loss_difference": 0.0030588283844715236,
+        "macro_f1_difference": 0.00497223219762255
+      },
+      "gate/nld.rst.nldt/fine - gate/nld.rst.nldt/coarse": {
+        "bootstrap_p": 0.9407,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.01805086192199469,
+          0.016452957516399285
+        ],
+        "log_loss_difference": -0.0007299838028286265,
+        "macro_f1_difference": -0.010068306644792413
+      },
+      "pooling/deu.rst.pcc/relation-nucleus-first/fine - pooling/deu.rst.pcc/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.1715,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.014503378293882672,
+          0.08044892137050229
+        ],
+        "log_loss_difference": 0.03214518212512574,
+        "macro_f1_difference": -4.838588682454237e-05
+      },
+      "pooling/deu.rst.pcc/relation-text-order/fine - pooling/deu.rst.pcc/relation-text-order/coarse": {
+        "bootstrap_p": 0.0204,
+        "holm_p": 0.1836,
+        "interval_95": [
+          0.008129405747070594,
+          0.10207963286767613
+        ],
+        "log_loss_difference": 0.05411842668666811,
+        "macro_f1_difference": 0.0025013281333008397
+      },
+      "pooling/eng.erst.gum/relation-nucleus-first/fine - pooling/eng.erst.gum/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.0006,
+        "holm_p": 0.006599999999999999,
+        "interval_95": [
+          0.036443719186863704,
+          0.15242115859815
+        ],
+        "log_loss_difference": 0.09348566319283713,
+        "macro_f1_difference": -0.0025067036661479136
+      },
+      "pooling/eng.erst.gum/relation-text-order/fine - pooling/eng.erst.gum/relation-text-order/coarse": {
+        "bootstrap_p": 0.0002,
+        "holm_p": 0.0024000000000000002,
+        "interval_95": [
+          0.05262753744042973,
+          0.16508593614906078
+        ],
+        "log_loss_difference": 0.10733433463691139,
+        "macro_f1_difference": -0.012479450933862157
+      },
+      "pooling/eng.rst.rstdt/relation-nucleus-first/fine - pooling/eng.rst.rstdt/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.0405,
+        "holm_p": 0.324,
+        "interval_95": [
+          0.0025704437706904663,
+          0.11494859334503903
+        ],
+        "log_loss_difference": 0.05857714671004244,
+        "macro_f1_difference": -0.034880796973020045
+      },
+      "pooling/eng.rst.rstdt/relation-text-order/fine - pooling/eng.rst.rstdt/relation-text-order/coarse": {
+        "bootstrap_p": 0.0055,
+        "holm_p": 0.05499999999999999,
+        "interval_95": [
+          0.022955035976842845,
+          0.1408676360242874
+        ],
+        "log_loss_difference": 0.08197900749421339,
+        "macro_f1_difference": -0.029977992172951495
+      },
+      "pooling/nld.rst.nldt/relation-nucleus-first/fine - pooling/nld.rst.nldt/relation-nucleus-first/coarse": {
+        "bootstrap_p": 0.286,
+        "holm_p": 1.0,
+        "interval_95": [
+          -0.019021622447528197,
+          0.06461842013232681
+        ],
+        "log_loss_difference": 0.02279364540805362,
+        "macro_f1_difference": -0.012437965376896565
+      },
+      "pooling/nld.rst.nldt/relation-text-order/fine - pooling/nld.rst.nldt/relation-text-order/coarse": {
+        "bootstrap_p": 0.0839,
+        "holm_p": 0.5873,
+        "interval_95": [
+          -0.005053827317153927,
+          0.08772359379820094
+        ],
+        "log_loss_difference": 0.040405939802095725,
+        "macro_f1_difference": -0.002526645444617115
+      }
+    },
+    "labels_vs_unlabeled": {
+      "gate/deu.rst.pcc/coarse - gate/deu.rst.pcc/unlabeled": {
+        "bootstrap_p": 0.6943,
+        "holm_p": 0.9098,
+        "interval_95": [
+          -0.030847398314641065,
+          0.021579245788663836
+        ],
+        "log_loss_difference": -0.0050531108935713,
+        "macro_f1_difference": 0.01742219281943569
+      },
+      "gate/deu.rst.pcc/fine - gate/deu.rst.pcc/unlabeled": {
+        "bootstrap_p": 0.4549,
+        "holm_p": 0.9098,
+        "interval_95": [
+          -0.03428326220471205,
+          0.015135603404685321
+        ],
+        "log_loss_difference": -0.009464692129448615,
+        "macro_f1_difference": 0.019904437573415867
+      },
+      "gate/eng.erst.gum/coarse - gate/eng.erst.gum/unlabeled": {
+        "bootstrap_p": 0.0479,
+        "holm_p": 0.3087,
+        "interval_95": [
+          -0.04171565427975306,
+          -0.00019005833682571188
+        ],
+        "log_loss_difference": -0.020902242689885497,
+        "macro_f1_difference": 0.015034383511309368
+      },
+      "gate/eng.erst.gum/fine - gate/eng.erst.gum/unlabeled": {
+        "bootstrap_p": 0.0841,
+        "holm_p": 0.3364,
+        "interval_95": [
+          -0.050303586593760836,
+          0.003433089911573924
+        ],
+        "log_loss_difference": -0.023667799771876996,
+        "macro_f1_difference": 0.0025372117266437844
+      },
+      "gate/eng.rst.rstdt/coarse - gate/eng.rst.rstdt/unlabeled": {
+        "bootstrap_p": 0.0455,
+        "holm_p": 0.3087,
+        "interval_95": [
+          -0.051916214756660535,
+          -0.000598238996870172
+        ],
+        "log_loss_difference": -0.02691512396624096,
+        "macro_f1_difference": 0.014966366507441098
+      },
+      "gate/eng.rst.rstdt/fine - gate/eng.rst.rstdt/unlabeled": {
+        "bootstrap_p": 0.0898,
+        "holm_p": 0.3364,
+        "interval_95": [
+          -0.05021463160387689,
+          0.003770711839321474
+        ],
+        "log_loss_difference": -0.023856295581769438,
+        "macro_f1_difference": 0.019938598705063648
+      },
+      "gate/nld.rst.nldt/coarse - gate/nld.rst.nldt/unlabeled": {
+        "bootstrap_p": 0.0206,
+        "holm_p": 0.1648,
+        "interval_95": [
+          -0.04830744726630988,
+          -0.0037773903257144748
+        ],
+        "log_loss_difference": -0.025710159209837824,
+        "macro_f1_difference": 0.01747482082219043
+      },
+      "gate/nld.rst.nldt/fine - gate/nld.rst.nldt/unlabeled": {
+        "bootstrap_p": 0.0441,
+        "holm_p": 0.3087,
+        "interval_95": [
+          -0.05267410895430558,
+          -0.0007692582126305531
+        ],
+        "log_loss_difference": -0.02644014301266645,
+        "macro_f1_difference": 0.007406514177398016
+      }
+    }
+  },
+  "corpus": "sfu",
+  "families": "Holm adjustment within each family and corpus",
+  "input_hashes": {
+    "baseline_config.json": "558363bab07109c3eb5fc279a87b4aa696e865d429b907dd297caa5db5137d49",
+    "deu.rst.pcc.jsonl": "5ce17b5258319c04e1ff814e54bfc01ece91c14cf6670ae8126c1cf1f9efed63",
+    "eng.erst.gum.jsonl": "40402f1787db58abb3ec412d118b3dc304f44798a4563eee8cbb17cab5be21bc",
+    "eng.rst.rstdt.jsonl": "e60b11cf22b898acd966aab9267a0bd39c1f62fe64b232e4b5217521ac2a6342",
+    "gate_predictions.jsonl": "11f86517aa7df2c93bded1b42c03a914610e8d9a66d4314406f620153bdd47fe",
+    "manifest.jsonl": "53e6fa6b4f324343b79649a3f52a6160738ff32780d89f24807ffa943298f3d0",
+    "nld.rst.nldt.jsonl": "2fd6628f88bbf279872805eb34485d943c239e343571d0391e139d9e4e4e43b7",
+    "scenes.jsonl": "5424606ddcdd81e6fba7a6794fdc0de69f2b0b716638564939688fc16500b12e",
+    "scores.jsonl": "bb03cbf930c59fa71f81b68ce49ccfe4279d68ee988de3afcf2e7d99904edda5",
+    "splits.json": "f587ba6c1e00b832dc8b49074d440210ab8e0585b3e1b97e21b77a210d54b83b"
+  },
+  "metric": "held-out binary log-loss; negative differences favour the left condition",
+  "protocol": "granularity-loss-v1",
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "label"
+    ],
+    "unit": "review"
+  },
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+    "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+    "granularity_diagnostics.py": "0104cfbda003c98a8b8e5a52d3384c7e50d4e409d65e551cea4101a2e5b1d6f0",
+    "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+    "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560",
+    "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+    "relation_stability.py": "924fa292df35e13704ad19486f92c5cc4fa0d1346f0fc2bb54d7b940f39fea17",
+    "stock_pooling.py": "4db300e016b1e01cc867554e6a8c4b95dfa6ccfaf69b8cdaf38fbc5aa79ae5ae",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  }
+}
