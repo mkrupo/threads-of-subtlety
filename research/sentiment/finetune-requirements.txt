@@ -1,0 +1,11 @@
+# Environment for finetune_roberta.py (Python 3.10, GTX 1080 Ti / CUDA 11.8).
+# Install torch first from the CUDA 11.8 wheel index, then the rest:
+#   uv venv --python 3.10 VENV
+#   uv pip install --python VENV/bin/python --torch-backend cu118 torch==2.2.2 numpy==1.26.4
+#   uv pip install --python VENV/bin/python -r research/sentiment/finetune-requirements.txt
+# The packages actually installed are recorded next to the run (pip freeze).
+numpy==1.26.4
+transformers==4.46.3
+tokenizers==0.20.3
+huggingface_hub==0.26.5
+safetensors==0.4.5
