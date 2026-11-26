@@ -265,3 +265,24 @@
   C grid, and primary macro-F1. Use the same paired bootstrap draws for
   fine/coarse and between-inventory comparisons. These are pointwise
   intervals conditional on the held-out predictions.
+
+## 2026-11-25 to 2026-11-26 — Granularity confirmation and paper scope
+
+- **Outcome measure.** Fine and coarse labels are compared by held-out
+  log-loss, with macro-F1 reported alongside. Exploration differences were
+  under one macro-F1 point and changed sign between models, and macro-F1
+  responds only when a review crosses 0.5.
+- **Mechanism checks.** Fine labels were shuffled within their coarse groups
+  (scrambled-label control), and one-scene Amazon trees were cut in two (split
+  ablation). Both ran on the exploration data. [RUNNING](RUNNING.md#finecoarse-diagnostics-with-log-loss-and-scrambled-labels)
+- **Confirmation.** A disjoint 16,000-review Amazon cohort was drawn. The
+  analysis plan was frozen at tag `granularity-confirmation-plan-v1` before
+  any fit. Max chose a 0.002-nat margin and the relation-gate model as the
+  only primary test. [Plan and results](GRANULARITY_CONFIRMATION.md)
+- **Paper scope (Max and colleague, 2026-11-26).** Amazon is the single main
+  sentiment corpus and SFU becomes an appendix.
+- **Baselines.** Text controls and a fixed-setting roberta-base fine-tune run
+  on the same folds. They are descriptive and were added after the
+  confirmation. A zero-shot LLM baseline on the university Jarvis Qwen
+  deployment was dropped because the configured endpoint returned HTTP 404.
+  [Baselines](RUNNING.md#baselines-on-the-confirmation-cohort)

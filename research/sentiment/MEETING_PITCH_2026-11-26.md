@@ -38,8 +38,9 @@ training data.
    counts 2–3× as much as *cause*. This does not hold in RST-DT or NLDT.
 4. **Fine labels need data.** With 1,000 training reviews fine and coarse tie.
    The fine advantage grows with every doubling of training data, Holm p < .001
-   in all four standards. Smaller samples explain the earlier mixed results:
-   1,600 training reviews per fold in exploration, and 320 in SFU.
+   in all four standards. The exploration estimates were similar in size, but
+   2,000 test reviews gave intervals too wide to separate fine from coarse.
+   SFU's 320 training reviews per fold sit at the low end of the curve.
 5. **Model capacity matters.** Relation pooling, which spends six features
    per label, was hurt by fine labels at 2,000 reviews. At 16,000 it benefits
    in two standards. RST-DT, with 69 labels, is still too sparse for it.
@@ -71,6 +72,10 @@ training data.
   checkpoints: stock for PCC and NLDT, fine-tuned for GUM/eRST and RST-DT.
 
 ## Questions for the colleague
+
+*Outcome, 2026-11-26:* Amazon is the main sentiment corpus and SFU goes to an
+appendix. The branch and the plan tag are pushed to Max's fork. The HC3
+scrambled-label control is still open.
 
 1. Is Amazon as the main sentiment corpus, with SFU in an appendix, acceptable
    for the paper?

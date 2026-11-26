@@ -224,9 +224,12 @@ probabilities: macro-F1 rises by 0.1–0.3 points, and fine gate models reach
 
    With 1,000 training reviews, fine and coarse tie, and NLDT is worse with fine
    labels. The fine advantage then grows steadily with data, as the sparsity
-   hypothesis predicts. This explains why the exploration cohort, with 1,600
-   training reviews per fold, could not separate fine from coarse, and why
-   SFU, with 320, could not either.
+   hypothesis predicts. The exploration cohort had 1,600 training reviews per
+   fold. Its point estimates, from −1.0 to −3.3 ×10⁻³, already resemble this
+   curve at 2,000 reviews. Exploration was therefore inconclusive mainly because
+   its 2,000 test reviews gave wide intervals, with half-widths of 0.004–0.006.
+   The curve is consistent with SFU's 320 training reviews being too few, but
+   SFU also differs in length, domains and scene splitting.
 4. **Other models, fine minus coarse log-loss:**
    - **Text-order relation pooling:** fine was better for PCC (−4.5 ×10⁻³) and
      GUM/eRST (−5.3), both with Holm p < .001. NLDT showed no reliable
@@ -244,10 +247,10 @@ Within a coarse RST group, fine relation labels carry sentiment-relevant
 information. On 16,000 held-out reviews, a model that spends one weight per
 label turns that information into better review-level predictions in all
 four standards. The gain is reliable, but small in accuracy terms. It
-needs a few thousand training reviews, which the earlier and smaller
-samples lacked. Models that spend many parameters per label need more
-data still, and the 69-label RST-DT inventory remains too sparse for
-relation pooling.
+appears from a few thousand training reviews onward. Detecting it reliably
+also needed far more test reviews than the exploration cohort had. Models
+that spend many parameters per label need more data still, and the
+69-label RST-DT inventory remains too sparse for relation pooling.
 
 ## Deviation log
 
@@ -257,3 +260,21 @@ relation pooling.
   over an SSH command that did not detach. The job ran in its own session,
   PID 1072242, recorded in `analysis-launch/`. It ran to completion and was
   unaffected.
+- 2026-11-26, erratum after a cold read of the repository:
+  - **Margin rationale.** The frozen plan calls 0.002 "roughly the largest
+    fine-versus-coarse gap in the Amazon exploration data". The largest gap
+    was 0.0033 nats (RST-DT); the others were 0.0010–0.0025. The margin was
+    used as frozen. Only its stated rationale was inaccurate. It was chosen
+    after seeing the exploration data and before any confirmation fit.
+  - **Learning-curve wording.** The results first said the curve "explains"
+    the inconclusive exploration. It was reworded to "consistent with",
+    because the exploration point estimates already matched the curve and
+    the intervals were simply too wide.
+  - **Coarse maps.** For the Amazon runs, the canonical maps were extended
+    with 9 RST-DT labels and 1 NLDT label from the checkpoints' full
+    alphabets, as recorded in `replication/amazon.patch`. Across the
+    16,000 confirmation trees these labels occur once: one RST-DT
+    *interpretation-mn* node.
+  - **p-value resolution.** Bootstrap p-values printed as 0.000 mean
+    p < 1/20,000. A permutation p of .005 is the smallest value 200
+    permutations can give.

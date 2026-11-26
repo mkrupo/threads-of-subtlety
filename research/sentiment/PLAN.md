@@ -1,5 +1,7 @@
 # Sentiment workstream — working plan, updated 2026-11-18
 
+> **Superseded on 2026-11-26.** This file records the earlier SFU-centred work. Amazon is now the main sentiment corpus, with a pre-registered 16,000-review confirmation. Start from [START_HERE](START_HERE.md) and the [confirmation plan and results](GRANULARITY_CONFIRMATION.md).
+
 **The SFU sentiment-pooling and HC3-style motif comparisons are complete for all four inventories.** See [START_HERE.md](START_HERE.md) for the overview and [RUNNING.md](RUNNING.md) for results and reproduction.
 
 ## 1. Goal and immediate scope

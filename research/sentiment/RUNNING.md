@@ -1213,9 +1213,10 @@ results section holds the verdicts, and the reports are
 **Outcome.** In the relation-gate model, fine labels beat mapped coarse labels
 in all four standards. Log-loss is lower by 0.0014–0.0040 nats, Holm
 p ≤ .014, and macro-F1 is higher by 0.1–0.3 points. Real fine labels beat
-every within-group shuffle. The fine advantage grows with training size: it
-is absent at 1,000 reviews and clear from 2,000–4,000 onward, which explains
-the inconclusive exploration results.
+every within-group shuffle. The fine advantage grows with training size. It
+is absent at 1,000 reviews and clear from 2,000–4,000 onward. This is
+consistent with the exploration estimates, which were similar in size but
+had intervals too wide to separate fine from coarse.
 
 ## Baselines on the confirmation cohort
 
@@ -1232,18 +1233,28 @@ reviews. [Comparison report](results/amazon-confirm-baseline-comparison-v1.json)
 | Word and word-pair TF-IDF, logistic regression | .882 [.877, .887] | .2980 |
 | RST relation-gate, unlabeled links (PCC) | .873 | .3037 |
 | RST relation-gate, fine labels (four standards) | .880–.887 | .2849–.2943 |
+| RST recursive composition, fine labels (four standards) | .881–.886 | .2822–.2929 |
 | roberta-base, fine-tuned on the full review | .942 [.939, .946] | .2671 |
+
+The recursive rows come from
+[the other-models report](results/amazon-confirm-others-report-v1.json).
+Among all RST models, recursive PCC with fine labels has the lowest log-loss.
 
 Random guessing on this balanced sample gives an expected accuracy and
 macro-F1 of 0.5. A constant probability of 0.5 gives a log-loss of ln 2 =
 .6931. Review length carries no signal here.
 
-The RST models score within half a macro-F1 point of TF-IDF, which reached
-only .833 on the 2,000-review exploration cohort. Their log-loss is lower for
-PCC, GUM/eRST and NLDT (0.011–0.013 nats), and the RST-DT interval includes
-zero. Fine-tuned roberta-base is about 6 macro-F1 points better than either.
-The RST models are therefore a tool for studying which relations carry
-sentiment, not a way to improve accuracy.
+The fine gate models score within half a macro-F1 point of TF-IDF, which
+reached only .833 on the 2,000-review exploration cohort. Their log-loss is
+0.011–0.013 nats lower than TF-IDF for PCC, GUM/eRST and NLDT. After Holm
+adjustment over the nine baseline contrasts, only PCC and GUM/eRST remain
+reliable (p = .023; NLDT p = .066; RST-DT p = .416). Fine-tuned roberta-base
+is about 6 macro-F1 points better than either. Its log-loss advantage over the
+gate models is smaller and survives Holm adjustment only for RST-DT
+(p = .002) and NLDT (p = .040), with p = .066 for PCC and GUM/eRST.
+Three epochs of fine-tuning probably make its probabilities very confident,
+so log-loss penalizes its errors heavily. Calibration was not measured. The RST models are therefore a tool for studying
+which relations carry sentiment, not a way to improve accuracy.
 
 **Text controls.** `cohort_baselines controls` fits the existing `baseline.py`
 controls with the frozen Amazon settings, using the cohort's own nested folds.

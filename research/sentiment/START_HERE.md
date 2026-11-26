@@ -44,8 +44,9 @@ coarse GUM/eRST and RST-DT parsers scored higher. [Model provenance](MODEL_PROVE
   labels in all four standards. Holm p ≤ .014, log-loss is lower by
   0.0014–0.0040 nats, and macro-F1 is higher by 0.1–0.3 points. Real fine
   labels beat labels scrambled within their coarse groups. The fine advantage
-  appears only with a few thousand training reviews, which the 2,000-review
-  exploration sample and SFU lacked. [Plan and results](GRANULARITY_CONFIRMATION.md)
+  grows with training size and is clear from a few thousand reviews. The
+  2,000-review exploration had similar point estimates but intervals too wide
+  to separate fine from coarse. [Plan and results](GRANULARITY_CONFIRMATION.md)
   On the same reviews, TF-IDF reaches .882 macro-F1, about the same as the
   RST models, and fine-tuned roberta-base reaches .942.
   [Baselines](RUNNING.md#baselines-on-the-confirmation-cohort)
@@ -70,16 +71,28 @@ the sentiment on each side of the concession, pooled by relation name.
 
 ## What goes into the paper
 
-Use HC3 as the main granularity experiment and SFU plus Amazon as the
-two review sentiment corpora. **Agreed on 2026-11-26:** Amazon is the single
-main sentiment corpus, with exploration plus pre-registered confirmation,
-and SFU moves to an appendix or backup. The committed LaTeX section still
-covers SFU only and needs rewriting. An LLM zero-shot baseline was dropped
-because the Jarvis endpoint returned 404, and roberta-base already serves as
-the neural baseline. Relation pooling changed direction across
-the corpora. Length, label definitions, category mix, and sample size
-changed together. The meeting notes cover both review experiments and
-what each classifier sees. The committed LaTeX section covers SFU.
+**Agreed on 2026-11-26.** HC3 remains the main granularity experiment.
+**Amazon is the single main sentiment corpus**, with 2,000 exploration reviews
+and a pre-registered confirmation on 16,000 new reviews. **SFU moves to an
+appendix** as a robustness check on long reviews. Its relation-pooling
+results ran in the opposite direction from Amazon's. Length, label
+definitions, category mix and sample size all changed together.
+
+Open work for the write-up:
+- Rewrite `paper/sentiment.tex` around Amazon; it still covers SFU only.
+- Add the Amazon Reviews '23, Chistova (2023), roberta-base, TweetEval and
+  fastText references to `paper/sentiment.bib`.
+- Call the primary model the *relation-gate model*. Earlier notes also call
+  it "Experiment 3", "dependency weighting" and "weighting connections".
+  Its definition is in [DEPENDENCY_PILOT](DEPENDENCY_PILOT.md) and
+  `relation_gate.py`.
+- SFU numbers differ slightly between documents. `DEPENDENCY_PILOT.md` refits
+  with fixed C = 1, while the meeting notes and LaTeX use nested choice of C.
+  Cite one and say which.
+- An LLM zero-shot baseline was dropped because the Jarvis endpoint returned
+  404. roberta-base serves as the neural baseline.
+
+The meeting notes below describe the superseded SFU and Amazon exploration.
 [Meeting notes](replication/MEETING_NOTES.md) · [Runbook](RUNNING.md) ·
 [LaTeX section](paper/sentiment.tex) · [BibTeX](paper/sentiment.bib) ·
 [Method sources](RELATED_WORK.md#attribution-for-the-completed-sfu-experiments)

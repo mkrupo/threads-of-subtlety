@@ -1,5 +1,7 @@
 # Monday meeting notes — RST and review sentiment
 
+> **Superseded on 2026-11-26.** This file records the earlier SFU-centred work. Amazon is now the main sentiment corpus, with a pre-registered 16,000-review confirmation. Start from [START_HERE](START_HERE.md) and the [confirmation plan and results](GRANULARITY_CONFIRMATION.md).
+
 ## What I tested
 
 - I used sentiment as a downstream task. I compared four RST standards (PCC, NLDT, GUM/eRST, RST-DT) and fine versus coarse relation labels within each one.
