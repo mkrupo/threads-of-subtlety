@@ -63,6 +63,56 @@ def split(report):
                   f"{row['changed_predictions']} |")
 
 
+def contrasts(rows, verdicts=False):
+    head = "| Contrast | Δ log-loss | 95% interval | p | Holm p | Δ macro-F1 (points) |" + (" Verdict |" if verdicts else "")
+    print(head)
+    print("|---|---:|---:|---:|---:|---:|" + ("---|" if verdicts else ""))
+    for key, row in rows.items():
+        print(f"| {key} | {milli(row['log_loss_difference'])} | {interval(row['interval_95'])} | "
+              f"{row['bootstrap_p']:.3f} | {row['holm_p']:.3f} | {100 * row['macro_f1_difference']:+.2f} |"
+              + (f" {row['verdict']} |" if verdicts else ""))
+
+
+def conditions(rows):
+    print("| Condition | Log-loss | Macro-F1 | Accuracy |\n|---|---:|---:|---:|")
+    for name, row in rows.items():
+        print(f"| {name} | {row['log_loss']:.4f} | {row['macro_f1']:.4f} | {row['accuracy']:.4f} |")
+
+
+def primary(report):
+    print(f"\n### Confirmation cohort ({report['reviews']} reviews), log-loss ×10⁻³\n")
+    conditions(report["conditions"])
+    print("\nPrimary: fine minus mapped coarse (Holm over four standards)\n")
+    contrasts(report["primary_fine_minus_coarse"], verdicts=True)
+    print("\nSecondary 1: labels minus unlabeled links\n")
+    contrasts(report["secondary_labels_minus_unlabeled"])
+
+
+def curve(report):
+    print("\n### Learning curve: fine minus coarse log-loss (×10⁻³) by training size\n")
+    sizes = [str(size) for size in report["sizes"]]
+    print("| Standard | " + " | ".join(sizes) + " | Gap(1,000) − gap(full) | 95% interval | Holm p |")
+    print("|---|" + "---:|" * (len(sizes) + 3))
+    for inventory, row in report["inventories"].items():
+        change = row["gap_at_smallest_minus_gap_at_full"]
+        cells = " | ".join(milli(row["by_training_size"][size]["fine_minus_coarse"]) for size in sizes)
+        print(f"| {NAMES[inventory]} | {cells} | {milli(change['difference'])} | {interval(change['interval_95'])} | "
+              f"{change['holm_p']:.3f} |")
+    print("\nUnlabeled / coarse / fine log-loss by size:")
+    for inventory, row in report["inventories"].items():
+        print(f"- {NAMES[inventory]}: " + "; ".join(
+            f"{size}: {row['by_training_size'][size]['unlabeled_log_loss']:.4f} / "
+            f"{row['by_training_size'][size]['coarse_log_loss']:.4f} / {row['by_training_size'][size]['fine_log_loss']:.4f}"
+            for size in sizes))
+
+
+def others(report):
+    print("\n### Other models, log-loss ×10⁻³\n")
+    conditions(report["conditions"])
+    print()
+    contrasts(report["fine_minus_coarse"])
+
+
 def main():
     for path in sys.argv[1:]:
         report = json.loads(Path(path).read_text())
@@ -74,6 +124,12 @@ def main():
             scramble(report)
         elif protocol == "amazon-split-ablation-v1":
             split(report)
+        elif protocol == "granularity-confirmation-v1/primary":
+            primary(report)
+        elif protocol == "granularity-confirmation-v1/curve":
+            curve(report)
+        elif protocol == "granularity-confirmation-v1/others":
+            others(report)
         else:
             print(json.dumps(report, indent=2)[:4000])
 

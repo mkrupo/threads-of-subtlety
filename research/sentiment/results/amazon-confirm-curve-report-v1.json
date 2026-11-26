@@ -1,0 +1,406 @@
+{
+  "draws_per_size": 5,
+  "evaluation": "full outer test fold; per-review log-loss averaged over draws",
+  "input_hashes": {
+    "deu.rst.pcc.jsonl": "b40a068807c6657eb7fc00599870dd202118fb3e6cce21d3d6d5d486691d1c12",
+    "eng.erst.gum.jsonl": "d838ff1247527abe46e4c3fc78061a65916086abcf329f1c693e60c34aeac543",
+    "eng.rst.rstdt.jsonl": "9ded8da1766d4eb6d8f586abc98d4d246b5501730fafe2c07fae365a685e2d03",
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "nld.rst.nldt.jsonl": "09d8f4f8ffacd90f658b835c06eaaf3a4c3a7118d8a5ab71df7323a088f36c47",
+    "parser-audit.json": "b8f7661dd15dd0e7afd2bcb217dce0e489dd648552f8f178b933c71572f0c37e",
+    "sample.json": "a1c27bcbd7bcc6d6306b0986cd3f2f329069074a47c0b264d3236243cd52f54c",
+    "scenes.jsonl": "27f7c0057a02b04c7f0516d51a89668f007173ecd10de288741aae918bc3f61f",
+    "scores-manifest.json": "e15217754ba4b1d2c5c4fa12c745671f339b448bcea54bb080e6c12c91474319",
+    "scores.jsonl": "d37e31bb92d120bb0e40c1b7d576cfad786ee6b3d7b348c7506c1059f5e01e79",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "interval_note": "bootstrap over test reviews with the training draws fixed; omits draw-to-draw variance",
+  "inventories": {
+    "deu.rst.pcc": {
+      "by_training_size": {
+        "1000": {
+          "coarse_log_loss": 0.2999326145025077,
+          "fine_log_loss": 0.29942144407755716,
+          "fine_minus_coarse": -0.0005111704249504703,
+          "interval_95": [
+            -0.0019030396977160256,
+            0.0009222392924788102
+          ],
+          "unlabeled_log_loss": 0.3094668009522334
+        },
+        "2000": {
+          "coarse_log_loss": 0.29486645357511837,
+          "fine_log_loss": 0.29265453750190296,
+          "fine_minus_coarse": -0.0022119160732153847,
+          "interval_95": [
+            -0.0036047716542970715,
+            -0.0008188340037976199
+          ],
+          "unlabeled_log_loss": 0.3065136668122161
+        },
+        "4000": {
+          "coarse_log_loss": 0.29092654943463236,
+          "fine_log_loss": 0.2878766362324607,
+          "fine_minus_coarse": -0.0030499132021716965,
+          "interval_95": [
+            -0.004460176260748412,
+            -0.0016250868247031254
+          ],
+          "unlabeled_log_loss": 0.30489754475734093
+        },
+        "8000": {
+          "coarse_log_loss": 0.28931232563544723,
+          "fine_log_loss": 0.28600898140360365,
+          "fine_minus_coarse": -0.0033033442318436143,
+          "interval_95": [
+            -0.004744397398827215,
+            -0.0018511334829333008
+          ],
+          "unlabeled_log_loss": 0.3040538480172052
+        },
+        "full": {
+          "coarse_log_loss": 0.2885639267975644,
+          "fine_log_loss": 0.2849531235970587,
+          "fine_minus_coarse": -0.0036108032005055975,
+          "interval_95": [
+            -0.00506755875085017,
+            -0.0021464020863039197
+          ],
+          "unlabeled_log_loss": 0.3037367272384148
+        }
+      },
+      "gap_at_smallest_minus_gap_at_full": {
+        "bootstrap_p": 0.0,
+        "difference": 0.0030996327755551272,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.002342402562926366,
+          0.003854470278144278
+        ],
+        "reading": "positive means fine gains relative to coarse as training data grows"
+      }
+    },
+    "eng.erst.gum": {
+      "by_training_size": {
+        "1000": {
+          "coarse_log_loss": 0.2997803542934083,
+          "fine_log_loss": 0.2998032804182413,
+          "fine_minus_coarse": 2.2926124832960497e-05,
+          "interval_95": [
+            -0.001385009241367329,
+            0.001422140554961447
+          ],
+          "unlabeled_log_loss": 0.30893424237679235
+        },
+        "2000": {
+          "coarse_log_loss": 0.29384720899777217,
+          "fine_log_loss": 0.29205927792207187,
+          "fine_minus_coarse": -0.0017879310757002499,
+          "interval_95": [
+            -0.003119587666021245,
+            -0.00046166896645513997
+          ],
+          "unlabeled_log_loss": 0.3062894200001815
+        },
+        "4000": {
+          "coarse_log_loss": 0.2903445730248319,
+          "fine_log_loss": 0.2878996948101729,
+          "fine_minus_coarse": -0.002444878214659031,
+          "interval_95": [
+            -0.003837097708194882,
+            -0.0010457926370079913
+          ],
+          "unlabeled_log_loss": 0.30488348909336754
+        },
+        "8000": {
+          "coarse_log_loss": 0.2885058012788122,
+          "fine_log_loss": 0.2856915667632075,
+          "fine_minus_coarse": -0.0028142345156047543,
+          "interval_95": [
+            -0.004217912358058567,
+            -0.0014156652448831725
+          ],
+          "unlabeled_log_loss": 0.30389129395291636
+        },
+        "full": {
+          "coarse_log_loss": 0.2879932906714185,
+          "fine_log_loss": 0.284884652948825,
+          "fine_minus_coarse": -0.0031086377225935167,
+          "interval_95": [
+            -0.004536772201730583,
+            -0.0016805372666752962
+          ],
+          "unlabeled_log_loss": 0.30360919585051516
+        }
+      },
+      "gap_at_smallest_minus_gap_at_full": {
+        "bootstrap_p": 0.0,
+        "difference": 0.003131563847426477,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.002322391029468113,
+          0.003935476444462998
+        ],
+        "reading": "positive means fine gains relative to coarse as training data grows"
+      }
+    },
+    "eng.rst.rstdt": {
+      "by_training_size": {
+        "1000": {
+          "coarse_log_loss": 0.30958966956178996,
+          "fine_log_loss": 0.309867643054142,
+          "fine_minus_coarse": 0.00027797349235198583,
+          "interval_95": [
+            -0.0010792566419799224,
+            0.0016578317819145316
+          ],
+          "unlabeled_log_loss": 0.31655842172230925
+        },
+        "2000": {
+          "coarse_log_loss": 0.303798960421026,
+          "fine_log_loss": 0.3019874753020977,
+          "fine_minus_coarse": -0.0018114851189282724,
+          "interval_95": [
+            -0.0032825992747876694,
+            -0.0003128069774903827
+          ],
+          "unlabeled_log_loss": 0.3140236820733475
+        },
+        "4000": {
+          "coarse_log_loss": 0.3002619803895222,
+          "fine_log_loss": 0.2973227058752284,
+          "fine_minus_coarse": -0.0029392745142937634,
+          "interval_95": [
+            -0.004476030264551512,
+            -0.0013940306147348334
+          ],
+          "unlabeled_log_loss": 0.3126316678143528
+        },
+        "8000": {
+          "coarse_log_loss": 0.29870909788313693,
+          "fine_log_loss": 0.29495316422379986,
+          "fine_minus_coarse": -0.0037559336593371447,
+          "interval_95": [
+            -0.0052789946391988375,
+            -0.002226740879613144
+          ],
+          "unlabeled_log_loss": 0.311709516669605
+        },
+        "full": {
+          "coarse_log_loss": 0.2982824994956569,
+          "fine_log_loss": 0.29431295623521886,
+          "fine_minus_coarse": -0.003969543260438007,
+          "interval_95": [
+            -0.005529218513367185,
+            -0.0024017317905663913
+          ],
+          "unlabeled_log_loss": 0.3115560398108794
+        }
+      },
+      "gap_at_smallest_minus_gap_at_full": {
+        "bootstrap_p": 0.0,
+        "difference": 0.0042475167527899925,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.0034045945290936833,
+          0.005088840427067377
+        ],
+        "reading": "positive means fine gains relative to coarse as training data grows"
+      }
+    },
+    "nld.rst.nldt": {
+      "by_training_size": {
+        "1000": {
+          "coarse_log_loss": 0.300288199208238,
+          "fine_log_loss": 0.30188992433037454,
+          "fine_minus_coarse": 0.0016017251221365134,
+          "interval_95": [
+            0.00045821873532631214,
+            0.002743365882636398
+          ],
+          "unlabeled_log_loss": 0.31042512606505274
+        },
+        "2000": {
+          "coarse_log_loss": 0.294562209336958,
+          "fine_log_loss": 0.29477343964626246,
+          "fine_minus_coarse": 0.000211230309304413,
+          "interval_95": [
+            -0.0008828624899842287,
+            0.0013091735757092672
+          ],
+          "unlabeled_log_loss": 0.30741726490009474
+        },
+        "4000": {
+          "coarse_log_loss": 0.29106054348136523,
+          "fine_log_loss": 0.29018568195378125,
+          "fine_minus_coarse": -0.0008748615275840088,
+          "interval_95": [
+            -0.0019458612384961435,
+            0.000198232607967437
+          ],
+          "unlabeled_log_loss": 0.3059936456002373
+        },
+        "8000": {
+          "coarse_log_loss": 0.28936414020044027,
+          "fine_log_loss": 0.28820564212490246,
+          "fine_minus_coarse": -0.0011584980755377867,
+          "interval_95": [
+            -0.002279439152040767,
+            -5.4585167316210454e-05
+          ],
+          "unlabeled_log_loss": 0.3051974934654596
+        },
+        "full": {
+          "coarse_log_loss": 0.28866339818574943,
+          "fine_log_loss": 0.2872978805257069,
+          "fine_minus_coarse": -0.0013655176600425158,
+          "interval_95": [
+            -0.002479342419893245,
+            -0.00025112266166569494
+          ],
+          "unlabeled_log_loss": 0.3048075305703503
+        }
+      },
+      "gap_at_smallest_minus_gap_at_full": {
+        "bootstrap_p": 0.0,
+        "difference": 0.002967242782179029,
+        "holm_p": 0.0,
+        "interval_95": [
+          0.002268057846153653,
+          0.003672264894966912
+        ],
+        "reading": "positive means fine gains relative to coarse as training data grows"
+      }
+    }
+  },
+  "protocol": "granularity-confirmation-v1/curve",
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "sizes": [
+    1000,
+    2000,
+    4000,
+    8000,
+    "full"
+  ],
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "confirm_granularity.py": "7f96272eeb2d57ed2a385d567092a25f4031be446ed074507f14763d115389dc",
+    "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+    "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+    "granularity_diagnostics.py": "b10d8df36b814b4014aa909ebc7e803214656513e04eecb37efd49e8a2d7d1de",
+    "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+    "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560",
+    "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+    "relation_stability.py": "924fa292df35e13704ad19486f92c5cc4fa0d1346f0fc2bb54d7b940f39fea17",
+    "stock_pooling.py": "4db300e016b1e01cc867554e6a8c4b95dfa6ccfaf69b8cdaf38fbc5aa79ae5ae",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  },
+  "subset_rule": "per outer fold and draw, shuffle each category-by-polarity stratum with seed [42, fold, draw] and take the first size/8 reviews of each; prefixes are nested",
+  "subset_sha256": {
+    "0/0/1000": "917568fd65e14f0062b1fa22d67fa3e84800dc1d22037506a4eb080bbb6e85e2",
+    "0/0/2000": "1cb54d3e25c3106631a0693b94f6c1f992f5338b537d80da2f196982b30a17a6",
+    "0/0/4000": "1c014ae010c9c68dff6dd4cd46fef3d1281e3ec6b2c6a21d028870b4bdabe2d2",
+    "0/0/8000": "bf09bb231f24f84bf981d883b340ae97f6f4765c38531fd7747678060dfb95e6",
+    "0/1/1000": "2640323d65845665b94f6c26639b3231ab0ed296025b16d1bd061901e01f01f6",
+    "0/1/2000": "3f9d81f4b8e781ea9e3fc74107e6295cf1e143bb94ee88860c69607cf4cd1126",
+    "0/1/4000": "9c177ebb5043e381375f98173ecf8e969e392a4d15dd5045c1e21721fcb1918e",
+    "0/1/8000": "c62459a92c3a7199627f33d72640bbb84caf9236d94df625d20ab5c51eaefdb5",
+    "0/2/1000": "d6ab5076da33dd5f3b888b2542a15a4b3e93e9a9f74ae4824240f20d6dce235d",
+    "0/2/2000": "569558ac83afa9a056f9cda52dbc5ae83862c1d1a4fa1cc7990fa9944b67285d",
+    "0/2/4000": "71729cf0b7ed244495f2a65a8f2102831d82a1c7ea2e78467f5f8e77ca2c5a7d",
+    "0/2/8000": "56b1fd14421fde576f7e9bb92459dfb8290ba3203162dd3a22480b1592039ce1",
+    "0/3/1000": "bc31c9b3a3590670e283f25b416de7cc20d72d645f571d2be57eff0bc1e88a81",
+    "0/3/2000": "ff4bb0bc80c616c6192de36d613198338cc3305f12c5ccdf8f530553ae1f3bbd",
+    "0/3/4000": "352d3655d1734b4dfd6f968ee9e039adc40667c372af0ea4122afac868e3eb46",
+    "0/3/8000": "8133a704820ced343797edfca23bae805e04b655fce6e5667c278bc9be3ec5d5",
+    "0/4/1000": "ae287fd0467217c511cef5ff70ee7d0793505c6a89a7308aaf4fe732b8a4a65d",
+    "0/4/2000": "8b174408c7923dfa604049e62716d925aeb2618653cca3409039ee647c4a1054",
+    "0/4/4000": "e9c1d22c89d2188dd03e68abe5a6c654f334eaed80dfed64e8763d91bb6852c2",
+    "0/4/8000": "0da85a76834fb67b91368f4a41e266e2fc7ecd85ea3be23b74af33fe81d21096",
+    "1/0/1000": "48a793fe0ce3cf40595972a14f9393d3e4e9d4d49333086fff53ce4c1606b825",
+    "1/0/2000": "ed8f9db32b407341e6d0a1a43004bb1ead9dafae74fdb908701a5c08a036a419",
+    "1/0/4000": "63fbb917f60f7f32a1d99eb55d7fed681c4eae1ead3a03988ca9eecba880521f",
+    "1/0/8000": "21173e87070d99b718a4198a90ce96498f21d138e4798ac31f42ea2d82a30ce0",
+    "1/1/1000": "2faedf435794ab41351b6d079cbe27aa63c92617df3e1be292e6da33d4a1324c",
+    "1/1/2000": "429dbecab61256ab4e1b6c4109cffd0144dae8b1e2b75939b3750a964ee7aacb",
+    "1/1/4000": "83f0d3c457935b46132cdad0cfc3bedaa82d3fd989445218e07857bdb65a4708",
+    "1/1/8000": "3441489a6e4a38b271f5110c52eaac3bef8d59cc0102c0f825299259bb008b5f",
+    "1/2/1000": "1b91c907569061e51494a92b76236b0ac20a1cf48450dd85e7f861941d28aa54",
+    "1/2/2000": "4246b31f331c2019b1fdd3a8da0343f22927a90a6191ecb7a407491a82971fd5",
+    "1/2/4000": "0a8f73f9bf06d07d71a55af86c6e358b0c88a1bc44b3d9736b2ba708d98d8cf9",
+    "1/2/8000": "6969aacc8d11ae5a53708e02a2942f97921dfa33745857bcf7a7cffe7f6cc3af",
+    "1/3/1000": "8f550c31f6444980ad7cedd601baf4d91cad5db2b2912235a343bb0f6cb13fdc",
+    "1/3/2000": "ef31d2b707ad67e6b2eb68921da4526bf664a84a34f8b7b4f6ad2c841b26e07b",
+    "1/3/4000": "d2d9bef616692647852f59abc4fd45efd6e86fa15f5b1934904ab2c18e3a1557",
+    "1/3/8000": "a91259cc002c2c61f5579e2f57d5456212b2b434c3daf556871d3f7499295e9f",
+    "1/4/1000": "cd607102241ab933c22eb1d9421dac30e20fb8677bfc8e8311502e9f357586fa",
+    "1/4/2000": "f15ba1494a8fb6621633b5dbd0b949e685ff4fc8979b442abd8e8fc8fab42a8a",
+    "1/4/4000": "4a7fe7f905e4580858ea5ac549c29c04122e8a97bf64436ebf889ab4c89a6cd3",
+    "1/4/8000": "d72cb8c659ed4e20483612933929fb6fd4ea3751de776a96b7bacc88626289eb",
+    "2/0/1000": "a96782e25e2fcd8c8bc5dbe054a170d8a45d79617028df9800454e63de9e634c",
+    "2/0/2000": "2f796f2d6fc56b96ba099f08db90d7ccce354307ace821921005fd7e0a2e912d",
+    "2/0/4000": "398570c66c293eb60beb94411eff43b38ff03150953a1b2de93ae4286702c2b8",
+    "2/0/8000": "0252017912ac524c0931b9a98ca7a1c3ac3bf621ff2fe0e8d70480b36d51890e",
+    "2/1/1000": "043df1c943def9ce2c3ad6b301edb88d0206904fe1d122e000e398f4a89e764f",
+    "2/1/2000": "1316e4497ecc9763a6a25c99eee981a51a4a0d4d537fdcf2642781874e358a13",
+    "2/1/4000": "7209f3eb9b278ae7b3122e665ff5f5e9d1374cac42faa7205bcc40fece7df980",
+    "2/1/8000": "7a6943c6e2aa65a1829f87d15bac16cc9804e26901736732b34b12e661e33dd1",
+    "2/2/1000": "7af4729f52566a5f429f3afb4edc4559740408ae4d2224577e818ad438904d0c",
+    "2/2/2000": "038b9e0dcf5ef357f817774ef47305f83a865375d1eb0f3a263ad2746bd0b8f8",
+    "2/2/4000": "6ac8e85a198c94a91087088095918a446286b0461af96c15e0e8b4c3d6a9335c",
+    "2/2/8000": "9c8fea6540f8957e2fc9d0eae824c12ee776606a967107289573f82c22c485a6",
+    "2/3/1000": "a0721fbe19f6b67e803975008e265d05318cf33cdf9d3a66f50131b187266293",
+    "2/3/2000": "356d90fdeffe75e234c9526fcd36695e305033bffe684290c68f0f6fc3649a71",
+    "2/3/4000": "f408fb5702a7ef7d2e47207b7f47778916ac6d6659c7f44b1910a4b03b4a0cf6",
+    "2/3/8000": "026845af0e937e5ea91a2b8b65a933168e3ba728ef0411cc296789a39f2a542c",
+    "2/4/1000": "9768cea47823992accc63f3e30685b30fdcedf727495a29ac04d484a583920bf",
+    "2/4/2000": "ba6f31cb4ab570f4ba8921b1cebcc51957067253995fb1f2470f4b61d88ed895",
+    "2/4/4000": "f9a97db6733dae01441e26eed3adabf3ad4ec6942440ec58a412c913a67e08af",
+    "2/4/8000": "717c098567358755498e703bfd4a3765033e7c9c9711322bdcdd7486c5ddc67c",
+    "3/0/1000": "48db2aa97d1d62f9d9d5e3d4d577c03b681bac7e72a65ae10ad2ca4cacdf1505",
+    "3/0/2000": "1e90dd71b1bc95b117bc86622a025b3f50df8d5cc7b6ddef5e759173dc31b097",
+    "3/0/4000": "07d5d2897c7760e0738750aabf79e9c52b828f42ab3b966dd408febaf25287ed",
+    "3/0/8000": "04adae892d2c3145f6582eb095f9db4224cc65a76ade2fc412990b3be0b23e64",
+    "3/1/1000": "4f3509a4e7cd09383e3570ffcb854fb4b25689007ec1d6202cccca4110181eca",
+    "3/1/2000": "9493d23524dcd6e20774462145e253546b25557730a4a8472e0d440a7a8ef810",
+    "3/1/4000": "b48a8fce8979320578c00b1460860e977b76081f07e1bd5f6ec1537b8965bb00",
+    "3/1/8000": "e57cf1a185934f173bfa4a096b3e5426daf39b2be42a5f050ec96dfeb2be14f7",
+    "3/2/1000": "cdcd290f4e195f9d784046731ac26dcad87fed285d1cc44cd5d344826a635b4f",
+    "3/2/2000": "a977e4f4df50f0bbcbd0e70fdd7dfbfbeded186ec9c9c477715f097c0f890a5c",
+    "3/2/4000": "b1b7e63c33a6818cecb198da61f47ed07c86e81ae884287362c1eabe79b44958",
+    "3/2/8000": "044770aa2b037c03a5d3b69917dc0d87484f86019db74da89abf4bbee8dc8568",
+    "3/3/1000": "2a3b75c74b8bac5e83969260c40b3cf13a90a84216bb41b33ceb3bdf3f7cb1ac",
+    "3/3/2000": "687ce3385b96443f83c8dd35f7b70d1e74d68b7a5bfdae0542257d220559c80a",
+    "3/3/4000": "f98b7c88b878f2723a7e9dd58aed62eeeeffcb65a44314826524c1d235a9ce7e",
+    "3/3/8000": "b4106f1be442e553b41fa706767d675eccc80f7777a01c64da3579daf8d2d370",
+    "3/4/1000": "fa97f1918763031aa60766698e169cfc9f3ab2402fefa4105103c3383ed0a5ee",
+    "3/4/2000": "ad1a7c6d76a38d597954275c78aa2deb18e1cb54f18d149a59e1c3da24fde4dd",
+    "3/4/4000": "ea6634701d9ae2391f061960b14574345c56f00123aeaad44b4503b56395fc4e",
+    "3/4/8000": "31b780ee9816d2390c2114b2af214cfaab530c274c6997c2fb8cdc63d62e5a20",
+    "4/0/1000": "eb78e9f19f282d00608fb577f48cc9a9b30ec3c2a38206662b6795f559fe168e",
+    "4/0/2000": "d4356c0cdf23790facb8090015ae76c9cf7a97f8d3d474178fd83ea4740875e8",
+    "4/0/4000": "86b5edf9b4a8ad9bc0d5c7249c6a9f38282a7ce69860f44cfe5a9b2ed43cecfc",
+    "4/0/8000": "ec6c13fc1e413b091920e0dd5c32f5f3ff3728ca15ee2474045d750ef6245c7b",
+    "4/1/1000": "3851d70f5f90b0f60495971850eab56c39b8f6e598439a0e85af461df2aa2e6d",
+    "4/1/2000": "a07bc9612acc94cd32eb8aa8a9b339d3c9918e9982a096c607a06ca79e73223f",
+    "4/1/4000": "dcd78d92b3e7a20b293c32163a64b1c4196723f9012703e00caed7fc3fafc720",
+    "4/1/8000": "38ffdb9b100896c6adeada6701ebc72b40d5e95ac8e113c8775a4cfc109d6362",
+    "4/2/1000": "9eae74f081e7869ddb8c22b683a605a4c4ebdf05e3d447ff0c55ac8add0f4039",
+    "4/2/2000": "a1656c02c38b7fd8309991c34aac270d1ae042c49a6c25b06920004a90a272ad",
+    "4/2/4000": "394b4a8d52bd6e0388fe3ab4a8c13be954fec15f3a9ceb7d553a72fc3fbc764a",
+    "4/2/8000": "cdc7253145ac04dbda82e3b79575983beeabb141868a5196d733c8e6b5bba4f8",
+    "4/3/1000": "57f3d6958b484e707f2d72d0ba85bb45a0f80694f68adb15dda0e699e76386c5",
+    "4/3/2000": "546c10f8211f0c50488d51120335010ecca02068aa1db5ac43a6fa5b7ffe38f3",
+    "4/3/4000": "39e65b2ac2f98117cca660737cb77c6906c9e8f045700e16e7405706c7603866",
+    "4/3/8000": "08db9e41be89417914d931c7af9ff757b1c7ebb2f5dbccd8a2207f19ef593215",
+    "4/4/1000": "748a4cce7f4b64a8d8e7d3f0654f94c9d60dbd40d0fed43fde217fa081f07c6f",
+    "4/4/2000": "1c0a8ab827583f771c0930879cd4b6b5d925753b90d1a0d70c537d7871279cb2",
+    "4/4/4000": "f3ff90bb5434f3663811b178cbd026d685b466739487cbc33c66917e2acf1f50",
+    "4/4/8000": "7312bd7f5fc5236253cd4b5a59d0269975f258ce82caed717ef61fbb30e56d27"
+  }
+}

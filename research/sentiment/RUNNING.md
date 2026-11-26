@@ -1185,3 +1185,34 @@ explain little of the SFU–Amazon difference, although SFU reviews have up to
 eight cuts at paragraph boundaries, not one. Review length, the 400-review
 sample and plot description scored as sentiment remain the stronger
 candidates.
+
+## Pre-registered fine/coarse confirmation on 16,000 Amazon reviews
+
+The [confirmation plan](GRANULARITY_CONFIRMATION.md) was frozen at tag
+`granularity-confirmation-plan-v1` before any model fit on the cohort. Its
+results section holds the verdicts, and the reports are
+`results/amazon-confirm-*-v1.json`.
+
+1. **Cohort.** `replication/prepare_amazon_confirm.py` was staged next to the
+   Amazon `prepare_amazon.py` and run with the exploration run's raw archives,
+   `--per-stratum 2000`. `replication/verify_confirm_cohort.py` checks quotas,
+   hashes, folds, disjointness and identical selection inputs.
+2. **Parse.** On the GPU host, use a fresh run directory with the staged
+   source, `sample.json` and the launcher scripts, then run
+   `bash launch-detached.sh RUN_DIR run-cohort-parser-1080ti.sh`. The parse
+   took 2 hours on two GTX 1080 Ti cards. [Parser audit](results/amazon-confirm-parser-audit-v1.json)
+3. **Scores.** `replication/stage_scorer.py` downloads and verifies the pinned
+   CardiffNLP files. `score_cohort.py` scores every EDU against the cohort's
+   parser audit. Before use, the rebuilt scorer reproduced the exploration
+   Amazon scores byte for byte. [Score manifest](results/amazon-confirm-edu-scores-v1.json)
+4. **Analyses.** `replication/run-confirmation-analysis.sh RUN_DIR` runs the
+   four frozen commands from a `git archive` of the tag. The scramble took
+   5 hours on one core of the GPU host, and the other analyses ran in parallel.
+   `granularity_summary.py` prints the tables from the four reports.
+
+**Outcome.** In the relation-gate model, fine labels beat mapped coarse labels
+in all four standards. Log-loss is lower by 0.0014–0.0040 nats, Holm
+p ≤ .014, and macro-F1 is higher by 0.1–0.3 points. Real fine labels beat
+every within-group shuffle. The fine advantage grows with training size: it
+is absent at 1,000 reviews and clear from 2,000–4,000 onward, which explains
+the inconclusive exploration results.

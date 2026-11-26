@@ -1,0 +1,410 @@
+{
+  "conditions": {
+    "pooling/deu.rst.pcc/coarse": {
+      "accuracy": 0.8800625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7149,
+          851
+        ],
+        [
+          1068,
+          6932
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2882647828130379,
+      "macro_f1": 0.8800404344688231,
+      "negative_f1": 0.8816673860763397,
+      "positive_f1": 0.8784134828613065
+    },
+    "pooling/deu.rst.pcc/fine": {
+      "accuracy": 0.8834375,
+      "confusion_matrix_labels_0_1": [
+        [
+          7177,
+          823
+        ],
+        [
+          1042,
+          6958
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28373538754671745,
+      "macro_f1": 0.8834156581968078,
+      "negative_f1": 0.8850114063752389,
+      "positive_f1": 0.8818199100183766
+    },
+    "pooling/eng.erst.gum/coarse": {
+      "accuracy": 0.8815625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7142,
+          858
+        ],
+        [
+          1037,
+          6963
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2905704929533739,
+      "macro_f1": 0.8815476744884307,
+      "negative_f1": 0.8828728598800915,
+      "positive_f1": 0.8802224890967701
+    },
+    "pooling/eng.erst.gum/fine": {
+      "accuracy": 0.88475,
+      "confusion_matrix_labels_0_1": [
+        [
+          7179,
+          821
+        ],
+        [
+          1023,
+          6977
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2852430695183883,
+      "macro_f1": 0.8847316273020329,
+      "negative_f1": 0.8861868905073448,
+      "positive_f1": 0.8832763640967211
+    },
+    "pooling/eng.rst.rstdt/coarse": {
+      "accuracy": 0.879875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7143,
+          857
+        ],
+        [
+          1065,
+          6935
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2935974875342145,
+      "macro_f1": 0.87985469544353,
+      "negative_f1": 0.881416584402764,
+      "positive_f1": 0.8782928064842959
+    },
+    "pooling/eng.rst.rstdt/fine": {
+      "accuracy": 0.878125,
+      "confusion_matrix_labels_0_1": [
+        [
+          7128,
+          872
+        ],
+        [
+          1078,
+          6922
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.3011914519507734,
+      "macro_f1": 0.8781047939649871,
+      "negative_f1": 0.8796741947426879,
+      "positive_f1": 0.8765353931872863
+    },
+    "pooling/nld.rst.nldt/coarse": {
+      "accuracy": 0.8795625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7141,
+          859
+        ],
+        [
+          1068,
+          6932
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2881177365155554,
+      "macro_f1": 0.8795419463740608,
+      "negative_f1": 0.8811154296995496,
+      "positive_f1": 0.877968463048572
+    },
+    "pooling/nld.rst.nldt/fine": {
+      "accuracy": 0.8816875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7160,
+          840
+        ],
+        [
+          1053,
+          6947
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2866420790759211,
+      "macro_f1": 0.8816665286278802,
+      "negative_f1": 0.8832418429655214,
+      "positive_f1": 0.8800912142902388
+    },
+    "recursive/deu.rst.pcc/coarse": {
+      "accuracy": 0.8845,
+      "confusion_matrix_labels_0_1": [
+        [
+          7095,
+          905
+        ],
+        [
+          943,
+          7057
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.283914582151232,
+      "macro_f1": 0.8844993485041377,
+      "negative_f1": 0.8847736625514403,
+      "positive_f1": 0.884225034456835
+    },
+    "recursive/deu.rst.pcc/fine": {
+      "accuracy": 0.8845,
+      "confusion_matrix_labels_0_1": [
+        [
+          7088,
+          912
+        ],
+        [
+          936,
+          7064
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28222477382536315,
+      "macro_f1": 0.8844997401244152,
+      "negative_f1": 0.8846729905142287,
+      "positive_f1": 0.8843264897346019
+    },
+    "recursive/eng.erst.gum/coarse": {
+      "accuracy": 0.8856875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7060,
+          940
+        ],
+        [
+          889,
+          7111
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28468296015452843,
+      "macro_f1": 0.8856863385553382,
+      "negative_f1": 0.8853219637594834,
+      "positive_f1": 0.8860507133511931
+    },
+    "recursive/eng.erst.gum/fine": {
+      "accuracy": 0.88575,
+      "confusion_matrix_labels_0_1": [
+        [
+          7070,
+          930
+        ],
+        [
+          898,
+          7102
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28302503574755394,
+      "macro_f1": 0.885749542998172,
+      "negative_f1": 0.8855210420841684,
+      "positive_f1": 0.8859780439121756
+    },
+    "recursive/eng.rst.rstdt/coarse": {
+      "accuracy": 0.88,
+      "confusion_matrix_labels_0_1": [
+        [
+          7031,
+          969
+        ],
+        [
+          951,
+          7049
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2934936203176969,
+      "macro_f1": 0.8799998481248077,
+      "negative_f1": 0.8798648479539481,
+      "positive_f1": 0.8801348482956673
+    },
+    "recursive/eng.rst.rstdt/fine": {
+      "accuracy": 0.8811875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7047,
+          953
+        ],
+        [
+          948,
+          7052
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.29285054467111904,
+      "macro_f1": 0.8811874883972157,
+      "negative_f1": 0.8811503594873398,
+      "positive_f1": 0.8812246173070916
+    },
+    "recursive/nld.rst.nldt/coarse": {
+      "accuracy": 0.8835625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7095,
+          905
+        ],
+        [
+          958,
+          7042
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28373874850727165,
+      "macro_f1": 0.8835612223573188,
+      "negative_f1": 0.8839469258082602,
+      "positive_f1": 0.8831755189063774
+    },
+    "recursive/nld.rst.nldt/fine": {
+      "accuracy": 0.8838125,
+      "confusion_matrix_labels_0_1": [
+        [
+          7096,
+          904
+        ],
+        [
+          955,
+          7045
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28356977912457126,
+      "macro_f1": 0.8838113195048517,
+      "negative_f1": 0.88418167092393,
+      "positive_f1": 0.8834409680857734
+    }
+  },
+  "fine_minus_coarse": {
+    "pooling/deu.rst.pcc/fine - pooling/deu.rst.pcc/coarse": {
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0,
+      "interval_95": [
+        -0.006616325630809298,
+        -0.0023982525232698806
+      ],
+      "log_loss_difference": -0.004529395266320457,
+      "macro_f1_difference": 0.003375223727984711
+    },
+    "pooling/eng.erst.gum/fine - pooling/eng.erst.gum/coarse": {
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0,
+      "interval_95": [
+        -0.007901470232105044,
+        -0.002728081426653821
+      ],
+      "log_loss_difference": -0.005327423434985601,
+      "macro_f1_difference": 0.0031839528136021755
+    },
+    "pooling/eng.rst.rstdt/fine - pooling/eng.rst.rstdt/coarse": {
+      "bootstrap_p": 0.0004,
+      "holm_p": 0.0024000000000000002,
+      "interval_95": [
+        0.0032902747372319393,
+        0.012151772870315757
+      ],
+      "log_loss_difference": 0.007593964416558907,
+      "macro_f1_difference": -0.0017499014785429257
+    },
+    "pooling/nld.rst.nldt/fine - pooling/nld.rst.nldt/coarse": {
+      "bootstrap_p": 0.099,
+      "holm_p": 0.29700000000000004,
+      "interval_95": [
+        -0.0032002480372020485,
+        0.00027802021033784303
+      ],
+      "log_loss_difference": -0.0014756574396342925,
+      "macro_f1_difference": 0.002124582253819396
+    },
+    "recursive/deu.rst.pcc/fine - recursive/deu.rst.pcc/coarse": {
+      "bootstrap_p": 0.0065,
+      "holm_p": 0.0325,
+      "interval_95": [
+        -0.0029209855074943504,
+        -0.0004981429132765434
+      ],
+      "log_loss_difference": -0.0016898083258688468,
+      "macro_f1_difference": 3.9162027754002793e-07
+    },
+    "recursive/eng.erst.gum/fine - recursive/eng.erst.gum/coarse": {
+      "bootstrap_p": 0.0204,
+      "holm_p": 0.0816,
+      "interval_95": [
+        -0.0030451942363289865,
+        -0.00023414748771120045
+      ],
+      "log_loss_difference": -0.001657924406974487,
+      "macro_f1_difference": 6.320444283380855e-05
+    },
+    "recursive/eng.rst.rstdt/fine - recursive/eng.rst.rstdt/coarse": {
+      "bootstrap_p": 0.4266,
+      "holm_p": 0.8532,
+      "interval_95": [
+        -0.00221768340492032,
+        0.0009497214271521996
+      ],
+      "log_loss_difference": -0.0006430756465778398,
+      "macro_f1_difference": 0.0011876402724080304
+    },
+    "recursive/nld.rst.nldt/fine - recursive/nld.rst.nldt/coarse": {
+      "bootstrap_p": 0.7127,
+      "holm_p": 0.8532,
+      "interval_95": [
+        -0.0010588137133979395,
+        0.0007019541180200501
+      ],
+      "log_loss_difference": -0.0001689693827003902,
+      "macro_f1_difference": 0.0002500971475328795
+    }
+  },
+  "input_hashes": {
+    "baseline-config.json": "dea62f6233a82b653943a2b654bcad5eaa98dcfad47ce2ee0cb7fff3a0f0b34b",
+    "deu.rst.pcc.jsonl": "b40a068807c6657eb7fc00599870dd202118fb3e6cce21d3d6d5d486691d1c12",
+    "eng.erst.gum.jsonl": "d838ff1247527abe46e4c3fc78061a65916086abcf329f1c693e60c34aeac543",
+    "eng.rst.rstdt.jsonl": "9ded8da1766d4eb6d8f586abc98d4d246b5501730fafe2c07fae365a685e2d03",
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "nld.rst.nldt.jsonl": "09d8f4f8ffacd90f658b835c06eaaf3a4c3a7118d8a5ab71df7323a088f36c47",
+    "parser-audit.json": "b8f7661dd15dd0e7afd2bcb217dce0e489dd648552f8f178b933c71572f0c37e",
+    "sample.json": "a1c27bcbd7bcc6d6306b0986cd3f2f329069074a47c0b264d3236243cd52f54c",
+    "scenes.jsonl": "27f7c0057a02b04c7f0516d51a89668f007173ecd10de288741aae918bc3f61f",
+    "scores-manifest.json": "e15217754ba4b1d2c5c4fa12c745671f339b448bcea54bb080e6c12c91474319",
+    "scores.jsonl": "d37e31bb92d120bb0e40c1b7d576cfad786ee6b3d7b348c7506c1059f5e01e79",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "predictions_sha256": "1a5cc1be5fbc766d16c2df68662e8b932912e50718ac4dd294add4330d63e80e",
+  "protocol": "granularity-confirmation-v1/others",
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "confirm_granularity.py": "7f96272eeb2d57ed2a385d567092a25f4031be446ed074507f14763d115389dc",
+    "dependency_sentiment.py": "6e1e3e14b4041020d18961e96344eeb2825e604ee600d7bdec34168f80a56449",
+    "edu_baseline.py": "49046935c91bb7c681f53f66d5b6966a9a67fce8cff7176e74bdd47b4e469c75",
+    "granularity_diagnostics.py": "b10d8df36b814b4014aa909ebc7e803214656513e04eecb37efd49e8a2d7d1de",
+    "nuclearity.py": "7796b9706a207cc39d0dfdb46259fdad3cfd163b72540ed8c1b1806e2492d3d3",
+    "recursive_sentiment.py": "53dc2e424b5d78acf6f45b0ee5d1e619a40596a763a4fffe5b79dc5b7f9f6011",
+    "relation_gate.py": "9fca317f46df01578450fca10f48d750f7261ab073f8edc73c7ce173e7f95560",
+    "relation_pooling.py": "e27e0346feeae0abca10383e21074c1a3994ed757515574c65d2932e15bfbb26",
+    "relation_stability.py": "924fa292df35e13704ad19486f92c5cc4fa0d1346f0fc2bb54d7b940f39fea17",
+    "stock_pooling.py": "4db300e016b1e01cc867554e6a8c4b95dfa6ccfaf69b8cdaf38fbc5aa79ae5ae",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  }
+}

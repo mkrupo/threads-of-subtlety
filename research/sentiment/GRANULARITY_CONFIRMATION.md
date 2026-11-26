@@ -1,5 +1,9 @@
 # Fine versus coarse RST labels for review sentiment: confirmation plan
 
+**Outcome (2026-11-26):** fine labels beat mapped coarse labels in all four
+standards. Holm p ≤ .014, and log-loss is lower by 0.0014–0.0040 nats.
+The advantage grows with training data. [Results](#results-added-2026-11-26-the-plan-above-is-unchanged)
+
 Status: **frozen on 2026-11-25** by the commit that added this line, tagged
 `granularity-confirmation-plan-v1`. No sentiment model had been fitted on the
 confirmation cohort. Its reviews had been selected and its parse was running.
@@ -166,7 +170,90 @@ It found no leakage, alignment or sign errors. Its points led to the combined
 verdict, the Holm adjustments for the scramble and curve families, and extra
 checks on the scorer, configuration and selection inputs.
 
+## Results (added 2026-11-26; the plan above is unchanged)
+
+On 2026-11-25 the GTX 1080 Ti host ran the four commands with code archived
+from the frozen tag. The logged source hashes match the tag, and the analyses
+finished at 23:58 UTC. The parse covered all 16,000 reviews, with one scene
+and four verified trees per review. The scramble's real-label refits
+reproduced the primary predictions exactly.
+Reports: [primary](results/amazon-confirm-primary-report-v1.json) ·
+[scramble](results/amazon-confirm-scramble-report-v1.json) ·
+[curve](results/amazon-confirm-curve-report-v1.json) ·
+[other models](results/amazon-confirm-others-report-v1.json).
+
+### Primary: fine minus mapped coarse, relation-gate model
+
+| Standard | Fine log-loss | Coarse log-loss | Δ (×10⁻³) | 95% interval | Holm p | Δ macro-F1 (points) | Verdict |
+|---|---:|---:|---:|---:|---:|---:|---|
+| PCC | .2850 | .2886 | −3.61 | [−5.07, −2.15] | < .001 | +0.24 | fine better |
+| NLDT | .2873 | .2887 | −1.37 | [−2.48, −0.25] | .014 | +0.09 | fine better |
+| GUM/eRST | .2849 | .2880 | −3.11 | [−4.54, −1.68] | < .001 | +0.19 | fine better |
+| RST-DT | .2943 | .2983 | −3.97 | [−5.53, −2.40] | < .001 | +0.27 | fine better |
+
+**Fine labels beat mapped coarse labels in all four standards.** For PCC and
+RST-DT, the whole interval lies beyond the 0.002 margin. For GUM/eRST and NLDT,
+the interval reaches inside the margin. The gain shows mainly in calibrated
+probabilities: macro-F1 rises by 0.1–0.3 points, and fine gate models reach
+.880–.887.
+
+### Secondary analyses
+
+1. **Labels against unlabeled links:** coarse lowers log-loss by 0.013–0.016
+   nats and fine by 0.017–0.019. All eight contrasts have Holm p < .001.
+   Macro-F1 rises by 0.8–1.3 points.
+2. **Scrambled labels, 200 permutations:** in every standard, real fine labels
+   beat all 200 within-group shuffles. Each permutation p is .005, the
+   smallest possible, and the Holm-adjusted p is .020. Shuffled fine labels score
+   almost exactly like coarse labels. For PCC, for example, real fine scores
+   .2850, scrambled .2890 [.2886, .2894] and coarse .2886. The sibling gate
+   spread is 3–14 times the scrambled mean, with Holm p = .020 in every
+   standard. Several sibling contrasts repeat the exploration pattern. *Contrast*
+   receives 1.05–1.20 against *concession* 0.32–0.48 in all four standards. GUM
+   *causal-result* receives 1.36 against *causal-cause* 0.50, and PCC *result*
+   receives 1.02 against *cause* 0.52.
+3. **Learning curve:** fine minus coarse log-loss ×10⁻³ by training size,
+   averaged over five nested draws per size.
+
+   | Standard | 1,000 | 2,000 | 4,000 | 8,000 | 12,800 | Gap(1,000) − gap(12,800), Holm p |
+   |---|---:|---:|---:|---:|---:|---|
+   | PCC | −0.51 | −2.21 | −3.05 | −3.30 | −3.61 | +3.10 [+2.34, +3.85], < .001 |
+   | NLDT | +1.60 | +0.21 | −0.87 | −1.16 | −1.37 | +2.97 [+2.27, +3.67], < .001 |
+   | GUM/eRST | +0.02 | −1.79 | −2.44 | −2.81 | −3.11 | +3.13 [+2.32, +3.94], < .001 |
+   | RST-DT | +0.28 | −1.81 | −2.94 | −3.76 | −3.97 | +4.25 [+3.40, +5.09], < .001 |
+
+   With 1,000 training reviews, fine and coarse tie, and NLDT is worse with fine
+   labels. The fine advantage then grows steadily with data, as the sparsity
+   hypothesis predicts. This explains why the exploration cohort, with 1,600
+   training reviews per fold, could not separate fine from coarse, and why
+   SFU, with 320, could not either.
+4. **Other models, fine minus coarse log-loss:**
+   - **Text-order relation pooling:** fine was better for PCC (−4.5 ×10⁻³) and
+     GUM/eRST (−5.3), both with Holm p < .001. NLDT showed no reliable
+     difference (−1.5, Holm p = .30). RST-DT fine was worse (+7.6, Holm
+     p = .002); its 69 fine labels give 420 feature columns.
+   - **Recursive composition:** fine was better for PCC (−1.7, Holm p = .033).
+     The other three standards showed no reliable difference.
+   - **Comparison with exploration:** in the 2,000-review exploration
+     cohort, fine pooling was worse in all eight conditions. With 8× the
+     data, fine pooling helps in two of four standards.
+
+### Reading
+
+Within a coarse RST group, fine relation labels carry sentiment-relevant
+information. On 16,000 held-out reviews, a model that spends one weight per
+label turns that information into better review-level predictions in all
+four standards. The gain is reliable, but small in accuracy terms. It
+needs a few thousand training reviews, which the earlier and smaller
+samples lacked. Models that spend many parameters per label need more
+data still, and the 69-label RST-DT inventory remains too sparse for
+relation pooling.
+
 ## Deviation log
 
 - 2026-11-25: Quota reduced from the intended 2,500 to 2,000 per stratum
   before any parsing, because positive Software reviews ran out at 2,122.
+- 2026-11-26: No analysis deviations. The analysis launcher was started
+  over an SSH command that did not detach. The job ran in its own session,
+  PID 1072242, recorded in `analysis-launch/`. It ran to completion and was
+  unaffected.

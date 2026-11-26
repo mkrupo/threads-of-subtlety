@@ -38,6 +38,14 @@ coarse GUM/eRST and RST-DT parsers scored higher. [Model provenance](MODEL_PROVE
   text-order conditions over their nuclearity controls. Coarse NLDT
   reached **0.884**, a gain of **2.00 macro-F1 points** over nuclearity.
   [SFU–Amazon results](replication/results/amazon/comparison.json)
+- **Amazon confirmation, 2026-11-26 (pre-registered).** Weighting tree links
+  by relation label lowered log-loss on a fresh cohort of 16,000 reviews in
+  all standards. In the relation-gate model, fine labels beat mapped coarse
+  labels in all four standards. Holm p ≤ .014, log-loss is lower by
+  0.0014–0.0040 nats, and macro-F1 is higher by 0.1–0.3 points. Real fine
+  labels beat labels scrambled within their coarse groups. The fine advantage
+  appears only with a few thousand training reviews, which the 2,000-review
+  exploration sample and SFU lacked. [Plan and results](GRANULARITY_CONFIRMATION.md)
 - **HC3-style motifs on SFU.** With motif frequency and depth as the
   review's only inputs, fine led in three inventories. Every fine/coarse
   and between-inventory interval includes a tie. [Motif results](RUNNING.md#hc3-style-motifs-on-sfu)
@@ -60,7 +68,9 @@ the sentiment on each side of the concession, pooled by relation name.
 ## What goes into the paper
 
 Use HC3 as the main granularity experiment and SFU plus Amazon as the
-two review sentiment corpora. Relation pooling changed direction across
+two review sentiment corpora. Max's proposal for the 2026-11-26 meeting
+was to make Amazon the main sentiment experiment, with exploration plus
+pre-registered confirmation, and move SFU to an appendix robustness check. Relation pooling changed direction across
 the corpora. Length, label definitions, category mix, and sample size
 changed together. The meeting notes cover both review experiments and
 what each classifier sees. The committed LaTeX section covers SFU.
