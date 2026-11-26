@@ -1,5 +1,12 @@
 # Meeting notes on RST granularity in review sentiment
 
+> **Superseded on 2026-11-26.** These notes cover the earlier exploration on
+> 400 SFU and 2,000 Amazon reviews, which used macro-F1. The pre-registered
+> 16,000-review Amazon confirmation and the later baselines replace their
+> conclusions about fine and coarse labels. See
+> [the confirmation plan and results](../GRANULARITY_CONFIRMATION.md) and
+> [the 2026-11-26 pitch](../MEETING_PITCH_2026-11-26.md).
+
 ## What we tested
 
 - **Our starting point was HC3.** The earlier work found that keeping detailed RST relation labels helped detect machine-written text when the classifier used small patterns from discourse trees. We extended that setup to predicting whether a review is positive or negative.

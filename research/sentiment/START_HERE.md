@@ -71,9 +71,12 @@ the sentiment on each side of the concession, pooled by relation name.
 ## What goes into the paper
 
 Use HC3 as the main granularity experiment and SFU plus Amazon as the
-two review sentiment corpora. Max's proposal for the 2026-11-26 meeting
-was to make Amazon the main sentiment experiment, with exploration plus
-pre-registered confirmation, and move SFU to an appendix robustness check. Relation pooling changed direction across
+two review sentiment corpora. **Agreed on 2026-11-26:** Amazon is the single
+main sentiment corpus, with exploration plus pre-registered confirmation,
+and SFU moves to an appendix or backup. The committed LaTeX section still
+covers SFU only and needs rewriting. An LLM zero-shot baseline was dropped
+because the Jarvis endpoint returned 404, and roberta-base already serves as
+the neural baseline. Relation pooling changed direction across
 the corpora. Length, label definitions, category mix, and sample size
 changed together. The meeting notes cover both review experiments and
 what each classifier sees. The committed LaTeX section covers SFU.

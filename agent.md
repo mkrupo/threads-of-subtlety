@@ -8,7 +8,55 @@ This is a self-contained research-context handover for an agent on another machi
 
 The repository state described below is a dated snapshot. Preserve its distinction between observed implementation, reported historical outcomes, draft statements, and inference. If later commits change the situation, explain the change rather than silently replacing the historical account.
 
-## Current sentiment handover — 2026-11-21
+## Current sentiment handover — 2026-11-26 (supersedes the 2026-11-21 section below)
+
+- **Branch.** Use `origin/sentiment4` on Max's fork. It extends `sentiment3` and
+  contains every sentiment result to date. Tag `granularity-confirmation-plan-v1`
+  marks the analysis plan, frozen before the confirmation data was analysed.
+- **Paper decision (Max and colleague, 2026-11-26).** HC3 remains the main
+  granularity result. **Amazon is the single main sentiment corpus**, with
+  2,000 exploration reviews and 16,000 pre-registered confirmation reviews.
+  **SFU becomes an appendix or backup.** `paper/sentiment.tex` still describes
+  only the older SFU experiment and must be rewritten around Amazon.
+- **Read in this order.**
+  1. [START_HERE](research/sentiment/START_HERE.md) for the one-page state.
+  2. [GRANULARITY_CONFIRMATION](research/sentiment/GRANULARITY_CONFIRMATION.md)
+     for the frozen plan, its verdicts and the deviation log.
+  3. The [RUNNING](research/sentiment/RUNNING.md) sections "Fine/coarse diagnostics…",
+     "Split-tree ablation on Amazon", "Pre-registered fine/coarse confirmation…"
+     and "Baselines on the confirmation cohort".
+  4. [MEETING_PITCH_2026-11-26](research/sentiment/MEETING_PITCH_2026-11-26.md)
+     for the agreed framing and caveats.
+- **Evidence levels.**
+  - *Confirmatory:* fine beats mapped-coarse labels in the relation-gate model
+    on 16,000 held-out reviews, in all four standards (Holm p ≤ .014).
+  - *Pre-specified secondary analyses:* labels against unlabeled links,
+    scrambled labels, the learning curve, and pooling and recursive models.
+  - *Exploratory:* everything on the 2,000 exploration reviews and on SFU.
+  - *Descriptive, added later:* the TF-IDF and roberta-base baselines.
+- **Key numbers.** These are in the committed JSON under
+  `research/sentiment/results/`. Print them with
+  `python -m research.sentiment.granularity_summary <report.json>`.
+  - Fine gate models reach .880–.887 macro-F1.
+  - TF-IDF reaches .882, so RST does not improve accuracy over a lexical
+    baseline.
+  - roberta-base reaches .942.
+  - The fine advantage appears only from a few thousand training reviews.
+- **Superseded material.** `replication/MEETING_NOTES.md` and the 2026-11-21
+  section below describe the earlier SFU and Amazon exploration. Their pooling
+  claims, such as "coarse labels worked well", came from macro-F1 on small
+  samples. Log-loss and the 16,000-review cohort replace them.
+- **Not done.** An LLM zero-shot baseline with the university Jarvis Qwen
+  deployment was dropped on 2026-11-26. Its configured endpoint returned
+  HTTP 404, and the roberta-base baseline already places the RST models.
+- **Not in git.** Per-review trees, EDU scores and predictions are gitignored.
+  On Max's WSL machine they are under `artifacts/sentiment/`. On the GTX 1080
+  Ti host they are under `/scratch/threads-of-subtlety/`, in run directories
+  named in the RUNNING sections. Reports record each file's SHA-256. A write-up
+  needs only the committed reports. Rerunning needs the raw Amazon archives,
+  the collaborator's GUM/RST-DT checkpoints and the steps in RUNNING.
+
+## Earlier sentiment handover — 2026-11-21
 
 - **Branch and paper scope.** Start from `origin/sentiment2` on Max's fork. It descends from the frozen SFU snapshot `25499ac` and contains the Amazon and UCI experiments. The current paper direction is to keep HC3 as the main granularity result, use **SFU and Amazon** for review sentiment, and use UCI as an optional appendix check on very short inputs. The committed LaTeX sentiment section covers SFU. The meeting notes give the SFU–Amazon methods and table for integration into the manuscript. [Meeting notes](research/sentiment/replication/MEETING_NOTES.md) · [SFU LaTeX](research/sentiment/paper/sentiment.tex)
 - **SFU reproduction.** On the RTX 4080 under WSL2, a fresh run from the raw archive reproduced 400 reviews, 1,012 scenes, 36,850 EDUs, and 4,048 final trees. The shared scenes, all final tree files, CardiffNLP probabilities, and all five discourse/EDU prediction files matched their original hashes. All 32 pooled macro-F1 values matched. The TF–IDF fitted models and text-control prediction JSONL differed at the byte level, with identical metrics and regularization selections. [Fresh SFU audit](research/sentiment/replication/results/sfu-reproduction.json)
