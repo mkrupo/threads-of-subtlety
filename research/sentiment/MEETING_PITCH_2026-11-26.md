@@ -59,8 +59,11 @@ training data.
 ## Caveats to state up front
 
 - The gain is reliable but small in accuracy: about 0.1–0.3 F1 points.
-  Most of the accuracy comes from the clause sentiment scores, and RST adds
-  roughly 1–3 points on top.
+- *Updated after the baselines, 2026-11-26.* On the 16,000-review cohort, the
+  RST models (.880–.887 macro-F1) match a word and word-pair TF-IDF baseline
+  (.882), with slightly better log-loss. Fine-tuned roberta-base reaches .942.
+  We use RST to study which relations carry sentiment, not to beat accuracy
+  baselines. [Baselines](RUNNING.md#baselines-on-the-confirmation-cohort)
 - Coarse labels are fine labels renamed after parsing, which isolates label
   granularity. Separately trained coarse parsers produce different trees and
   are a different question.

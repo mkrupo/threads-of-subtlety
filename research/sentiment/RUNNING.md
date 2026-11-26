@@ -1216,3 +1216,65 @@ p ≤ .014, and macro-F1 is higher by 0.1–0.3 points. Real fine labels beat
 every within-group shuffle. The fine advantage grows with training size: it
 is absent at 1,000 reviews and clear from 2,000–4,000 onward, which explains
 the inconclusive exploration results.
+
+## Baselines on the confirmation cohort
+
+Added on 2026-11-26, after the pre-registered analysis. These comparisons show
+where the RST models land against simple and neural baselines. They are not
+part of the confirmatory fine/coarse test. Every model used the cohort's five
+outer folds, and all comparisons are paired on the same 16,000 held-out
+reviews. [Comparison report](results/amazon-confirm-baseline-comparison-v1.json)
+
+| Model | Macro-F1 [95% interval] | Log-loss |
+|---|---:|---:|
+| Constant class (class prior) | .333 | .6931 |
+| Log review length, logistic regression | .499 | .6931 |
+| Word and word-pair TF-IDF, logistic regression | .882 [.877, .887] | .2980 |
+| RST relation-gate, unlabeled links (PCC) | .873 | .3037 |
+| RST relation-gate, fine labels (four standards) | .880–.887 | .2849–.2943 |
+| roberta-base, fine-tuned on the full review | .942 [.939, .946] | .2671 |
+
+Random guessing on this balanced sample gives an expected accuracy and
+macro-F1 of 0.5. A constant probability of 0.5 gives a log-loss of ln 2 =
+.6931. Review length carries no signal here.
+
+The RST models score within half a macro-F1 point of TF-IDF, which reached
+only .833 on the 2,000-review exploration cohort. Their log-loss is lower for
+PCC, GUM/eRST and NLDT (0.011–0.013 nats), and the RST-DT interval includes
+zero. Fine-tuned roberta-base is about 6 macro-F1 points better than either.
+The RST models are therefore a tool for studying which relations carry
+sentiment, not a way to improve accuracy.
+
+**Text controls.** `cohort_baselines controls` fits the existing `baseline.py`
+controls with the frozen Amazon settings, using the cohort's own nested folds.
+It takes under a minute on CPU.
+
+**roberta-base.** `finetune_roberta.py` fine-tunes `FacebookAI/roberta-base` at
+revision `e2da8e2f811d1448a5b465c236feacd80ffbac7b` with settings fixed in
+advance: learning rate 2e-5 with linear decay and 6% warmup, 3 epochs, batch
+size 16, weight decay 0.01, maximum length 256 (no review was truncated) and
+fp32. There was no validation or checkpoint selection. Each fold took 9–10
+minutes on one GTX 1080 Ti, and the full run took 30 minutes on both cards.
+The environment is pinned in `finetune-requirements.txt`, and the installed
+packages are listed in `results/amazon-confirm-roberta-pip-freeze-v1.txt`.
+The attention backward pass of PyTorch 2.2.2 is not bitwise deterministic on
+GPU, so a rerun reproduces the procedure and near-identical but not
+byte-identical probabilities.
+
+```bash
+# GPU host: run dir with code/ = git archive of the commit, plus the launcher scripts
+bash launch-detached.sh RUN_DIR run-roberta-baseline-1080ti.sh
+# Local, after copying back output/:
+RUN=artifacts/sentiment/amazon23-confirm-v1.wfns3g4t
+uv run --project research/sentiment --locked --no-sync python -B -m research.sentiment.cohort_baselines \
+  controls --prepared $RUN/prepared \
+  --config research/sentiment/replication/results/amazon/baseline-config.json \
+  --output $RUN/baselines/text-controls
+uv run --project research/sentiment --locked --no-sync python -B -m research.sentiment.cohort_baselines \
+  compare --prepared $RUN/prepared \
+  --gate-predictions $RUN/confirm/primary/predictions.jsonl --gate-report $RUN/confirm/primary/report.json \
+  --controls-predictions $RUN/baselines/text-controls/predictions.jsonl \
+  --controls-report $RUN/baselines/text-controls/report.json \
+  --roberta-predictions $RUN/baselines/roberta-base/output/predictions.jsonl \
+  --roberta-report $RUN/baselines/roberta-base/output/report.json --output $RUN/baselines/comparison.json
+```

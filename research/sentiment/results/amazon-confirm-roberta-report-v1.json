@@ -1,0 +1,322 @@
+{
+  "accuracy": 0.942375,
+  "condition": "roberta-base",
+  "folds": [
+    {
+      "epoch_mean_training_loss": [
+        0.29794081711908804,
+        0.15866241450727103,
+        0.08766903230731259
+      ],
+      "fold": 0,
+      "input_hashes": {
+        "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+        "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+        "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+      },
+      "longest_tokens": {
+        "test": 178,
+        "train": 164
+      },
+      "model": {
+        "files_sha256": {
+          "config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+          "tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+          "tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+          "vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655"
+        },
+        "path_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+      },
+      "predictions_sha256": "89e293ef98099bc0d3d3f0864f02500fb74304b1d3e68105507ef6812f2b297f",
+      "runtime": {
+        "cuda": "11.8",
+        "deterministic_algorithms": "torch.use_deterministic_algorithms(True, warn_only=True)",
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "python": "3.10.12",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "seconds": 572.3399420101196,
+      "seed": 42,
+      "settings": {
+        "batch_size": 16,
+        "epochs": 3,
+        "learning_rate": 2e-05,
+        "max_grad_norm": 1.0,
+        "max_length": 256,
+        "precision": "fp32",
+        "seed": 42,
+        "selection": "none: the model after the last epoch predicts the test fold",
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01
+      },
+      "source_sha256": "824a370d641d40abac3e152dbeac9dfaa7a1b3ffd3bad939d7de44f4f7a9c338",
+      "steps": 2400,
+      "test_reviews": 3200,
+      "train_reviews": 12800,
+      "truncated_reviews": {
+        "test": 0,
+        "train": 0
+      }
+    },
+    {
+      "epoch_mean_training_loss": [
+        0.3082721155823674,
+        0.16023434314556653,
+        0.10596123457202339
+      ],
+      "fold": 1,
+      "input_hashes": {
+        "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+        "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+        "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+      },
+      "longest_tokens": {
+        "test": 162,
+        "train": 178
+      },
+      "model": {
+        "files_sha256": {
+          "config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+          "tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+          "tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+          "vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655"
+        },
+        "path_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+      },
+      "predictions_sha256": "7b9f3a7563fba8d2bdb1323b11afccf5546b84361374e05d91e7b25b7cf784de",
+      "runtime": {
+        "cuda": "11.8",
+        "deterministic_algorithms": "torch.use_deterministic_algorithms(True, warn_only=True)",
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "python": "3.10.12",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "seconds": 571.0810250844806,
+      "seed": 43,
+      "settings": {
+        "batch_size": 16,
+        "epochs": 3,
+        "learning_rate": 2e-05,
+        "max_grad_norm": 1.0,
+        "max_length": 256,
+        "precision": "fp32",
+        "seed": 42,
+        "selection": "none: the model after the last epoch predicts the test fold",
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01
+      },
+      "source_sha256": "824a370d641d40abac3e152dbeac9dfaa7a1b3ffd3bad939d7de44f4f7a9c338",
+      "steps": 2400,
+      "test_reviews": 3200,
+      "train_reviews": 12800,
+      "truncated_reviews": {
+        "test": 0,
+        "train": 0
+      }
+    },
+    {
+      "epoch_mean_training_loss": [
+        0.3006567291182,
+        0.1682641702570254,
+        0.09668284386701999
+      ],
+      "fold": 2,
+      "input_hashes": {
+        "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+        "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+        "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+      },
+      "longest_tokens": {
+        "test": 161,
+        "train": 178
+      },
+      "model": {
+        "files_sha256": {
+          "config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+          "tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+          "tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+          "vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655"
+        },
+        "path_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+      },
+      "predictions_sha256": "d4e7cd2e8f69f72597de08e2bd1476e52280e6a9468154ae2dce5ee77cad21e2",
+      "runtime": {
+        "cuda": "11.8",
+        "deterministic_algorithms": "torch.use_deterministic_algorithms(True, warn_only=True)",
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "python": "3.10.12",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "seconds": 579.8396456744522,
+      "seed": 44,
+      "settings": {
+        "batch_size": 16,
+        "epochs": 3,
+        "learning_rate": 2e-05,
+        "max_grad_norm": 1.0,
+        "max_length": 256,
+        "precision": "fp32",
+        "seed": 42,
+        "selection": "none: the model after the last epoch predicts the test fold",
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01
+      },
+      "source_sha256": "824a370d641d40abac3e152dbeac9dfaa7a1b3ffd3bad939d7de44f4f7a9c338",
+      "steps": 2400,
+      "test_reviews": 3200,
+      "train_reviews": 12800,
+      "truncated_reviews": {
+        "test": 0,
+        "train": 0
+      }
+    },
+    {
+      "epoch_mean_training_loss": [
+        0.3005371922266204,
+        0.1585623483278323,
+        0.09984599355375394
+      ],
+      "fold": 3,
+      "input_hashes": {
+        "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+        "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+        "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+      },
+      "longest_tokens": {
+        "test": 164,
+        "train": 178
+      },
+      "model": {
+        "files_sha256": {
+          "config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+          "tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+          "tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+          "vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655"
+        },
+        "path_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+      },
+      "predictions_sha256": "b777e8637308d9430631a94a21b8ceae5ec4b576e61718355e6c3369473ac93d",
+      "runtime": {
+        "cuda": "11.8",
+        "deterministic_algorithms": "torch.use_deterministic_algorithms(True, warn_only=True)",
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "python": "3.10.12",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "seconds": 573.5342667680234,
+      "seed": 45,
+      "settings": {
+        "batch_size": 16,
+        "epochs": 3,
+        "learning_rate": 2e-05,
+        "max_grad_norm": 1.0,
+        "max_length": 256,
+        "precision": "fp32",
+        "seed": 42,
+        "selection": "none: the model after the last epoch predicts the test fold",
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01
+      },
+      "source_sha256": "824a370d641d40abac3e152dbeac9dfaa7a1b3ffd3bad939d7de44f4f7a9c338",
+      "steps": 2400,
+      "test_reviews": 3200,
+      "train_reviews": 12800,
+      "truncated_reviews": {
+        "test": 0,
+        "train": 0
+      }
+    },
+    {
+      "epoch_mean_training_loss": [
+        0.2956963263207581,
+        0.16222670543618734,
+        0.09590454437522566
+      ],
+      "fold": 4,
+      "input_hashes": {
+        "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+        "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+        "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+      },
+      "longest_tokens": {
+        "test": 164,
+        "train": 178
+      },
+      "model": {
+        "files_sha256": {
+          "config.json": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+          "merges.txt": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "model.safetensors": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+          "tokenizer.json": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+          "tokenizer_config.json": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+          "vocab.json": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655"
+        },
+        "path_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+      },
+      "predictions_sha256": "973cc64930f394dfe8f9d095b530e5925aaac180f8aa2a8eac700c955468cc4f",
+      "runtime": {
+        "cuda": "11.8",
+        "deterministic_algorithms": "torch.use_deterministic_algorithms(True, warn_only=True)",
+        "device": "NVIDIA GeForce GTX 1080 Ti",
+        "python": "3.10.12",
+        "torch": "2.2.2+cu118",
+        "transformers": "4.46.3"
+      },
+      "seconds": 565.2812400255352,
+      "seed": 46,
+      "settings": {
+        "batch_size": 16,
+        "epochs": 3,
+        "learning_rate": 2e-05,
+        "max_grad_norm": 1.0,
+        "max_length": 256,
+        "precision": "fp32",
+        "seed": 42,
+        "selection": "none: the model after the last epoch predicts the test fold",
+        "warmup_fraction": 0.06,
+        "weight_decay": 0.01
+      },
+      "source_sha256": "824a370d641d40abac3e152dbeac9dfaa7a1b3ffd3bad939d7de44f4f7a9c338",
+      "steps": 2400,
+      "test_reviews": 3200,
+      "train_reviews": 12800,
+      "truncated_reviews": {
+        "test": 0,
+        "train": 0
+      }
+    }
+  ],
+  "input_hashes": {
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "log_loss": 0.2670870020523508,
+  "predictions_sha256": "f97df497fc0c7cbca497f9c41966ed4a6256f86b9102978b1ce86c2e9b1b5eb4",
+  "protocol": "roberta-base-baseline-v1",
+  "reviews": 16000,
+  "settings": {
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 2e-05,
+    "max_grad_norm": 1.0,
+    "max_length": 256,
+    "precision": "fp32",
+    "seed": 42,
+    "selection": "none: the model after the last epoch predicts the test fold",
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01
+  }
+}

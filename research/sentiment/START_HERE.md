@@ -46,6 +46,9 @@ coarse GUM/eRST and RST-DT parsers scored higher. [Model provenance](MODEL_PROVE
   labels beat labels scrambled within their coarse groups. The fine advantage
   appears only with a few thousand training reviews, which the 2,000-review
   exploration sample and SFU lacked. [Plan and results](GRANULARITY_CONFIRMATION.md)
+  On the same reviews, TF-IDF reaches .882 macro-F1, about the same as the
+  RST models, and fine-tuned roberta-base reaches .942.
+  [Baselines](RUNNING.md#baselines-on-the-confirmation-cohort)
 - **HC3-style motifs on SFU.** With motif frequency and depth as the
   review's only inputs, fine led in three inventories. Every fine/coarse
   and between-inventory interval includes a tie. [Motif results](RUNNING.md#hc3-style-motifs-on-sfu)

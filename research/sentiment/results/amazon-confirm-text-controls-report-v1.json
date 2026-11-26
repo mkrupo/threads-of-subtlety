@@ -1,0 +1,293 @@
+{
+  "config_sha256": "dea62f6233a82b653943a2b654bcad5eaa98dcfad47ce2ee0cb7fff3a0f0b34b",
+  "controls": [
+    "class_prior",
+    "length_only",
+    "tfidf_lr"
+  ],
+  "input_hashes": {
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "predictions_sha256": "a9e82d5fd9b8355b781e720a16b68ec38eea0ecfe0ccb3fc1f62cf88b11742b4",
+  "protocol": "cohort-text-controls-v1",
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "selections": [
+    {
+      "control": "class_prior",
+      "fold": 0,
+      "selection": "training class prior; argmax tie selects class 0"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.49479842718257483,
+          "std_inner_macro_f1": 0.007345383316845174
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.49479842718257483,
+          "std_inner_macro_f1": 0.007345383316845174
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.49479842718257483,
+          "std_inner_macro_f1": 0.007345383316845174
+        }
+      ],
+      "control": "length_only",
+      "fold": 0,
+      "refit": "full outer training partition only",
+      "selected_C": 0.1,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.8567151953887573,
+          "std_inner_macro_f1": 0.005091447811997933
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.8763251842692519,
+          "std_inner_macro_f1": 0.005042474645130938
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.8766387472440137,
+          "std_inner_macro_f1": 0.00271907500779765
+        }
+      ],
+      "control": "tfidf_lr",
+      "fold": 0,
+      "refit": "full outer training partition only",
+      "selected_C": 10.0,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "control": "class_prior",
+      "fold": 1,
+      "selection": "training class prior; argmax tie selects class 0"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.5012058155574618,
+          "std_inner_macro_f1": 0.0065909068454378964
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.5012058155574618,
+          "std_inner_macro_f1": 0.0065909068454378964
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.5012058155574618,
+          "std_inner_macro_f1": 0.0065909068454378964
+        }
+      ],
+      "control": "length_only",
+      "fold": 1,
+      "refit": "full outer training partition only",
+      "selected_C": 0.1,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.8547479350978721,
+          "std_inner_macro_f1": 0.0058758220050633084
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.8772571303149846,
+          "std_inner_macro_f1": 0.005959322703389274
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.877803908161194,
+          "std_inner_macro_f1": 0.0057586060352958195
+        }
+      ],
+      "control": "tfidf_lr",
+      "fold": 1,
+      "refit": "full outer training partition only",
+      "selected_C": 10.0,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "control": "class_prior",
+      "fold": 2,
+      "selection": "training class prior; argmax tie selects class 0"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.49724721924724374,
+          "std_inner_macro_f1": 0.009661621399620898
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.49724721924724374,
+          "std_inner_macro_f1": 0.009661621399620898
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.49724721924724374,
+          "std_inner_macro_f1": 0.009661621399620898
+        }
+      ],
+      "control": "length_only",
+      "fold": 2,
+      "refit": "full outer training partition only",
+      "selected_C": 0.1,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.8594468494476618,
+          "std_inner_macro_f1": 0.0016306243039192173
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.8765541037539691,
+          "std_inner_macro_f1": 0.0027188702853574733
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.8803871575042563,
+          "std_inner_macro_f1": 0.003507082499117785
+        }
+      ],
+      "control": "tfidf_lr",
+      "fold": 2,
+      "refit": "full outer training partition only",
+      "selected_C": 10.0,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "control": "class_prior",
+      "fold": 3,
+      "selection": "training class prior; argmax tie selects class 0"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.5002054345595214,
+          "std_inner_macro_f1": 0.0038779711086017895
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.5002054345595214,
+          "std_inner_macro_f1": 0.0038779711086017895
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.5002054345595214,
+          "std_inner_macro_f1": 0.0038779711086017895
+        }
+      ],
+      "control": "length_only",
+      "fold": 3,
+      "refit": "full outer training partition only",
+      "selected_C": 0.1,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.8587484495105352,
+          "std_inner_macro_f1": 0.003023012741129317
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.8748415024197048,
+          "std_inner_macro_f1": 0.005068321637765807
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.8747639428540848,
+          "std_inner_macro_f1": 0.003039569830262393
+        }
+      ],
+      "control": "tfidf_lr",
+      "fold": 3,
+      "refit": "full outer training partition only",
+      "selected_C": 1.0,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "control": "class_prior",
+      "fold": 4,
+      "selection": "training class prior; argmax tie selects class 0"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.49870007113021486,
+          "std_inner_macro_f1": 0.005959613110646671
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.49870007113021486,
+          "std_inner_macro_f1": 0.005959613110646671
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.49870007113021486,
+          "std_inner_macro_f1": 0.005959613110646671
+        }
+      ],
+      "control": "length_only",
+      "fold": 4,
+      "refit": "full outer training partition only",
+      "selected_C": 0.1,
+      "selection": "mean_inner_macro_f1"
+    },
+    {
+      "candidates": [
+        {
+          "C": 0.1,
+          "mean_inner_macro_f1": 0.8560884549656883,
+          "std_inner_macro_f1": 0.00313380729897352
+        },
+        {
+          "C": 1.0,
+          "mean_inner_macro_f1": 0.8763251901529563,
+          "std_inner_macro_f1": 0.004849592204075848
+        },
+        {
+          "C": 10.0,
+          "mean_inner_macro_f1": 0.8801495686920701,
+          "std_inner_macro_f1": 0.005454519956223271
+        }
+      ],
+      "control": "tfidf_lr",
+      "fold": 4,
+      "refit": "full outer training partition only",
+      "selected_C": 10.0,
+      "selection": "mean_inner_macro_f1"
+    }
+  ],
+  "source_hashes": {
+    "baseline.py": "2728b9dbbba354ba1cb20b48c8c83b9a86b6c77d5e3298ebd895c39b3e901c4b",
+    "cohort_baselines.py": "71f0cc86d42c66df7f37ab2b133afcd73db31f33ef1d8798ecff0d801c594245",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  }
+}

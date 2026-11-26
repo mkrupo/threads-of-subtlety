@@ -1,0 +1,449 @@
+{
+  "conditions": {
+    "class_prior": {
+      "accuracy": 0.5,
+      "confusion_matrix_labels_0_1": [
+        [
+          8000,
+          0
+        ],
+        [
+          8000,
+          0
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.6931471805599454,
+      "macro_f1": 0.3333333333333333,
+      "negative_f1": 0.6666666666666666,
+      "positive_f1": 0.0
+    },
+    "gate/deu.rst.pcc/coarse": {
+      "accuracy": 0.8810625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7166,
+          834
+        ],
+        [
+          1069,
+          6931
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2885639267975644,
+      "macro_f1": 0.8810368369504711,
+      "negative_f1": 0.882784108407761,
+      "positive_f1": 0.879289565493181
+    },
+    "gate/deu.rst.pcc/fine": {
+      "accuracy": 0.8834375,
+      "confusion_matrix_labels_0_1": [
+        [
+          7187,
+          813
+        ],
+        [
+          1052,
+          6948
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2849531235970587,
+      "macro_f1": 0.8834114857323301,
+      "macro_f1_interval_95": [
+        0.8784167139119138,
+        0.8882959413564876
+      ],
+      "negative_f1": 0.8851530266642035,
+      "positive_f1": 0.8816699448004568
+    },
+    "gate/deu.rst.pcc/unlabeled": {
+      "accuracy": 0.873,
+      "confusion_matrix_labels_0_1": [
+        [
+          7111,
+          889
+        ],
+        [
+          1143,
+          6857
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.3037367272384148,
+      "macro_f1": 0.8729679859475836,
+      "negative_f1": 0.8749846191706657,
+      "positive_f1": 0.8709513527245014
+    },
+    "gate/eng.erst.gum/coarse": {
+      "accuracy": 0.884875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7169,
+          831
+        ],
+        [
+          1011,
+          6989
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2879932906714185,
+      "macro_f1": 0.8848604276478742,
+      "negative_f1": 0.8861557478368356,
+      "positive_f1": 0.8835651074589128
+    },
+    "gate/eng.erst.gum/fine": {
+      "accuracy": 0.8868125,
+      "confusion_matrix_labels_0_1": [
+        [
+          7196,
+          804
+        ],
+        [
+          1007,
+          6993
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.284884652948825,
+      "macro_f1": 0.8867942769740618,
+      "macro_f1_interval_95": [
+        0.8818488350551386,
+        0.8916748780915544
+      ],
+      "negative_f1": 0.8882305745849534,
+      "positive_f1": 0.8853579793631702
+    },
+    "gate/eng.erst.gum/unlabeled": {
+      "accuracy": 0.87425,
+      "confusion_matrix_labels_0_1": [
+        [
+          7104,
+          896
+        ],
+        [
+          1116,
+          6884
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.30360919585051516,
+      "macro_f1": 0.8742262208948879,
+      "negative_f1": 0.8759556103575832,
+      "positive_f1": 0.8724968314321927
+    },
+    "gate/eng.rst.rstdt/coarse": {
+      "accuracy": 0.877625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7108,
+          892
+        ],
+        [
+          1066,
+          6934
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2982824994956569,
+      "macro_f1": 0.8776105255323087,
+      "negative_f1": 0.8789415110671448,
+      "positive_f1": 0.8762795399974725
+    },
+    "gate/eng.rst.rstdt/fine": {
+      "accuracy": 0.8803125,
+      "confusion_matrix_labels_0_1": [
+        [
+          7136,
+          864
+        ],
+        [
+          1051,
+          6949
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.29431295623521886,
+      "macro_f1": 0.880296148734473,
+      "macro_f1_interval_95": [
+        0.8752334814976906,
+        0.8852890616863066
+      ],
+      "negative_f1": 0.8816951874961388,
+      "positive_f1": 0.8788971099728072
+    },
+    "gate/eng.rst.rstdt/unlabeled": {
+      "accuracy": 0.86975,
+      "confusion_matrix_labels_0_1": [
+        [
+          7068,
+          932
+        ],
+        [
+          1152,
+          6848
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.3115560398108794,
+      "macro_f1": 0.8697253699527567,
+      "negative_f1": 0.8715166461159063,
+      "positive_f1": 0.8679340937896071
+    },
+    "gate/nld.rst.nldt/coarse": {
+      "accuracy": 0.881,
+      "confusion_matrix_labels_0_1": [
+        [
+          7162,
+          838
+        ],
+        [
+          1066,
+          6934
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.28866339818574943,
+      "macro_f1": 0.8809758306546123,
+      "negative_f1": 0.882671925067784,
+      "positive_f1": 0.8792797362414405
+    },
+    "gate/nld.rst.nldt/fine": {
+      "accuracy": 0.881875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7171,
+          829
+        ],
+        [
+          1061,
+          6939
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2872978805257069,
+      "macro_f1": 0.8818501589959289,
+      "macro_f1_interval_95": [
+        0.8767717097027619,
+        0.8867960452744389
+      ],
+      "negative_f1": 0.883563331690488,
+      "positive_f1": 0.8801369863013698
+    },
+    "gate/nld.rst.nldt/unlabeled": {
+      "accuracy": 0.8716875,
+      "confusion_matrix_labels_0_1": [
+        [
+          7097,
+          903
+        ],
+        [
+          1150,
+          6850
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.3048075305703503,
+      "macro_f1": 0.8716569137369148,
+      "negative_f1": 0.8736382101311011,
+      "positive_f1": 0.8696756173427284
+    },
+    "length_only": {
+      "accuracy": 0.5003125,
+      "confusion_matrix_labels_0_1": [
+        [
+          4407,
+          3593
+        ],
+        [
+          4402,
+          3598
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.6931475269543192,
+      "macro_f1": 0.4990317413794131,
+      "negative_f1": 0.5243619489559165,
+      "positive_f1": 0.47370153380290964
+    },
+    "roberta-base": {
+      "accuracy": 0.942375,
+      "confusion_matrix_labels_0_1": [
+        [
+          7617,
+          383
+        ],
+        [
+          539,
+          7461
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.26708700205235014,
+      "macro_f1": 0.9423695215026379,
+      "macro_f1_interval_95": [
+        0.9387411647289952,
+        0.9459334194515516
+      ],
+      "negative_f1": 0.9429314186679871,
+      "positive_f1": 0.9418076243372886
+    },
+    "tfidf_lr": {
+      "accuracy": 0.881625,
+      "confusion_matrix_labels_0_1": [
+        [
+          7068,
+          932
+        ],
+        [
+          962,
+          7038
+        ]
+      ],
+      "documents": 16000,
+      "log_loss": 0.2980311687336221,
+      "macro_f1": 0.8816245838364276,
+      "macro_f1_interval_95": [
+        0.8766230228357437,
+        0.8865624647280161
+      ],
+      "negative_f1": 0.8818465377417343,
+      "positive_f1": 0.8814026299311208
+    }
+  },
+  "contrasts": {
+    "roberta-base - gate/deu.rst.pcc/fine": {
+      "bootstrap_p": 0.0195,
+      "holm_p": 0.0656,
+      "interval_95": [
+        -0.032732847858126024,
+        -0.0026496117038794327
+      ],
+      "log_loss_difference": -0.01786612154470857,
+      "macro_f1_difference": 0.05895803577030778
+    },
+    "roberta-base - gate/eng.erst.gum/fine": {
+      "bootstrap_p": 0.0213,
+      "holm_p": 0.0656,
+      "interval_95": [
+        -0.03267808621911173,
+        -0.0025870221635000924
+      ],
+      "log_loss_difference": -0.017797650896474837,
+      "macro_f1_difference": 0.055575244528576095
+    },
+    "roberta-base - gate/eng.rst.rstdt/fine": {
+      "bootstrap_p": 0.0003,
+      "holm_p": 0.0024,
+      "interval_95": [
+        -0.04233481360445782,
+        -0.012026262027699965
+      ],
+      "log_loss_difference": -0.027225954182868717,
+      "macro_f1_difference": 0.062073372768164825
+    },
+    "roberta-base - gate/nld.rst.nldt/fine": {
+      "bootstrap_p": 0.0079,
+      "holm_p": 0.03950000000000001,
+      "interval_95": [
+        -0.035105605253764764,
+        -0.004990393380179973
+      ],
+      "log_loss_difference": -0.02021087847335673,
+      "macro_f1_difference": 0.060519362506708974
+    },
+    "roberta-base - tfidf_lr": {
+      "bootstrap_p": 0.0,
+      "holm_p": 0.0,
+      "interval_95": [
+        -0.046362086482223445,
+        -0.01539479603316429
+      ],
+      "log_loss_difference": -0.03094416668127198,
+      "macro_f1_difference": 0.06074493766621025
+    },
+    "tfidf_lr - gate/deu.rst.pcc/fine": {
+      "bootstrap_p": 0.0033,
+      "holm_p": 0.0231,
+      "interval_95": [
+        0.004189612036550898,
+        0.021738200361530652
+      ],
+      "log_loss_difference": 0.01307804513656341,
+      "macro_f1_difference": -0.0017869018959024707
+    },
+    "tfidf_lr - gate/eng.erst.gum/fine": {
+      "bootstrap_p": 0.0037,
+      "holm_p": 0.0231,
+      "interval_95": [
+        0.004365972318887289,
+        0.021901721235251578
+      ],
+      "log_loss_difference": 0.013146515784797141,
+      "macro_f1_difference": -0.005169693137634157
+    },
+    "tfidf_lr - gate/eng.rst.rstdt/fine": {
+      "bootstrap_p": 0.416,
+      "holm_p": 0.416,
+      "interval_95": [
+        -0.005001762132633686,
+        0.012479689364326337
+      ],
+      "log_loss_difference": 0.0037182124984032616,
+      "macro_f1_difference": 0.0013284351019545726
+    },
+    "tfidf_lr - gate/nld.rst.nldt/fine": {
+      "bootstrap_p": 0.0164,
+      "holm_p": 0.0656,
+      "interval_95": [
+        0.00201038450147156,
+        0.019453400517996596
+      ],
+      "log_loss_difference": 0.010733288207915248,
+      "macro_f1_difference": -0.00022557515950127893
+    }
+  },
+  "input_hashes": {
+    "controls_predictions.jsonl": "a9e82d5fd9b8355b781e720a16b68ec38eea0ecfe0ccb3fc1f62cf88b11742b4",
+    "gate_predictions.jsonl": "6431323be70d24913d76f73b44a44709fadc9c04db8dec97dfc8557c34b2a494",
+    "manifest.jsonl": "258e9dbc3366aaa011261d4104d76e283b12b2f9611ea7ab318454cbf147e783",
+    "reviews.jsonl": "18a7c8888e1feb890dd83abf4b978be8315d580d74163d0d33ab5658797e09e0",
+    "roberta_predictions.jsonl": "f97df497fc0c7cbca497f9c41966ed4a6256f86b9102978b1ce86c2e9b1b5eb4",
+    "splits.json": "0ac005507fad0a01b4be20269e2a90372f596519001b98f0937c9678767d40c1"
+  },
+  "note": "Added after the pre-registered confirmation; descriptive, not confirmatory.",
+  "protocol": "cohort-baseline-comparison-v1",
+  "resampling": {
+    "draws": 20000,
+    "paired": true,
+    "seed": 42,
+    "strata": [
+      "outer_fold",
+      "domain",
+      "label"
+    ],
+    "unit": "review"
+  },
+  "reviews": 16000,
+  "runtime": {
+    "numpy": "2.4.6",
+    "python": "3.11.15",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "source_hashes": {
+    "cohort_baselines.py": "71f0cc86d42c66df7f37ab2b133afcd73db31f33ef1d8798ecff0d801c594245",
+    "confirm_granularity.py": "7f96272eeb2d57ed2a385d567092a25f4031be446ed074507f14763d115389dc",
+    "granularity_diagnostics.py": "b10d8df36b814b4014aa909ebc7e803214656513e04eecb37efd49e8a2d7d1de",
+    "uv.lock": "4fd98279a007750c40988d4098195dc09bc602c9a561d43afc00f70a02db1d8e"
+  },
+  "uninformative_reference": {
+    "constant_class_macro_f1": 0.3333333333333333,
+    "expected_accuracy_random_guess": 0.5,
+    "expected_macro_f1_random_guess": 0.5,
+    "log_loss": 0.6931471805599453,
+    "probability": 0.5
+  }
+}
